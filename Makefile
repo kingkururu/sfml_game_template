@@ -19,7 +19,7 @@ SRC = src/main.cpp \
 OBJ = $(SRC:.cpp=.o)
 
 # Target executable
-TARGET = ASAtut
+TARGET = runGame
 
 # Build target
 all: $(TARGET)
