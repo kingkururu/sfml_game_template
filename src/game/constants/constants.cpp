@@ -7,6 +7,7 @@
 
 #include "constants.hpp"
 
+/* constant variables defined here */
 namespace Constants {
 // background components (static)
     const sf::Vector2f BACKGROUND_POSITION = {0.0f, 0.0f};

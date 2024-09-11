@@ -14,7 +14,7 @@
 #include <iostream> 
 #include <unordered_map>
 
-
+/* constant variables declared here */
 namespace Constants {
     // basic game components
     constexpr unsigned short SCREEN_WIDTH = 960;
