@@ -1,6 +1,6 @@
 //
 //  sprites.hpp
-//  sfmlgame3
+//  sfml game template
 //
 //  Created by Sunmyoung Yun on 2024/08
 //
@@ -18,6 +18,7 @@
 #include "constants.hpp"
 #include "flags.hpp" 
 
+/* base class for all sprites; contains position, scale, and texture */
 class Sprite{
 public:
     explicit Sprite(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture);
@@ -36,12 +37,14 @@ protected:
     bool visibleState {};
 };
 
+/* static class deriving from sprites; refers to non-moving sprites */
 class Static : public Sprite{
 public:
     explicit Static(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture) : Sprite(position, scale, texture) {}
     ~Static() override{};
 };
 
+/* background class deriving from static sprites; the background doesn't "actually move with physics", but moves constantly to the left */
 class Background : public Static{
 public:
    explicit Background(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture); 
@@ -56,6 +59,7 @@ private:
     bool backgroundMoveState = true; 
 };
 
+/* NonStatic class deriving from sprites; refers to moving sprites */
 class NonStatic : public Sprite{
 public:
    explicit NonStatic(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, const std::vector<sf::IntRect> animationRects, unsigned const int indexMax, const std::vector<std::weak_ptr<sf::Uint8[]>>& bitMask)
@@ -94,6 +98,7 @@ protected:
     float acceleration{}; 
 };
 
+/* player class deriving from NonStatic; refers to movable player */
 class Player : public NonStatic{
 public:
    explicit Player(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, const std::vector<sf::IntRect> animationRects, unsigned const int indexMax, const std::vector<std::weak_ptr<sf::Uint8[]>>& bitMask) : NonStatic(position, scale, texture, animationRects, indexMax, bitMask) {}
@@ -103,6 +108,7 @@ public:
     const float getAcceleration() const override { return Constants::PLAYER_ACCELERATION; }
 };
 
+/* obstacle class deriving from NonStatic; refers to movable obstacles */
 class Obstacle : public NonStatic{
 public:
     explicit Obstacle(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, const std::vector<sf::IntRect> animationRects, unsigned const int indexMax, const std::vector<std::weak_ptr<sf::Uint8[]>>& bitMask) : NonStatic(position, scale, texture, animationRects, indexMax, bitMask) {}
@@ -116,6 +122,7 @@ public:
 private:
 };
 
+/* bullet class deriving from NonStatic; refers to moving bullets */
 class Bullet : public NonStatic{
 public:
     explicit Bullet(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture>texture, const std::vector<sf::IntRect> animationRects, unsigned const int indexMax, const std::vector<std::weak_ptr<sf::Uint8[]>>& bitMask) : NonStatic(position, scale, texture, animationRects, indexMax, bitMask) {}

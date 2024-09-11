@@ -1,12 +1,13 @@
 //
 //  sprites.cpp
-//  sfmlgame3
+//  sfml game template
 //
-//  Created by Sunmyoung Yun on 2024/08
+//  Created by Sunmyoung Yun on 2024/09
 //
 
 #include "sprites.hpp"
 
+/* sprite class constructor; takes in position, scale, texture */
 Sprite::Sprite(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture)
     : position(position), scale(scale), texture(texture), spriteCreated(std::make_unique<sf::Sprite>()), visibleState(true) {
     try {
@@ -29,6 +30,7 @@ Sprite::Sprite(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Text
     }
 }
 
+/* background class constructor; takes in position, scale, texture */
 Background::Background(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture) : Static(position, scale, texture) {
     if (auto tex = texture.lock()) {
         spriteCreated2 = std::make_unique<sf::Sprite>(*tex);
@@ -37,6 +39,7 @@ Background::Background(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<
     }
 }
 
+/* moves background to the left and fills the screen with the same image stuck next to the original image */
 void Background::updateBackground(float deltaTime, float speed) {
         // Move both background sprites to the left
         spriteCreated->move(-speed * deltaTime, 0);
@@ -51,6 +54,7 @@ void Background::updateBackground(float deltaTime, float speed) {
         }
 }
 
+/* sets cut-out rect for sprite animation */
 void NonStatic::setRects(int animNum){
     try{
         if(animNum < 0 || animNum > indexMax){
@@ -65,6 +69,7 @@ void NonStatic::setRects(int animNum){
     }
 }
 
+/* changes animation based on time */
 void NonStatic::changeAnimation(float deltaTime) {
     try {
         if(animChangeState){
@@ -85,6 +90,7 @@ void NonStatic::changeAnimation(float deltaTime) {
     }
 }
 
+/* updates position to be assigned most recent position */
 void NonStatic::updatePos() {
     try {
         if (position.y > Constants::SCREEN_HEIGHT + Constants::SPRITE_OUT_OF_BOUNDS_OFFSET 
@@ -101,14 +107,15 @@ void NonStatic::updatePos() {
     }
 }
 
+/* returns animation rects vector */
 sf::IntRect NonStatic::getRects() const{
     if (animationRects.empty()) {
         throw std::runtime_error("Animation rects are empty.");
     }
-    //std::cout << "left " <<  animationRects[currentIndex].left << " right " <<  animationRects[currentIndex].top << "width" << animationRects[currentIndex].width << "height: " <<  animationRects[currentIndex].height << std::endl; 
     return animationRects[currentIndex % animationRects.size()];
 }
 
+/* returns bitmask for a sprite */
 std::shared_ptr<sf::Uint8[]> const NonStatic::getBitmask(size_t index) const {
     if (index >= bitMask.size()) 
         throw std::out_of_range("Index out of range.");
@@ -116,7 +123,7 @@ std::shared_ptr<sf::Uint8[]> const NonStatic::getBitmask(size_t index) const {
     return bitMask[index].lock();
 }
 
-// Player class
+/* specialized player position update method */
 void Player::updatePlayer(sf::Vector2f newPos) {
     if (FlagEvents.sPressed && newPos.y > Constants::SCREEN_HEIGHT - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET){
         newPos.y = Constants::SCREEN_HEIGHT - Constants::SPRITE_OUT_OF_BOUNDS_ADJUSTMENT; 
@@ -128,12 +135,14 @@ void Player::updatePlayer(sf::Vector2f newPos) {
     changePosition(newPos); 
 }
 
+/* calculates obstacles's direction vector when bullet is made */
 void Obstacle::setDirectionVector(float angle){
     float angleRad = angle * (3.14f / 180.f);
     directionVector.x = std::cos(angleRad);
     directionVector.y = std::sin(angleRad);
 }
 
+/* sets obstacles's direction vector when obstacle is made */
 void Bullet::setDirectionVector(sf::Vector2i projectionPos) {
     directionVector = static_cast<sf::Vector2f>(projectionPos) - position;
         
