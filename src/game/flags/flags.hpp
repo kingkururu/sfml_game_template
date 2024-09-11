@@ -1,8 +1,8 @@
 //
 //  flags.hpp
-//  sfmlgame2
+//  sfml game template
 //
-//  Created by Sunmyoung Yun on 2024/08
+//  Created by Sunmyoung Yun on 2024/09
 //
 
 #pragma once
@@ -13,11 +13,12 @@
 #include <stdio.h>
 #include <cstring>
 
+/* flagEvents singleton definition for game states */
 extern struct flagEvents{
     // game states
     bool gameEnd; 
 
-    //keyboard inputs
+    // keyboard inputs
     bool wPressed;
     bool aPressed;
     bool sPressed;
@@ -28,10 +29,12 @@ extern struct flagEvents{
 
     flagEvents() : wPressed(false), aPressed(false), sPressed(false), dPressed(false), bPressed(false), spacePressed(false), mouseClicked(false) {}
 
+    // resets every flag
     void resetFlags(){
         std::memset(this, 0, sizeof(*this));
     }
 
+    // resets keyboard flags only 
     void flagKeyReleased(){
         wPressed = false;
         aPressed = false;

@@ -1,32 +1,37 @@
 //
 //  scenes.cpp
-//  sfmlgame2
+//  sfml game template
 //
-//  Created by Sunmyoung Yun on 2024/08
+//  Created by Sunmyoung Yun on 2024/09
 //
 
 #include "scenes.hpp"
 
+/* Scene constructure sets up window and sprite respawn times */
 Scene::Scene( sf::RenderWindow& gameWindow ) : window(gameWindow), slimeRespTime(Constants::SLIME_INITIAL_RESPAWN_TIME), bushRespTime(Constants::BUSH_INITIAL_RESPAWN_TIME), bulletRespTime(Constants::BULLET_RESPAWN_TIME){}
 
+/* runScene that takes in delta time and global time from GameManager class to execute scene logic */
 void Scene::runScene(float deltaT, float globalT){
     deltaTime = deltaT;
     globalTime = globalT; 
     
+    /* inside the while loop in game, only runs when gameEnd state is false */
     if (!FlagEvents.gameEnd) {
         setTime();
         handleInput();
         respawnAssets(); 
         handleGameEvents(); 
     }
+    /* inside the while loop in game, always runs */
     handleGameFlags(); 
     update();
     draw();
 }
 
+/* Gets called once before the main game loop to handle cpu-heavy work only once at the beggining */
 void Scene::createAssets() {
     try {
-        // Initialize assets
+        // Initialize sprites
         background = std::make_unique<Background>(Constants::BACKGROUND_POSITION, Constants::BACKGROUND_SCALE, Constants::BACKGROUND_TEXTURE);
         playerSprite = std::make_unique<Player>(Constants::PLAYER_POSITION, Constants::PLAYER_SCALE, Constants::PLAYER_TEXTURE, Constants::PLAYERSPRITE_RECTS, Constants::PLAYERANIM_MAX_INDEX, utils::convertToWeakPtrVector(Constants::PLAYER_BITMASKS));
         playerSprite->setRects(0);
@@ -53,6 +58,7 @@ void Scene::createAssets() {
     }
 }
 
+/* Creates more sprites from exisitng textures; avoids heavy cpu work */
 void Scene::respawnAssets(){
     if(slimeRespTime <= 0){
         float newSlimeInterval = Constants::SLIME_INITIAL_RESPAWN_TIME - (globalTime * Constants::SLIME_INTERVAL_DECREMENT);
@@ -69,6 +75,7 @@ void Scene::respawnAssets(){
     }
 } 
 
+/* Specialized spawnBullets to re-spawn bullets */
 void Scene::spawnBullets(){
     if (bulletRespTime <= 0){
         bullets.push_back(std::make_unique<Bullet>(playerSprite->getSpritePos() + Constants::BULLET_POS_OFFSET, Constants::BULLET_SCALE, Constants::BULLET_TEXTURE, Constants::BULLETSPRITES_RECTS, Constants::BULLETANIM_MAX_INDEX, utils::convertToWeakPtrVector(Constants::BULLET_BITMASKS)));
@@ -82,6 +89,8 @@ void Scene::spawnBullets(){
     }
 } 
 
+/* Updating time from GameManager's deltatime; it updates sprite respawn times and also counts 
+elapsed times from when bullets were spawned and when space button was pressed */
 void Scene::setTime(){
     slimeRespTime -= deltaTime; 
     bulletRespTime -= deltaTime; 
@@ -98,10 +107,12 @@ void Scene::setTime(){
     }
 } 
 
+/* Updates mouse position from GameManager input */
 void Scene::setMouseClickedPos(sf::Vector2i mousePos){
     mouseClickedPos = mousePos; 
 } 
 
+/* Draws only the visible sprite and texts */
 void Scene::draw() {
     try {
         window.clear();
@@ -140,6 +151,8 @@ void Scene::draw() {
     }
 }
 
+/* Updates sprite and text positions when their moveState is true and their pointers are not null. 
+deleteInvisibleSprites is called to destroy invisible sprites for memory management */
 void Scene::update() {
     try {
        // Update background if it should move
@@ -153,7 +166,7 @@ void Scene::update() {
         } 
         // Update slimes
         for (auto& slime : slimes) {
-            if (slime) { // Check if slime pointer is not null
+            if (slime) { 
                 if (slime->getMoveState()) {
                     slime->changePosition(physics::follow(deltaTime, Constants::SLIME_SPEED, slime->getSpritePos(), Constants::SLIME_ACCELERATION, slime->getDirectionVector()));
                     slime->changeAnimation(deltaTime);
@@ -163,10 +176,9 @@ void Scene::update() {
                 std::cerr << "Error: slime pointer is null" << std::endl;
             }
         }
-
         // Update bushes
         for (auto& bush : bushes) {
-            if (bush) { // Check if bush pointer is not null
+            if (bush) { 
                 if (bush->getMoveState()) {
                     bush->changePosition(physics::moveLeft(deltaTime, Constants::BUSH_SPEED, bush->getSpritePos(), Constants::BUSH_ACCELERATION));
                     bush->updatePos();
@@ -175,7 +187,6 @@ void Scene::update() {
                 std::cerr << "Error: bush pointer is null" << std::endl;
             }
         }
-
         // Update bullets
         for (auto& bullet : bullets) {
             if (bullet) { 
@@ -197,8 +208,8 @@ void Scene::update() {
     }
 }
 
+/* deals with inputs from device, let known by FlagEvents. If player's MoveState is true and its pointer is not null, it updates player's position */
 void Scene::handleInput() {
-
     if(playerSprite && playerSprite->getMoveState()){
         if(FlagEvents.sPressed){
             playerSprite->updatePlayer(physics::moveDown(deltaTime, Constants::PLAYER_SPEED, playerSprite->getSpritePos())); 
@@ -220,6 +231,7 @@ void Scene::handleInput() {
     }
 }
 
+/* Keeps sprites inside screen bounds, checks for collisions, update scores, and sets FlagEvents.gameEnd to true in an event of collision */
 void Scene::handleGameEvents() { 
     // increase score
     for (auto it = slimes.begin(); it != slimes.end(); ) {
@@ -265,6 +277,7 @@ void Scene::handleGameEvents() {
         endingText->updateText("current score: " + std::to_string(score)); 
 } 
 
+/* Handles events from FlagEvents; deals with gameEnd state */
 void Scene::handleGameFlags(){
     if(FlagEvents.gameEnd){
         if(background)
@@ -272,12 +285,10 @@ void Scene::handleGameFlags(){
 
         if(playerSprite)
             playerSprite->setMoveState(false);
-       //playerSprite->setAnimChangeState(false);
 
        for (auto& slime : slimes) {
             if(slime){
                 slime->setMoveState(false);
-                //slime->setAnimChangeState(false);
             }
         }
 
@@ -296,6 +307,7 @@ void Scene::handleGameFlags(){
     }
 }
 
+/* Resets everything for scene to start again. The position, moveState, FlagEvents, etc are all reset */
 void Scene::restart() {
     if(backgroundMusic)
         backgroundMusic->returnMusic().play();
@@ -348,6 +360,7 @@ void Scene::restart() {
     bushes.clear(); 
 }
 
+/* deletes sprites if their visibleState is false for memory management */
 void Scene::deleteInvisibleSprites() {
     // Remove invisible slimes
     auto slimeIt = std::remove_if(slimes.begin(), slimes.end(),

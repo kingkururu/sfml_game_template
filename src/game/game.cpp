@@ -1,12 +1,13 @@
 //
 //  game.cpp
-//  sfmlgame3
+//  sfml game template
 //
-//  Created by Sunmyoung Yun on 2024/08
+//  Created by Sunmyoung Yun on 2024/09
 //
 
 #include "game.hpp"
 
+/* GameManager constructor sets up the window, intitializes constant variables, calls the random function, and makes scenes */
 GameManager::GameManager()
     : window(sf::VideoMode(Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT), Constants::GAME_TITLE, sf::Style::Titlebar | sf::Style::Close) {
     Constants::initialize();
@@ -15,6 +16,7 @@ GameManager::GameManager()
     scene = std::make_unique<Scene>(window);
 }
 
+/* runGame calls to createAssets from scenes and loops until window is closed to run scene events */
 void GameManager::runGame() {
     try {
         scene->createAssets();
@@ -30,12 +32,15 @@ void GameManager::runGame() {
     }
 }
 
+/* countTime counts global time and delta time for scenes to later use in runScene */
 void GameManager::countTime() {
     sf::Time frameTime = clock.restart();
     deltaTime = frameTime.asSeconds(); 
     globalTime += deltaTime;
 }
 
+/* handleEventInput takes in keyboard and mouse input. It modifies FlagEvents and calls setMouseClickedPos in scene to 
+pass in the position in screen where mouse was clicked */
 void GameManager::handleEventInput() {
     sf::Event event;
     while (window.pollEvent(event)) {

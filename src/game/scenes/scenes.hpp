@@ -1,8 +1,8 @@
 //
 //  scenes.hpp
-//  sfmlgame2
+//  sfml game template
 //
-//  Created by Sunmyoung Yun on 2024/08
+//  Created by Sunmyoung Yun on 2024/09
 //
 #pragma once
 
@@ -24,7 +24,7 @@
 #include "physics.hpp"
 #include "utils.hpp"
 
-
+/* Scene class for creating scenes to run inside GameManager class */
 class Scene {
 public:
     Scene( sf::RenderWindow& gameWindow );
@@ -44,6 +44,7 @@ public:
     void handleGameFlags(); 
     
 private:
+    /* Includes entities such as sprites, sounds, texts, and other game components */
     // Sprites
     std::unique_ptr<Background> background;
     std::unique_ptr<Player> playerSprite;
@@ -63,17 +64,27 @@ private:
 
     // other game components 
     sf::RenderWindow& window; 
+
+    //initial score
     unsigned int score = Constants::INITIAL_SCORE;
+   
+    //delta time and global time passed on from GameManager class
     float deltaTime {}; 
     float globalTime {}; 
+
+    //position in screen where mouse was clicked
     sf::Vector2i mouseClickedPos {}; 
 
+    // respawn times for sprites 
     float slimeRespTime {};
     float bushRespTime {}; 
     float bulletRespTime {}; 
+
+    // times elapsed since bullet was spawned 
     std::vector<float> bulletSpawnedTimes; 
-    float spacePressedElapsedTime {}; 
     
+    // time elapsed since space button was pressed 
+    float spacePressedElapsedTime {}; 
 };
 
 

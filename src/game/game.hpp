@@ -1,8 +1,10 @@
 //
 //  game.hpp
-//  sfmlgame3
+//  sfml game template 
 //
-//  Created by Sunmyoung Yun on 2024/08
+//  Created by Sunmyoung Yun on 2024/09
+
+/* This is the game.hpp file containing all the declarations for game.cpp's GameManager class. */
 
 #pragma once
 
@@ -24,16 +26,18 @@ public:
     void runGame();
 
 private:
+    /* countTime counts time regardless of the scene 
+       handleEventInput taks input from device, such as keyboard, mouse, etc */
     void countTime();
     void handleEventInput();
 
-    //game components (not accesible from anywhere else otherthan game manager)
+    /* Game components (private in GameManager) */
     sf::RenderWindow window;
     sf::Clock clock;
     float globalTime {};
     float deltaTime {}; 
     
-    // Scene
+    /* Make more scene here. ex) name it openingScene, scene1, etc */
     std::unique_ptr<Scene> scene;
 };
 

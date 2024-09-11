@@ -1,34 +1,35 @@
 //
 //  physics.cpp
-//  sfmlgame3
+//  sfml game template
 //
-//  Created by Sunmyoung Yun on 2024/08
+//  Created by Sunmyoung Yun on 2024/09
 //
 
 #include "physics.hpp"
 
+/* physics namespace to have sprites move */
 namespace physics{
     
+    // struct to hold raycast operation results
     struct RaycastResult {
     sf::Vector2f intersection;
     std::vector<float> collisionTimes;
     int counter; 
     };
-
     RaycastResult cachedRaycastResult {}; 
 
-    //falling objects 
+    // falling objects 
     sf::Vector2f freeFall(float deltaTime, float speed, sf::Vector2f originalPos){
         return { originalPos.x, originalPos.y += speed * deltaTime * gravity };
     }
 
-    //object moving in a direction vector
+    // object moving in a direction vector
     sf::Vector2f follow(float deltaTime, float speed, sf::Vector2f originalPos, float acceleration, const sf::Vector2f& direction){
          sf::Vector2f movement(direction.x * speed * deltaTime * acceleration, direction.y * speed * deltaTime * acceleration);
         return originalPos + movement;
     }
 
-    //moving x or y positions based on directions
+    // moving x or y positions based on directions
     sf::Vector2f moveLeft(float deltaTime, float speed, sf::Vector2f originalPos, float acceleration){
         return { originalPos.x -= speed * deltaTime * acceleration, originalPos.y };
     }
@@ -42,6 +43,8 @@ namespace physics{
         return { originalPos.x, originalPos.y += speed * deltaTime * acceleration};
     }
 
+
+    // jumping sprites 
     sf::Vector2f jump(float& elapsedTime, float deltaTime, float jumpSpeed, sf::Vector2f originalPos){
        if(elapsedTime < 0.4f){
             return { originalPos.x, originalPos.y -= jumpSpeed * deltaTime * gravity };
@@ -54,7 +57,8 @@ namespace physics{
         }
     }
 
-    // collisions (circle collision)
+// collisions 
+    // circle collision 
     bool circleCollision(sf::Vector2f pos1, float radius1, sf::Vector2f pos2, float radius2) {
         // Calculate the distance between the centers of the circles
         float dx = pos1.x - pos2.x;
@@ -69,6 +73,7 @@ namespace physics{
         return distanceSquared <= radiusSumSquared;
     }
 
+    // raycast collision 
     bool raycastPreCollision(const sf::Vector2f obj1position, const sf::Vector2f obj1direction, float obj1Speed, const sf::FloatRect obj1Bounds, float obj1Acceleration, 
                                 const sf::Vector2f obj2position, const sf::Vector2f obj2direction, float obj2Speed, const sf::FloatRect obj2Bounds, float obj2Acceleration) {
             
@@ -187,7 +192,7 @@ namespace physics{
         return false; 
     }
 
-    //bounding box collision helper
+    // bounding box collision helper to be passed in physics::collisions function 
     bool boundingBoxCollisionHelper(const NonStatic& sprite1, const NonStatic& sprite2) {    
         // Retrieve global bounds of the entire sprite
         sf::FloatRect bounds1 = sprite1.returnSpritesShape().getGlobalBounds();
@@ -209,7 +214,7 @@ namespace physics{
         return boundingBoxCollision(position1, size1, position2, size2);
     }
 
-    //pixel perfect collision helper
+    //pixel perfect collision helper to be passed in physics::collisions function 
     bool pixelPerfectCollisionHelper(const NonStatic& obj1, const NonStatic& obj2) {
         // Retrieve bitmasks for the current animation frame
         auto bitmask1 = obj1.getBitmask(obj1.getCurrIndex());
@@ -231,6 +236,7 @@ namespace physics{
         return pixelPerfectCollision(bitmask1, position1, size1, bitmask2, position2, size2);
     }
 
+    //raycast collision helper to be passed in physics::collisions function 
     bool raycastCollisionHelper(const NonStatic& obj1, const NonStatic& obj2, float currentTime, size_t index) {
 
         if(!cachedRaycastResult.counter){

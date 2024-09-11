@@ -1,8 +1,8 @@
 //
 //  physics.hpp
-//  sfmlgame3
+//  sfml game template
 //
-//  Created by Sunmyoung Yun on 2024/08
+//  Created by Sunmyoung Yun on 2024/09
 //
 #pragma once
 
@@ -18,6 +18,7 @@
 #include <functional> 
 #include "sprites.hpp"
 
+/* declarations for physics methods */
 namespace physics{
     struct RaycastResult;
     extern RaycastResult cachedRaycastResult; 
@@ -38,7 +39,7 @@ namespace physics{
     // collisions
         //circle-shaped sprite 
     bool circleCollision(const sf::Vector2f pos1, float radius1, const sf::Vector2f pos2, float radius2);
-        //ray cast pre-collision
+        //raycast pre-collision
     bool raycastPreCollision(const sf::Vector2f obj1position, const sf::Vector2f obj1direction, float obj1Speed, const sf::FloatRect obj1Bounds, float obj1Acceleration, 
                             const sf::Vector2f obj2position, const sf::Vector2f obj2direction, float obj2Speed, const sf::FloatRect obj2Bounds, float obj2Acceleration);
         //axis aligned bounding box
@@ -53,7 +54,7 @@ namespace physics{
     bool pixelPerfectCollisionHelper(const NonStatic& sprite1, const NonStatic& sprite2);
     bool raycastCollisionHelper(const NonStatic& sprite1, const NonStatic& sprite2, float currentTime, size_t index);
 
-    //check templates 
+    //checkCollisions methods to pass in different kinds of sprites. ex) NonStatic, Player, Obstacle, etc; this one takes vector to compare to vector
     template<typename SpriteType1, typename SpriteType2, typename CollisionFunc>
     bool checkCollisions(const std::vector<std::unique_ptr<SpriteType1>>& firstGroup, 
                          const std::vector<std::unique_ptr<SpriteType2>>& secondGroup,
@@ -80,6 +81,7 @@ namespace physics{
         return false; 
     }
 
+    //checkCollisions methods to pass in different kinds of sprites; this one takes single sprite to compare to vector
     template<typename SpriteType1, typename SpriteType2, typename CollisionFunc>
     bool checkCollisions(const std::unique_ptr<SpriteType1>& first, 
                          const std::vector<std::unique_ptr<SpriteType2>>& Group,
@@ -102,7 +104,8 @@ namespace physics{
         return false; // No collisions detected
     }
 
-     template<typename SpriteType1, typename SpriteType2, typename CollisionFunc>
+    //checkCollisions methods to pass in different kinds of sprites this one takes an additional parameter in collisionFunc
+    template<typename SpriteType1, typename SpriteType2, typename CollisionFunc>
     bool checkCollisions(const std::vector<std::unique_ptr<SpriteType1>>& firstGroup, 
                          const std::vector<std::unique_ptr<SpriteType2>>& secondGroup,
                          const CollisionFunc& collisionFunc, std::vector<float>firstGroupSpawnedTimes) {
