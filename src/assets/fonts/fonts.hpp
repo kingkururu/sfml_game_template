@@ -1,8 +1,8 @@
 //
 //  fonts.hpp
-//  sfmlgame3
+//  sfml game template
 //
-//  Created by Sunmyoung Yun on 2024/08
+//  Created by Sunmyoung Yun on 2024/00
 //
 #pragma once
 
@@ -15,6 +15,7 @@
 #include <iostream> 
 #include <stdexcept>
 
+/* text class declaration */
 class TextClass{
 public:
     explicit TextClass(sf::Vector2f position, unsigned int size, sf::Color color, std::weak_ptr<sf::Font> font, const std::string& testMessage);
