@@ -11,12 +11,12 @@
 namespace Constants {
 // background components (static)
     const sf::Vector2f BACKGROUND_POSITION = {0.0f, 0.0f};
-    const sf::Vector2f BACKGROUND_SCALE = {0.5f, 0.5f};
+    const sf::Vector2f BACKGROUND_SCALE = {1.0f, 1.0f};
     std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE = std::make_shared<sf::Texture>();
     
     // player components (non-static) / animated 
     const sf::Vector2f PLAYER_POSITION = {0.0f, SCREEN_HEIGHT - 120};
-    const sf::Vector2f PLAYER_SCALE = {3.0f, 3.0f};
+    const sf::Vector2f PLAYER_SCALE = {1.0f, 1.0f};
     std::vector<sf::IntRect> PLAYERSPRITE_RECTS;
     const sf::Color PLAYER_DEAD_COLOR = sf::Color(200, 0, 0);
     std::shared_ptr<sf::Texture> PLAYER_TEXTURE = std::make_shared<sf::Texture>();
@@ -24,28 +24,28 @@ namespace Constants {
 
     // bullet components (non-static) / non-animated
     const sf::Vector2f BULLET_POSITION = PLAYER_POSITION;
-    const sf::Vector2f BULLET_SCALE = {2.5f, 2.5f};
+    const sf::Vector2f BULLET_SCALE = {1.0f, 1.0f};
     std::vector<sf::IntRect> BULLETSPRITES_RECTS;
     std::shared_ptr<sf::Texture> BULLET_TEXTURE = std::make_shared<sf::Texture>();
     std::vector<std::shared_ptr<sf::Uint8[]>> BULLET_BITMASKS;
     const sf::Vector2f BULLET_POS_OFFSET = { 60.0f, 60.0f};  
 
     // slime components (non-static) / animated   
-    const sf::Vector2f SLIME_SCALE = {0.35f, 0.35f};
+    const sf::Vector2f SLIME_SCALE = {1.0f, 1.0f};
     std::vector<sf::IntRect> SLIMESPRITE_RECTS;
     std::shared_ptr<sf::Texture> SLIME_TEXTURE = std::make_shared<sf::Texture>();
     std::vector<std::shared_ptr<sf::Uint8[]>> SLIME_BITMASKS;
 
     // bush components (non-static) / non-animated
     const sf::Vector2f BUSH_POSITION = {SCREEN_WIDTH - 100.0f, SCREEN_HEIGHT - 130.0f};
-    const sf::Vector2f BUSH_SCALE = {3.0f, 3.0f};
+    const sf::Vector2f BUSH_SCALE = {1.0f, 1.0f};
     std::vector<sf::IntRect> BUSHSPRITES_RECTS;
     std::shared_ptr<sf::Texture> BUSH_TEXTURE = std::make_shared<sf::Texture>();
     std::vector<std::shared_ptr<sf::Uint8[]>> BUSH_BITMASKS;
 
     // text components
     const sf::Vector2f TEXT_POSITION = {30.0f, 0.0f};
-    const sf::Color TEXT_COLOR = sf::Color::White;
+    const sf::Color TEXT_COLOR = sf::Color::Black;
     std::shared_ptr<sf::Font> TEXT_FONT = std::make_shared<sf::Font>(); 
 
     // music components 
@@ -112,13 +112,17 @@ namespace Constants {
 
         //make rects for animations     //at this current moment player is only player_run.png
         for(int i = 0; i < 6; ++i ){
-            PLAYERSPRITE_RECTS.push_back(sf::IntRect{ 32 * i, 0, 32, 32}); 
+            PLAYERSPRITE_RECTS.push_back(sf::IntRect{ 200 * i, 0, 200, 200 }); 
         }
-        for(int i = 0; i < 5; ++i ){
-            SLIMESPRITE_RECTS.push_back(sf::IntRect{ 490 * i, 0, 490, 242}); 
+        for(int i = 0; i < 6; ++i ){
+            SLIMESPRITE_RECTS.push_back(sf::IntRect{ 314 * i, 0, 314, 314 }); 
         }
-        BUSHSPRITES_RECTS.push_back(sf::IntRect{ 0, 0, 32, 32 }); 
-        BULLETSPRITES_RECTS.push_back(sf::IntRect{ 0, 0, 8, 8 }); 
+        for(int i = 0; i < 6; ++i ){
+            BUSHSPRITES_RECTS.push_back(sf::IntRect{ 314 * i, 0, 314, 314 }); 
+        }
+        for(int i = 0; i < 6; ++i ){
+        BULLETSPRITES_RECTS.push_back(sf::IntRect{ 81 * i, 0, 81, 81 }); 
+        }
 
         // make bitmasks
         for (const auto& rect : PLAYERSPRITE_RECTS ) {

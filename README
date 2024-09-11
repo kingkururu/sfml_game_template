@@ -48,7 +48,6 @@ This is my very basic game template for a 2D-platformer game.
 │   │   │
 │   │   ├── /sound              # Sound effects
 │   │   │   ├── /mp3           # MP3 files
-│   │   │   ├── /flac          # FLAC files
 │   │   │   ├── /wav           # WAV files
 │   │   │   │   └── bgm.mp3    # Example background music file
 │   │   │   ├── sound.cpp       # Sound-related source file (if necessary)

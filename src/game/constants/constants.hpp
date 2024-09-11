@@ -17,10 +17,10 @@
 /* constant variables declared here */
 namespace Constants {
     // basic game components
-    constexpr unsigned short SCREEN_WIDTH = 960;
-    constexpr unsigned short SCREEN_HEIGHT = 540;
+    constexpr unsigned short SCREEN_WIDTH = 1920 * .5;
+    constexpr unsigned short SCREEN_HEIGHT = 1080 * .5;
     constexpr unsigned short FRAME_LIMIT = 60;
-    constexpr const char* GAME_TITLE = "SFML game 3";
+    constexpr const char* GAME_TITLE = "SFML game template";
 
     // score components
     constexpr unsigned short INITIAL_SCORE = 0;
@@ -38,7 +38,7 @@ namespace Constants {
     constexpr float BACKGROUND_SPEED = 35.0;
     extern const sf::Vector2f BACKGROUND_POSITION;
     extern const sf::Vector2f BACKGROUND_SCALE;
-    constexpr const char* BACKGROUNDSPRITE_PATH = "src/assets/sprites/png/background.png";
+    constexpr const char* BACKGROUNDSPRITE_PATH = "src/assets/sprites/png/Background.png";
     extern std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE;  
 
     // player components (non-static) / animated 
@@ -48,7 +48,7 @@ namespace Constants {
     constexpr float PLAYER_SPEED = 200.0f;
     constexpr float PLAYER_ACCELERATION = 1.6;
     extern const sf::Color PLAYER_DEAD_COLOR;
-    constexpr const char* PLAYERSPRITE_PATH = "src/assets/sprites/png/player_run.png";
+    constexpr const char* PLAYERSPRITE_PATH = "src/assets/sprites/png/Player.png";
     extern std::shared_ptr<sf::Texture> PLAYER_TEXTURE;
     constexpr unsigned short PLAYERANIM_MAX_INDEX = 6; 
     extern std::vector<std::shared_ptr<sf::Uint8[]>> PLAYER_BITMASKS;
@@ -60,7 +60,7 @@ namespace Constants {
     extern std::vector<sf::IntRect> BULLETSPRITES_RECTS;
     constexpr float BULLET_SPEED = 500.0f;
     constexpr float BULLET_ACCELERATION = 1.6;
-    constexpr const char* BULLETSPRITE_PATH = "src/assets/sprites/png/bullet.png";
+    constexpr const char* BULLETSPRITE_PATH = "src/assets/sprites/png/Bullet.png";
     extern std::shared_ptr<sf::Texture> BULLET_TEXTURE;
     constexpr short BULLETANIM_MAX_INDEX = 0; 
     constexpr float BULLET_RESPAWN_TIME = 0.2; 
@@ -71,7 +71,7 @@ namespace Constants {
     extern const sf::Vector2f SLIME_POSITION;
     extern const sf::Vector2f SLIME_SCALE;
     extern std::vector<sf::IntRect> SLIMESPRITE_RECTS;
-    constexpr const char* SLIMESPRITE_PATH = "src/assets/sprites/png/slime.png";
+    constexpr const char* SLIMESPRITE_PATH = "src/assets/sprites/png/Obstacle.png";
     extern std::shared_ptr<sf::Texture> SLIME_TEXTURE;
     constexpr unsigned short SLIMEANIM_MAX_INDEX = 5; 
     constexpr float SLIME_SPEED = 200.0f;
@@ -87,7 +87,7 @@ namespace Constants {
     extern std::vector<sf::IntRect> BUSHSPRITES_RECTS;
     constexpr float BUSH_SPEED = 200.0f;
     constexpr float BUSH_ACCELERATION = 1.6f;
-    constexpr const char* BUSHSPRITE_PATH = "src/assets/sprites/png/bush1.png";
+    constexpr const char* BUSHSPRITE_PATH = "src/assets/sprites/png/Obstacle1.png";
     extern std::shared_ptr<sf::Texture> BUSH_TEXTURE;
     constexpr unsigned short BUSHANIM_MAX_INDEX = 0; 
     constexpr float BUSH_INITIAL_RESPAWN_TIME = 5.0; 
