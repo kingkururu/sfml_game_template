@@ -114,10 +114,10 @@ public:
     explicit Obstacle(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, const std::vector<sf::IntRect> animationRects, unsigned const int indexMax, const std::vector<std::weak_ptr<sf::Uint8[]>>& bitMask) : NonStatic(position, scale, texture, animationRects, indexMax, bitMask) {}
     ~Obstacle() override {}; 
     const sf::Vector2f getDirectionVector() const override { return directionVector; }
-    const float getSpeed() const override { return Constants::SLIME_SPEED; }
+    const float getSpeed() const override { return Constants::OBSTACLE_SPEED; }
     using NonStatic::setDirectionVector;
     void setDirectionVector(float angle);
-    const float getAcceleration() const override { return Constants::SLIME_ACCELERATION; }
+    const float getAcceleration() const override { return Constants::OBSTACLE_ACCELERATION; }
 
 private:
 };

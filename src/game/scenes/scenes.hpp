@@ -54,10 +54,7 @@ private:
 
     // Music and sounds
     std::unique_ptr<MusicClass> backgroundMusic;
-    std::unique_ptr<SoundClass> playerDeadSound;
     std::unique_ptr<SoundClass> playerJumpSound;
-    std::unique_ptr<SoundClass> bulletSound;
-    std::unique_ptr<SoundClass> obstHitSound;
 
     // Fonts and texts
     std::unique_ptr<TextClass> endingText;

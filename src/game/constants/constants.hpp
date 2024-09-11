@@ -67,19 +67,19 @@ namespace Constants {
     extern const sf::Vector2f BULLET_POS_OFFSET;  
     extern std::vector<std::shared_ptr<sf::Uint8[]>> BULLET_BITMASKS;
 
-    // slime components (non-static) / animated
-    extern const sf::Vector2f SLIME_POSITION;
-    extern const sf::Vector2f SLIME_SCALE;
-    extern std::vector<sf::IntRect> SLIMESPRITE_RECTS;
-    constexpr const char* SLIMESPRITE_PATH = "src/assets/sprites/png/Obstacle.png";
-    extern std::shared_ptr<sf::Texture> SLIME_TEXTURE;
-    constexpr unsigned short SLIMEANIM_MAX_INDEX = 5; 
-    constexpr float SLIME_SPEED = 200.0f;
-    constexpr float SLIME_ACCELERATION = 1.6;
-    constexpr float SLIME_INITIAL_RESPAWN_TIME = 3.0; 
-    constexpr float SLIME_INTERVAL_DECREMENT = 0.08; 
-    constexpr short SLIME_FALL_ANGLE = 150; 
-    extern std::vector<std::shared_ptr<sf::Uint8[]>> SLIME_BITMASKS;
+    // OBSTACLE components (non-static) / animated
+    extern const sf::Vector2f OBSTACLE_POSITION;
+    extern const sf::Vector2f OBSTACLE_SCALE;
+    extern std::vector<sf::IntRect> OBSTACLESPRITE_RECTS;
+    constexpr const char* OBSTACLESPRITE_PATH = "src/assets/sprites/png/Obstacle.png";
+    extern std::shared_ptr<sf::Texture> OBSTACLE_TEXTURE;
+    constexpr unsigned short OBSTACLEANIM_MAX_INDEX = 5; 
+    constexpr float OBSTACLE_SPEED = 200.0f;
+    constexpr float OBSTACLE_ACCELERATION = 1.6;
+    constexpr float OBSTACLE_INITIAL_RESPAWN_TIME = 3.0; 
+    constexpr float OBSTACLE_INTERVAL_DECREMENT = 0.08; 
+    constexpr short OBSTACLE_FALL_ANGLE = 150; 
+    extern std::vector<std::shared_ptr<sf::Uint8[]>> OBSTACLE_BITMASKS;
 
     // bush components (non-static) / non-animated
     extern const sf::Vector2f BUSH_POSITION;
@@ -103,29 +103,17 @@ namespace Constants {
     constexpr const char* TEXT_MESSAGE = "current score: ";
 
     // music components 
-    constexpr const char* BACKGROUNDMUSIC_PATH = "src/assets/sound/mp3,flac,wav/bgm.mp3";
+    constexpr const char* BACKGROUNDMUSIC_PATH = "src/assets/sound/mp3/bgm.mp3";
     extern std::unique_ptr<sf::Music> BACKGROUNDMUSIC_MUSIC;
     constexpr float BACKGROUNDMUSIC_VOLUME = 100.0f; 
 
     // sound components
-    constexpr const char* PLAYERDEADSOUND_PATH = "src/assets/sound/mp3,flac,wav/playerDead.wav";
-    extern std::shared_ptr<sf::SoundBuffer> PLAYERDEAD_SOUNDBUFF;
-    constexpr float PLAYERDEADSOUND_VOLUME = 100.0f; 
-
     constexpr const char* PLAYERJUMPSOUND_PATH = "src/assets/sound/mp3,flac,wav/jump.wav";
     extern std::shared_ptr<sf::SoundBuffer> PLAYERJUMP_SOUNDBUFF;
     constexpr float PLAYERJUMPSOUND_VOLUME = 100.0f; 
 
-    constexpr const char* BULLETSOUND_PATH = "src/assets/sound/mp3,flac,wav/bullet.wav";
-    extern std::shared_ptr<sf::SoundBuffer> BULLET_SOUNDBUFF;
-    constexpr float BULLETSOUND_VOLUME = 100.0f; 
-
-    constexpr const char* OBSTHITSOUND_PATH = "src/assets/sound/mp3,flac,wav/obstacleHit.wav";
-    extern std::shared_ptr<sf::SoundBuffer> OBSTHIT_SOUNDBUFF;
-    constexpr float OBSTHITSOUND_VOLUME = 100.0f;
-
-    // make new slime positions each time
-    extern sf::Vector2f makeSlimePosition(); 
+    // make new OBSTACLE positions each time
+    extern sf::Vector2f makeObstaclePosition(); 
     // load textures, fonts, music, and sound
     extern void initialize(); 
     extern std::shared_ptr<sf::Uint8[]> createBitmask( const std::shared_ptr<sf::Texture>& texture, const sf::IntRect& rect );

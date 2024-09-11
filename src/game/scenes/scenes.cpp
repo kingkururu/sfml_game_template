@@ -8,7 +8,7 @@
 #include "scenes.hpp"
 
 /* Scene constructure sets up window and sprite respawn times */
-Scene::Scene( sf::RenderWindow& gameWindow ) : window(gameWindow), slimeRespTime(Constants::SLIME_INITIAL_RESPAWN_TIME), bushRespTime(Constants::BUSH_INITIAL_RESPAWN_TIME), bulletRespTime(Constants::BULLET_RESPAWN_TIME){}
+Scene::Scene( sf::RenderWindow& gameWindow ) : window(gameWindow), slimeRespTime(Constants::OBSTACLE_INITIAL_RESPAWN_TIME), bushRespTime(Constants::BUSH_INITIAL_RESPAWN_TIME), bulletRespTime(Constants::BULLET_RESPAWN_TIME){}
 
 /* runScene that takes in delta time and global time from GameManager class to execute scene logic */
 void Scene::runScene(float deltaT, float globalT){
@@ -36,15 +36,12 @@ void Scene::createAssets() {
         playerSprite = std::make_unique<Player>(Constants::PLAYER_POSITION, Constants::PLAYER_SCALE, Constants::PLAYER_TEXTURE, Constants::PLAYERSPRITE_RECTS, Constants::PLAYERANIM_MAX_INDEX, utils::convertToWeakPtrVector(Constants::PLAYER_BITMASKS));
         playerSprite->setRects(0);
         bushes.push_back(std::make_unique<Obstacle>(Constants::BUSH_POSITION, Constants::BUSH_SCALE, Constants::BUSH_TEXTURE, Constants::BUSHSPRITES_RECTS, Constants::BUSHANIM_MAX_INDEX, utils::convertToWeakPtrVector(Constants::BUSH_BITMASKS)));
-        slimes.push_back(std::make_unique<Obstacle>(Constants::makeSlimePosition(), Constants::SLIME_SCALE, Constants::SLIME_TEXTURE, Constants::SLIMESPRITE_RECTS, Constants::SLIMEANIM_MAX_INDEX, utils::convertToWeakPtrVector(Constants::SLIME_BITMASKS)));
+        slimes.push_back(std::make_unique<Obstacle>(Constants::makeObstaclePosition(), Constants::OBSTACLE_SCALE, Constants::OBSTACLE_TEXTURE, Constants::OBSTACLESPRITE_RECTS, Constants::OBSTACLEANIM_MAX_INDEX, utils::convertToWeakPtrVector(Constants::OBSTACLE_BITMASKS)));
         slimes[0]->setRects(0);
-        slimes[0]->setDirectionVector(Constants::SLIME_FALL_ANGLE);
+        slimes[0]->setDirectionVector(Constants::OBSTACLE_FALL_ANGLE);
 
         // Initialize sounds and music
-        playerDeadSound = std::make_unique<SoundClass>(Constants::PLAYERDEAD_SOUNDBUFF, Constants::PLAYERDEADSOUND_VOLUME);
         playerJumpSound = std::make_unique<SoundClass>(Constants::PLAYERJUMP_SOUNDBUFF, Constants::PLAYERJUMPSOUND_VOLUME);
-        bulletSound = std::make_unique<SoundClass>(Constants::BULLET_SOUNDBUFF, Constants::BULLETSOUND_VOLUME);
-        obstHitSound = std::make_unique<SoundClass>(Constants::OBSTHIT_SOUNDBUFF, Constants::OBSTHITSOUND_VOLUME);
         backgroundMusic = std::make_unique<MusicClass>(std::move(Constants::BACKGROUNDMUSIC_MUSIC), Constants::BACKGROUNDMUSIC_VOLUME);
         if(backgroundMusic)
             backgroundMusic->returnMusic().play();
@@ -61,12 +58,12 @@ void Scene::createAssets() {
 /* Creates more sprites from exisitng textures; avoids heavy cpu work */
 void Scene::respawnAssets(){
     if(slimeRespTime <= 0){
-        float newSlimeInterval = Constants::SLIME_INITIAL_RESPAWN_TIME - (globalTime * Constants::SLIME_INTERVAL_DECREMENT);
-        slimes.push_back(std::make_unique<Obstacle>(Constants::makeSlimePosition(), Constants::SLIME_SCALE, Constants::SLIME_TEXTURE, Constants::SLIMESPRITE_RECTS, Constants::SLIMEANIM_MAX_INDEX, utils::convertToWeakPtrVector(Constants::SLIME_BITMASKS)));
+        float newSlimeInterval = Constants::OBSTACLE_INITIAL_RESPAWN_TIME - (globalTime * Constants::OBSTACLE_INTERVAL_DECREMENT);
+        slimes.push_back(std::make_unique<Obstacle>(Constants::makeObstaclePosition(), Constants::OBSTACLE_SCALE, Constants::OBSTACLE_TEXTURE, Constants::OBSTACLESPRITE_RECTS, Constants::OBSTACLEANIM_MAX_INDEX, utils::convertToWeakPtrVector(Constants::OBSTACLE_BITMASKS)));
         slimes[slimes.size() - 1]->setRects(0);
-        slimes[slimes.size() - 1]->setDirectionVector(Constants::SLIME_FALL_ANGLE);
+        slimes[slimes.size() - 1]->setDirectionVector(Constants::OBSTACLE_FALL_ANGLE);
 
-        slimeRespTime = std::max(newSlimeInterval, Constants::SLIME_INITIAL_RESPAWN_TIME);
+        slimeRespTime = std::max(newSlimeInterval, Constants::OBSTACLE_INITIAL_RESPAWN_TIME);
     }
     if(bushRespTime <= 0){
         float newBushInterval = Constants::BUSH_INITIAL_RESPAWN_TIME - (globalTime * Constants::BUSH_INTERVAL_DECREMENT);
@@ -82,10 +79,6 @@ void Scene::spawnBullets(){
         bullets[bullets.size() - 1]->setDirectionVector(mouseClickedPos);
         bulletRespTime = Constants::BULLET_RESPAWN_TIME; 
         bulletSpawnedTimes.push_back(deltaTime); 
-
-        if(bulletSound)
-            bulletSound->returnSound().play(); 
-        
     }
 } 
 
@@ -168,7 +161,7 @@ void Scene::update() {
         for (auto& slime : slimes) {
             if (slime) { 
                 if (slime->getMoveState()) {
-                    slime->changePosition(physics::follow(deltaTime, Constants::SLIME_SPEED, slime->getSpritePos(), Constants::SLIME_ACCELERATION, slime->getDirectionVector()));
+                    slime->changePosition(physics::follow(deltaTime, Constants::OBSTACLE_SPEED, slime->getSpritePos(), Constants::OBSTACLE_ACCELERATION, slime->getDirectionVector()));
                     slime->changeAnimation(deltaTime);
                     slime->updatePos();
                 }
@@ -260,15 +253,12 @@ void Scene::handleGameEvents() {
 
     if(bulletCollision){
         ++score; 
-        obstHitSound->returnSound().play(); 
     }
 
     if(bushCollision || slimeCollision){
         std::cout << "Ending Game" << std::endl;
         FlagEvents.gameEnd = true; 
-        
-        if(playerDeadSound)
-            playerDeadSound->returnSound().play();
+  
         if(backgroundMusic)
             backgroundMusic->returnMusic().pause(); 
     }
@@ -324,7 +314,7 @@ void Scene::restart() {
     for (auto& slime : slimes) {
         if(slime){
             slime->setMoveState(true);
-            slime->changePosition(Constants::makeSlimePosition()); 
+            slime->changePosition(Constants::makeObstaclePosition()); 
             std::cout << "set slime pos at" << slime->getSpritePos().x << "and " << slime->getSpritePos().y << std::endl; 
         }
     }

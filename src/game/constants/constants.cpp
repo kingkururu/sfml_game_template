@@ -30,11 +30,11 @@ namespace Constants {
     std::vector<std::shared_ptr<sf::Uint8[]>> BULLET_BITMASKS;
     const sf::Vector2f BULLET_POS_OFFSET = { 60.0f, 60.0f};  
 
-    // slime components (non-static) / animated   
-    const sf::Vector2f SLIME_SCALE = {1.0f, 1.0f};
-    std::vector<sf::IntRect> SLIMESPRITE_RECTS;
-    std::shared_ptr<sf::Texture> SLIME_TEXTURE = std::make_shared<sf::Texture>();
-    std::vector<std::shared_ptr<sf::Uint8[]>> SLIME_BITMASKS;
+    // OBSTACLE components (non-static) / animated   
+    const sf::Vector2f OBSTACLE_SCALE = {1.0f, 1.0f};
+    std::vector<sf::IntRect> OBSTACLESPRITE_RECTS;
+    std::shared_ptr<sf::Texture> OBSTACLE_TEXTURE = std::make_shared<sf::Texture>();
+    std::vector<std::shared_ptr<sf::Uint8[]>> OBSTACLE_BITMASKS;
 
     // bush components (non-static) / non-animated
     const sf::Vector2f BUSH_POSITION = {SCREEN_WIDTH - 100.0f, SCREEN_HEIGHT - 130.0f};
@@ -52,16 +52,10 @@ namespace Constants {
     std::unique_ptr<sf::Music> BACKGROUNDMUSIC_MUSIC = std::make_unique<sf::Music>(); 
 
     // sound components
-    std::shared_ptr<sf::SoundBuffer> PLAYERDEAD_SOUNDBUFF = std::make_shared<sf::SoundBuffer>(); 
-
     std::shared_ptr<sf::SoundBuffer> PLAYERJUMP_SOUNDBUFF = std::make_shared<sf::SoundBuffer>(); 
 
-    std::shared_ptr<sf::SoundBuffer> BULLET_SOUNDBUFF = std::make_shared<sf::SoundBuffer>(); 
-
-    std::shared_ptr<sf::SoundBuffer> OBSTHIT_SOUNDBUFF = std::make_shared<sf::SoundBuffer>(); 
-
-    //set slime position (random from upper right corner)
-    sf::Vector2f makeSlimePosition(){
+    //set OBSTACLE position (random from upper right corner)
+    sf::Vector2f makeObstaclePosition(){
         float xPos = static_cast<float>(SCREEN_WIDTH - std::rand() % static_cast<int>(SCREEN_WIDTH / 2));
         float yPos = 0.0f;
         return sf::Vector2f{ xPos, yPos }; 
@@ -79,8 +73,8 @@ namespace Constants {
         if (!BULLET_TEXTURE->loadFromFile(BULLETSPRITE_PATH)) {
             std::cerr << "Failed to load bullet texture from file: " << BULLETSPRITE_PATH << std::endl;
         }
-        if (!SLIME_TEXTURE->loadFromFile(SLIMESPRITE_PATH)) {
-            std::cerr << "Failed to load slime texture from file: " << SLIMESPRITE_PATH << std::endl;
+        if (!OBSTACLE_TEXTURE->loadFromFile(OBSTACLESPRITE_PATH)) {
+            std::cerr << "Failed to load OBSTACLE texture from file: " << OBSTACLESPRITE_PATH << std::endl;
         }
         if (!BUSH_TEXTURE->loadFromFile(BUSHSPRITE_PATH)) {
             std::cerr << "Failed to load bush texture from file: " << BUSHSPRITE_PATH << std::endl;
@@ -97,25 +91,16 @@ namespace Constants {
         }
         
         //load sound
-        if (!PLAYERDEAD_SOUNDBUFF->loadFromFile(PLAYERDEADSOUND_PATH)) {
-            std::cerr << "Failed to load playerdead sound from file: " << PLAYERDEADSOUND_PATH << std::endl;
-        }
         if (!PLAYERJUMP_SOUNDBUFF->loadFromFile(PLAYERJUMPSOUND_PATH)) {
             std::cerr << "Failed to load bush texture from file: " << PLAYERJUMPSOUND_PATH << std::endl;
         }
-        if (!BULLET_SOUNDBUFF->loadFromFile(BULLETSOUND_PATH)) {
-            std::cerr << "Failed to load playerdead sound from file: " << BULLETSOUND_PATH << std::endl;
-        }
-        if (!OBSTHIT_SOUNDBUFF->loadFromFile(OBSTHITSOUND_PATH)) {
-            std::cerr << "Failed to load bush texture from file: " << OBSTHITSOUND_PATH << std::endl;
-        }
-
+    
         //make rects for animations     //at this current moment player is only player_run.png
         for(int i = 0; i < 6; ++i ){
             PLAYERSPRITE_RECTS.push_back(sf::IntRect{ 200 * i, 0, 200, 200 }); 
         }
         for(int i = 0; i < 6; ++i ){
-            SLIMESPRITE_RECTS.push_back(sf::IntRect{ 314 * i, 0, 314, 314 }); 
+            OBSTACLESPRITE_RECTS.push_back(sf::IntRect{ 314 * i, 0, 314, 314 }); 
         }
         for(int i = 0; i < 6; ++i ){
             BUSHSPRITES_RECTS.push_back(sf::IntRect{ 314 * i, 0, 314, 314 }); 
@@ -133,8 +118,8 @@ namespace Constants {
             BULLET_BITMASKS.push_back(createBitmask(BULLET_TEXTURE, rect));
         }
 
-        for (const auto& rect : SLIMESPRITE_RECTS ) {
-            SLIME_BITMASKS.push_back(createBitmask(SLIME_TEXTURE, rect));
+        for (const auto& rect : OBSTACLESPRITE_RECTS ) {
+            OBSTACLE_BITMASKS.push_back(createBitmask(OBSTACLE_TEXTURE, rect));
         }
         
         for (const auto& rect : BUSHSPRITES_RECTS ) {
