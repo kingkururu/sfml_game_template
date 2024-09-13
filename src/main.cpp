@@ -11,8 +11,6 @@
 
 int main( ){
     GameManager makeGame;
-    init_logging();
-    log_error("\tThis is an error message 2.");
 
     makeGame.runGame();
     
