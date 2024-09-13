@@ -9,122 +9,41 @@
 
 /* constant variables defined here */
 namespace Constants {
-// background components (static)
-    const sf::Vector2f BACKGROUND_POSITION = {0.0f, 0.0f};
-    const sf::Vector2f BACKGROUND_SCALE = {1.0f, 1.0f};
-    std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE = std::make_shared<sf::Texture>();
-    
-    // player components (non-static) / animated 
-    const sf::Vector2f PLAYER_POSITION = {0.0f, SCREEN_HEIGHT - 120};
-    const sf::Vector2f PLAYER_SCALE = {1.0f, 1.0f};
-    std::vector<sf::IntRect> PLAYERSPRITE_RECTS;
-    const sf::Color PLAYER_DEAD_COLOR = sf::Color(200, 0, 0);
-    std::shared_ptr<sf::Texture> PLAYER_TEXTURE = std::make_shared<sf::Texture>();
-    std::vector<std::shared_ptr<sf::Uint8[]>> PLAYER_BITMASKS;
 
-    // bullet components (non-static) / non-animated
-    const sf::Vector2f BULLET_POSITION = PLAYER_POSITION;
-    const sf::Vector2f BULLET_SCALE = {1.0f, 1.0f};
-    std::vector<sf::IntRect> BULLETSPRITES_RECTS;
-    std::shared_ptr<sf::Texture> BULLET_TEXTURE = std::make_shared<sf::Texture>();
-    std::vector<std::shared_ptr<sf::Uint8[]>> BULLET_BITMASKS;
-    const sf::Vector2f BULLET_POS_OFFSET = { 60.0f, 60.0f};  
-
-    // OBSTACLE components (non-static) / animated   
-    const sf::Vector2f OBSTACLE_SCALE = {1.0f, 1.0f};
-    std::vector<sf::IntRect> OBSTACLESPRITE_RECTS;
-    std::shared_ptr<sf::Texture> OBSTACLE_TEXTURE = std::make_shared<sf::Texture>();
-    std::vector<std::shared_ptr<sf::Uint8[]>> OBSTACLE_BITMASKS;
-
-    // bush components (non-static) / non-animated
-    const sf::Vector2f BUSH_POSITION = {SCREEN_WIDTH - 100.0f, SCREEN_HEIGHT - 130.0f};
-    const sf::Vector2f BUSH_SCALE = {1.0f, 1.0f};
-    std::vector<sf::IntRect> BUSHSPRITES_RECTS;
-    std::shared_ptr<sf::Texture> BUSH_TEXTURE = std::make_shared<sf::Texture>();
-    std::vector<std::shared_ptr<sf::Uint8[]>> BUSH_BITMASKS;
-
-    // text components
-    const sf::Vector2f TEXT_POSITION = {30.0f, 0.0f};
-    const sf::Color TEXT_COLOR = sf::Color::Black;
-    std::shared_ptr<sf::Font> TEXT_FONT = std::make_shared<sf::Font>(); 
-
-    // music components 
-    std::unique_ptr<sf::Music> BACKGROUNDMUSIC_MUSIC = std::make_unique<sf::Music>(); 
-
-    // sound components
-    std::shared_ptr<sf::SoundBuffer> PLAYERJUMP_SOUNDBUFF = std::make_shared<sf::SoundBuffer>(); 
-
-    //set OBSTACLE position (random from upper right corner)
-    sf::Vector2f makeObstaclePosition(){
+    // make random position function (random from upper right corner)
+    sf::Vector2f makeRandomPosition(){
         float xPos = static_cast<float>(SCREEN_WIDTH - std::rand() % static_cast<int>(SCREEN_WIDTH / 2));
         float yPos = 0.0f;
         return sf::Vector2f{ xPos, yPos }; 
     }
 
+    // declare sprite, text, sound, music components here ( ones without constexpr keywords )
+
+
     //initializer function
     void initialize() {
-        //load sprite texture
-        if (!BACKGROUND_TEXTURE->loadFromFile(BACKGROUNDSPRITE_PATH)) {
-            std::cerr << "Failed to load background texture from file: " << BACKGROUNDSPRITE_PATH << std::endl;
+        /* 
+        if (! (some texture or font or sound) -> loadFromFile (some_PATH)) {
+            std::cerr << "Failed to load ... from file: " << some_PATH << std::endl;
         }
-        if (!PLAYER_TEXTURE->loadFromFile(PLAYERSPRITE_PATH)) {
-            std::cerr << "Failed to load player texture from file: " << PLAYERSPRITE_PATH << std::endl;
+         if (! (some music ) -> openFromFile (some_PATH)) {
+            std::cerr << "Failed to load ... from file: " << some_PATH << std::endl;
         }
-        if (!BULLET_TEXTURE->loadFromFile(BULLETSPRITE_PATH)) {
-            std::cerr << "Failed to load bullet texture from file: " << BULLETSPRITE_PATH << std::endl;
-        }
-        if (!OBSTACLE_TEXTURE->loadFromFile(OBSTACLESPRITE_PATH)) {
-            std::cerr << "Failed to load OBSTACLE texture from file: " << OBSTACLESPRITE_PATH << std::endl;
-        }
-        if (!BUSH_TEXTURE->loadFromFile(BUSHSPRITE_PATH)) {
-            std::cerr << "Failed to load bush texture from file: " << BUSHSPRITE_PATH << std::endl;
-        }
-
-        //load font
-        if (!TEXT_FONT->loadFromFile(TEXT_PATH)){
-            std::cerr << "Failed to load font from file: " << TEXT_PATH << std::endl; 
-        }
-
-        //load music
-        if (!BACKGROUNDMUSIC_MUSIC->openFromFile(BACKGROUNDMUSIC_PATH)) {
-            std::cerr << "Failed to load background music from file: " << BACKGROUNDMUSIC_PATH << std::endl;
-        }
-        
-        //load sound
-        if (!PLAYERJUMP_SOUNDBUFF->loadFromFile(PLAYERJUMPSOUND_PATH)) {
-            std::cerr << "Failed to load bush texture from file: " << PLAYERJUMPSOUND_PATH << std::endl;
-        }
-    
-        //make rects for animations     //at this current moment player is only player_run.png
+        */
+     
+        //make rects for animations     
+        /*
         for(int i = 0; i < 6; ++i ){
-            PLAYERSPRITE_RECTS.push_back(sf::IntRect{ 200 * i, 0, 200, 200 }); 
+            sprite name_RECTS.push_back(sf::IntRect{ 200 * i, 0, 200, 200 }); 
         }
-        for(int i = 0; i < 6; ++i ){
-            OBSTACLESPRITE_RECTS.push_back(sf::IntRect{ 314 * i, 0, 314, 314 }); 
-        }
-        for(int i = 0; i < 6; ++i ){
-            BUSHSPRITES_RECTS.push_back(sf::IntRect{ 314 * i, 0, 314, 314 }); 
-        }
-        for(int i = 0; i < 6; ++i ){
-        BULLETSPRITES_RECTS.push_back(sf::IntRect{ 81 * i, 0, 81, 81 }); 
-        }
+        */
 
         // make bitmasks
-        for (const auto& rect : PLAYERSPRITE_RECTS ) {
-            PLAYER_BITMASKS.push_back(createBitmask(PLAYER_TEXTURE, rect));
+        /*
+        for (const auto& rect : some_RECTS ) {
+            some_BITMASKS.push_back(createBitmask(some_TEXTURE, rect));
         }
-        
-        for (const auto& rect : BULLETSPRITES_RECTS ) {
-            BULLET_BITMASKS.push_back(createBitmask(BULLET_TEXTURE, rect));
-        }
-
-        for (const auto& rect : OBSTACLESPRITE_RECTS ) {
-            OBSTACLE_BITMASKS.push_back(createBitmask(OBSTACLE_TEXTURE, rect));
-        }
-        
-        for (const auto& rect : BUSHSPRITES_RECTS ) {
-            BUSH_BITMASKS.push_back(createBitmask(BUSH_TEXTURE, rect));
-        }
+        */
 
     }
 
@@ -152,9 +71,6 @@ std::shared_ptr<sf::Uint8[]> createBitmask(
 
     unsigned int bitmaskSize = (width * height) / 8 + ((width * height) % 8 != 0); // rounding up
     std::shared_ptr<sf::Uint8[]> bitmask(new sf::Uint8[bitmaskSize](), std::default_delete<sf::Uint8[]>());
-
-    // std::cout << "Creating new bitmask for rect (" << rect.left << ", " << rect.top 
-    //           << ", " << rect.width << ", " << rect.height << ")" << std::endl;
 
          for (unsigned int y = 0; y < height; ++y) {
             for (unsigned int x = 0; x < width; ++x) {
