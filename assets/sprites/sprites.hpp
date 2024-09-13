@@ -104,8 +104,8 @@ public:
    explicit Player(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, const std::vector<sf::IntRect> animationRects, unsigned const int indexMax, const std::vector<std::weak_ptr<sf::Uint8[]>>& bitMask) : NonStatic(position, scale, texture, animationRects, indexMax, bitMask) {}
    ~Player() override {}; 
     void updatePlayer(sf::Vector2f newPos); 
-    const float getSpeed() const override { return Constants::PLAYER_SPEED; }
-    const float getAcceleration() const override { return Constants::PLAYER_ACCELERATION; }
+    // const float getSpeed() const override { return Constants::PLAYER_SPEED; }
+    // const float getAcceleration() const override { return Constants::PLAYER_ACCELERATION; }
 };
 
 /* obstacle class deriving from NonStatic; refers to movable obstacles */
@@ -114,10 +114,10 @@ public:
     explicit Obstacle(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, const std::vector<sf::IntRect> animationRects, unsigned const int indexMax, const std::vector<std::weak_ptr<sf::Uint8[]>>& bitMask) : NonStatic(position, scale, texture, animationRects, indexMax, bitMask) {}
     ~Obstacle() override {}; 
     const sf::Vector2f getDirectionVector() const override { return directionVector; }
-    const float getSpeed() const override { return Constants::OBSTACLE_SPEED; }
+   // const float getSpeed() const override { return Constants::OBSTACLE_SPEED; }
     using NonStatic::setDirectionVector;
     void setDirectionVector(float angle);
-    const float getAcceleration() const override { return Constants::OBSTACLE_ACCELERATION; }
+   // const float getAcceleration() const override { return Constants::OBSTACLE_ACCELERATION; }
 
 private:
 };
@@ -128,10 +128,10 @@ public:
     explicit Bullet(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture>texture, const std::vector<sf::IntRect> animationRects, unsigned const int indexMax, const std::vector<std::weak_ptr<sf::Uint8[]>>& bitMask) : NonStatic(position, scale, texture, animationRects, indexMax, bitMask) {}
     ~Bullet() override {}; 
     const sf::Vector2f getDirectionVector() const override { return directionVector; } 
-    const float getSpeed() const override { return Constants::BULLET_SPEED; }
+   // const float getSpeed() const override { return Constants::BULLET_SPEED; }
     using NonStatic::setDirectionVector;
     void setDirectionVector(sf::Vector2i projectionPos);
-    const float getAcceleration() const override { return Constants::BULLET_ACCELERATION; }
+   // const float getAcceleration() const override { return Constants::BULLET_ACCELERATION; }
 
 
 private:

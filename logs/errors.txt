@@ -1,0 +1,1 @@
+[2024-09-13 20:36:27.194] [file_logger] [error] 	This is an error message 2.

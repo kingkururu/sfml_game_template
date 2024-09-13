@@ -45,11 +45,11 @@ namespace physics{
 
 
     // jumping sprites 
-    sf::Vector2f jump(float& elapsedTime, float deltaTime, float jumpSpeed, sf::Vector2f originalPos){
+    sf::Vector2f jump(float& elapsedTime, float speed, sf::Vector2f originalPos, float deltaTime ){
        if(elapsedTime < 0.4f){
-            return { originalPos.x, originalPos.y -= jumpSpeed * deltaTime * gravity };
+            return { originalPos.x, originalPos.y -= speed * deltaTime * gravity };
         } else if (elapsedTime > 0.4f && elapsedTime < 0.8f){
-            return { originalPos.x, originalPos.y += jumpSpeed * deltaTime * gravity };
+            return { originalPos.x, originalPos.y += speed * deltaTime * gravity }; 
         } else {
             FlagEvents.spacePressed = false; 
             elapsedTime = 0.0f; 

@@ -71,40 +71,40 @@ void NonStatic::setRects(int animNum){
 
 /* changes animation based on time */
 void NonStatic::changeAnimation(float deltaTime) {
-    try {
-        if(animChangeState){
-            elapsedTime += deltaTime;
-            if (elapsedTime > Constants::ANIMATION_CHANGE_TIME) {
-                ++currentIndex; 
+    // try {
+    //     if(animChangeState){
+    //         elapsedTime += deltaTime;
+    //         if (elapsedTime > Constants::ANIMATION_CHANGE_TIME) {
+    //             ++currentIndex; 
 
-                if (currentIndex >= indexMax) {
-                    currentIndex = 0; 
-                }
-                setRects(currentIndex); 
-                elapsedTime = 0.0;
-            }
-        }
-    }
-    catch (const std::exception& e) {
-        std::cerr << "Error in changing animation, current index: " << currentIndex << " - " << e.what() << std::endl;
-    }
+    //             if (currentIndex >= indexMax) {
+    //                 currentIndex = 0; 
+    //             }
+    //             setRects(currentIndex); 
+    //             elapsedTime = 0.0;
+    //         }
+    //     }
+    // }
+    // catch (const std::exception& e) {
+    //     std::cerr << "Error in changing animation, current index: " << currentIndex << " - " << e.what() << std::endl;
+    // }
 }
 
 /* updates position to be assigned most recent position */
 void NonStatic::updatePos() {
-    try {
-        if (position.y > Constants::SCREEN_HEIGHT + Constants::SPRITE_OUT_OF_BOUNDS_OFFSET 
-        || position.x > Constants::SCREEN_WIDTH + Constants::SPRITE_OUT_OF_BOUNDS_OFFSET 
-        || position.y < 0 - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET
-        || position.x < 0 - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET) {
-            setVisibleState(false);
-        }
+    // try {
+    //     if (position.y > Constants::SCREEN_HEIGHT + Constants::SPRITE_OUT_OF_BOUNDS_OFFSET 
+    //     || position.x > Constants::SCREEN_WIDTH + Constants::SPRITE_OUT_OF_BOUNDS_OFFSET 
+    //     || position.y < 0 - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET
+    //     || position.x < 0 - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET) {
+    //         setVisibleState(false);
+    //     }
 
-        spriteCreated->setPosition(position); 
-    }
-    catch (const std::exception& e) {
-        std::cerr << "Error in updating position: " << e.what() << std::endl;
-    }
+    //     spriteCreated->setPosition(position); 
+    // }
+    // catch (const std::exception& e) {
+    //     std::cerr << "Error in updating position: " << e.what() << std::endl;
+    // }
 }
 
 /* returns animation rects vector */
@@ -125,12 +125,12 @@ std::shared_ptr<sf::Uint8[]> const NonStatic::getBitmask(size_t index) const {
 
 /* specialized player position update method */
 void Player::updatePlayer(sf::Vector2f newPos) {
-    if (FlagEvents.sPressed && newPos.y > Constants::SCREEN_HEIGHT - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET){
-        newPos.y = Constants::SCREEN_HEIGHT - Constants::SPRITE_OUT_OF_BOUNDS_ADJUSTMENT; 
-    }
-    if (FlagEvents.wPressed && newPos.y < (Constants::SCREEN_HEIGHT + Constants::SPRITE_OUT_OF_BOUNDS_OFFSET) / 2 ){
-        newPos.y = (Constants::SCREEN_HEIGHT + Constants::SPRITE_OUT_OF_BOUNDS_OFFSET) / 2 ; 
-    }
+    // if (FlagEvents.sPressed && newPos.y > Constants::SCREEN_HEIGHT - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET){
+    //     newPos.y = Constants::SCREEN_HEIGHT - Constants::SPRITE_OUT_OF_BOUNDS_ADJUSTMENT; 
+    // }
+    // if (FlagEvents.wPressed && newPos.y < (Constants::SCREEN_HEIGHT + Constants::SPRITE_OUT_OF_BOUNDS_OFFSET) / 2 ){
+    //     newPos.y = (Constants::SCREEN_HEIGHT + Constants::SPRITE_OUT_OF_BOUNDS_OFFSET) / 2 ; 
+    // }
 
     changePosition(newPos); 
 }

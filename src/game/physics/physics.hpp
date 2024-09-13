@@ -9,6 +9,7 @@
 #ifndef physics_hpp
 #define physics_hpp
 
+#include <type_traits>
 #include <iostream>
 #include <memory>
 #include <vector>
@@ -34,54 +35,25 @@ namespace physics{
     sf::Vector2f moveRight(float deltaTime, float speed, sf::Vector2f originalPos, float acceleration = 1.0);
     sf::Vector2f moveUp(float deltaTime, float speed, sf::Vector2f originalPos, float acceleration = 1.0);
     sf::Vector2f moveDown(float deltaTime, float speed, sf::Vector2f originalPos, float acceleration = 1.0);
-    sf::Vector2f jump(float& elapsedTime, float deltaTime, float jumpSpeed, sf::Vector2f originalPos); 
+    sf::Vector2f jump(float& elapsedTime, float speed, sf::Vector2f originalPos, float deltaTime ); 
 
-    // collisions
-        //circle-shaped sprite 
+    //circle-shaped sprite collision
     bool circleCollision(const sf::Vector2f pos1, float radius1, const sf::Vector2f pos2, float radius2);
-        //raycast pre-collision
+    //raycast pre-collision
     bool raycastPreCollision(const sf::Vector2f obj1position, const sf::Vector2f obj1direction, float obj1Speed, const sf::FloatRect obj1Bounds, float obj1Acceleration, 
                             const sf::Vector2f obj2position, const sf::Vector2f obj2direction, float obj2Speed, const sf::FloatRect obj2Bounds, float obj2Acceleration);
-        //axis aligned bounding box
+    //axis aligned bounding box collision
     bool boundingBoxCollision(const sf::Vector2f &position1, const sf::Vector2f &size1, const sf::Vector2f &position2, const sf::Vector2f &size2);
-        //pixel perfect 
+    //pixel perfect collision
     bool pixelPerfectCollision( const std::shared_ptr<sf::Uint8[]> &bitmask1, const sf::Vector2f &position1, const sf::Vector2f &size1,
                                 const std::shared_ptr<sf::Uint8[]> &bitmask2, const sf::Vector2f &position2, const sf::Vector2f &size2);  
     
     // collision helpers
-    // bool circleCollisionHelper(const Sprite& sprite1, const Sprite& sprite2);
     bool boundingBoxCollisionHelper(const NonStatic& sprite1, const NonStatic& sprite2); 
     bool pixelPerfectCollisionHelper(const NonStatic& sprite1, const NonStatic& sprite2);
     bool raycastCollisionHelper(const NonStatic& sprite1, const NonStatic& sprite2, float currentTime, size_t index);
 
-    //checkCollisions methods to pass in different kinds of sprites. ex) NonStatic, Player, Obstacle, etc; this one takes vector to compare to vector
-    template<typename SpriteType1, typename SpriteType2, typename CollisionFunc>
-    bool checkCollisions(const std::vector<std::unique_ptr<SpriteType1>>& firstGroup, 
-                         const std::vector<std::unique_ptr<SpriteType2>>& secondGroup,
-                         const CollisionFunc& collisionFunc) {
-
-        // Iterate over each sprite in the first group
-        for (const auto& item1 : firstGroup) {
-            if (!item1) {
-                throw std::runtime_error("first sprite pointer is empty.");
-            }
-            // Iterate over each sprite in the second group
-            for (const auto& item2 : secondGroup) {
-                // Check for collision using the provided function and pass the indices
-                if (!item2) {
-                    throw std::runtime_error("second sprite pointer is empty.");
-                }
-                if (collisionFunc(*item1, *item2)) {
-                    item2->setVisibleState(false); 
-                    item1->setVisibleState(false); 
-                    return true; // Collision detected
-                }
-            }
-        }
-        return false; 
-    }
-
-    //checkCollisions methods to pass in different kinds of sprites; this one takes single sprite to compare to vector
+    //sprite vs spritesvector collision check 
     template<typename SpriteType1, typename SpriteType2, typename CollisionFunc>
     bool checkCollisions(const std::unique_ptr<SpriteType1>& first, 
                          const std::vector<std::unique_ptr<SpriteType2>>& Group,
@@ -104,36 +76,61 @@ namespace physics{
         return false; // No collisions detected
     }
 
-    //checkCollisions methods to pass in different kinds of sprites this one takes an additional parameter in collisionFunc
+    //spritesvec vs spritesvector collision check 
     template<typename SpriteType1, typename SpriteType2, typename CollisionFunc>
     bool checkCollisions(const std::vector<std::unique_ptr<SpriteType1>>& firstGroup, 
-                         const std::vector<std::unique_ptr<SpriteType2>>& secondGroup,
-                         const CollisionFunc& collisionFunc, std::vector<float>firstGroupSpawnedTimes) {
+                        const std::vector<std::unique_ptr<SpriteType2>>& secondGroup,
+                        const CollisionFunc& collisionFunc, std::vector<float> firstGroupSpawnedTimes = {}) {
         
-        if(firstGroupSpawnedTimes.size() != firstGroup.size()){
+        // Check if the sizes of firstGroup and firstGroupSpawnedTimes match
+        if (!firstGroupSpawnedTimes.empty() && firstGroupSpawnedTimes.size() != firstGroup.size()) {
             throw std::runtime_error("first group sprite vec size and spawned time size is not equal");
         }
 
-         // Iterate over each sprite in the first group
-        for (size_t i = 0; i < firstGroup.size(); ++i){
-            if (!firstGroup[i]) {
-                throw std::runtime_error("first sprite pointer is empty.");
-            }
-            for (const auto& item2 : secondGroup) {
-                if (!item2) {
-                    throw std::runtime_error("second sprite pointer is empty.");
+        // If collisionFunc takes two parameters (SpriteType1&, SpriteType2&)
+        if constexpr (std::is_invocable_v<CollisionFunc, SpriteType1&, SpriteType2&>) {
+            std::cout << "CollisionFunc matches signature: bool(SpriteType1&, SpriteType2&)" << std::endl;
+            for (const auto& item1 : firstGroup) {
+                if (!item1) {
+                    throw std::runtime_error("first sprite pointer is empty.");
                 }
-                if (collisionFunc(*firstGroup[i], *item2, firstGroupSpawnedTimes[i], i)) {
-                    item2->setVisibleState(false); 
-                    firstGroup[i]->setVisibleState(false); 
-                    return true; // Collision detected
+                for (const auto& item2 : secondGroup) {
+                    if (!item2) {
+                        throw std::runtime_error("second sprite pointer is empty.");
+                    }
+                    if (collisionFunc(*item1, *item2)) {
+                        item2->setVisibleState(false); 
+                        item1->setVisibleState(false); 
+                        return true; // Collision detected
+                    }
                 }
             }
+        } 
+        // If collisionFunc takes four parameters (SpriteType1&, SpriteType2&, float, size_t)
+        else if constexpr (std::is_invocable_v<CollisionFunc, SpriteType1&, SpriteType2&, float, size_t>) {
+            std::cout << "CollisionFunc matches signature: bool(SpriteType1&, SpriteType2&, float, size_t)" << std::endl;
+            for (size_t i = 0; i < firstGroup.size(); ++i) {
+                if (!firstGroup[i]) {
+                    throw std::runtime_error("first sprite pointer is empty.");
+                }
+                for (const auto& item2 : secondGroup) {
+                    if (!item2) {
+                        throw std::runtime_error("second sprite pointer is empty.");
+                    }
+                    if (collisionFunc(*firstGroup[i], *item2, firstGroupSpawnedTimes[i], i)) {
+                        item2->setVisibleState(false);
+                        firstGroup[i]->setVisibleState(false);
+                        return true; // Collision detected
+                    }
+                }
+            }
+        } 
+        else {
+            std::cout << "Unknown CollisionFunc type" << std::endl;
         }
-
-        return false; 
-
+        return false;
     }
+
            
 }
 
