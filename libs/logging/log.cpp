@@ -5,7 +5,7 @@
 void init_logging() {
     // Define the log directory and file name
     std::string log_dir = "logging";  // Directory where logs will be stored
-    std::string log_file = "logs/errors.txt";  // Log file path
+    std::string log_file = "libs/logging/errors.txt";  // Log file path
 
     // Ensure the directory exists
     std::filesystem::create_directories(log_dir);

@@ -8,7 +8,6 @@
 /* This is the main function, where the GameManager gets called to instantiate a game and run the game. */
 
 #include "game.hpp"
-#include "log.hpp"
 
 int main( ){
     GameManager makeGame;

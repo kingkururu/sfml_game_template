@@ -5,7 +5,6 @@
 //  Created by Sunmyoung Yun on 2024/08
 //
 
-
 #pragma once
 
 #include <SFML/Graphics.hpp>
@@ -13,6 +12,8 @@
 #include <vector>
 #include <iostream> 
 #include <unordered_map>
+
+#include "log.hpp"
 
 /* constant variables declared here */
 namespace Constants {
@@ -23,7 +24,7 @@ namespace Constants {
     extern void initialize(); 
     extern std::shared_ptr<sf::Uint8[]> createBitmask( const std::shared_ptr<sf::Texture>& texture, const sf::IntRect& rect );
     extern void printBitmaskDebug(const std::shared_ptr<sf::Uint8[]>& bitmask, unsigned int width, unsigned int height);
-    
+
     // basic game components
     constexpr unsigned short SCREEN_WIDTH = 1920 * .5;
     constexpr unsigned short SCREEN_HEIGHT = 1080 * .5;
