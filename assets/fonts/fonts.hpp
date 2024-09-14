@@ -14,6 +14,7 @@
 #include <string>
 #include <iostream> 
 #include <stdexcept>
+#include "constants.hpp"
 
 /* text class declaration */
 class TextClass{
@@ -26,10 +27,12 @@ public:
     bool const getVisibleState() const { return visibleState; }
     void setVisibleState(bool VisibleState){ visibleState = VisibleState; }
     void updateText(const std::string& newText); 
+    unsigned int getSize() const { return size; }
+    void setSize(int newSize){ text->setCharacterSize(newSize); }
 
 private:
     sf::Vector2f position {};
-    unsigned const int size {};
+    unsigned int size {};
     sf::Color color {};
     std::weak_ptr<sf::Font> font; 
     std::unique_ptr<sf::Text> text;

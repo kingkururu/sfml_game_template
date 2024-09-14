@@ -91,16 +91,40 @@ std::shared_ptr<sf::Uint8[]> createBitmask(
         return bitmask; 
     }
 
+    // void printBitmaskDebug(const std::shared_ptr<sf::Uint8[]>& bitmask, unsigned int width, unsigned int height) {
+    //     unsigned int bitmaskSize = (width * height + 7) / 8;
+    //     for (unsigned int i = 0; i < bitmaskSize; ++i) {
+    //         for (int bit = 7; bit >= 0; --bit) { // Print bits from high to low
+    //             std::cout << ((bitmask[i] & (1 << bit)) ? '1' : '0');
+    //         }
+    //         if ((i + 1) % (width / 8) == 0) { // New line after each row
+    //             std::cout << std::endl;
+    //         }
+    //     }
+    // }
     void printBitmaskDebug(const std::shared_ptr<sf::Uint8[]>& bitmask, unsigned int width, unsigned int height) {
         unsigned int bitmaskSize = (width * height + 7) / 8;
+        
+        // Create or get a logger (assuming 'info_logger' is your logger)
+        auto logger = spdlog::get("info_logger");
+        if (!logger) {
+            spdlog::error("Logger not initialized.");
+            return;
+        }
+        
+        std::stringstream bitmaskStream; // Use a stringstream to accumulate the bitmask output
+
         for (unsigned int i = 0; i < bitmaskSize; ++i) {
             for (int bit = 7; bit >= 0; --bit) { // Print bits from high to low
-                std::cout << ((bitmask[i] & (1 << bit)) ? '1' : '0');
+                bitmaskStream << ((bitmask[i] & (1 << bit)) ? '1' : '0');
             }
             if ((i + 1) % (width / 8) == 0) { // New line after each row
-                std::cout << std::endl;
+                bitmaskStream << std::endl;
             }
         }
+        
+        // Log the accumulated bitmask
+        logger->info(bitmaskStream.str());
     }
 }
 

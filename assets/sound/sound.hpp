@@ -14,6 +14,7 @@
 #include <string>
 #include <stdexcept>
 #include <iostream>
+#include "constants.hpp"
 
 /* sound class containing elements to make up a sound */
 class SoundClass{

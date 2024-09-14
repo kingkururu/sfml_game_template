@@ -6,26 +6,24 @@
 //
 
 #include "sound.hpp"
-
 /* Sound class constructor, sets the buffer and volume */
-SoundClass::SoundClass(std::weak_ptr<sf::SoundBuffer> soundBuffer, float volume) : soundBuffer(soundBuffer), sound(std::make_unique<sf::Sound>()), volume(volume){
-    try{
+SoundClass::SoundClass(std::weak_ptr<sf::SoundBuffer> soundBuffer, float volume)
+    : soundBuffer(soundBuffer), sound(std::make_unique<sf::Sound>()), volume(volume) {
+    try {
         auto soundBuff = soundBuffer.lock();
-        if(!soundBuff){
-            throw std::runtime_error("failed loading sound buffer");
+        if (!soundBuff) {
+            throw std::runtime_error("Failed loading sound buffer");
         }
         sound->setBuffer(*soundBuff);
         sound->setVolume(volume); 
-    }
-
-    catch(const std::exception& e){
-        std::cerr << e.what() << std::endl;
+    } catch (const std::exception& e) {
+        log_error(e.what());  // Use spdlog to log the error
         soundBuffer.reset();
         sound.reset(); 
     }
 }
 
-/* music class constructor, takes in and sets music pointer and volume */
+/* Music class constructor, takes in and sets music pointer and volume */
 MusicClass::MusicClass(std::unique_ptr<sf::Music> musicLoad, float volume)
     : music(std::move(musicLoad)), volume(volume) {
     try {
@@ -36,28 +34,30 @@ MusicClass::MusicClass(std::unique_ptr<sf::Music> musicLoad, float volume)
         music->setLoop(true);  
         music->play();
 
-        std::cout << "Music volume is " << volume << std::endl; 
+        log_info("Music volume is " + std::to_string(volume));  // Log music volume using spdlog
 
     } catch (const std::exception& e) {
-        std::cerr << e.what() << std::endl;
+        log_error(e.what());  // Use spdlog to log the error
         music.reset();  
     }
 }
 
-/* sets new volume for sound */
-void SoundClass::setVolume(float newVolume){
+/* Sets new volume for sound */
+void SoundClass::setVolume(float newVolume) {
     volume = newVolume;
 
-    if(sound){
+    if (sound) {
         sound->setVolume(volume); 
+        log_info("Sound volume set to " + std::to_string(volume));  // Log volume change
     }
 }
 
-/* sets new volume for music */
-void MusicClass::setVolume(float newVolume){
+/* Sets new volume for music */
+void MusicClass::setVolume(float newVolume) {
     volume = newVolume;
 
-    if(music){
+    if (music) {
         music->setVolume(volume); 
+        log_info("Music volume set to " + std::to_string(volume));  // Log volume change
     }
 }
