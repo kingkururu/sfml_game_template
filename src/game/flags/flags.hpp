@@ -12,6 +12,7 @@
 
 #include <stdio.h>
 #include <cstring>
+#include <vector>
 
 /* flagEvents singleton definition for game states */
 extern struct flagEvents{

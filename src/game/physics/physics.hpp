@@ -27,44 +27,45 @@ namespace physics{
     extern RaycastResult cachedRaycastResult; 
 
     constexpr float gravity = 9.8f;
+    constexpr float timeStep = 0.01667;
 
     // falling objects
-    sf::Vector2f freeFall(float deltaTime, float speed, sf::Vector2f originalPo);
-    sf::Vector2f follow(float deltaTime, float speed, sf::Vector2f originalPos, float acceleration, const sf::Vector2f& direction); 
+    sf::Vector2f freeFall(float speed, sf::Vector2f originalPo);
+    sf::Vector2f follow( float speed, sf::Vector2f originalPos, float acceleration, const sf::Vector2f& direction); 
 
     // moving player
-    sf::Vector2f moveLeft(float deltaTime, float speed, sf::Vector2f originalPos, float acceleration = 1.0); 
-    sf::Vector2f moveRight(float deltaTime, float speed, sf::Vector2f originalPos, float acceleration = 1.0);
-    sf::Vector2f moveUp(float deltaTime, float speed, sf::Vector2f originalPos, float acceleration = 1.0);
-    sf::Vector2f moveDown(float deltaTime, float speed, sf::Vector2f originalPos, float acceleration = 1.0);
+    sf::Vector2f moveLeft( float speed, sf::Vector2f originalPos, float acceleration = 1.0); 
+    sf::Vector2f moveRight( float speed, sf::Vector2f originalPos, float acceleration = 1.0);
+    sf::Vector2f moveUp( float speed, sf::Vector2f originalPos, float acceleration = 1.0);
+    sf::Vector2f moveDown( float speed, sf::Vector2f originalPos, float acceleration = 1.0);
     sf::Vector2f jump(float& elapsedTime, float speed, sf::Vector2f originalPos, float deltaTime ); 
 
     template<typename SpriteType, typename MoveFunc>
-    void spriteMover(std::unique_ptr<SpriteType>& sprite, const MoveFunc& moveFunc, float deltaTime) {
+    void spriteMover(std::unique_ptr<SpriteType>& sprite, const MoveFunc& moveFunc) {
         float speed = sprite->getSpeed(); 
         sf::Vector2f originalPos = sprite->getSpritePos(); 
         float acceleration = sprite->getAcceleration(); 
         sf::Vector2f direction = sprite->getDirectionVector(); 
 
         // Handle different types of MoveFunc
-        if constexpr (std::is_invocable_v<MoveFunc, float, float, sf::Vector2f, float, sf::Vector2f&>){
-            sprite->changePosition(moveFunc(deltaTime, speed, originalPos, acceleration, direction)); 
-        } else if constexpr (std::is_invocable_v<MoveFunc, float, float, sf::Vector2f, float>){
-            sprite->changePosition(moveFunc(deltaTime, speed, originalPos, acceleration)); 
-        } else if constexpr (std::is_invocable_v<MoveFunc, float, float, sf::Vector2f>){
-            sprite->changePosition(moveFunc(deltaTime, speed, originalPos)); 
+        if constexpr (std::is_invocable_v<MoveFunc, float, sf::Vector2f, float, sf::Vector2f&>){
+            sprite->changePosition(moveFunc( speed, originalPos, acceleration, direction)); 
+        } else if constexpr (std::is_invocable_v<MoveFunc, float, sf::Vector2f, float>){
+            sprite->changePosition(moveFunc( speed, originalPos, acceleration)); 
+        } else if constexpr (std::is_invocable_v<MoveFunc, float, sf::Vector2f>){
+            sprite->changePosition(moveFunc( speed, originalPos)); 
         }
 
         sprite->updatePos();  // Update sprite's position after applying the move function
     }
     template<typename SpriteType, typename MoveFunc>
-    void spriteMover(std::unique_ptr<SpriteType>& sprite, const MoveFunc& moveFunc, float deltaTime, float& elapsedTime) {
+    void spriteMover(std::unique_ptr<SpriteType>& sprite, const MoveFunc& moveFunc, float& elapsedTime) {
         float speed = sprite->getSpeed(); 
         sf::Vector2f originalPos = sprite->getSpritePos(); 
 
         // Handle different types of MoveFunc
         if constexpr (std::is_invocable_v<MoveFunc, float&, float, sf::Vector2f, float>){
-            sprite->changePosition(moveFunc(elapsedTime, speed, originalPos, deltaTime)); 
+            sprite->changePosition(moveFunc(elapsedTime, speed, originalPos, timeStep)); 
         }
         sprite->updatePos();  // Update sprite's position after applying the move function
     }

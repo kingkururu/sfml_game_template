@@ -10,39 +10,37 @@
 /* physics namespace to have sprites move */
 namespace physics{
     
-    // struct to hold raycast operation results
+    // struct to hold raycast operation results that use vector of sprites
     struct RaycastResult {
-    sf::Vector2f intersection;
     std::vector<float> collisionTimes;
     int counter; 
     };
     RaycastResult cachedRaycastResult {}; 
 
     // falling objects 
-    sf::Vector2f freeFall(float deltaTime, float speed, sf::Vector2f originalPos){
-        return { originalPos.x, originalPos.y += speed * deltaTime * gravity };
+    sf::Vector2f freeFall( float speed, sf::Vector2f originalPos){
+        return { originalPos.x, originalPos.y += speed * timeStep * gravity };
     }
 
     // object moving in a direction vector
-    sf::Vector2f follow(float deltaTime, float speed, sf::Vector2f originalPos, float acceleration, const sf::Vector2f& direction){
-         sf::Vector2f movement(direction.x * speed * deltaTime * acceleration, direction.y * speed * deltaTime * acceleration);
+    sf::Vector2f follow( float speed, sf::Vector2f originalPos, float acceleration, const sf::Vector2f& direction){
+         sf::Vector2f movement(direction.x * speed * timeStep * acceleration, direction.y * speed * timeStep * acceleration);
         return originalPos + movement;
     }
 
     // moving x or y positions based on directions
-    sf::Vector2f moveLeft(float deltaTime, float speed, sf::Vector2f originalPos, float acceleration){
-        return { originalPos.x -= speed * deltaTime * acceleration, originalPos.y };
+    sf::Vector2f moveLeft( float speed, sf::Vector2f originalPos, float acceleration){
+        return { originalPos.x -= speed * timeStep * acceleration, originalPos.y };
     }
-    sf::Vector2f moveRight(float deltaTime, float speed, sf::Vector2f originalPos, float acceleration){
-        return { originalPos.x += speed * deltaTime * acceleration, originalPos.y };
+    sf::Vector2f moveRight( float speed, sf::Vector2f originalPos, float acceleration){
+        return { originalPos.x += speed * timeStep * acceleration, originalPos.y };
     }
-    sf::Vector2f moveUp(float deltaTime, float speed, sf::Vector2f originalPos, float acceleration){
-        return { originalPos.x, originalPos.y -= speed * deltaTime * acceleration};
+    sf::Vector2f moveUp( float speed, sf::Vector2f originalPos, float acceleration){
+        return { originalPos.x, originalPos.y -= speed * timeStep * acceleration};
     }
-    sf::Vector2f moveDown(float deltaTime, float speed, sf::Vector2f originalPos, float acceleration){
-        return { originalPos.x, originalPos.y += speed * deltaTime * acceleration};
+    sf::Vector2f moveDown( float speed, sf::Vector2f originalPos, float acceleration){
+        return { originalPos.x, originalPos.y += speed * timeStep * acceleration};
     }
-
 
     // jumping sprites 
     sf::Vector2f jump(float& elapsedTime, float speed, sf::Vector2f originalPos, float deltaTime ){
