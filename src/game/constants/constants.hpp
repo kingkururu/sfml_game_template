@@ -17,6 +17,7 @@
 
 /* constant variables declared here */
 namespace Constants {
+
     // make random positions each time
     extern sf::Vector2f makeRandomPosition(); 
 

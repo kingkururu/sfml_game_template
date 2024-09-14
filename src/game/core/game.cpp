@@ -14,7 +14,7 @@ GameManager::GameManager()
     window.setFramerateLimit(Constants::FRAME_LIMIT);
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
     scene = std::make_unique<Scene>(window);
-        init_logging();
+ //   init_logging();
     log_info("\tGame initialized");
 }
 

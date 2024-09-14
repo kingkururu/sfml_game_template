@@ -22,8 +22,11 @@ namespace Constants {
 
     //initializer function
     void initialize() {
+            init_logging();
+            log_info("\tConstants initialized ");
         /* 
         if (! (some texture or font or sound) -> loadFromFile (some_PATH)) {
+            log_warning("\Failed to load ", );
             std::cerr << "Failed to load ... from file: " << some_PATH << std::endl;
         }
          if (! (some music ) -> openFromFile (some_PATH)) {
@@ -52,7 +55,7 @@ std::shared_ptr<sf::Uint8[]> createBitmask(
     const sf::IntRect& rect) {
 
     if (!texture) {
-        std::cerr << "Error: Texture is empty." << std::endl;
+        log_warning("\tfailed to create bitmask ( texture is empty )");
         return nullptr;
     }
 
@@ -61,7 +64,7 @@ std::shared_ptr<sf::Uint8[]> createBitmask(
     if (rect.left < 0 || rect.top < 0 || 
         rect.left + rect.width > static_cast<int>(textureSize.x) || 
         rect.top + rect.height > static_cast<int>(textureSize.y)) {
-        std::cerr << "Error: Rect is out of bounds of the texture." << std::endl;
+        log_warning("\tfailed to create bitmask ( rect is out of bounds)");
         return nullptr;
     }
 
