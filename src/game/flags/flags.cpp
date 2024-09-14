@@ -9,3 +9,4 @@
 
 /* singleton declaration for flagEvents */
 flagEvents FlagEvents; 
+timeComponents TimeComponents; 

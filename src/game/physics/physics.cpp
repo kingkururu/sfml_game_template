@@ -192,6 +192,16 @@ namespace physics{
         return false; 
     }
 
+    bool circleCollisionHelper(const NonStatic& sprite1, const NonStatic& sprite2) {
+        sf::Vector2f position1 = sprite1.getSpritePos();
+        sf::Vector2f position2 = sprite2.getSpritePos();
+
+        float radius1 = sprite1.getRadius(); 
+        float radius2 = sprite2.getRadius(); 
+        
+        return circleCollision(position1, radius1, position2, radius2); 
+    }
+
     // bounding box collision helper to be passed in physics::collisions function 
     bool boundingBoxCollisionHelper(const NonStatic& sprite1, const NonStatic& sprite2) {    
         // Retrieve global bounds of the entire sprite

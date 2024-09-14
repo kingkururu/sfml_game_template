@@ -18,6 +18,8 @@
 #include <math.h>
 #include <functional> 
 #include "sprites.hpp"
+#include "flags.hpp"
+
 
 /* declarations for physics methods */
 namespace physics{
@@ -37,6 +39,36 @@ namespace physics{
     sf::Vector2f moveDown(float deltaTime, float speed, sf::Vector2f originalPos, float acceleration = 1.0);
     sf::Vector2f jump(float& elapsedTime, float speed, sf::Vector2f originalPos, float deltaTime ); 
 
+    template<typename SpriteType, typename MoveFunc>
+    void spriteMover(std::unique_ptr<SpriteType>& sprite, const MoveFunc& moveFunc, float deltaTime) {
+        float speed = sprite->getSpeed(); 
+        sf::Vector2f originalPos = sprite->getSpritePos(); 
+        float acceleration = sprite->getAcceleration(); 
+        sf::Vector2f direction = sprite->getDirectionVector(); 
+
+        // Handle different types of MoveFunc
+        if constexpr (std::is_invocable_v<MoveFunc, float, float, sf::Vector2f, float, sf::Vector2f&>){
+            sprite->changePosition(moveFunc(deltaTime, speed, originalPos, acceleration, direction)); 
+        } else if constexpr (std::is_invocable_v<MoveFunc, float, float, sf::Vector2f, float>){
+            sprite->changePosition(moveFunc(deltaTime, speed, originalPos, acceleration)); 
+        } else if constexpr (std::is_invocable_v<MoveFunc, float, float, sf::Vector2f>){
+            sprite->changePosition(moveFunc(deltaTime, speed, originalPos)); 
+        }
+
+        sprite->updatePos();  // Update sprite's position after applying the move function
+    }
+    template<typename SpriteType, typename MoveFunc>
+    void spriteMover(std::unique_ptr<SpriteType>& sprite, const MoveFunc& moveFunc, float deltaTime, float& elapsedTime) {
+        float speed = sprite->getSpeed(); 
+        sf::Vector2f originalPos = sprite->getSpritePos(); 
+
+        // Handle different types of MoveFunc
+        if constexpr (std::is_invocable_v<MoveFunc, float&, float, sf::Vector2f, float>){
+            sprite->changePosition(moveFunc(elapsedTime, speed, originalPos, deltaTime)); 
+        }
+        sprite->updatePos();  // Update sprite's position after applying the move function
+    }
+
     //circle-shaped sprite collision
     bool circleCollision(const sf::Vector2f pos1, float radius1, const sf::Vector2f pos2, float radius2);
     //raycast pre-collision
@@ -49,6 +81,7 @@ namespace physics{
                                 const std::shared_ptr<sf::Uint8[]> &bitmask2, const sf::Vector2f &position2, const sf::Vector2f &size2);  
     
     // collision helpers
+    bool circleCollisionHelper(const NonStatic& sprite1, const NonStatic& sprite2); 
     bool boundingBoxCollisionHelper(const NonStatic& sprite1, const NonStatic& sprite2); 
     bool pixelPerfectCollisionHelper(const NonStatic& sprite1, const NonStatic& sprite2);
     bool raycastCollisionHelper(const NonStatic& sprite1, const NonStatic& sprite2, float currentTime, size_t index);

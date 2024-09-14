@@ -45,6 +45,25 @@ extern struct flagEvents{
     
 } FlagEvents;
 
+extern struct timeComponents{
+    float deltaTime;
+    float globalTime;
+    std::vector<float> sceneTimes;
+
+    // Constructor (corrected name)
+    timeComponents() : deltaTime(0.0f), globalTime(0.0f), sceneTimes() {
+        sceneTimes.push_back(0.0f);  // Correct way to add initial value
+    }
+
+    // Function to reset time (manual reset instead of memset)
+    void resetTime() {
+        deltaTime = 0.0f;
+        globalTime = 0.0f;
+        sceneTimes.clear();         // Clear the vector
+        sceneTimes.push_back(0.0f); // Add an initial value back if needed
+    }
+    
+} TimeComponents;
 
 
 #endif /* flags_hpp */

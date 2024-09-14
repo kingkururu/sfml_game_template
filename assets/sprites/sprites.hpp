@@ -28,6 +28,7 @@ public:
     sf::Sprite& returnSpritesShape() const { return *spriteCreated; }
     bool const getVisibleState() const { return visibleState; }
     void setVisibleState(bool VisibleState){ visibleState = VisibleState; }
+    float getRadius() const { return radius; }
 
 protected:
     sf::Vector2f position {};
@@ -35,6 +36,7 @@ protected:
     std::weak_ptr<sf::Texture> texture;
     std::unique_ptr<sf::Sprite> spriteCreated;
     bool visibleState {};
+    float radius{}; 
 };
 
 /* static class deriving from sprites; refers to non-moving sprites */
