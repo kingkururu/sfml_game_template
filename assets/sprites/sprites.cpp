@@ -30,6 +30,10 @@ Sprite::Sprite(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Text
     }
 }
 
+float Sprite::getRadius(){
+    return 0.0f; 
+}
+
 /* background class constructor; takes in position, scale, texture */
 Background::Background(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture) : Static(position, scale, texture) {
     if (auto tex = texture.lock()) {
