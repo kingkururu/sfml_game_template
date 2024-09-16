@@ -28,8 +28,8 @@ public:
     sf::Sprite& returnSpritesShape() const { return *spriteCreated; }
     bool const getVisibleState() const { return visibleState; }
     void setVisibleState(bool VisibleState){ visibleState = VisibleState; }
-    float getRadius();
-    
+    float getRadius() const;
+
 protected:
     sf::Vector2f position {};
     sf::Vector2f scale {};

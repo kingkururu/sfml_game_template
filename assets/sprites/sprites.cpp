@@ -30,7 +30,7 @@ Sprite::Sprite(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Text
     }
 }
 
-float Sprite::getRadius(){
+float Sprite::getRadius() const {
     return 0.0f; 
 }
 

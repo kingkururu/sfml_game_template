@@ -3,6 +3,7 @@ Made on September 2024 by Sunmyoung Yun.
 This is my very basic game template for a 2D-platformer game. 
 
 --------------------------------------------------------- HOW TO OPEN AND LAUNCH GAME
+0)  Brew install SFML and spdlog
 1)  Clone repo in VScode
 2)  Type "make" in VScode terminal
 3)  Type "runGame" in VScode terminal
