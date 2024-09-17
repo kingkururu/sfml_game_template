@@ -35,7 +35,7 @@ float Sprite::getRadius() const {
 }
 
 /* background class constructor; takes in position, scale, texture */
-Background::Background(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture) : Static(position, scale, texture) {
+Background::Background(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture) : Sprite(position, scale, texture) {
     if (auto tex = texture.lock()) {
         spriteCreated2 = std::make_unique<sf::Sprite>(*tex);
         spriteCreated2->setScale(scale);
@@ -59,7 +59,7 @@ void Background::updateBackground(float deltaTime, float speed) {
 }
 
 /* sets cut-out rect for sprite animation */
-void NonStatic::setRects(int animNum){
+void Animated::setRects(int animNum){
     try{
         if(animNum < 0 || animNum > indexMax){
             throw std::out_of_range("Animation index out of range. ");
@@ -74,7 +74,7 @@ void NonStatic::setRects(int animNum){
 }
 
 /* changes animation based on time */
-void NonStatic::changeAnimation(float deltaTime) {
+void Animated::changeAnimation(float deltaTime) {
     // try {
     //     if(animChangeState){
     //         elapsedTime += deltaTime;
@@ -112,7 +112,7 @@ void NonStatic::updatePos() {
 }
 
 /* returns animation rects vector */
-sf::IntRect NonStatic::getRects() const{
+sf::IntRect Animated::getRects() const{
     if (animationRects.empty()) {
         throw std::runtime_error("Animation rects are empty.");
     }
@@ -120,7 +120,7 @@ sf::IntRect NonStatic::getRects() const{
 }
 
 /* returns bitmask for a sprite */
-std::shared_ptr<sf::Uint8[]> const NonStatic::getBitmask(size_t index) const {
+std::shared_ptr<sf::Uint8[]> const Animated::getBitmask(size_t index) const {
     if (index >= bitMask.size()) 
         throw std::out_of_range("Index out of range.");
         

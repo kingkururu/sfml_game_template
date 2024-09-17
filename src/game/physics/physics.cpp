@@ -201,7 +201,7 @@ namespace physics{
     }
 
     // bounding box collision helper to be passed in physics::collisions function 
-    bool boundingBoxCollisionHelper(const NonStatic& sprite1, const NonStatic& sprite2) {    
+    bool boundingBoxCollisionHelper(const Sprite& sprite1, const Sprite& sprite2) {    
         // Retrieve global bounds of the entire sprite
         sf::FloatRect bounds1 = sprite1.returnSpritesShape().getGlobalBounds();
         sf::FloatRect bounds2 = sprite2.returnSpritesShape().getGlobalBounds(); 
@@ -223,7 +223,7 @@ namespace physics{
     }
 
     //pixel perfect collision helper to be passed in physics::collisions function 
-    bool pixelPerfectCollisionHelper(const NonStatic& obj1, const NonStatic& obj2) {
+    bool pixelPerfectCollisionHelper(const Sprite& obj1, const Sprite& obj2) {
         // Retrieve bitmasks for the current animation frame
         auto bitmask1 = obj1.getBitmask(obj1.getCurrIndex());
         auto bitmask2 = obj2.getBitmask(obj2.getCurrIndex());
