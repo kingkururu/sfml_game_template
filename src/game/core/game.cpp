@@ -14,7 +14,6 @@ GameManager::GameManager()
     window.setFramerateLimit(Constants::FRAME_LIMIT);
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
     scene = std::make_unique<Scene>(window);
- //   init_logging();
     log_info("\tGame initialized");
 }
 
@@ -33,6 +32,7 @@ GameManager::GameManager()
 //         std::cerr << "exception in runGame: " << e.what() << std::endl;
 //     }
 // }
+
     void GameManager::runGame() {
         // Create or get the logger (assuming 'error_logger' is your logger for errors)
         auto logger = spdlog::get("error_logger");
@@ -49,9 +49,9 @@ GameManager::GameManager()
                 handleEventInput();
                 scene->runScene(deltaTime, globalTime); 
             }
+            log_info("\tGame Ended"); 
             
         } catch (const std::exception& e) {
-            // Log the exception message
             logger->error("Exception in runGame: {}", e.what());
         }
     }
