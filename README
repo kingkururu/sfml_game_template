@@ -44,22 +44,32 @@ This is my very basic game template for a 2D-platformer game.
 │   │   ├── /fonts              # Font files
 │   │   │   ├── /ttf           # TrueType font files
 │   │   │   │   └── font1.ttf
-│   │   │   ├── fonts.cpp       # Font-related source file (if necessary)
-│   │   │   └── fonts.hpp       # Font-related header file (if necessary)
+│   │   │   ├── fonts.cpp       # Font-related source file 
+│   │   │   └── fonts.hpp       # Font-related header file 
 │   │   │
 │   │   ├── /sound              # Sound effects
 │   │   │   ├── /mp3           # MP3 files
 │   │   │   ├── /wav           # WAV files
 │   │   │   │   └── bgm.mp3    # Example background music file
-│   │   │   ├── sound.cpp       # Sound-related source file (if necessary)
-│   │   │   └── sound.hpp       # Sound-related header file (if necessary)
+│   │   │   ├── sound.cpp       # Sound-related source file 
+│   │   │   └── sound.hpp       # Sound-related header file 
 │   │   │
 │   │   ├── /sprites            # Sprite images
 │   │   │   ├── /png            # PNG files
 │   │   │   │   └── background.png
-│   │   │   ├── sprites.cpp     # Sprite-related source file (if necessary)
-│   │   │   └── sprites.hpp     # Sprite-related header file (if necessary)
-│
+│   │   │   ├── sprites.cpp     # Sprite-related source file 
+│   │   │   └── sprites.hpp     # Sprite-related header file 
+│   │   
+│   ├── /libs                   
+│   │   ├── SFML            
+│   │   ├── SPDLOG
+│   │   │
+│   │   ├── /logging          
+│   │   │   ├── log.cpp
+│   │   │   └── log.hpp
+│   │   │   ├── errors.txt
+│   │   │   └── info.txt
+│ 
 ├── /.coderabbit.yaml           # Coderabbit configuration file (if applicable)
 │
 ├── /.gitignore                  # Git ignore file
