@@ -18,43 +18,28 @@ GameManager::GameManager()
 }
 
 /* runGame calls to createAssets from scenes and loops until window is closed to run scene events */
-// void GameManager::runGame() {
-//     try {
-//         scene->createAssets();
-
-//         while (window.isOpen()) {
-//             countTime();
-//             handleEventInput();
-//             scene->runScene(deltaTime, globalTime); 
-//         }
-        
-//     } catch (const std::exception& e) {
-//         std::cerr << "exception in runGame: " << e.what() << std::endl;
-//     }
-// }
-
-    void GameManager::runGame() {
-        // Create or get the logger (assuming 'error_logger' is your logger for errors)
-        auto logger = spdlog::get("error_logger");
-        if (!logger) {
-            spdlog::error("Logger not initialized.");
-            return;
-        }
-
-        try {
-            scene->createAssets();
-
-            while (window.isOpen()) {
-                countTime();
-                handleEventInput();
-                scene->runScene(deltaTime, globalTime); 
-            }
-            log_info("\tGame Ended"); 
-            
-        } catch (const std::exception& e) {
-            logger->error("Exception in runGame: {}", e.what());
-        }
+void GameManager::runGame() {
+    // Create or get the logger (assuming 'error_logger' is your logger for errors)
+    auto logger = spdlog::get("error_logger");
+    if (!logger) {
+        spdlog::error("Logger not initialized.");
+        return;
     }
+
+    try {
+        scene->createAssets();
+
+        while (window.isOpen()) {
+            countTime();
+            handleEventInput();
+            scene->runScene(deltaTime, globalTime); 
+        }
+        log_info("\tGame Ended"); 
+            
+    } catch (const std::exception& e) {
+        logger->error("Exception in runGame: {}", e.what());
+    }
+}
 
 /* countTime counts global time and delta time for scenes to later use in runScene */
 void GameManager::countTime() {
@@ -107,3 +92,4 @@ void GameManager::handleEventInput() {
         }
     }
 }
+

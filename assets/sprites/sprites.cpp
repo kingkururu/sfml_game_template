@@ -77,25 +77,24 @@ void Animated::setRects(int animNum){
 
 /* changes animation based on time */
 void Animated::changeAnimation(float deltaTime) {
-    // try {
-    //     if (animChangeState) {
-    //         elapsedTime += deltaTime;
-    //         if (elapsedTime > Constants::ANIMATION_CHANGE_TIME) {
-    //             ++currentIndex;
-    //             if (currentIndex >= indexMax) {
-    //                 currentIndex = 0;
-    //             }
-    //             setRects(currentIndex);
-    //             elapsedTime = 0.0f;
-    //             log_info("Animation changed to frame " + std::to_string(currentIndex));
-    //         }
-    //     }
-    // }
-    // catch (const std::exception& e) {
-    //     log_error("Error in changing animation: " + std::string(e.what()) + " | Current Index: " + std::to_string(currentIndex));
-    // }
+    try {
+        if (animChangeState) {
+            elapsedTime += deltaTime;
+            if (elapsedTime > Constants::ANIMATION_CHANGE_TIME) {
+                ++currentIndex;
+                if (currentIndex >= indexMax) {
+                    currentIndex = 0;
+                }
+                setRects(currentIndex);
+                elapsedTime = 0.0f;
+                log_info("Animation changed to frame " + std::to_string(currentIndex));
+            }
+        }
+    }
+    catch (const std::exception& e) {
+        log_error("Error in changing animation: " + std::string(e.what()) + " | Current Index: " + std::to_string(currentIndex));
+    }
 }
-
 
 /* updates position to be assigned most recent position */
 void NonStatic::updatePos() {
@@ -173,3 +172,4 @@ void Bullet::setDirectionVector(sf::Vector2i projectionPos) {
     }
     log_info("Bullet direction vector calculated.");
 }
+

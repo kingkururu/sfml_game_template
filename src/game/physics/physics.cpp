@@ -190,7 +190,7 @@ namespace physics{
         return false; 
     }
 
-    bool circleCollisionHelper(const NonStatic& sprite1, const NonStatic& sprite2) {
+    bool circleCollisionHelper(const Sprite& sprite1, const Sprite& sprite2) {
         sf::Vector2f position1 = sprite1.getSpritePos();
         sf::Vector2f position2 = sprite2.getSpritePos();
 
@@ -245,7 +245,7 @@ namespace physics{
     }
 
     //raycast collision helper to be passed in physics::collisions function 
-    bool raycastCollisionHelper(const NonStatic& obj1, const NonStatic& obj2, float currentTime, size_t index) {
+    bool raycastCollisionHelper(const Sprite& obj1, const Sprite& obj2, float currentTime, size_t index) {
 
         if(!cachedRaycastResult.counter){
         sf::Vector2f obj1position = obj1.getSpritePos();

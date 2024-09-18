@@ -82,10 +82,10 @@ namespace physics{
                                 const std::shared_ptr<sf::Uint8[]> &bitmask2, const sf::Vector2f &position2, const sf::Vector2f &size2);  
     
     // collision helpers
-    bool circleCollisionHelper(const NonStatic& sprite1, const NonStatic& sprite2); 
-    bool boundingBoxCollisionHelper(const NonStatic& sprite1, const NonStatic& sprite2); 
-    bool pixelPerfectCollisionHelper(const NonStatic& sprite1, const NonStatic& sprite2);
-    bool raycastCollisionHelper(const NonStatic& sprite1, const NonStatic& sprite2, float currentTime, size_t index);
+    bool circleCollisionHelper(const Sprite& sprite1, const Sprite& sprite2); 
+    bool boundingBoxCollisionHelper(const Sprite& sprite1, const Sprite& sprite2); 
+    bool pixelPerfectCollisionHelper(const Sprite& sprite1, const Sprite& sprite2);
+    bool raycastCollisionHelper(const Sprite& sprite1, const Sprite& sprite2, float currentTime, size_t index);
 
     //sprite vs spritesvector collision check 
     template<typename SpriteType1, typename SpriteType2, typename CollisionFunc>
