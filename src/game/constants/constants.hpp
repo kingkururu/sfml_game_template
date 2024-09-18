@@ -40,11 +40,9 @@ namespace Constants {
     constexpr short PASSTHROUGH_OFFSET = 65; 
 
     // typical screen buffers for sprites and texts
-    /*
     constexpr unsigned short SPRITE_OUT_OF_BOUNDS_OFFSET = 110;
     constexpr unsigned short SPRITE_OUT_OF_BOUNDS_ADJUSTMENT = 100;
     constexpr unsigned short PLAYER_Y_POS_BOUNDS_RUN = SCREEN_HEIGHT - SPRITE_OUT_OF_BOUNDS_ADJUSTMENT; 
-    */
     
     // typical sprite components (non-static) / animated
     /*

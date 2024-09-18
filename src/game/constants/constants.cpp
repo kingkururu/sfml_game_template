@@ -91,17 +91,6 @@ std::shared_ptr<sf::Uint8[]> createBitmask(
         return bitmask; 
     }
 
-    // void printBitmaskDebug(const std::shared_ptr<sf::Uint8[]>& bitmask, unsigned int width, unsigned int height) {
-    //     unsigned int bitmaskSize = (width * height + 7) / 8;
-    //     for (unsigned int i = 0; i < bitmaskSize; ++i) {
-    //         for (int bit = 7; bit >= 0; --bit) { // Print bits from high to low
-    //             std::cout << ((bitmask[i] & (1 << bit)) ? '1' : '0');
-    //         }
-    //         if ((i + 1) % (width / 8) == 0) { // New line after each row
-    //             std::cout << std::endl;
-    //         }
-    //     }
-    // }
     void printBitmaskDebug(const std::shared_ptr<sf::Uint8[]>& bitmask, unsigned int width, unsigned int height) {
         unsigned int bitmaskSize = (width * height + 7) / 8;
         

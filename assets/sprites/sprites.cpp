@@ -132,21 +132,19 @@ float Animated::getRadius() const {
 
 /* updates position to be assigned most recent position */
 void NonStatic::updatePos() {
-    // try {
-    //     if (position.y > Constants::SCREEN_HEIGHT + Constants::SPRITE_OUT_OF_BOUNDS_OFFSET ||
-    //         position.x > Constants::SCREEN_WIDTH + Constants::SPRITE_OUT_OF_BOUNDS_OFFSET ||
-    //         position.y < 0 - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET ||
-    //         position.x < 0 - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET) {
-    //         setVisibleState(false);
-    //         log_info("Sprite moved out of bounds and is no longer visible.");
-    //     }
-
-    //     spriteCreated->setPosition(position);
-    //     log_info("Sprite position updated to (" + std::to_string(position.x) + ", " + std::to_string(position.y) + ")");
-    // }
-    // catch (const std::exception& e) {
-    //     log_error("Error in updating position: " + std::string(e.what()));
-    // }
+    try {
+        if (position.y > Constants::SCREEN_HEIGHT + Constants::SPRITE_OUT_OF_BOUNDS_OFFSET ||
+            position.x > Constants::SCREEN_WIDTH + Constants::SPRITE_OUT_OF_BOUNDS_OFFSET ||
+            position.y < 0 - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET ||
+            position.x < 0 - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET) {
+            setVisibleState(false);
+            log_info("Sprite moved out of bounds and is no longer visible.");
+        }
+        log_info("Sprite position updated to (" + std::to_string(position.x) + ", " + std::to_string(position.y) + ")");
+    }
+    catch (const std::exception& e) {
+        log_error("Error in updating position: " + std::string(e.what()));
+    }
 }
 
 /* returns animation rects vector */
@@ -181,7 +179,6 @@ std::shared_ptr<sf::Uint8[]> const Animated::getBitmask(size_t index) const {
 
 /* specialized player position update method */
 void Player::updatePlayer(sf::Vector2f newPos) {
-    changePosition(newPos); 
     log_info("Player position updated to (" + std::to_string(newPos.x) + ", " + std::to_string(newPos.y) + ")");
 }
 
