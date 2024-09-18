@@ -28,12 +28,16 @@ public:
     sf::Sprite& returnSpritesShape() const { return *spriteCreated; }
     bool const getVisibleState() const { return visibleState; }
     void setVisibleState(bool VisibleState){ visibleState = VisibleState; }
-    float getRadius() const;
-    //blank members for use in Animated class
+
+    // base template for retreaving radius (based on sprite size) 
+    virtual float getRadius() const;
+
+    // blank members for use in Animated class
     virtual sf::IntRect getRects() const { return sf::IntRect(); }
     virtual int getCurrIndex() const { return 0; }
     virtual std::shared_ptr<sf::Uint8[]> const getBitmask(size_t index) const { return nullptr; }
-    //blank members for use in NonStatic class
+
+    // blank members for use in NonStatic class
     virtual sf::Vector2f getDirectionVector() const { return sf::Vector2f(); }
     virtual float getSpeed() const { return 0.0f; }
     virtual float getAcceleration() const { return 0.0f; }
@@ -53,15 +57,19 @@ public:
         : Sprite(position, scale, texture), animationRects(animationRects), indexMax(indexMax), bitMask(bitMask) {}
     std::vector<sf::IntRect> getAnimationRects() const { return animationRects; } 
     void setAnimation(std::vector<sf::IntRect> AnimationRects) { animationRects = AnimationRects; } 
+    
+    void setAnimChangeState(bool newState) { animChangeState = newState; }
+    void changeAnimation(float deltaTime); 
+    void setRects(int animNum); 
+
+    using Sprite::getRadius;
+    float getRadius() const; 
     using Sprite::getRects;
     sf::IntRect getRects() const;
-    void setRects(int animNum); 
     using Sprite::getCurrIndex; 
     int getCurrIndex() const { return currentIndex; } 
-    void changeAnimation(float deltaTime); 
     using Sprite::getBitmask; 
     std::shared_ptr<sf::Uint8[]> const getBitmask(size_t index) const ; 
-    void setAnimChangeState(bool newState) { animChangeState = newState; }
 
 private:
     std::vector<sf::IntRect> animationRects{}; 
@@ -110,15 +118,17 @@ public:
     bool const getMoveState() const { return moveState; }
     void setMoveState(bool newState) { moveState = newState; }
     void changePosition(sf::Vector2f newPos) { position = newPos; }  
+    void setSpeed(float newSpeed) { speed = newSpeed; } 
+    void setAcceleration(float newAcc) { acceleration = newAcc; } 
+
+    virtual void setDirectionVector( sf::Vector2f dir) {directionVector = dir; } 
+
     using Sprite::getDirectionVector;
     virtual sf::Vector2f getDirectionVector() const override { return directionVector; }
-    virtual void setDirectionVector( sf::Vector2f dir) {directionVector = dir; } 
     using Sprite::getSpeed;
     virtual float getSpeed() const override { return speed; }
-    void setSpeed(float newSpeed) { speed = newSpeed; } 
     using Sprite::getAcceleration;
     virtual float getAcceleration() const override{ return acceleration; }
-    void setAcceleration(float newAcc) { acceleration = newAcc; } 
 
 protected:
     bool moveState = true;
@@ -154,6 +164,8 @@ public:
           Animated(position, scale, texture, animationRects, indexMax, bitMask) // Call Animated constructor
     {}
     ~Obstacle() override = default;
+    
+    using Sprite::getDirectionVector;
     sf::Vector2f getDirectionVector() const override { return directionVector; }
     using NonStatic::setDirectionVector;
     void setDirectionVector(float angle);
@@ -173,6 +185,7 @@ public:
           Animated(position, scale, texture, animationRects, indexMax, bitMask) // Call Animated constructor
     {}
     ~Bullet() override = default;
+    
     using NonStatic::setDirectionVector;
     void setDirectionVector(sf::Vector2i projectionPos);
 

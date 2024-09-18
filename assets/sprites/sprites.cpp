@@ -31,7 +31,23 @@ Sprite::Sprite(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Text
 }
 
 float Sprite::getRadius() const {
-    return 0.0f; 
+    if (!spriteCreated) {
+        log_warning("\tUnable to get sprite's radius because sprite doesn't exist");
+        return 0.0f; 
+    }
+
+    // Get the size of the sprite
+    sf::FloatRect bounds = spriteCreated->getGlobalBounds();
+    
+    // Calculate the width and height of the bounds
+    float width = bounds.width;
+    float height = bounds.height;
+    
+    // Calculate the diagonal length
+    float diagonal = std::sqrt(std::pow(width, 2) + std::pow(height, 2));
+    
+    // Radius is half the diagonal
+    return diagonal / 2.0f;
 }
 
 /* background class constructor; takes in position, scale, texture */
@@ -94,6 +110,24 @@ void Animated::changeAnimation(float deltaTime) {
     catch (const std::exception& e) {
         log_error("Error in changing animation: " + std::string(e.what()) + " | Current Index: " + std::to_string(currentIndex));
     }
+}
+
+float Animated::getRadius() const {
+    if (!spriteCreated) {
+        return 0.0f;  
+        log_warning("\tUnable to get sprite's radius because sprite doesn't exist"); 
+    }
+    sf::IntRect rect = getRects();  // Retrieve the sf::IntRect for the sprite
+    
+    // Calculate the width and height of the rect
+    float width = static_cast<float>(rect.width);
+    float height = static_cast<float>(rect.height);
+    
+    // Calculate the diagonal length
+    float diagonal = std::sqrt(std::pow(width, 2) + std::pow(height, 2));
+    
+    // Radius is half the diagonal
+    return diagonal / 2.0f;
 }
 
 /* updates position to be assigned most recent position */
