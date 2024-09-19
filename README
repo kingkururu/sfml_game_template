@@ -9,7 +9,7 @@ This is my very basic game template for a 2D-platformer game.
 3)  Type "runGame" in VScode terminal
 
 --------------------------------------------------------- CODE STRUCTURE
-/GameTemplate
+/sfml_game_template
 │
 ├── /.vscode                    # VSCode settings and configurations
 │

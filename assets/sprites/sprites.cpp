@@ -137,6 +137,7 @@ void NonStatic::updatePos() {
             position.x > Constants::SCREEN_WIDTH + Constants::SPRITE_OUT_OF_BOUNDS_OFFSET ||
             position.y < 0 - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET ||
             position.x < 0 - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET) {
+                // do something else 
             setVisibleState(false);
             log_info("Sprite moved out of bounds and is no longer visible.");
         }
