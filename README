@@ -11,72 +11,72 @@ This is my very basic game template for a 2D-platformer game.
 --------------------------------------------------------- CODE STRUCTURE
 /sfml_game_template
 │
-├── /.vscode                    # VSCode settings and configurations
+├── /.vscode                                            # VSCode settings and configurations
 │
-├── /src                        # Source files
-│   ├── main.cpp                # Main entry point of the game
+├── /src                                                # Source files
+│   ├── main.cpp                                        # Main entry point of the game
 │   │
-│   ├── /game                   # Core engine functionalities
-│   │   ├── game.cpp            # Game loop and game state management
+│   ├── /game                                           # Core engine functionalities
+│   │   ├── game.cpp                                    # Game loop and game state management
 │   │   ├── game.hpp
 │   │   │
-│   │   ├── /constants          # Constants and enums
+│   │   ├── /constants                                  # Constants and enums
 │   │   │   ├── constants.cpp
 │   │   │   └── constants.hpp
 │   │   │
-│   │   ├── /flags              # Flags and state indicators
+│   │   ├── /flags                                      # Flags and state indicators
 │   │   │   ├── flags.cpp
 │   │   │   └── flags.hpp
 │   │   │
-│   │   ├── /physics            # Physics and collision detection
+│   │   ├── /physics                                    # Physics and collision detection
 │   │   │   ├── physics.cpp
 │   │   │   └── physics.hpp
 │   │   │
-│   │   ├── /utils              # Utility functions and classes
+│   │   ├── /utils                                      # Utility functions and classes
 │   │   │   ├── utils.cpp
 │   │   │   └── utils.hpp
 │   │   │
-│   │   ├── /scenes             # Scene management
+│   │   ├── /scenes                                     # Scene management
 │   │   │   ├── scenes.cpp
 │   │   │   └── scenes.hpp
+│   
+├── /assets                                             # Game assets
+│   ├── /fonts                                          # Font files
+│   │   ├── /ttf                                        # TrueType font files
+│   │   │   └── font1.ttf
+│   │   ├── fonts.cpp                                   # Font-related source file 
+│   │   └── fonts.hpp                                   # Font-related header file 
 │   │
-│   ├── /assets                 # Game assets
-│   │   ├── /fonts              # Font files
-│   │   │   ├── /ttf           # TrueType font files
-│   │   │   │   └── font1.ttf
-│   │   │   ├── fonts.cpp       # Font-related source file 
-│   │   │   └── fonts.hpp       # Font-related header file 
-│   │   │
-│   │   ├── /sound              # Sound effects
-│   │   │   ├── /mp3           # MP3 files
-│   │   │   ├── /wav           # WAV files
-│   │   │   │   └── bgm.mp3    # Example background music file
-│   │   │   ├── sound.cpp       # Sound-related source file 
-│   │   │   └── sound.hpp       # Sound-related header file 
-│   │   │
-│   │   ├── /sprites            # Sprite images
-│   │   │   ├── /png            # PNG files
-│   │   │   │   └── background.png
-│   │   │   ├── sprites.cpp     # Sprite-related source file 
-│   │   │   └── sprites.hpp     # Sprite-related header file 
-│   │   
-│   ├── /libs                   
-│   │   ├── SFML            
-│   │   ├── SPDLOG
-│   │   │
-│   │   ├── /logging          
-│   │   │   ├── log.cpp
-│   │   │   └── log.hpp
-│   │   │   ├── errors.txt
-│   │   │   └── info.txt
+│   ├── /sound                                          # Sound effects
+│   │   ├── /mp3                                        # MP3 files
+│   │   ├── /wav                                        # WAV files
+│   │   │   └── bgm.mp3                                 # Example background music file
+│   │   ├── sound.cpp                                   # Sound-related source file 
+│   │   └── sound.hpp                                   # Sound-related header file 
+│   │
+│   ├── /sprites                                        # Sprite images
+│   │   ├── /png                                        # PNG files
+│   │   │   └── background.png
+│   │   ├── sprites.cpp                                 # Sprite-related source file 
+│   │   └── sprites.hpp                                 # Sprite-related header file 
+│  
+├── /libs                   
+│   ├── SFML            
+│   ├── SPDLOG
+│   │
+│   ├── /logging          
+│   │   ├── log.cpp
+│   │   └── log.hpp
+│   │   ├── errors.txt
+│   │   └── info.txt
 │ 
-├── /.coderabbit.yaml           # Coderabbit configuration file (if applicable)
+├── /.coderabbit.yaml                                   # Coderabbit configuration file (if applicable)
 │
-├── /.gitignore                  # Git ignore file
+├── /.gitignore                                         # Git ignore file
 │
-├── /Makefile                    # Makefile for building the project
+├── /Makefile                                           # Makefile for building the project
 │
-└── README.md                   # Project documentation
+└── README.md                                           # Project documentation
 
 --------------------------------------------------------- USEFUL SOURCES FOR ASSETS
 

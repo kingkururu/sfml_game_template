@@ -1,7 +1,7 @@
 # Compiler and linker flags
 CXX = clang++
 CXXFLAGS = -std=c++17 -Wall \
-            -I./src -I./src/game -I./src/game/constants -I./src/game/flags -I./src/game/core -I./src/game/physics -I./src/game/utils -I./src/game/scenes \
+            -I./src -I./src/game -I./src/game/constants -I./src/game/flags -I./src/game/core -I./src/game/physics -I./src/game/rendering -I./src/game/utils -I./src/game/scenes \
             -I./assets/sprites -I./assets/fonts -I./assets/sound \
             -I./libs/logging \
             -I/opt/homebrew/opt/spdlog/include -I/opt/homebrew/opt/fmt/include
@@ -13,6 +13,7 @@ SRC = src/main.cpp \
       src/game/flags/flags.cpp \
       src/game/core/game.cpp \
       src/game/physics/physics.cpp \
+      src/game/rendering/windows.cpp \
       src/game/utils/utils.cpp \
       src/game/scenes/scenes.cpp \
       assets/sprites/sprites.cpp \
