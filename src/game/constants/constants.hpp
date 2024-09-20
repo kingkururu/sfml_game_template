@@ -31,6 +31,7 @@ namespace Constants {
     constexpr unsigned short SCREEN_HEIGHT = 1080 * .5;
     constexpr unsigned short FRAME_LIMIT = 60;
     constexpr const char* GAME_TITLE = "SFML game template";
+    extern const sf::FloatRect VIEW_RECT; 
 
     // score components
     constexpr unsigned short INITIAL_SCORE = 0;

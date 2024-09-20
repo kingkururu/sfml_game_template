@@ -13,7 +13,7 @@ SRC = src/main.cpp \
       src/game/flags/flags.cpp \
       src/game/core/game.cpp \
       src/game/physics/physics.cpp \
-      src/game/rendering/windows.cpp \
+      src/game/rendering/window.cpp \
       src/game/utils/utils.cpp \
       src/game/scenes/scenes.cpp \
       assets/sprites/sprites.cpp \

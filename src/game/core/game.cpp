@@ -9,7 +9,11 @@
 
 /* GameManager constructor sets up the window, intitializes constant variables, calls the random function, and makes scenes */
 GameManager::GameManager()
-    : window(sf::VideoMode(Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT), Constants::GAME_TITLE, sf::Style::Titlebar | sf::Style::Close) {
+    : window(sf::VideoMode(Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT), Constants::GAME_TITLE, sf::Style::Titlebar | sf::Style::Close), view(sf::View(Constants::VIEW_RECT)) {
+    
+   // view.setCenter( sf::Vector2f(350, 350 ));
+    // view.setSize(300,300); 
+    
     Constants::initialize();
     window.setFramerateLimit(Constants::FRAME_LIMIT);
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
@@ -33,6 +37,7 @@ void GameManager::runGame() {
             countTime();
             handleEventInput();
             scene->runScene(deltaTime, globalTime); 
+            window.setView(view); 
         }
         log_info("\tGame Ended"); 
             

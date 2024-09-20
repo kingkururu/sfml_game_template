@@ -19,6 +19,7 @@
 #include "scenes.hpp"
 #include "constants.hpp"
 #include "flags.hpp"
+#include "window.hpp"
 
 class GameManager {
 public:
@@ -33,6 +34,8 @@ private:
 
     /* Game components (private in GameManager) */
     sf::RenderWindow window;
+    sf::View view; 
+
     sf::Clock clock;
     float globalTime {};
     float deltaTime {}; 

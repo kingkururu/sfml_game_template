@@ -18,7 +18,7 @@ namespace Constants {
     }
 
     // declare sprite, text, sound, music components here ( ones without constexpr keywords )
-
+    const sf::FloatRect VIEW_RECT = { 200.0f, 200.0f, 500.0f, 500.0f }; 
 
     //initializer function
     void initialize() {

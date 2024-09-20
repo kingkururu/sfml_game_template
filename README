@@ -32,6 +32,10 @@ This is my very basic game template for a 2D-platformer game.
 │   │   │   ├── physics.cpp
 │   │   │   └── physics.hpp
 │   │   │
+│   │   ├── /rendering                                  # SFML window and view 
+│   │   │   ├── window.cpp
+│   │   │   └── window.hpp
+│   │   │
 │   │   ├── /utils                                      # Utility functions and classes
 │   │   │   ├── utils.cpp
 │   │   │   └── utils.hpp
@@ -61,8 +65,8 @@ This is my very basic game template for a 2D-platformer game.
 │   │   └── sprites.hpp                                 # Sprite-related header file 
 │  
 ├── /libs                   
-│   ├── SFML            
-│   ├── SPDLOG
+│   ├── /SFML            
+│   ├── /SPDLOG
 │   │
 │   ├── /logging          
 │   │   ├── log.cpp
