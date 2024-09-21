@@ -9,7 +9,7 @@
 
 /* GameManager constructor sets up the window, intitializes constant variables, calls the random function, and makes scenes */
 GameManager::GameManager()
-    : window(sf::VideoMode(Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT), Constants::GAME_TITLE, sf::Style::Titlebar | sf::Style::Close), view(sf::View(Constants::VIEW_RECT)) {
+    : window(sf::VideoMode(Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT), Constants::GAME_TITLE/* ,  sf::Style::Titlebar  | sf::Style::Close*/), view(sf::View(Constants::VIEW_RECT)) {
     
    // view.setCenter( sf::Vector2f(350, 350 ));
     // view.setSize(300,300); 
@@ -60,6 +60,10 @@ void GameManager::handleEventInput() {
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
             window.close();
+        }
+        if (event.type == sf::Event::Resized){
+            sf::FloatRect visibleArea(0.0f, 0.0f, event.size.width, event.size.height);
+            window.setView(sf::View(visibleArea)); 
         }
         if (event.type == sf::Event::KeyPressed) {
             switch (event.key.code) {

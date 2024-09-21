@@ -32,6 +32,7 @@ void Scene::runScene(float deltaT, float globalT){
 void Scene::createAssets() {
     try {
         // Initialize sprites and music here 
+         background = std::make_unique<Background>(Constants::BACKGROUND_POSITION, Constants::BACKGROUND_SCALE, Constants::BACKGROUND_TEXTURE);
 
         } 
 
@@ -61,6 +62,12 @@ void Scene::draw() {
     try {
         window.clear();
         // if pointer to a sprite or text exists, window.draw(sf::sprite); 
+
+        if (background && background->getVisibleState()) {
+            window.draw(background->returnSpritesShape());
+            window.draw(background->returnSpritesShape2());
+        }
+        
         window.display(); 
     } 
     
@@ -74,7 +81,10 @@ deleteInvisibleSprites is called to destroy invisible sprites for memory managem
 void Scene::update() {
     try {
         // Update sprites if their getMoveState() is true by changeAnimation() and/or updatePos()
-       
+        if (background && background->getBackgroundMoveState()) {
+            background->updateBackground(deltaTime, Constants::BACKGROUND_SPEED);
+        } 
+
         // Remove invisible sprites
         deleteInvisibleSprites();
     }

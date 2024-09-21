@@ -18,12 +18,21 @@ namespace Constants {
     }
 
     // declare sprite, text, sound, music components here ( ones without constexpr keywords )
-    const sf::FloatRect VIEW_RECT = { 200.0f, 200.0f, 500.0f, 500.0f }; 
+    const sf::FloatRect VIEW_RECT = { 0.0f, 0.0f, 500.0f, 500.0f }; 
+
+    const sf::Vector2f BACKGROUND_POSITION = {0.0f, 0.0f};
+    const sf::Vector2f BACKGROUND_SCALE = {0.5f, 0.5f};
+    std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE = std::make_shared<sf::Texture>();
 
     //initializer function
     void initialize() {
-            init_logging();
-            log_info("\tConstants initialized ");
+        init_logging();
+        log_info("\tConstants initialized ");
+
+        if (!BACKGROUND_TEXTURE->loadFromFile(BACKGROUNDSPRITE_PATH)) {
+            std::cerr << "Failed to load background texture from file: " << BACKGROUNDSPRITE_PATH << std::endl;
+        }
+
         /* 
         if (! (some texture or font or sound) -> loadFromFile (some_PATH)) {
             log_warning("\Failed to load ", );

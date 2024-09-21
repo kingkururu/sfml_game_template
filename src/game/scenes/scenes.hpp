@@ -49,8 +49,8 @@ private:
     */
 
     // Sprites 
+    std::unique_ptr<Background> background; 
     /*  
-     ex) std::unique_ptr<Background> background; 
     */ 
 
    // Music and sounds  

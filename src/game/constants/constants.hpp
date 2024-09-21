@@ -45,6 +45,13 @@ namespace Constants {
     constexpr unsigned short SPRITE_OUT_OF_BOUNDS_ADJUSTMENT = 100;
     constexpr unsigned short PLAYER_Y_POS_BOUNDS_RUN = SCREEN_HEIGHT - SPRITE_OUT_OF_BOUNDS_ADJUSTMENT; 
     
+    // background components 
+    constexpr float BACKGROUND_SPEED = 35.0;
+    extern const sf::Vector2f BACKGROUND_POSITION;
+    extern const sf::Vector2f BACKGROUND_SCALE;
+    constexpr const char* BACKGROUNDSPRITE_PATH = "assets/sprites/png/5.png";
+    extern std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE;
+
     // typical sprite components (non-static) / animated
     /*
     extern const sf::Vector2f OBSTACLE_POSITION;
