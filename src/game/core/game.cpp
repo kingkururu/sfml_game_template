@@ -11,20 +11,21 @@
 GameManager::GameManager()
     : window(sf::VideoMode(Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT), Constants::GAME_TITLE/* ,  sf::Style::Titlebar  | sf::Style::Close*/), view(sf::View(Constants::VIEW_RECT)) {
     
-   // view.setCenter( sf::Vector2f(350, 350 ));
-    // view.setSize(300,300); 
-    
     Constants::initialize();
-    window.setFramerateLimit(Constants::FRAME_LIMIT);
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
+
+    window.setFramerateLimit(Constants::FRAME_LIMIT);
+    view.setCenter(Constants::VIEW_INITIAL_CENTER);
+    view.setSize(Constants::VIEW_SIZE_X, Constants::VIEW_SIZE_Y); 
+
     scene = std::make_unique<Scene>(window);
+    
     log_info("\tGame initialized");
 }
 
 /* runGame calls to createAssets from scenes and loops until window is closed to run scene events */
 void GameManager::runGame() {
-    // Create or get the logger (assuming 'error_logger' is your logger for errors)
-    auto logger = spdlog::get("error_logger");
+    auto logger = spdlog::get("error_logger"); 
     if (!logger) {
         spdlog::error("Logger not initialized.");
         return;
@@ -61,7 +62,7 @@ void GameManager::handleEventInput() {
         if (event.type == sf::Event::Closed) {
             window.close();
         }
-        if (event.type == sf::Event::Resized){
+        if (event.type == sf::Event::Resized){ // changes sprite scales accordiing to screen size
             sf::FloatRect visibleArea(0.0f, 0.0f, event.size.width, event.size.height);
             window.setView(sf::View(visibleArea)); 
         }
@@ -69,15 +70,19 @@ void GameManager::handleEventInput() {
             switch (event.key.code) {
                 case sf::Keyboard::A:
                     FlagEvents.aPressed = true;
+                    view.move(sf::Vector2f(-1, 0));
                     break;
                 case sf::Keyboard::S:
                     FlagEvents.sPressed = true;
+                    view.move(sf::Vector2f(0, 1));
                     break;
                 case sf::Keyboard::W:
                     FlagEvents.wPressed = true;
+                    view.move(sf::Vector2f(0, -1));
                     break;
                 case sf::Keyboard::D:
                     FlagEvents.dPressed = true;
+                    view.move(sf::Vector2f(1, 0));
                     break;
                 case sf::Keyboard::B:
                     FlagEvents.bPressed = true;

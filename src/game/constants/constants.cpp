@@ -21,7 +21,8 @@ namespace Constants {
     const sf::FloatRect VIEW_RECT = { 0.0f, 0.0f, 500.0f, 500.0f }; 
 
     const sf::Vector2f BACKGROUND_POSITION = {0.0f, 0.0f};
-    const sf::Vector2f BACKGROUND_SCALE = {0.5f, 0.5f};
+    const sf::Vector2f BACKGROUND_SCALE = { 0.5f, 0.5f };
+    const sf::Vector2f VIEW_INITIAL_CENTER = { 300.0f, 300.f }; 
     std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE = std::make_shared<sf::Texture>();
 
     //initializer function
