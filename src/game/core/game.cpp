@@ -70,7 +70,7 @@ void GameManager::handleEventInput() {
             switch (event.key.code) {
                 case sf::Keyboard::A:
                     FlagEvents.aPressed = true;
-                    view.move(sf::Vector2f(-1, 0));
+                    view.move(sf::Vector2f(-1, 0)); // change later to center around player's position 
                     break;
                 case sf::Keyboard::S:
                     FlagEvents.sPressed = true;

@@ -81,9 +81,9 @@ deleteInvisibleSprites is called to destroy invisible sprites for memory managem
 void Scene::update() {
     try {
         // Update sprites if their getMoveState() is true by changeAnimation() and/or updatePos()
-        if (background && background->getBackgroundMoveState()) {
-            background->updateBackground(deltaTime, Constants::BACKGROUND_SPEED);
-        } 
+        // if (background && background->getBackgroundMoveState()) {
+        //     background->updateBackground(deltaTime, Constants::BACKGROUND_SPEED);
+        // } 
 
         // Remove invisible sprites
         deleteInvisibleSprites();

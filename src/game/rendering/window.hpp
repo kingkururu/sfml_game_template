@@ -11,15 +11,15 @@
 
 #include <SFML/Graphics.hpp>
 
-// class GameWindow{
-// public:
-//     GameWindow();
-//     sf::RenderWindow& getWindow() const; 
-//     sf::View& getView();
+class GameWindow{
+public:
+    GameWindow();
+    sf::RenderWindow& getWindow() const; 
+    sf::View& getView();
 
-// private:
-//     sf::RenderWindow window;
-//     sf::View view; 
-// };
+private:
+    sf::RenderWindow window;
+    sf::View view; 
+};
 
 #endif /* window_hpp */
