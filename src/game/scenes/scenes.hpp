@@ -29,64 +29,76 @@
 class Scene {
 public:
   Scene( sf::RenderWindow& gameWindow );
-    
+  virtual ~Scene() = default; 
+
   void runScene(float deltaTime, float globalTime);  
-  void createAssets();
-  void respawnAssets(); 
-  void update();
-  void draw();
-  void handleInput();
-  void handleGameEvents();
-  void restart();
-  void setTime(); 
-  void deleteInvisibleSprites(); 
-  void setMouseClickedPos(sf::Vector2i mouseClickedPos); 
+  void restartScene();
   void handleGameFlags(); 
+  void setMouseClickedPos(sf::Vector2i mouseClickedPos); 
+
+  // blank templates here
+  virtual void deleteInvisibleSprites(){};  
+  virtual void setTime(){}; 
+  virtual void createAssets(){}; 
+  virtual void respawnAssets(){}; 
+  virtual void update(){};
+  virtual void draw(){}; 
+  virtual void handleInput(){};
+  virtual void handleGameEvents(){};
+  virtual void handleSceneFlags(){}; 
     
-private:
-  //initial score
-  int initialScore{}; 
-
-  // Sprites 
-  std::unique_ptr<Background> background; 
-    /*  
-    */ 
-
-  // Music and sounds  
-    /*  
-     ex)std::unique_ptr<MusicClass> backgroundMusic;
-    */ 
-
-  //Fonts and texts
-       /*   
-     ex) std::unique_ptr<TextClass> endingText;
-    */ 
-
-  //Times
+protected:
+  //Times - copied from game.cpp
   float deltaTime {}; 
   float globalTime {}; 
-
-  /* respawn times for sprites  
-     ex) float bulletRespTime {};  
-    */ 
-
-  /* times elapsed since bullet was spawned  
-     ex) std::vector<float> bulletSpawnedTimes;  
-    */ 
-
-  /* time elapsed since space button was pressed
-     ex) float spacePressedElapsedTime {}; 
-    */ 
 
   // Other game components 
   sf::RenderWindow& window; // from game.hpp
 
-  GameView scene1View; 
-  SceneEvents scene1Events; 
+  GameView sceneView; 
+  SceneEvents sceneEvents; 
 
   // Position in screen where mouse was clicked
   sf::Vector2i mouseClickedPos {}; 
 };
 
+/* Main game play class, scene instance for creating scenes to run inside GameManager class */
+class gamePlayScene : public virtual Scene{
+public:
+  using Scene::Scene; 
+
+  using Scene::draw; 
+  void draw() override; 
+
+  using Scene::createAssets;
+  void createAssets() override; 
+
+  using Scene::respawnAssets;
+  void respawnAssets() override; 
+
+  using Scene::setTime;
+  void setTime() override; 
+
+  using Scene::update;
+  void update() override; 
+
+  using Scene::handleInput;
+  void handleInput() override; 
+
+  using Scene::handleGameEvents;
+  void handleGameEvents() override; 
+
+  using Scene::handleSceneFlags;
+  void handleSceneFlags() override; 
+
+  using Scene::deleteInvisibleSprites;
+  void deleteInvisibleSprites() override; 
+
+  ~gamePlayScene() override = default; 
+
+private:
+  std::unique_ptr<Background> background; 
+
+};
 
 #endif /* scenes_hpp */

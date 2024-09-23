@@ -53,6 +53,10 @@ struct SceneEvents{
     /* add something more here */
     
     SceneEvents() : sceneEnd(false), sceneStart(true) {} 
+
+    void resetFlags(){
+        std::memset(this, 0, sizeof(*this));
+    }
 };
 
 #endif /* flags_hpp */

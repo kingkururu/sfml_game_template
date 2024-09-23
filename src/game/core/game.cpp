@@ -13,7 +13,7 @@ GameManager::GameManager()
 
     Constants::initialize();
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
-    scene = std::make_unique<Scene>(mainWindow.getWindow());
+    scene = std::make_unique<gamePlayScene>(mainWindow.getWindow());
 
     log_info("\tGame initialized");
 }

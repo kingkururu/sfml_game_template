@@ -8,9 +8,7 @@
 #include "scenes.hpp"
 
 /* Scene constructure sets up window and sprite respawn times */
-Scene::Scene( sf::RenderWindow& gameWindow ) : window(gameWindow), scene1View(Constants::VIEW_RECT) /* initialize other elements here */ {
-    initialScore = Constants::INITIAL_SCORE; 
-}
+Scene::Scene( sf::RenderWindow& gameWindow ) : window(gameWindow), sceneView(Constants::VIEW_RECT) /* initialize other elements here */ {}
 
 /* runScene that takes in delta time and global time from GameManager class to execute scene logic */
 void Scene::runScene(float deltaT, float globalT){
@@ -31,7 +29,7 @@ void Scene::runScene(float deltaT, float globalT){
 }
 
 /* Gets called once before the main game loop to handle cpu-heavy work only once at the beggining */
-void Scene::createAssets() {
+void gamePlayScene::createAssets() {
     try {
         // Initialize sprites and music here 
          background = std::make_unique<Background>(Constants::BACKGROUND_POSITION, Constants::BACKGROUND_SCALE, Constants::BACKGROUND_TEXTURE);
@@ -44,13 +42,13 @@ void Scene::createAssets() {
 }
 
 /* Creates more sprites from exisitng textures; avoids heavy cpu work */
-void Scene::respawnAssets(){
+void gamePlayScene::respawnAssets(){
     // if certain respawn time variable is less than a certain value, respawn objects
 } 
 
 /* Updating time from GameManager's deltatime; it updates sprite respawn times and also counts 
 elapsed times from when bullets were spawned and when space button was pressed */
-void Scene::setTime(){
+void gamePlayScene::setTime(){
     // count respawn time here 
 } 
 
@@ -60,7 +58,7 @@ void Scene::setMouseClickedPos(sf::Vector2i mousePos){
 } 
 
 /* Draws only the visible sprite and texts */
-void Scene::draw() {
+void gamePlayScene::draw() {
     try {
         window.clear();
         // if pointer to a sprite or text exists, window.draw(sf::sprite); 
@@ -80,7 +78,7 @@ void Scene::draw() {
 
 /* Updates sprite and text positions when their moveState is true and their pointers are not null. 
 deleteInvisibleSprites is called to destroy invisible sprites for memory management */
-void Scene::update() {
+void gamePlayScene::update() {
     try {
         // Update sprites if their getMoveState() is true by changeAnimation() and/or updatePos()
         // if (background && background->getBackgroundMoveState()) {
@@ -90,7 +88,7 @@ void Scene::update() {
         // Remove invisible sprites
         deleteInvisibleSprites();
 
-        window.setView(scene1View.getView()); 
+        window.setView(sceneView.getView()); 
     }
 
     catch (const std::exception& e) {
@@ -99,33 +97,34 @@ void Scene::update() {
 }
 
 /* deals with inputs from device, let known by flagEvents. If player's MoveState is true and its pointer is not null, it updates player's position */
-void Scene::handleInput() {
+void gamePlayScene::handleInput() {
     // if player's getMoveState() is true, and flagEvents.somekeypressed is true, updatePlayer(sf::Vector2f newPosition)
     if(flagEvents.aPressed){
-        if(scene1View)
-            scene1View.getView().move(sf::Vector2f(-1, 0)); 
+        if(sceneView)
+            sceneView.getView().move(sf::Vector2f(-1, 0)); 
     }
     if(flagEvents.dPressed){
-        if(scene1View)
-            scene1View.getView().move(sf::Vector2f(1, 0)); 
+        if(sceneView)
+            sceneView.getView().move(sf::Vector2f(1, 0)); 
     }
     if(flagEvents.sPressed){
-        if(scene1View)
-            scene1View.getView().move(sf::Vector2f(0, 1)); 
+        if(sceneView)
+            sceneView.getView().move(sf::Vector2f(0, 1)); 
     }
     if(flagEvents.wPressed){
-        if(scene1View)
-            scene1View.getView().move(sf::Vector2f(0, -1)); 
+        if(sceneView)
+            sceneView.getView().move(sf::Vector2f(0, -1)); 
     }
 }
 
 /* Keeps sprites inside screen bounds, checks for collisions, update scores, and sets flagEvents.gameEnd to true in an event of collision */
-void Scene::handleGameEvents() { 
+void gamePlayScene::handleGameEvents() { 
     // increase score
 
     // sprite collisions bool collision = physics::checkCollisions(sprite1, sprites, collisiontype) 
    
-   // if collision, set a game event 
+   // if collision, modify a sceneEvent
+
 } 
 
 /* Handles events from flagEvents; deals with gameEnd state */
@@ -136,8 +135,15 @@ void Scene::handleGameFlags(){
     }
 }
 
+void gamePlayScene::handleSceneFlags(){
+    // if flagEvents.gameEnd is true or some event ... do somthing 
+    if(sceneEvents.sceneEnd){
+       
+    }
+}
+
 /* Resets everything for scene to start again. The position, moveState, flagEvents, etc are all reset */
-void Scene::restart() {
+void Scene::restartScene() {
     // re-play background music
 
     // set sprite movestates to true
@@ -147,12 +153,13 @@ void Scene::restart() {
     // clear respawn time vectors or any other unecessary vectors 
 
     // re-set flagEvents
-    flagEvents.resetFlags(); 
+    sceneEvents.resetFlags(); 
 }
 
 /* deletes sprites if their visibleState is false for memory management */
-void Scene::deleteInvisibleSprites() {
+void gamePlayScene::deleteInvisibleSprites() {
     // Remove invisible sprites
    
    // Remove large-scale unenecessary texts 
 }
+
