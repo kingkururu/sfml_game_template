@@ -10,13 +10,13 @@
 /* GameManager constructor sets up the window, intitializes constant variables, calls the random function, and makes scenes */
 GameManager::GameManager()
     : mainWindow(Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT, Constants::GAME_TITLE, Constants::FRAME_LIMIT), 
-      view(Constants::VIEW_RECT) {
+      mainView(Constants::VIEW_RECT) {
 
     Constants::initialize();
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
-    view.setCenter(Constants::VIEW_INITIAL_CENTER);
-    view.setSize(Constants::VIEW_SIZE_X, Constants::VIEW_SIZE_Y);
+    mainView.getView().setCenter(Constants::VIEW_INITIAL_CENTER);
+    mainView.getView().setSize(Constants::VIEW_SIZE_X, Constants::VIEW_SIZE_Y);
 
     scene = std::make_unique<Scene>(mainWindow.getWindow());
 
@@ -39,7 +39,7 @@ void GameManager::runGame() {
             countTime();
             handleEventInput();
             scene->runScene(deltaTime, globalTime); 
-            mainWindow.getWindow().setView(view); 
+            mainWindow.getWindow().setView(mainView.getView()); 
         }
         log_info("\tGame Ended"); 
             
@@ -71,19 +71,19 @@ void GameManager::handleEventInput() {
             switch (event.key.code) {
                 case sf::Keyboard::A:
                     FlagEvents.aPressed = true;
-                    view.move(sf::Vector2f(-1, 0)); // change later to center around player's position 
+                    mainView.getView().move(sf::Vector2f(-1, 0)); // change later to center around player's position 
                     break;
                 case sf::Keyboard::S:
                     FlagEvents.sPressed = true;
-                    view.move(sf::Vector2f(0, 1));
+                    mainView.getView().move(sf::Vector2f(0, 1));
                     break;
                 case sf::Keyboard::W:
                     FlagEvents.wPressed = true;
-                    view.move(sf::Vector2f(0, -1));
+                    mainView.getView().move(sf::Vector2f(0, -1));
                     break;
                 case sf::Keyboard::D:
                     FlagEvents.dPressed = true;
-                    view.move(sf::Vector2f(1, 0));
+                    mainView.getView().move(sf::Vector2f(1, 0));
                     break;
                 case sf::Keyboard::B:
                     FlagEvents.bPressed = true;

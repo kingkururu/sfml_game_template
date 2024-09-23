@@ -23,7 +23,7 @@ private:
 class GameView{
 public:
     GameView(sf::FloatRect viewRect);
-    const sf::View& getView() const { return view; } 
+    sf::View& getView() { return view; } 
 
 private:
     sf::View view; 
