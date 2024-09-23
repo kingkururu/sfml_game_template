@@ -28,66 +28,64 @@
 /* Scene class for creating scenes to run inside GameManager class */
 class Scene {
 public:
-    Scene( sf::RenderWindow& gameWindow );
+  Scene( sf::RenderWindow& gameWindow );
     
-    void runScene(float deltaTime, float globalTime); 
-    void createAssets();
-    void respawnAssets(); 
-    void update();
-    void draw();
-    void handleInput();
-    void handleGameEvents();
-    void restart();
-    void setTime(); 
-    void deleteInvisibleSprites(); 
-    void setMouseClickedPos(sf::Vector2i mouseClickedPos); 
-    void handleGameFlags(); 
+  void runScene(float deltaTime, float globalTime);  
+  void createAssets();
+  void respawnAssets(); 
+  void update();
+  void draw();
+  void handleInput();
+  void handleGameEvents();
+  void restart();
+  void setTime(); 
+  void deleteInvisibleSprites(); 
+  void setMouseClickedPos(sf::Vector2i mouseClickedPos); 
+  void handleGameFlags(); 
     
 private:
-    //initial score
-    /* 
-     ex) unsigned int score = Constants::INITIAL_SCORE;
-    */
+  //initial score
+  int initialScore{}; 
 
-    // Sprites 
-    std::unique_ptr<Background> background; 
+  // Sprites 
+  std::unique_ptr<Background> background; 
     /*  
     */ 
 
-   // Music and sounds  
+  // Music and sounds  
     /*  
      ex)std::unique_ptr<MusicClass> backgroundMusic;
     */ 
 
-    //Fonts and texts
+  //Fonts and texts
        /*   
      ex) std::unique_ptr<TextClass> endingText;
     */ 
 
-    //Times
-    float deltaTime {}; 
-    float globalTime {}; 
+  //Times
+  float deltaTime {}; 
+  float globalTime {}; 
 
-       /* respawn times for sprites  
+  /* respawn times for sprites  
      ex) float bulletRespTime {};  
     */ 
 
-       /* times elapsed since bullet was spawned  
+  /* times elapsed since bullet was spawned  
      ex) std::vector<float> bulletSpawnedTimes;  
     */ 
 
-       /* time elapsed since space button was pressed
+  /* time elapsed since space button was pressed
      ex) float spacePressedElapsedTime {}; 
     */ 
 
-    // Other game components 
-    sf::RenderWindow& window; 
-    GameView scene1View; 
+  // Other game components 
+  sf::RenderWindow& window; // from game.hpp
 
-    // Position in screen where mouse was clicked
-    /* 
-    // ex) sf::Vector2i mouseClickedPos {}; 
-    */
+  GameView scene1View; 
+  SceneEvents scene1Events; 
+
+  // Position in screen where mouse was clicked
+  sf::Vector2i mouseClickedPos {}; 
 };
 
 

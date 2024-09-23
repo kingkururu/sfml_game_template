@@ -8,7 +8,9 @@
 #include "scenes.hpp"
 
 /* Scene constructure sets up window and sprite respawn times */
-Scene::Scene( sf::RenderWindow& gameWindow ) : window(gameWindow), scene1View(Constants::VIEW_RECT) /* initialize other elements here */ {}
+Scene::Scene( sf::RenderWindow& gameWindow ) : window(gameWindow), scene1View(Constants::VIEW_RECT) /* initialize other elements here */ {
+    initialScore = Constants::INITIAL_SCORE; 
+}
 
 /* runScene that takes in delta time and global time from GameManager class to execute scene logic */
 void Scene::runScene(float deltaT, float globalT){
@@ -16,7 +18,7 @@ void Scene::runScene(float deltaT, float globalT){
     globalTime = globalT; 
     
     /* inside the while loop in game, only runs when gameEnd state is false */
-    if (!FlagEvents.gameEnd) {
+    if (!flagEvents.gameEnd) {
         setTime();
         handleInput();
         respawnAssets(); 
@@ -54,7 +56,7 @@ void Scene::setTime(){
 
 /* Updates mouse position from GameManager input */
 void Scene::setMouseClickedPos(sf::Vector2i mousePos){
-    // set mousposition input here 
+    mouseClickedPos = mousePos; 
 } 
 
 /* Draws only the visible sprite and texts */
@@ -96,28 +98,28 @@ void Scene::update() {
     }
 }
 
-/* deals with inputs from device, let known by FlagEvents. If player's MoveState is true and its pointer is not null, it updates player's position */
+/* deals with inputs from device, let known by flagEvents. If player's MoveState is true and its pointer is not null, it updates player's position */
 void Scene::handleInput() {
-    // if player's getMoveState() is true, and FlagEvents.somekeypressed is true, updatePlayer(sf::Vector2f newPosition)
-    if(FlagEvents.aPressed){
+    // if player's getMoveState() is true, and flagEvents.somekeypressed is true, updatePlayer(sf::Vector2f newPosition)
+    if(flagEvents.aPressed){
         if(scene1View)
             scene1View.getView().move(sf::Vector2f(-1, 0)); 
     }
-    if(FlagEvents.dPressed){
+    if(flagEvents.dPressed){
         if(scene1View)
             scene1View.getView().move(sf::Vector2f(1, 0)); 
     }
-    if(FlagEvents.sPressed){
+    if(flagEvents.sPressed){
         if(scene1View)
             scene1View.getView().move(sf::Vector2f(0, 1)); 
     }
-    if(FlagEvents.wPressed){
+    if(flagEvents.wPressed){
         if(scene1View)
             scene1View.getView().move(sf::Vector2f(0, -1)); 
     }
 }
 
-/* Keeps sprites inside screen bounds, checks for collisions, update scores, and sets FlagEvents.gameEnd to true in an event of collision */
+/* Keeps sprites inside screen bounds, checks for collisions, update scores, and sets flagEvents.gameEnd to true in an event of collision */
 void Scene::handleGameEvents() { 
     // increase score
 
@@ -126,12 +128,15 @@ void Scene::handleGameEvents() {
    // if collision, set a game event 
 } 
 
-/* Handles events from FlagEvents; deals with gameEnd state */
+/* Handles events from flagEvents; deals with gameEnd state */
 void Scene::handleGameFlags(){
-    // if FlagEvents.gameEnd is true or some event ... do somthing 
+    // if flagEvents.gameEnd is true or some event ... do somthing 
+    if(flagEvents.gameEnd){
+       
+    }
 }
 
-/* Resets everything for scene to start again. The position, moveState, FlagEvents, etc are all reset */
+/* Resets everything for scene to start again. The position, moveState, flagEvents, etc are all reset */
 void Scene::restart() {
     // re-play background music
 
@@ -141,8 +146,8 @@ void Scene::restart() {
 
     // clear respawn time vectors or any other unecessary vectors 
 
-    // re-set FlagEvents
-    FlagEvents.resetFlags(); 
+    // re-set flagEvents
+    flagEvents.resetFlags(); 
 }
 
 /* deletes sprites if their visibleState is false for memory management */

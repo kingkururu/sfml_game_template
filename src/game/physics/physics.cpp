@@ -49,7 +49,7 @@ namespace physics{
         } else if (elapsedTime > 0.4f && elapsedTime < 0.8f){
             return { originalPos.x, originalPos.y += speed * deltaTime * gravity }; 
         } else {
-            FlagEvents.spacePressed = false; 
+            flagEvents.spacePressed = false; 
             elapsedTime = 0.0f; 
             return { originalPos.x, originalPos.y };
         }

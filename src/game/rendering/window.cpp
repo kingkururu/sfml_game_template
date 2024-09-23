@@ -11,4 +11,5 @@ GameWindow::GameWindow(unsigned int screenWidth, unsigned int screenHeight, std:
     window.setFramerateLimit(frameRate); 
 }
 
-GameView::GameView(sf::FloatRect viewRect) : view(sf::View(viewRect)) { }
+GameView::GameView(sf::FloatRect viewRect) : view(sf::View(viewRect)){}
+

@@ -49,7 +49,7 @@ void GameManager::countTime() {
     globalTime += deltaTime;
 }
 
-/* handleEventInput takes in keyboard and mouse input. It modifies FlagEvents and calls setMouseClickedPos in scene to 
+/* handleEventInput takes in keyboard and mouse input. It modifies flagEvents and calls setMouseClickedPos in scene to 
 pass in the position in screen where mouse was clicked */
 void GameManager::handleEventInput() {
     sf::Event event;
@@ -64,36 +64,36 @@ void GameManager::handleEventInput() {
         if (event.type == sf::Event::KeyPressed) {
             switch (event.key.code) {
                 case sf::Keyboard::A:
-                    FlagEvents.aPressed = true;
+                    flagEvents.aPressed = true;
                     break;
                 case sf::Keyboard::S:
-                    FlagEvents.sPressed = true;
+                    flagEvents.sPressed = true;
                     break;
                 case sf::Keyboard::W:
-                    FlagEvents.wPressed = true;
+                    flagEvents.wPressed = true;
                     break;
                 case sf::Keyboard::D:
-                    FlagEvents.dPressed = true;
+                    flagEvents.dPressed = true;
                     break;
                 case sf::Keyboard::B:
-                    FlagEvents.bPressed = true;
+                    flagEvents.bPressed = true;
                     break;
                 case sf::Keyboard::Space:
-                    FlagEvents.spacePressed = true;
+                    flagEvents.spacePressed = true;
                     break;
                 default:
                     break;
             }
         }
         if (event.type == sf::Event::KeyReleased) {
-            FlagEvents.flagKeyReleased(); 
+            flagEvents.flagKeyReleased(); 
         }
         if (event.type == sf::Event::MouseButtonPressed) {
-            FlagEvents.mouseClicked = true;
+            flagEvents.mouseClicked = true;
             scene->setMouseClickedPos(sf::Mouse::getPosition(mainWindow.getWindow())); 
         }
         if (event.type == sf::Event::MouseButtonReleased) {
-            FlagEvents.mouseClicked = false;
+            flagEvents.mouseClicked = false;
         }
     }
 }

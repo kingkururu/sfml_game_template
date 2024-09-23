@@ -7,6 +7,5 @@
 
 #include "flags.hpp"
 
-/* singleton declaration for flagEvents */
-flagEvents FlagEvents; 
-//timeComponents TimeComponents; 
+/* singleton declaration for flagEvents, global everywhere */
+FlagEvents flagEvents; 

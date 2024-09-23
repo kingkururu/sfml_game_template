@@ -16,6 +16,10 @@ public:
     GameWindow( unsigned int screenWidth, unsigned int screenHeight, std::string gameTitle, unsigned int frameRate );
     sf::RenderWindow& getWindow() { return window; } 
 
+    explicit operator bool() const {
+        return window.getSize().x > 0 && window.getSize().y > 0;
+    }
+
 private:
     sf::RenderWindow window;
 };
