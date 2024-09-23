@@ -33,7 +33,8 @@ private:
     void handleEventInput();
 
     /* Game components (private in GameManager) */
-    sf::RenderWindow window;
+    GameWindow mainWindow;
+   // sf::RenderWindow window;
     sf::View view; 
 
     sf::Clock clock;

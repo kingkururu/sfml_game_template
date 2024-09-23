@@ -13,13 +13,21 @@
 
 class GameWindow{
 public:
-    GameWindow();
-    sf::RenderWindow& getWindow() const; 
-    sf::View& getView();
+    GameWindow( unsigned int screenWidth, unsigned int screenHeight, std::string gameTitle, unsigned int frameRate );
+    sf::RenderWindow& getWindow() { return window; } 
 
 private:
     sf::RenderWindow window;
+};
+
+class GameView{
+public:
+    GameView(sf::FloatRect viewRect);
+    const sf::View& getView() const { return view; } 
+
+private:
     sf::View view; 
+
 };
 
 #endif /* window_hpp */

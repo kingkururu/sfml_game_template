@@ -9,19 +9,20 @@
 
 /* GameManager constructor sets up the window, intitializes constant variables, calls the random function, and makes scenes */
 GameManager::GameManager()
-    : window(sf::VideoMode(Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT), Constants::GAME_TITLE/* ,  sf::Style::Titlebar  | sf::Style::Close*/), view(sf::View(Constants::VIEW_RECT)) {
-    
+    : mainWindow(Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT, Constants::GAME_TITLE, Constants::FRAME_LIMIT), 
+      view(Constants::VIEW_RECT) {
+
     Constants::initialize();
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
-    window.setFramerateLimit(Constants::FRAME_LIMIT);
     view.setCenter(Constants::VIEW_INITIAL_CENTER);
-    view.setSize(Constants::VIEW_SIZE_X, Constants::VIEW_SIZE_Y); 
+    view.setSize(Constants::VIEW_SIZE_X, Constants::VIEW_SIZE_Y);
 
-    scene = std::make_unique<Scene>(window);
-    
+    scene = std::make_unique<Scene>(mainWindow.getWindow());
+
     log_info("\tGame initialized");
 }
+
 
 /* runGame calls to createAssets from scenes and loops until window is closed to run scene events */
 void GameManager::runGame() {
@@ -34,11 +35,11 @@ void GameManager::runGame() {
     try {
         scene->createAssets();
 
-        while (window.isOpen()) {
+        while (mainWindow.getWindow().isOpen()) {
             countTime();
             handleEventInput();
             scene->runScene(deltaTime, globalTime); 
-            window.setView(view); 
+            mainWindow.getWindow().setView(view); 
         }
         log_info("\tGame Ended"); 
             
@@ -58,13 +59,13 @@ void GameManager::countTime() {
 pass in the position in screen where mouse was clicked */
 void GameManager::handleEventInput() {
     sf::Event event;
-    while (window.pollEvent(event)) {
+    while (mainWindow.getWindow().pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
-            window.close();
+            mainWindow.getWindow().close();
         }
         if (event.type == sf::Event::Resized){ // changes sprite scales accordiing to screen size
             sf::FloatRect visibleArea(0.0f, 0.0f, event.size.width, event.size.height);
-            window.setView(sf::View(visibleArea)); 
+            mainWindow.getWindow().setView(sf::View(visibleArea)); 
         }
         if (event.type == sf::Event::KeyPressed) {
             switch (event.key.code) {
@@ -99,7 +100,7 @@ void GameManager::handleEventInput() {
         }
         if (event.type == sf::Event::MouseButtonPressed) {
             FlagEvents.mouseClicked = true;
-            scene->setMouseClickedPos(sf::Mouse::getPosition(window)); 
+            scene->setMouseClickedPos(sf::Mouse::getPosition(mainWindow.getWindow())); 
         }
         if (event.type == sf::Event::MouseButtonReleased) {
             FlagEvents.mouseClicked = false;
