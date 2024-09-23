@@ -34,8 +34,7 @@ private:
 
     /* Game components (private in GameManager) */
     GameWindow mainWindow;
-    GameView mainView; 
-    // sf::View view; 
+    //GameView mainView; 
 
     sf::Clock clock;
     float globalTime {};

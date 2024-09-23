@@ -25,6 +25,10 @@ public:
     GameView(sf::FloatRect viewRect);
     sf::View& getView() { return view; } 
 
+    explicit operator bool() const {
+        return view.getSize().x > 0 && view.getSize().y > 0; // Checks if the view has a valid size
+    }
+
 private:
     sf::View view; 
 

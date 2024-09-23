@@ -8,7 +8,7 @@
 #include "scenes.hpp"
 
 /* Scene constructure sets up window and sprite respawn times */
-Scene::Scene( sf::RenderWindow& gameWindow ) : window(gameWindow) /* initialize other elements here */ {}
+Scene::Scene( sf::RenderWindow& gameWindow ) : window(gameWindow), scene1View(Constants::VIEW_RECT) /* initialize other elements here */ {}
 
 /* runScene that takes in delta time and global time from GameManager class to execute scene logic */
 void Scene::runScene(float deltaT, float globalT){
@@ -87,6 +87,8 @@ void Scene::update() {
 
         // Remove invisible sprites
         deleteInvisibleSprites();
+
+        window.setView(scene1View.getView()); 
     }
 
     catch (const std::exception& e) {
@@ -97,7 +99,22 @@ void Scene::update() {
 /* deals with inputs from device, let known by FlagEvents. If player's MoveState is true and its pointer is not null, it updates player's position */
 void Scene::handleInput() {
     // if player's getMoveState() is true, and FlagEvents.somekeypressed is true, updatePlayer(sf::Vector2f newPosition)
-    
+    if(FlagEvents.aPressed){
+        if(scene1View)
+            scene1View.getView().move(sf::Vector2f(-1, 0)); 
+    }
+    if(FlagEvents.dPressed){
+        if(scene1View)
+            scene1View.getView().move(sf::Vector2f(1, 0)); 
+    }
+    if(FlagEvents.sPressed){
+        if(scene1View)
+            scene1View.getView().move(sf::Vector2f(0, 1)); 
+    }
+    if(FlagEvents.wPressed){
+        if(scene1View)
+            scene1View.getView().move(sf::Vector2f(0, -1)); 
+    }
 }
 
 /* Keeps sprites inside screen bounds, checks for collisions, update scores, and sets FlagEvents.gameEnd to true in an event of collision */

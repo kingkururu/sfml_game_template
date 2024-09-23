@@ -23,6 +23,7 @@
 #include "flags.hpp"
 #include "physics.hpp"
 #include "utils.hpp"
+#include "window.hpp"
 
 /* Scene class for creating scenes to run inside GameManager class */
 class Scene {
@@ -81,7 +82,8 @@ private:
 
     // Other game components 
     sf::RenderWindow& window; 
-    
+    GameView scene1View; 
+
     // Position in screen where mouse was clicked
     /* 
     // ex) sf::Vector2i mouseClickedPos {}; 
