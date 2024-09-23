@@ -28,6 +28,33 @@ void Scene::runScene(float deltaT, float globalT){
     draw();
 }
 
+/* Resets everything for scene to start again. The position, moveState, flagEvents, etc are all reset */
+void Scene::restartScene() {
+    // re-play background music
+
+    // set sprite movestates to true
+   
+    // re-set sprite and text positions 
+
+    // clear respawn time vectors or any other unecessary vectors 
+
+    // re-set flagEvents
+    sceneEvents.resetFlags(); 
+}
+
+/* Handles events from flagEvents; deals with gameEnd state */
+void Scene::handleGameFlags(){
+    // if flagEvents.gameEnd is true or some event ... do somthing 
+    if(flagEvents.gameEnd){
+       
+    }
+}
+
+/* Updates mouse position from GameManager input */
+void Scene::setMouseClickedPos(sf::Vector2i mousePos){
+    mouseClickedPos = mousePos; 
+} 
+
 /* Gets called once before the main game loop to handle cpu-heavy work only once at the beggining */
 void gamePlayScene::createAssets() {
     try {
@@ -46,55 +73,18 @@ void gamePlayScene::respawnAssets(){
     // if certain respawn time variable is less than a certain value, respawn objects
 } 
 
+/* deletes sprites if their visibleState is false for memory management */
+void gamePlayScene::deleteInvisibleSprites() {
+    // Remove invisible sprites
+   
+   // Remove large-scale unenecessary texts 
+}
+
 /* Updating time from GameManager's deltatime; it updates sprite respawn times and also counts 
 elapsed times from when bullets were spawned and when space button was pressed */
 void gamePlayScene::setTime(){
     // count respawn time here 
 } 
-
-/* Updates mouse position from GameManager input */
-void Scene::setMouseClickedPos(sf::Vector2i mousePos){
-    mouseClickedPos = mousePos; 
-} 
-
-/* Draws only the visible sprite and texts */
-void gamePlayScene::draw() {
-    try {
-        window.clear();
-        // if pointer to a sprite or text exists, window.draw(sf::sprite); 
-
-        if (background && background->getVisibleState()) {
-            window.draw(background->returnSpritesShape());
-            window.draw(background->returnSpritesShape2());
-        }
-        
-        window.display(); 
-    } 
-    
-    catch (const std::exception& e) {
-        std::cerr << "Exception in draw: " << e.what() << std::endl;
-    }
-}
-
-/* Updates sprite and text positions when their moveState is true and their pointers are not null. 
-deleteInvisibleSprites is called to destroy invisible sprites for memory management */
-void gamePlayScene::update() {
-    try {
-        // Update sprites if their getMoveState() is true by changeAnimation() and/or updatePos()
-        // if (background && background->getBackgroundMoveState()) {
-        //     background->updateBackground(deltaTime, Constants::BACKGROUND_SPEED);
-        // } 
-
-        // Remove invisible sprites
-        deleteInvisibleSprites();
-
-        window.setView(sceneView.getView()); 
-    }
-
-    catch (const std::exception& e) {
-        std::cerr << "Exception in updateSprites: " << e.what() << std::endl;
-    }
-}
 
 /* deals with inputs from device, let known by flagEvents. If player's MoveState is true and its pointer is not null, it updates player's position */
 void gamePlayScene::handleInput() {
@@ -127,14 +117,6 @@ void gamePlayScene::handleGameEvents() {
 
 } 
 
-/* Handles events from flagEvents; deals with gameEnd state */
-void Scene::handleGameFlags(){
-    // if flagEvents.gameEnd is true or some event ... do somthing 
-    if(flagEvents.gameEnd){
-       
-    }
-}
-
 void gamePlayScene::handleSceneFlags(){
     // if flagEvents.gameEnd is true or some event ... do somthing 
     if(sceneEvents.sceneEnd){
@@ -142,24 +124,41 @@ void gamePlayScene::handleSceneFlags(){
     }
 }
 
-/* Resets everything for scene to start again. The position, moveState, flagEvents, etc are all reset */
-void Scene::restartScene() {
-    // re-play background music
+/* Updates sprite and text positions when their moveState is true and their pointers are not null. 
+deleteInvisibleSprites is called to destroy invisible sprites for memory management */
+void gamePlayScene::update() {
+    try {
+        // Update sprites if their getMoveState() is true by changeAnimation() and/or updatePos()
+        // if (background && background->getBackgroundMoveState()) {
+        //     background->updateBackground(deltaTime, Constants::BACKGROUND_SPEED);
+        // } 
 
-    // set sprite movestates to true
-   
-    // re-set sprite and text positions 
+        // Remove invisible sprites
+        deleteInvisibleSprites();
 
-    // clear respawn time vectors or any other unecessary vectors 
+        window.setView(sceneView.getView()); 
+    }
 
-    // re-set flagEvents
-    sceneEvents.resetFlags(); 
+    catch (const std::exception& e) {
+        std::cerr << "Exception in updateSprites: " << e.what() << std::endl;
+    }
 }
 
-/* deletes sprites if their visibleState is false for memory management */
-void gamePlayScene::deleteInvisibleSprites() {
-    // Remove invisible sprites
-   
-   // Remove large-scale unenecessary texts 
-}
+/* Draws only the visible sprite and texts */
+void gamePlayScene::draw() {
+    try {
+        window.clear();
+        // if pointer to a sprite or text exists, window.draw(sf::sprite); 
 
+        if (background && background->getVisibleState()) {
+            window.draw(background->returnSpritesShape());
+            window.draw(background->returnSpritesShape2());
+        }
+        
+        window.display(); 
+    } 
+    
+    catch (const std::exception& e) {
+        std::cerr << "Exception in draw: " << e.what() << std::endl;
+    }
+}

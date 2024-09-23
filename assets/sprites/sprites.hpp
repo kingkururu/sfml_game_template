@@ -63,13 +63,13 @@ public:
     void setRects(int animNum); 
 
     using Sprite::getRadius;
-    float getRadius() const; 
+    float getRadius() const override; 
     using Sprite::getRects;
-    sf::IntRect getRects() const;
+    sf::IntRect getRects() const override;
     using Sprite::getCurrIndex; 
-    int getCurrIndex() const { return currentIndex; } 
+    int getCurrIndex() const override { return currentIndex; } 
     using Sprite::getBitmask; 
-    std::shared_ptr<sf::Uint8[]> const getBitmask(size_t index) const ; 
+    std::shared_ptr<sf::Uint8[]> const getBitmask(size_t index) const override; 
 
 private:
     std::vector<sf::IntRect> animationRects{}; 
