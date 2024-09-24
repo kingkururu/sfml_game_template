@@ -13,6 +13,8 @@ GameManager::GameManager()
 
     Constants::initialize();
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
+
+    // make scenes here
     introScreenScene = std::make_unique<introScene>(mainWindow.getWindow()); 
     gameScene = std::make_unique<gamePlayScene>(mainWindow.getWindow());
 

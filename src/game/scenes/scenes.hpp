@@ -68,6 +68,7 @@ class Scene {
   sf::Vector2i mouseClickedPos {}; 
 };
 
+/* costumize scenes by adding something */
 class introScene : public virtual Scene{
   public:
     using Scene::Scene; 
