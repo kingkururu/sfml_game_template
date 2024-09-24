@@ -13,7 +13,8 @@ GameManager::GameManager()
 
     Constants::initialize();
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
-    scene = std::make_unique<gamePlayScene>(mainWindow.getWindow());
+    introScreenScene = std::make_unique<introScene>(mainWindow.getWindow()); 
+    gameScene = std::make_unique<gamePlayScene>(mainWindow.getWindow());
 
     log_info("\tGame initialized");
 }
@@ -28,12 +29,13 @@ void GameManager::runGame() {
     }
 
     try {
-        scene->createAssets();
+        introScreenScene->createAssets(); 
+        gameScene->createAssets();
 
         while (mainWindow.getWindow().isOpen()) {
             countTime();
             handleEventInput();
-            scene->runScene(deltaTime, globalTime); 
+            gameScene->runScene(deltaTime, globalTime); 
         }
         log_info("\tGame Ended"); 
             
@@ -90,7 +92,7 @@ void GameManager::handleEventInput() {
         }
         if (event.type == sf::Event::MouseButtonPressed) {
             flagEvents.mouseClicked = true;
-            scene->setMouseClickedPos(sf::Mouse::getPosition(mainWindow.getWindow())); 
+            gameScene->setMouseClickedPos(sf::Mouse::getPosition(mainWindow.getWindow())); 
         }
         if (event.type == sf::Event::MouseButtonReleased) {
             flagEvents.mouseClicked = false;

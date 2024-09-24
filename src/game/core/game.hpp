@@ -41,7 +41,8 @@ private:
     
     /* Make more scene here. ex) name it openingScene, scene1, etc */
     //std::unique_ptr<Scene> scene;
-        std::unique_ptr<gamePlayScene> scene;
+    std::unique_ptr<gamePlayScene> gameScene;
+    std::unique_ptr<introScene> introScreenScene; 
 
 };
 

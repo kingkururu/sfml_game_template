@@ -27,7 +27,7 @@
 
 /* Base scene class */
 class Scene {
-public:
+ public:
   Scene( sf::RenderWindow& gameWindow );
   virtual ~Scene() = default; 
 
@@ -53,7 +53,7 @@ public:
   virtual void update(){};
   virtual void draw(){}; 
     
-protected:
+ protected:
   // Times - copied from game.cpp
   float deltaTime {}; 
   float globalTime {}; 
@@ -68,9 +68,18 @@ protected:
   sf::Vector2i mouseClickedPos {}; 
 };
 
+class introScene : public virtual Scene{
+  public:
+    using Scene::Scene; 
+    ~introScene() override = default; 
+    
+  private:
+
+};
+
 /* Main game play class, scene instance for creating scenes to run inside GameManager class */
 class gamePlayScene : public virtual Scene{
-public:
+ public:
   using Scene::Scene; 
   ~gamePlayScene() override = default; 
  
@@ -98,7 +107,7 @@ public:
   using Scene::draw; 
   void draw() override; 
 
-private:
+ private:
   std::unique_ptr<Background> background; 
 
 };
