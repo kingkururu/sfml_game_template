@@ -23,23 +23,23 @@ namespace physics{
     }
 
     // object moving in a direction vector
-    sf::Vector2f follow( float speed, sf::Vector2f originalPos, float acceleration, const sf::Vector2f& direction){
-         sf::Vector2f movement(direction.x * speed * timeStep * acceleration, direction.y * speed * timeStep * acceleration);
+    sf::Vector2f follow( float speed, sf::Vector2f originalPos, sf::Vector2f acceleration, const sf::Vector2f& direction){
+         sf::Vector2f movement(direction.x * speed * timeStep * acceleration.x, direction.y * speed * timeStep * acceleration.y);
         return originalPos + movement;
     }
 
     // moving x or y positions based on directions
-    sf::Vector2f moveLeft( float speed, sf::Vector2f originalPos, float acceleration){
-        return { originalPos.x -= speed * timeStep * acceleration, originalPos.y };
+    sf::Vector2f moveLeft( float speed, sf::Vector2f originalPos, sf::Vector2f acceleration){
+        return { originalPos.x -= speed * timeStep * acceleration.x, originalPos.y };
     }
-    sf::Vector2f moveRight( float speed, sf::Vector2f originalPos, float acceleration){
-        return { originalPos.x += speed * timeStep * acceleration, originalPos.y };
+    sf::Vector2f moveRight( float speed, sf::Vector2f originalPos, sf::Vector2f acceleration){
+        return { originalPos.x += speed * timeStep * acceleration.x, originalPos.y };
     }
-    sf::Vector2f moveUp( float speed, sf::Vector2f originalPos, float acceleration){
-        return { originalPos.x, originalPos.y -= speed * timeStep * acceleration};
+    sf::Vector2f moveUp( float speed, sf::Vector2f originalPos, sf::Vector2f acceleration){
+        return { originalPos.x, originalPos.y -= speed * timeStep * acceleration.y};
     }
-    sf::Vector2f moveDown( float speed, sf::Vector2f originalPos, float acceleration){
-        return { originalPos.x, originalPos.y += speed * timeStep * acceleration};
+    sf::Vector2f moveDown( float speed, sf::Vector2f originalPos, sf::Vector2f acceleration){
+        return { originalPos.x, originalPos.y += speed * timeStep * acceleration.y};
     }
 
     // jumping sprites 
@@ -72,8 +72,8 @@ namespace physics{
     }
 
     // raycast collision 
-    bool raycastPreCollision(const sf::Vector2f obj1position, const sf::Vector2f obj1direction, float obj1Speed, const sf::FloatRect obj1Bounds, float obj1Acceleration, 
-                                const sf::Vector2f obj2position, const sf::Vector2f obj2direction, float obj2Speed, const sf::FloatRect obj2Bounds, float obj2Acceleration) {
+    bool raycastPreCollision(const sf::Vector2f obj1position, const sf::Vector2f obj1direction, float obj1Speed, const sf::FloatRect obj1Bounds, sf::Vector2f obj1Acceleration, 
+                                const sf::Vector2f obj2position, const sf::Vector2f obj2direction, float obj2Speed, const sf::FloatRect obj2Bounds, sf::Vector2f obj2Acceleration) {
             
         ++cachedRaycastResult.counter;
         std::cout << "calculating raycast collision time" << std::endl; 
@@ -83,110 +83,129 @@ namespace physics{
         sf::Vector2f relativePosition = obj1position - obj2position;
 
         // Relative acceleration as a scalar difference
-        float relativeAcceleration = obj1Acceleration - obj2Acceleration;
+        sf::Vector2f relativeAcceleration = obj1Acceleration - obj2Acceleration;
 
         // Calculate velocity dot products
         float velocityDot = relativeVelocity.x * relativeVelocity.x + relativeVelocity.y * relativeVelocity.y;
         float positionVelocityDot = relativePosition.x * relativeVelocity.x + relativePosition.y * relativeVelocity.y;
 
         // Avoid division by zero or invalid values
-        if (velocityDot == 0 && relativeAcceleration == 0) {
+        if (velocityDot == 0  && (relativeAcceleration.x == 0 && relativeAcceleration.y == 0)) {
             std::cout << "No relative motion or acceleration; no collision possible." << std::endl;
             return false;
         }
 
         // Time of closest approach considering relative acceleration
         float timeToClosestApproach = 0.0f;
-        if (velocityDot != 0) {
-            // Standard case: objects have relative velocity
-            timeToClosestApproach = -positionVelocityDot / velocityDot;
-        } else if (relativeAcceleration != 0) {
-            // Special case: objects have relative acceleration but no relative velocity
-            float accelerationTerm = relativePosition.x * relativeVelocity.x + relativePosition.y * relativeVelocity.y;
-            if (accelerationTerm < 0) {
-                timeToClosestApproach = std::sqrt(-2.0f * accelerationTerm / (relativeAcceleration * (relativeVelocity.x + relativeVelocity.y)));
+        // If there is no relative acceleration, calculate using relative velocity only
+        if (relativeAcceleration.x == 0 && relativeAcceleration.y == 0) {
+            // Standard case: objects have relative velocity, no relative acceleration
+            if (velocityDot != 0) {
+                timeToClosestApproach = -positionVelocityDot / velocityDot;
             } else {
-                std::cout << "Invalid relative acceleration for collision." << std::endl;
+                std::cout << "No relative velocity detected; no collision possible." << std::endl;
                 return false;
             }
         } else {
-            std::cout << "No movement or acceleration difference detected; no collision possible." << std::endl;
-            return false;
-        }
+            // Case with relative acceleration: solve the quadratic equation
+            // Compute a quadratic form: at² + bt + c = 0, where:
+            // a = 0.5 * relative acceleration · relative acceleration
+            // b = relative velocity · relative acceleration
+            // c = relative position · relative velocity
+            
+            float a = 0.5f * (relativeAcceleration.x * relativeAcceleration.x + relativeAcceleration.y * relativeAcceleration.y);
+            float b = relativeVelocity.x * relativeAcceleration.x + relativeVelocity.y * relativeAcceleration.y;
+            float c = relativePosition.x * relativeVelocity.x + relativePosition.y * relativeVelocity.y;
 
-        // Early exit if closest approach is in the past
-        if (timeToClosestApproach < 0) {
-            std::cout << "Closest approach was in the past; no future collision." << std::endl;
-            return false;
-        }
+            // Solve the quadratic equation for time (if applicable)
+            float discriminant = b * b - 4.0f * a * c;
 
-        // Store the calculated time of closest approach
-        cachedRaycastResult.collisionTimes.push_back(timeToClosestApproach);
+            if (discriminant < 0) {
+                std::cout << "No collision; discriminant < 0." << std::endl;
+                return false;
+            }
 
-        // Log the calculated time for debugging
-        std::cout << "Calculated Time to Closest Approach: " << timeToClosestApproach << std::endl;
+            // Calculate the two possible times of closest approach
+            float sqrtDiscriminant = std::sqrt(discriminant);
+            float time1 = (-b - sqrtDiscriminant) / (2.0f * a);
+            float time2 = (-b + sqrtDiscriminant) / (2.0f * a);
 
-        return true;
-    }
-
-    // bounding box collision
-    bool boundingBoxCollision(const sf::Vector2f &position1, 
-                               const sf::Vector2f &size1,
-                               const sf::Vector2f &position2, 
-                               const sf::Vector2f &size2) {
-
-        float xOverlapStart = std::max(position1.x, position2.x);
-        float yOverlapStart = std::max(position1.y, position2.y);
-        float xOverlapEnd = std::min(position1.x + size1.x, position2.x + size2.x);
-        float yOverlapEnd = std::min(position1.y + size1.y, position2.y + size2.y);
-
-        if (xOverlapStart >= xOverlapEnd || yOverlapStart >= yOverlapEnd) {
-            return false;
-        }
-        return true; 
-    }
-
-    // pixel perfect collition
-    bool pixelPerfectCollision(
-        const std::shared_ptr<sf::Uint8[]>& bitmask1, const sf::Vector2f& position1, const sf::Vector2f& size1,
-        const std::shared_ptr<sf::Uint8[]>& bitmask2, const sf::Vector2f& position2, const sf::Vector2f& size2) {
-
-        // Helper function to get the pixel index in the bitmask
-        auto getPixelIndex = [](const sf::Vector2f& size, int x, int y) -> int {
-            return (y * static_cast<int>(size.x) + x) * 4; // Each pixel has 4 bytes (RGBA)
-        };
-
-        // Calculate the overlapping area between the two objects
-        float left = std::max(position1.x, position2.x);
-        float top = std::max(position1.y, position2.y);
-        float right = std::min(position1.x + size1.x, position2.x + size2.x);
-        float bottom = std::min(position1.y + size1.y, position2.y + size2.y);
-
-        // If there is no overlap, return false
-        if (left >= right || top >= bottom) {
-            return false;
-        } 
-
-        // Check each pixel in the overlapping area
-        for (int y = static_cast<int>(top); y < static_cast<int>(bottom); ++y) {
-            for (int x = static_cast<int>(left); x < static_cast<int>(right); ++x) {
-                // Calculate the position in each bitmask
-                int x1 = x - static_cast<int>(position1.x);
-                int y1 = y - static_cast<int>(position1.y);
-                int x2 = x - static_cast<int>(position2.x);
-                int y2 = y - static_cast<int>(position2.y);
-
-                // Get the index of the pixel in each bitmask
-                int index1 = getPixelIndex(size1, x1, y1);
-                int index2 = getPixelIndex(size2, x2, y2);
-
-                // Check if the pixels' values are non-zero (i.e., not transparent)
-                if (bitmask1[index1] == 1 && bitmask2[index2] == 1) {
-                   // std::cout << "Collision detected at pixel (" << x << ", " << y << ")" << std::endl;
-                    return true; // Collision detected
-                }
+            // Choose the smallest positive time
+            timeToClosestApproach = std::min(time1, time2);
+            
+            if (timeToClosestApproach < 0) {
+                std::cout << "Closest approach is in the past." << std::endl;
+                return false;
             }
         }
+
+            // Store the calculated time of closest approach
+            cachedRaycastResult.collisionTimes.push_back(timeToClosestApproach);
+
+            // Log the calculated time for debugging
+            std::cout << "Calculated Time to Closest Approach: " << timeToClosestApproach << std::endl;
+
+            return true;
+        }
+
+        // bounding box collision
+        bool boundingBoxCollision(const sf::Vector2f &position1, 
+                                const sf::Vector2f &size1,
+                                const sf::Vector2f &position2, 
+                                const sf::Vector2f &size2) {
+
+            float xOverlapStart = std::max(position1.x, position2.x);
+            float yOverlapStart = std::max(position1.y, position2.y);
+            float xOverlapEnd = std::min(position1.x + size1.x, position2.x + size2.x);
+            float yOverlapEnd = std::min(position1.y + size1.y, position2.y + size2.y);
+
+            if (xOverlapStart >= xOverlapEnd || yOverlapStart >= yOverlapEnd) {
+                return false;
+            }
+            return true; 
+        }
+
+        // pixel perfect collition
+        bool pixelPerfectCollision(
+            const std::shared_ptr<sf::Uint8[]>& bitmask1, const sf::Vector2f& position1, const sf::Vector2f& size1,
+            const std::shared_ptr<sf::Uint8[]>& bitmask2, const sf::Vector2f& position2, const sf::Vector2f& size2) {
+
+            // Helper function to get the pixel index in the bitmask
+            auto getPixelIndex = [](const sf::Vector2f& size, int x, int y) -> int {
+                return (y * static_cast<int>(size.x) + x) * 4; // Each pixel has 4 bytes (RGBA)
+            };
+
+            // Calculate the overlapping area between the two objects
+            float left = std::max(position1.x, position2.x);
+            float top = std::max(position1.y, position2.y);
+            float right = std::min(position1.x + size1.x, position2.x + size2.x);
+            float bottom = std::min(position1.y + size1.y, position2.y + size2.y);
+
+            // If there is no overlap, return false
+            if (left >= right || top >= bottom) {
+                return false;
+            } 
+
+            // Check each pixel in the overlapping area
+            for (int y = static_cast<int>(top); y < static_cast<int>(bottom); ++y) {
+                for (int x = static_cast<int>(left); x < static_cast<int>(right); ++x) {
+                    // Calculate the position in each bitmask
+                    int x1 = x - static_cast<int>(position1.x);
+                    int y1 = y - static_cast<int>(position1.y);
+                    int x2 = x - static_cast<int>(position2.x);
+                    int y2 = y - static_cast<int>(position2.y);
+
+                    // Get the index of the pixel in each bitmask
+                    int index1 = getPixelIndex(size1, x1, y1);
+                    int index2 = getPixelIndex(size2, x2, y2);
+
+                    // Check if the pixels' values are non-zero (i.e., not transparent)
+                    if (bitmask1[index1] == 1 && bitmask2[index2] == 1) {
+                    // std::cout << "Collision detected at pixel (" << x << ", " << y << ")" << std::endl;
+                        return true; // Collision detected
+                    }
+                }
+            }
         return false; 
     }
 
@@ -260,8 +279,8 @@ namespace physics{
         sf::FloatRect obj1Bounds = obj1.returnSpritesShape().getGlobalBounds();
         sf::FloatRect obj2Bounds = obj2.returnSpritesShape().getGlobalBounds();
 
-        float obj1acceleration = obj1.getAcceleration(); 
-        float obj2acceleration = obj2.getAcceleration(); 
+        sf::Vector2f obj1acceleration = obj1.getAcceleration(); 
+        sf::Vector2f obj2acceleration = obj2.getAcceleration(); 
 
         return raycastPreCollision(obj1position, obj1direction, obj1Speed, obj1Bounds, obj1acceleration, obj2position, obj2direction, obj2Speed, obj2Bounds, obj2acceleration); 
 

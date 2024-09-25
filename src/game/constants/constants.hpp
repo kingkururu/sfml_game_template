@@ -64,7 +64,7 @@ namespace Constants {
     extern std::shared_ptr<sf::Texture> OBSTACLE_TEXTURE;
     constexpr unsigned short OBSTACLEANIM_MAX_INDEX = 5; 
     constexpr float OBSTACLE_SPEED = 200.0f;
-    constexpr float OBSTACLE_ACCELERATION = 1.6;
+    extern const sf::Vector2f OBSTACLE_ACCELERATION;
     constexpr float OBSTACLE_INITIAL_RESPAWN_TIME = 3.0; 
     constexpr float OBSTACLE_INTERVAL_DECREMENT = 0.08; 
     constexpr short OBSTACLE_FALL_ANGLE = 150; 

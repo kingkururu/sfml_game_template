@@ -40,7 +40,7 @@ public:
     // blank members for use in NonStatic class
     virtual sf::Vector2f getDirectionVector() const { return sf::Vector2f(); }
     virtual float getSpeed() const { return 0.0f; }
-    virtual float getAcceleration() const { return 0.0f; }
+    virtual sf::Vector2f getAcceleration() const { return sf::Vector2f(); }
 
 protected:
     sf::Vector2f position {};
@@ -111,7 +111,7 @@ public:
 /* NonStatic class deriving from sprites; refers to moving sprites */
 class NonStatic : public virtual Sprite{
 public:
-   explicit NonStatic(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, float speed, float acceleration)
+   explicit NonStatic(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, float speed, sf::Vector2f acceleration)
         : Sprite(position, scale, texture), speed(speed), acceleration(acceleration) {}
     ~NonStatic() override{}; 
     void updatePos(); 
@@ -119,7 +119,7 @@ public:
     void setMoveState(bool newState) { moveState = newState; }
     void changePosition(sf::Vector2f newPos) { position = newPos; }  
     void setSpeed(float newSpeed) { speed = newSpeed; } 
-    void setAcceleration(float newAcc) { acceleration = newAcc; } 
+    void setAcceleration( sf::Vector2f newAcc) { acceleration = newAcc; } 
 
     virtual void setDirectionVector( sf::Vector2f dir) {directionVector = dir; } 
 
@@ -128,20 +128,20 @@ public:
     using Sprite::getSpeed;
     virtual float getSpeed() const override { return speed; }
     using Sprite::getAcceleration;
-    virtual float getAcceleration() const override{ return acceleration; }
+    virtual sf::Vector2f getAcceleration() const override{ return acceleration; }
 
 protected:
     bool moveState = true;
     sf::Vector2f directionVector{}; 
     float speed {}; 
-    float acceleration{}; 
+    sf::Vector2f acceleration{}; 
 };
 
 /* player class deriving from NonStatic; refers to movable player */
 class Player : public NonStatic, public Animated {
 public:
    explicit Player(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture,
-                float speed, float acceleration,  
+                float speed, sf::Vector2f acceleration,  
                 const std::vector<sf::IntRect> animationRects, unsigned int indexMax, 
                 const std::vector<std::weak_ptr<sf::Uint8[]>>& bitMask)
     : Sprite(position, scale, texture), 
@@ -156,7 +156,7 @@ public:
 class Obstacle : public NonStatic, public Animated {
 public:
     explicit Obstacle(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, 
-                      float speed, float acceleration,  
+                      float speed, sf::Vector2f acceleration,  
                       const std::vector<sf::IntRect> animationRects, unsigned int indexMax, 
                       const std::vector<std::weak_ptr<sf::Uint8[]>>& bitMask)
         : Sprite(position, scale, texture), 
@@ -177,7 +177,7 @@ private:
 class Bullet : public NonStatic, public Animated {
 public:
    explicit Bullet(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, 
-                    float speed, float acceleration,  
+                    float speed, sf::Vector2f acceleration,  
                     const std::vector<sf::IntRect> animationRects, unsigned int indexMax, 
                     const std::vector<std::weak_ptr<sf::Uint8[]>>& bitMask)
         : Sprite(position, scale, texture), 
