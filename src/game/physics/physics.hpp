@@ -94,13 +94,13 @@ namespace physics{
                          const CollisionFunc& collisionFunc) {
     
         if(!first){
-            spdlog::error("First sprite pointer is empty.");
+            log_error("First sprite pointer is empty.");
             throw std::runtime_error("first sprite pointer is empty.");
         }
 
         for (const auto& item2 : Group) {
             if(!item2){
-                spdlog::error("Second sprite pointer is empty.");
+                log_error("Second sprite pointer is empty.");
                 throw std::runtime_error("second sprite pointer is empty.");
             }
 
@@ -120,7 +120,7 @@ namespace physics{
         
         // Check if the sizes of firstGroup and firstGroupSpawnedTimes match
         if (!firstGroupSpawnedTimes.empty() && firstGroupSpawnedTimes.size() != firstGroup.size()) {
-            spdlog::error("First group sprite vec size and spawned time size are not equal.");
+            log_error("First group sprite vec size and spawned time size are not equal.");
             throw std::runtime_error("first group sprite vec size and spawned time size is not equal");
         }
 
@@ -129,12 +129,12 @@ namespace physics{
             std::cout << "CollisionFunc matches signature: bool(SpriteType1&, SpriteType2&)" << std::endl;
             for (const auto& item1 : firstGroup) {
                 if (!item1) {
-                    spdlog::error("one or more of the first sprite pointer is empty");
+                    log_error("one or more of the first sprite pointer is empty");
                     throw std::runtime_error("first sprite pointer is empty.");
                 }
                 for (const auto& item2 : secondGroup) {
                     if (!item2) {
-                        spdlog::error("one or more of the second sprite pointer is empty");
+                        log_error("one or more of the second sprite pointer is empty");
                         throw std::runtime_error("second sprite pointer is empty.");
                     }
                     if (collisionFunc(*item1, *item2)) {
@@ -150,12 +150,12 @@ namespace physics{
             std::cout << "CollisionFunc matches signature: bool(SpriteType1&, SpriteType2&, float, size_t)" << std::endl;
             for (size_t i = 0; i < firstGroup.size(); ++i) {
                 if (!firstGroup[i]) {
-                    spdlog::error("one or more of the first sprite pointer is empty");
+                    log_error("one or more of the first sprite pointer is empty");
                     throw std::runtime_error("first sprite pointer is empty.");
                 }
                 for (const auto& item2 : secondGroup) {
                     if (!item2) {
-                        spdlog::error("one or more of the second sprite pointer is empty");
+                        log_error("one or more of the second sprite pointer is empty");
                         throw std::runtime_error("second sprite pointer is empty.");
                     }
                     if (collisionFunc(*firstGroup[i], *item2, firstGroupSpawnedTimes[i], i)) {

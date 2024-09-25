@@ -14,6 +14,8 @@
 #include <cstring>
 #include <vector>
 
+#include "log.hpp"
+
 /* flagEvents singleton definition for game states (visible globally) */
 extern struct FlagEvents{
     // game states
@@ -32,7 +34,9 @@ extern struct FlagEvents{
 
     // resets every flag
     void resetFlags(){
+        log_error("Failed resetting flagEvents");
         std::memset(this, 0, sizeof(*this));
+        log_info("Flags have been successfully reset.");
     }
 
     // resets keyboard flags only 
@@ -55,7 +59,9 @@ struct SceneEvents{
     SceneEvents() : sceneEnd(false), sceneStart(true) {} 
 
     void resetFlags(){
+        log_error("failed resetting scene Flags");
         std::memset(this, 0, sizeof(*this));
+        log_info("Flags have been successfully reset.");
     }
 };
 

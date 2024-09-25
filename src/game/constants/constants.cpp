@@ -107,7 +107,7 @@ std::shared_ptr<sf::Uint8[]> createBitmask(
         // Create or get a logger (assuming 'info_logger' is your logger)
         auto logger = spdlog::get("info_logger");
         if (!logger) {
-            spdlog::error("Logger not initialized.");
+            log_error("Logger not initialized.");
             return;
         }
         
