@@ -2,7 +2,7 @@
 CXX = clang++
 CXXFLAGS = -std=c++17 -Wall \
             -I./src -I./src/game -I./src/game/constants -I./src/game/flags -I./src/game/core -I./src/game/physics -I./src/game/rendering -I./src/game/utils -I./src/game/scenes \
-            -I./assets/sprites -I./assets/fonts -I./assets/sound \
+            -I./assets/sprites -I./assets/fonts -I./assets/sound -I./assets/tiles \
             -I./libs/logging \
             -I/opt/homebrew/opt/spdlog/include -I/opt/homebrew/opt/fmt/include
 LDFLAGS = -L/opt/homebrew/lib -L/opt/homebrew/opt/spdlog/lib -L/opt/homebrew/opt/fmt/lib -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lspdlog -lfmt
@@ -19,6 +19,7 @@ SRC = src/main.cpp \
       assets/sprites/sprites.cpp \
       assets/fonts/fonts.cpp \
       assets/sound/sound.cpp \
+      assets/tiles/tiles.cpp \
       libs/logging/log.cpp 
 
 # Object files

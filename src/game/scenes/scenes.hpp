@@ -110,7 +110,7 @@ class gamePlayScene : public virtual Scene{
 
  private:
   std::unique_ptr<Background> background; 
-
+  std::unique_ptr<Sprite> sprite1; 
 };
 
 #endif /* scenes_hpp */

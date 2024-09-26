@@ -19,13 +19,13 @@
 #include "flags.hpp" 
 
 /* base class for all sprites; contains position, scale, and texture */
-class Sprite{
+class Sprite : public sf::Drawable {
 public:
     explicit Sprite(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture);
 
     virtual ~Sprite() = default;
     sf::Vector2f const getSpritePos() const { return position; };
-    sf::Sprite& returnSpritesShape() const { return *spriteCreated; }
+    sf::Sprite& returnSpritesShape() const { return *spriteCreated; } 
     bool const getVisibleState() const { return visibleState; }
     void setVisibleState(bool VisibleState){ visibleState = VisibleState; }
 
@@ -41,6 +41,9 @@ public:
     virtual sf::Vector2f getDirectionVector() const { return sf::Vector2f(); }
     virtual float getSpeed() const { return 0.0f; }
     virtual sf::Vector2f getAcceleration() const { return sf::Vector2f(); }
+
+    // draws sprite using window.draw(*sprite)
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override { if (visibleState && spriteCreated) target.draw(*spriteCreated, states); }
 
 protected:
     sf::Vector2f position {};

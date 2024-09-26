@@ -1,4 +1,4 @@
-[2024-09-25 11:08:10.382] [info_logger] [info] 	Constants initialized 
-[2024-09-25 11:08:10.398] [info_logger] [info] 	Game initialized
-[2024-09-25 11:08:10.398] [info_logger] [info] Background created at position (0.000000, 0.000000)
-[2024-09-25 11:08:13.609] [info_logger] [info] 	Game Ended
+[2024-09-26 09:16:40.500] [info_logger] [info] 	Constants initialized 
+[2024-09-26 09:16:40.514] [info_logger] [info] 	Game initialized
+[2024-09-26 09:16:40.514] [info_logger] [info] Background created at position (0.000000, 0.000000)
+[2024-09-26 09:16:44.330] [info_logger] [info] 	Game Ended

@@ -58,6 +58,15 @@
         "iomanip": "cpp",
         "print": "cpp",
         "queue": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "__bits": "cpp",
+        "__debug": "cpp",
+        "__nullptr": "cpp",
+        "__tuple": "cpp",
+        "atomic": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "exception": "cpp",
+        "type_traits": "cpp"
     }
 }

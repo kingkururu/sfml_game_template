@@ -24,6 +24,10 @@ namespace Constants {
     const sf::Vector2f BACKGROUND_SCALE = { 0.5f, 0.5f };
     const sf::Vector2f VIEW_INITIAL_CENTER = { 300.0f, 300.f }; 
     std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE = std::make_shared<sf::Texture>();
+    
+    const sf::Vector2f SPRITE1_POSITION = {0.0f, 0.0f};
+    const sf::Vector2f SPRITE1_SCALE = { 0.5f, 0.5f };
+    std::shared_ptr<sf::Texture> SPRITE1_TEXTURE = std::make_shared<sf::Texture>();
 
     //initializer function
     void initialize() {
@@ -31,6 +35,10 @@ namespace Constants {
         log_info("\tConstants initialized ");
 
         if (!BACKGROUND_TEXTURE->loadFromFile(BACKGROUNDSPRITE_PATH)) {
+            std::cerr << "Failed to load background texture from file: " << BACKGROUNDSPRITE_PATH << std::endl;
+        }
+
+        if (!SPRITE1_TEXTURE->loadFromFile(SPRITE1SPRITE_PATH)) {
             std::cerr << "Failed to load background texture from file: " << BACKGROUNDSPRITE_PATH << std::endl;
         }
 
