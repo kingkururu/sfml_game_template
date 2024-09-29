@@ -61,6 +61,9 @@ namespace Constants {
     extern std::shared_ptr<sf::Texture> SPRITE1_TEXTURE; 
     constexpr const char* SPRITE1SPRITE_PATH = "assets/sprites/png/Static.png";
 
+    extern std::shared_ptr<sf::Texture> SPRITE2_TEXTURE; 
+    constexpr const char* SPRITE2SPRITE_PATH = "assets/sprites/png/Player.png";
+
     // typical sprite components (non-static) / animated
     /*
     extern const sf::Vector2f OBSTACLE_POSITION;

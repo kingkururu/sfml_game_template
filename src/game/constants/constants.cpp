@@ -29,6 +29,9 @@ namespace Constants {
     const sf::Vector2f SPRITE1_SCALE = { 0.5f, 0.5f };
     std::shared_ptr<sf::Texture> SPRITE1_TEXTURE = std::make_shared<sf::Texture>();
 
+    std::shared_ptr<sf::Texture> SPRITE2_TEXTURE = std::make_shared<sf::Texture>();
+
+
     //initializer function
     void initialize() {
         init_logging();
@@ -39,7 +42,11 @@ namespace Constants {
         }
 
         if (!SPRITE1_TEXTURE->loadFromFile(SPRITE1SPRITE_PATH)) {
-            std::cerr << "Failed to load background texture from file: " << BACKGROUNDSPRITE_PATH << std::endl;
+            std::cerr << "Failed to load background texture from file: " << SPRITE1SPRITE_PATH << std::endl;
+        }
+
+        if (!SPRITE2_TEXTURE->loadFromFile(SPRITE2SPRITE_PATH)) {
+            std::cerr << "Failed to load background texture from file: " << SPRITE2SPRITE_PATH << std::endl;
         }
 
         /* 

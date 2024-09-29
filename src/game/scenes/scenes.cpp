@@ -61,7 +61,7 @@ void gamePlayScene::createAssets() {
         // Initialize sprites and music here 
          background = std::make_unique<Background>(Constants::BACKGROUND_POSITION, Constants::BACKGROUND_SCALE, Constants::BACKGROUND_TEXTURE);
          sprite1 = std::make_unique<Sprite>(Constants::SPRITE1_POSITION, Constants::BACKGROUND_SCALE, Constants::SPRITE1_TEXTURE); 
-         //tile1 = std::make_unique<Tile>({0.0f, 0.0f}, {1.0f, 1.0f}, Constants::SPRITE1_TEXTURE, Constants::VIEW_RECT, true); 
+         //tile1 = std::make_unique<Tile>(sf::Vector2f{0.0f, 0.0f}, sf::Vector2f{1.0f, 1.0f}, Constants::SPRITE2_TEXTURE, sf::IntRect{0,0,50,50}, true); 
         } 
 
     catch (const std::exception& e) {

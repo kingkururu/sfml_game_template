@@ -1,11 +1,23 @@
 #include "tiles.hpp"
 
 Tile::Tile(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, sf::IntRect textureRect, bool walkable)
-          : position(position), scale(scale), texture(texture), textureRect(textureRect), walkable(walkable) {
-    if (auto sharedTexture = texture.lock()) {
-        spriteCreated = std::make_unique<sf::Sprite>(*sharedTexture, textureRect);
-        spriteCreated->setPosition(position);
-        spriteCreated->setScale(scale);
+          : position(position), scale(scale), texture(texture), textureRect(textureRect), walkable(walkable), spriteCreated(std::make_unique<sf::Sprite>()) {
+    try{
+        if (auto sharedTexture = texture.lock()) {
+            sf::Vector2u textureSize = sharedTexture->getSize(); 
+            if (!textureSize.x || !textureSize.y) {
+                throw std::runtime_error("Loaded texture has size 0");
+            }
+
+            spriteCreated->setTexture(*sharedTexture);
+            spriteCreated->setPosition(position);
+            spriteCreated->setScale(scale);
+        } else {
+            throw std::runtime_error("Tile texture is not available");
+        }
+    }   
+    catch (const std::exception& e){
+        log_error(e.what());
     }
 }
 
