@@ -20,7 +20,7 @@ This is my very basic game template for a 2D-platformer game.
 │   │   ├── game.cpp                                    # Game loop and game state management
 │   │   ├── game.hpp
 │   │   │
-│   │   ├── /constants                                  # Constants and enums
+│   │   ├── /constants                                  # Constants 
 │   │   │   ├── constants.cpp
 │   │   │   └── constants.hpp
 │   │   │
@@ -65,10 +65,10 @@ This is my very basic game template for a 2D-platformer game.
 │   │   └── sprites.hpp                                 # Sprite-related header file 
 │  
 ├── /libs                   
-│   ├── /SFML            
-│   ├── /SPDLOG
+│   ├── /SFML                                       #need to add sfml package config later
+│   ├── /SPDLOG                                     #need to add spdlog configuration later
 │   │
-│   ├── /logging          
+│   ├── /logging                                         # spdlog for logging 
 │   │   ├── log.cpp
 │   │   └── log.hpp
 │   │   ├── errors.txt
