@@ -39,7 +39,7 @@ void GameManager::runGame() {
             handleEventInput();
             gameScene->runScene(deltaTime, globalTime); 
         }
-        log_info("\tGame Ended"); 
+        log_info("\tGame Ended\n"); 
             
     } catch (const std::exception& e) {
         logger->error("Exception in runGame: {}", e.what());
