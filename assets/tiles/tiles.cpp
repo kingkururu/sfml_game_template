@@ -12,6 +12,8 @@ Tile::Tile(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture>
             spriteCreated->setTexture(*sharedTexture);
             spriteCreated->setPosition(position);
             spriteCreated->setScale(scale);
+            spriteCreated->setTextureRect(textureRect); 
+            
         } else {
             throw std::runtime_error("Tile texture is not available");
         }
