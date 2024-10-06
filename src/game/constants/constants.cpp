@@ -20,19 +20,19 @@ namespace Constants {
     // declare sprite, text, sound, music components here ( ones without constexpr keywords )
     const sf::FloatRect VIEW_RECT = { 0.0f, 0.0f, 500.0f, 500.0f }; 
 
-    const sf::Vector2f BACKGROUND_POSITION = {0.0f, 0.0f};
+    const sf::Vector2f BACKGROUND_POSITION = { 0.0f, 0.0f };
     const sf::Vector2f BACKGROUND_SCALE = { 0.5f, 0.5f };
     const sf::Vector2f VIEW_INITIAL_CENTER = { 300.0f, 300.f }; 
     std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE = std::make_shared<sf::Texture>();
     
-    const sf::Vector2f SPRITE1_POSITION = {0.0f, 0.0f};
+    const sf::Vector2f SPRITE1_POSITION = { 0.0f, 0.0f };
     const sf::Vector2f SPRITE1_SCALE = { 0.5f, 0.5f };
     std::shared_ptr<sf::Texture> SPRITE1_TEXTURE = std::make_shared<sf::Texture>();
 
-    const sf::Vector2f SPRITE2_POSITION = {0.0f, 0.0f};
-    const sf::Vector2f SPRITE2_SCALE = { 0.5f, 0.5f };
-    std::shared_ptr<sf::Texture> SPRITE2_TEXTURE = std::make_shared<sf::Texture>();
-
+    const sf::Vector2f TILE1_POSITION = { 0.0f, 0.0f };
+    const sf::Vector2f TILE1_SCALE = { 0.5f, 0.5f };
+    std::shared_ptr<sf::Texture> TILE1_TEXTURE = std::make_shared<sf::Texture>();
+    const sf::IntRect TILE1_RECT = { 1, 1, 2, 2 }; 
 
     //initializer function
     void initialize() {
@@ -47,8 +47,8 @@ namespace Constants {
             std::cerr << "Failed to load background texture from file: " << SPRITE1SPRITE_PATH << std::endl;
         }
 
-        if (!SPRITE2_TEXTURE->loadFromFile(SPRITE2SPRITE_PATH)) {
-            std::cerr << "Failed to load background texture from file: " << SPRITE2SPRITE_PATH << std::endl;
+        if (!TILE1_TEXTURE->loadFromFile(TILE1_PATH)) {
+            std::cerr << "Failed to load background texture from file: " << TILE1_PATH << std::endl;
         }
 
         /* 

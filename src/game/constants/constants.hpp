@@ -61,16 +61,18 @@ namespace Constants {
     extern std::shared_ptr<sf::Texture> SPRITE1_TEXTURE; 
     constexpr const char* SPRITE1SPRITE_PATH = "assets/sprites/png/Static.png";
 
-    extern const sf::Vector2f SPRITE2_POSITION;
-    extern const sf::Vector2f SPRITE2_SCALE;
-    extern std::shared_ptr<sf::Texture> SPRITE2_TEXTURE; 
-    constexpr const char* SPRITE2SPRITE_PATH = "assets/sprites/png/Player.png";
+    extern const sf::Vector2f TILE1_POSITION;
+    extern const sf::Vector2f TILE1_SCALE;
+    extern std::shared_ptr<sf::Texture> TILE1_TEXTURE; 
+    extern const sf::IntRect TILE1_RECT; 
+    constexpr const char* TILE1_PATH = "assets/sprites/png/Player.png";
+    constexpr bool TILE1_BOOL = true; 
 
     constexpr float MAP_WIDTH = 1.0f; 
     constexpr float MAP_HEIGHT = 1.0f;  
     constexpr unsigned int TILE_WIDTH = 20;
     constexpr unsigned int TILE_HEIGHT = 20;
-    
+
     // typical sprite components (non-static) / animated
     /*
     extern const sf::Vector2f OBSTACLE_POSITION;
