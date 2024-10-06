@@ -29,6 +29,8 @@ namespace Constants {
     const sf::Vector2f SPRITE1_SCALE = { 0.5f, 0.5f };
     std::shared_ptr<sf::Texture> SPRITE1_TEXTURE = std::make_shared<sf::Texture>();
 
+    const sf::Vector2f SPRITE2_POSITION = {0.0f, 0.0f};
+    const sf::Vector2f SPRITE2_SCALE = { 0.5f, 0.5f };
     std::shared_ptr<sf::Texture> SPRITE2_TEXTURE = std::make_shared<sf::Texture>();
 
 
