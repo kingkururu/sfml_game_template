@@ -3,10 +3,14 @@ Made on September 2024 by Sunmyoung Yun.
 This is my very basic game template for a 2D game. 
 
 --------------------------------------------------------- HOW TO OPEN AND LAUNCH GAME
-0)  Brew install SFML and spdlog
+
 1)  Clone repo in VScode
-2)  Type "make" in VScode terminal
-3)  Type "runGame" in VScode terminal
+2)  Type "make" in VScode terminal ("Should automatically download brew, sfml and fmt in this stage")
+3)  Type "run" in VScode terminal
+
+- Type "make clean" to removed build
+- Type "make" to make build
+- Type "run" to run build
 
 --------------------------------------------------------- CODE STRUCTURE
 /sfml_game_template
