@@ -69,9 +69,6 @@ This is my very basic game template for a 2D game.
 │   │   └── sprites.hpp                                 # Sprite-related header file 
 │  
 ├── /libs                   
-│   ├── /SFML                                       #need to add sfml package config later
-│   ├── /SPDLOG                                     #need to add spdlog configuration later
-│   │
 │   ├── /logging                                         # spdlog for logging 
 │   │   ├── log.cpp
 │   │   └── log.hpp
