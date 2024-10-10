@@ -33,6 +33,9 @@ namespace Constants {
     const sf::Vector2f TILE1_SCALE = { 0.5f, 0.5f };
     std::shared_ptr<sf::Texture> TILE1_TEXTURE = std::make_shared<sf::Texture>();
     const sf::IntRect TILE1_RECT = { 1, 1, 2, 2 }; 
+    
+    std::unique_ptr<sf::Music> BACKGROUNDMUSIC_MUSIC = std::make_unique<sf::Music>(); 
+    std::shared_ptr<sf::SoundBuffer> PLAYERJUMP_SOUNDBUFF = std::make_shared<sf::SoundBuffer>();
 
     //initializer function
     void initialize() {
@@ -48,6 +51,14 @@ namespace Constants {
         }
 
         if (!TILE1_TEXTURE->loadFromFile(TILE1_PATH)) {
+            std::cerr << "Failed to load background texture from file: " << TILE1_PATH << std::endl;
+        }
+
+        if (!BACKGROUNDMUSIC_MUSIC->openFromFile(BACKGROUNDMUSIC_PATH)) {
+            std::cerr << "Failed to load background texture from file: " << TILE1_PATH << std::endl;
+        }
+
+        if (!PLAYERJUMP_SOUNDBUFF->loadFromFile(PLAYERJUMPSOUND_PATH)) {
             std::cerr << "Failed to load background texture from file: " << TILE1_PATH << std::endl;
         }
 

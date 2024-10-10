@@ -100,17 +100,13 @@ namespace Constants {
     */
 
     // typical music components 
-    /*
     constexpr const char* BACKGROUNDMUSIC_PATH = "src/assets/sound/mp3/bgm.mp3";
     extern std::unique_ptr<sf::Music> BACKGROUNDMUSIC_MUSIC;
-    constexpr float BACKGROUNDMUSIC_VOLUME = 100.0f; 
-    */
+    constexpr float BACKGROUNDMUSIC_VOLUME = 100.0f;
    
     // typical sound components
-    /* 
     constexpr const char* PLAYERJUMPSOUND_PATH = "src/assets/sound/mp3,flac,wav/jump.wav";
     extern std::shared_ptr<sf::SoundBuffer> PLAYERJUMP_SOUNDBUFF;
     constexpr float PLAYERJUMPSOUND_VOLUME = 100.0f; 
-    */
 
 }

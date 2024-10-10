@@ -63,6 +63,9 @@ void gamePlayScene::createAssets() {
          sprite1 = std::make_unique<Sprite>(Constants::SPRITE1_POSITION, Constants::SPRITE1_SCALE, Constants::SPRITE1_TEXTURE); 
          tile1 = std::make_unique<Tile>(Constants::TILE1_POSITION, Constants::TILE1_SCALE, Constants::TILE1_TEXTURE, Constants::TILE1_RECT, Constants::TILE1_BOOL);
          tileMap1 = std::make_unique<TileMap>(Constants::MAP_WIDTH, Constants::MAP_HEIGHT, Constants::TILE_WIDTH, Constants::TILE_HEIGHT, std::move(tile1)); 
+        
+         backgroundMusic = std::make_unique<MusicClass>(std::move(Constants::BACKGROUNDMUSIC_MUSIC), Constants::BACKGROUNDMUSIC_VOLUME);
+         playerJumpSound = std::make_unique<SoundClass>(Constants::PLAYERJUMP_SOUNDBUFF, Constants::PLAYERJUMPSOUND_VOLUME); 
         } 
 
     catch (const std::exception& e) {
