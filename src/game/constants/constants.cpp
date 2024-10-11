@@ -75,14 +75,14 @@ namespace Constants {
         //make rects for animations     
         /*
         for(int i = 0; i < 6; ++i ){
-            sprite name_RECTS.push_back(sf::IntRect{ 200 * i, 0, 200, 200 }); 
+            sprite name_RECTS.emplace_back(sf::IntRect{ 200 * i, 0, 200, 200 }); 
         }
         */
 
         // make bitmasks
         /*
         for (const auto& rect : some_RECTS ) {
-            some_BITMASKS.push_back(createBitmask(some_TEXTURE, rect));
+            some_BITMASKS.emplace_back(createBitmask(some_TEXTURE, rect));
         }
         */
 
