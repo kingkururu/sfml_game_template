@@ -93,17 +93,17 @@ namespace Constants {
     extern const sf::Vector2f TEXT_POSITION;
     constexpr unsigned short TEXT_SIZE = 40;
     extern const sf::Color TEXT_COLOR;
-    constexpr const char* TEXT_PATH = "src/assets/fonts/ttf/font1.ttf";
+    constexpr const char* TEXT_PATH = "assets/fonts/ttf/font1.ttf";
     extern std::shared_ptr<sf::Font> TEXT_FONT; 
     constexpr const char* TEXT_MESSAGE = "Some text here";
 
     // typical music components 
-    constexpr const char* BACKGROUNDMUSIC_PATH = "src/assets/sound/mp3/bgm.mp3";
+    constexpr const char* BACKGROUNDMUSIC_PATH = "assets/sound/mp3/bgm.mp3";
     extern std::unique_ptr<sf::Music> BACKGROUNDMUSIC_MUSIC;
     constexpr float BACKGROUNDMUSIC_VOLUME = 100.0f;
    
     // typical sound components
-    constexpr const char* PLAYERJUMPSOUND_PATH = "src/assets/sound/mp3,flac,wav/jump.wav";
+    constexpr const char* PLAYERJUMPSOUND_PATH = "assets/sound/mp3,flac,wav/jump.wav";
     extern std::shared_ptr<sf::SoundBuffer> PLAYERJUMP_SOUNDBUFF;
     constexpr float PLAYERJUMPSOUND_VOLUME = 100.0f; 
 

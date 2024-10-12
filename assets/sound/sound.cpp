@@ -32,7 +32,7 @@ MusicClass::MusicClass(std::unique_ptr<sf::Music> musicLoad, float volume)
         }
         music->setVolume(volume);
         music->setLoop(true);  
-        music->play();
+        //music->play();
 
         log_info("Music volume is " + std::to_string(volume));  // Log music volume using spdlog
 

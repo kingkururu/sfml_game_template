@@ -136,9 +136,9 @@ deleteInvisibleSprites is called to destroy invisible sprites for memory managem
 void gamePlayScene::update() {
     try {
         // Update sprites if their getMoveState() is true by changeAnimation() and/or updatePos()
-        if (background && background->getBackgroundMoveState()) {
-            background->updateBackground(deltaTime, Constants::BACKGROUND_SPEED);
-        } 
+        // if (background && background->getBackgroundMoveState()) {
+        //     background->updateBackground(deltaTime, Constants::BACKGROUND_SPEED);
+        // } 
 
         // Remove invisible sprites
         deleteInvisibleSprites();
@@ -159,6 +159,12 @@ void gamePlayScene::draw() {
         if (background && background->getVisibleState()) {
             window.draw(*background); 
         }
+        if (sprite1 && sprite1->getVisibleState()) {
+            window.draw(*sprite1); 
+        }
+        // if (backgroundMusic){
+        //     backgroundMusic->returnMusic().play(); 
+        // }
         
         window.display(); 
     } 
