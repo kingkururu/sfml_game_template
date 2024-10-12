@@ -37,29 +37,38 @@ namespace Constants {
     std::unique_ptr<sf::Music> BACKGROUNDMUSIC_MUSIC = std::make_unique<sf::Music>(); 
     std::shared_ptr<sf::SoundBuffer> PLAYERJUMP_SOUNDBUFF = std::make_shared<sf::SoundBuffer>();
 
+    const sf::Vector2f TEXT_POSITION = { 0.0f, 0.0f };
+    const sf::Color TEXT_COLOR = sf::Color::Green;
+    std::shared_ptr<sf::Font> TEXT_FONT = std::make_shared<sf::Font>(); 
+
+
     //initializer function
     void initialize() {
         init_logging();
         log_info("\tConstants initialized ");
 
         if (!BACKGROUND_TEXTURE->loadFromFile(BACKGROUNDSPRITE_PATH)) {
-            std::cerr << "Failed to load background texture from file: " << BACKGROUNDSPRITE_PATH << std::endl;
+            log_warning("Failed to load background texture");
         }
 
         if (!SPRITE1_TEXTURE->loadFromFile(SPRITE1SPRITE_PATH)) {
-            std::cerr << "Failed to load background texture from file: " << SPRITE1SPRITE_PATH << std::endl;
+            log_warning("Failed to load sprite1 texture");
         }
 
         if (!TILE1_TEXTURE->loadFromFile(TILE1_PATH)) {
-            std::cerr << "Failed to load background texture from file: " << TILE1_PATH << std::endl;
+            log_warning("Failed to load tile1 texture");
         }
 
         if (!BACKGROUNDMUSIC_MUSIC->openFromFile(BACKGROUNDMUSIC_PATH)) {
-            std::cerr << "Failed to load background texture from file: " << TILE1_PATH << std::endl;
+            log_warning("Failed to load background music");
         }
 
         if (!PLAYERJUMP_SOUNDBUFF->loadFromFile(PLAYERJUMPSOUND_PATH)) {
-            std::cerr << "Failed to load background texture from file: " << TILE1_PATH << std::endl;
+            log_warning("Failed to load player jump sound");
+        }
+
+        if (!TEXT_FONT->loadFromFile(TEXT_PATH)) {
+            log_warning("Failed to load text font");
         }
 
         /* 

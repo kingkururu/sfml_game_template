@@ -90,14 +90,12 @@ namespace Constants {
     */
 
     // typical text components
-    /*
     extern const sf::Vector2f TEXT_POSITION;
     constexpr unsigned short TEXT_SIZE = 40;
     extern const sf::Color TEXT_COLOR;
     constexpr const char* TEXT_PATH = "src/assets/fonts/ttf/font1.ttf";
     extern std::shared_ptr<sf::Font> TEXT_FONT; 
-    constexpr const char* TEXT_MESSAGE = "current score: ";
-    */
+    constexpr const char* TEXT_MESSAGE = "Some text here";
 
     // typical music components 
     constexpr const char* BACKGROUNDMUSIC_PATH = "src/assets/sound/mp3/bgm.mp3";
