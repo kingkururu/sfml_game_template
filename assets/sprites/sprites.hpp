@@ -88,7 +88,6 @@ class NonAnimated : public virtual Sprite {
     ~NonAnimated() override{};
 };
 
-
 /* background class deriving from sprites; the background doesn't "actually move with physics", but moves constantly to the left */
 class Background : public Sprite{
 public:
@@ -195,6 +194,8 @@ public:
 private:
 };
 
+class Button : public Static, public Animated {
 
+}; 
 
 #endif /* sprites_hpp */

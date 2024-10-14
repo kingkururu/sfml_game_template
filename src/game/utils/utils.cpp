@@ -13,7 +13,7 @@ namespace utils {
         std::vector<std::weak_ptr<unsigned char[]>> result;
         result.reserve(bitMask.size());
         for (const auto& ptr : bitMask) {
-            result.push_back(std::weak_ptr<unsigned char[]>(ptr));
+            result.emplace_back(std::weak_ptr<unsigned char[]>(ptr));
         }
          return result;
     }

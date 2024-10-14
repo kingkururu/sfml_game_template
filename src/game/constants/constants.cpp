@@ -97,9 +97,7 @@ namespace Constants {
 
     }
 
-std::shared_ptr<sf::Uint8[]> createBitmask(
-    const std::shared_ptr<sf::Texture>& texture,
-    const sf::IntRect& rect) {
+    std::shared_ptr<sf::Uint8[]> createBitmask( const std::shared_ptr<sf::Texture>& texture, const sf::IntRect& rect) {
 
     if (!texture) {
         log_warning("\tfailed to create bitmask ( texture is empty )");

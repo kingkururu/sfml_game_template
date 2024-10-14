@@ -58,6 +58,7 @@ namespace physics{
 
         sprite->updatePos();  // Update sprite's position after applying the move function
     }
+   
     template<typename SpriteType, typename MoveFunc>
     void spriteMover(std::unique_ptr<SpriteType>& sprite, const MoveFunc& moveFunc, float& elapsedTime) {
         float speed = sprite->getSpeed(); 
@@ -89,9 +90,7 @@ namespace physics{
 
     //sprite vs spritesvector collision check 
     template<typename SpriteType1, typename SpriteType2, typename CollisionFunc>
-    bool checkCollisions(const std::unique_ptr<SpriteType1>& first, 
-                         const std::vector<std::unique_ptr<SpriteType2>>& Group,
-                         const CollisionFunc& collisionFunc) {
+    bool checkCollisions(const std::unique_ptr<SpriteType1>& first, const std::vector<std::unique_ptr<SpriteType2>>& Group, const CollisionFunc& collisionFunc) {
     
         if(!first){
             log_error("First sprite pointer is empty.");
@@ -172,7 +171,6 @@ namespace physics{
         return false;
     }
 
-           
 }
 
 #endif /* game_hpp */

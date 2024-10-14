@@ -66,9 +66,9 @@ void gamePlayScene::createAssets() {
         
          backgroundMusic = std::make_unique<MusicClass>(std::move(Constants::BACKGROUNDMUSIC_MUSIC), Constants::BACKGROUNDMUSIC_VOLUME);
 
-          if (backgroundMusic){
+         if (backgroundMusic){
             backgroundMusic->returnMusic().play(); 
-        }
+         }
         
          playerJumpSound = std::make_unique<SoundClass>(Constants::PLAYERJUMP_SOUNDBUFF, Constants::PLAYERJUMPSOUND_VOLUME); 
 

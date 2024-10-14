@@ -21,7 +21,6 @@ GameManager::GameManager()
     log_info("\tGame initialized");
 }
 
-
 /* runGame calls to createAssets from scenes and loops until window is closed to run scene events */
 void GameManager::runGame() {
     auto logger = spdlog::get("error_logger"); 
