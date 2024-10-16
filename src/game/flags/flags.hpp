@@ -65,4 +65,18 @@ struct SceneEvents{
     }
 };
 
+struct GameSceneEvents1{
+    bool sceneEnd;
+    bool sceneStart; 
+    /* add something more here */
+    
+    GameSceneEvents1() : sceneEnd(false), sceneStart(true) {} 
+
+    void resetFlags(){
+        log_error("failed resetting scene Flags");
+        std::memset(this, 0, sizeof(*this));
+        log_info("Flags have been successfully reset.");
+    }
+};
+
 #endif /* flags_hpp */

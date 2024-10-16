@@ -117,6 +117,11 @@ void gamePlayScene::handleInput() {
         if(sceneView)
             sceneView.getView().move(sf::Vector2f(0, -1)); 
     }
+    if(flagEvents.mouseClicked){
+        if(sprite1->getSpritePos().x == mouseClickedPos.x && 
+        sprite1->getSpritePos().y == mouseClickedPos.y )
+            gameSceneEvents1.sceneEnd = true; 
+    }
 }
 
 /* Keeps sprites inside screen bounds, checks for collisions, update scores, and sets flagEvents.gameEnd to true in an event of collision */

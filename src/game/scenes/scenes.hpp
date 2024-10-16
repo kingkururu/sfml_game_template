@@ -119,6 +119,8 @@ class gamePlayScene : public virtual Scene{
   std::unique_ptr<SoundClass> playerJumpSound; 
 
   std::unique_ptr<TextClass> text1; 
+
+  GameSceneEvents1 gameSceneEvents1;
 };
 
 #endif /* scenes_hpp */
