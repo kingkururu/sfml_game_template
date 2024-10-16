@@ -195,7 +195,17 @@ private:
 };
 
 class Button : public Static, public Animated {
+public:
+    explicit Button(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, 
+                      const std::vector<sf::IntRect> animationRects, unsigned int indexMax, 
+                      const std::vector<std::weak_ptr<sf::Uint8[]>>& bitMask)
+        : Sprite(position, scale, texture),
+          Static(position, scale, texture), 
+          Animated(position, scale, texture, animationRects, indexMax, bitMask) // Call Animated constructor
+    {}
+    ~Button() override = default;
 
+private:
 }; 
 
 #endif /* sprites_hpp */
