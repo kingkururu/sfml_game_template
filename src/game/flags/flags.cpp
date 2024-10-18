@@ -9,3 +9,4 @@
 
 /* singleton declaration for flagEvents, global everywhere */
 FlagEvents flagEvents; 
+GameSceneEvents1 gameSceneEvents1; 
