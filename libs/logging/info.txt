@@ -1,6 +1,6 @@
-[2024-10-17 08:44:54.799] [info_logger] [info] 	Constants initialized 
-[2024-10-17 08:44:54.823] [info_logger] [info] 	Game initialized
-[2024-10-17 08:44:54.823] [info_logger] [info] Background created at position (0.000000, 0.000000)
-[2024-10-17 08:44:54.823] [info_logger] [info] Music volume is 100.000000
-[2024-10-17 08:44:58.558] [info_logger] [info] 	Game Ended
+[2024-10-19 21:28:21.610] [info_logger] [info] 	Constants initialized 
+[2024-10-19 21:28:21.636] [info_logger] [info] 	Game initialized
+[2024-10-19 21:28:21.636] [info_logger] [info] Background created at position (0.000000, 0.000000)
+[2024-10-19 21:28:21.636] [info_logger] [info] Music volume is 100.000000
+[2024-10-19 21:28:26.987] [info_logger] [info] 	Game Ended
 

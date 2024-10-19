@@ -208,4 +208,20 @@ public:
 private:
 }; 
 
+class Sprite3D : public Sprite {
+public:
+    explicit Sprite3D(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, float zdepth)
+        : Sprite(position, scale, texture), zdepth(zdepth) {}
+
+    void setZ(float newZ) { zdepth = newZ; }
+    float getZ() const { return zdepth; }
+
+    using Sprite::draw;
+    void draw(sf::RenderTarget& target, sf::RenderStates states); 
+
+private:
+    float zdepth;  // Depth position
+};
+
+
 #endif /* sprites_hpp */
