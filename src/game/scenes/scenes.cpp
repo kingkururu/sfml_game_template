@@ -63,7 +63,6 @@ void gamePlayScene::createAssets() {
          sprite1 = std::make_unique<Sprite>(Constants::SPRITE1_POSITION, Constants::SPRITE1_SCALE, Constants::SPRITE1_TEXTURE); 
          tile1 = std::make_unique<Tile>(Constants::TILE1_POSITION, Constants::TILE1_SCALE, Constants::TILE1_TEXTURE, Constants::TILE1_RECT, Constants::TILE1_BOOL);
          tileMap1 = std::make_unique<TileMap>(Constants::MAP_WIDTH, Constants::MAP_HEIGHT, Constants::TILE_WIDTH, Constants::TILE_HEIGHT, std::move(tile1)); 
-        
          backgroundMusic = std::make_unique<MusicClass>(std::move(Constants::BACKGROUNDMUSIC_MUSIC), Constants::BACKGROUNDMUSIC_VOLUME);
 
          if (backgroundMusic){
@@ -145,19 +144,22 @@ void gamePlayScene::handleSceneFlags(){
 deleteInvisibleSprites is called to destroy invisible sprites for memory management */
 void gamePlayScene::update() {
     try {
-        // Update sprites if their getMoveState() is true by changeAnimation() and/or updatePos()
-        // if (background && background->getBackgroundMoveState()) {
-        //     background->updateBackground(deltaTime, Constants::BACKGROUND_SPEED);
-        // } 
+        log_info("Starting update in gamePlayScene");
 
         // Remove invisible sprites
+        log_info("Calling deleteInvisibleSprites...");
         deleteInvisibleSprites();
 
+        log_info("Setting view...");
         window.setView(sceneView.getView()); 
-    }
+        
+        log_info("Playing background music...");
+        backgroundMusic->returnMusic().play(); 
 
+        log_info("Finished update in gamePlayScene");
+    }
     catch (const std::exception& e) {
-        std::cerr << "Exception in updateSprites: " << e.what() << std::endl;
+        log_error("Exception in updateSprites: " + std::string(e.what()));
     }
 }
 

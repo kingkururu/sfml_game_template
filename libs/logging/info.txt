@@ -1,6 +1,13 @@
-[2024-10-19 21:28:21.610] [info_logger] [info] 	Constants initialized 
-[2024-10-19 21:28:21.636] [info_logger] [info] 	Game initialized
-[2024-10-19 21:28:21.636] [info_logger] [info] Background created at position (0.000000, 0.000000)
-[2024-10-19 21:28:21.636] [info_logger] [info] Music volume is 100.000000
-[2024-10-19 21:28:26.987] [info_logger] [info] 	Game Ended
-
+[2024-10-20 18:50:58.702] [info_logger] [info] 	Constants initialized 
+[2024-10-20 18:50:58.722] [info_logger] [info] 	Game initialized
+[2024-10-20 18:50:58.722] [info_logger] [info] Background created at position (0.000000, 0.000000)
+[2024-10-20 18:50:58.722] [info_logger] [info] Music volume is 100.000000
+[2024-10-20 18:50:58.738] [info_logger] [info] Starting update in gamePlayScene
+[2024-10-20 18:50:58.738] [info_logger] [info] Calling deleteInvisibleSprites...
+[2024-10-20 18:50:58.738] [info_logger] [info] Setting view...
+[2024-10-20 18:50:58.739] [info_logger] [info] Playing background music...
+[2024-10-20 18:50:58.746] [info_logger] [info] Finished update in gamePlayScene
+[2024-10-20 18:50:58.763] [info_logger] [info] Starting update in gamePlayScene
+[2024-10-20 18:50:58.763] [info_logger] [info] Calling deleteInvisibleSprites...
+[2024-10-20 18:50:58.763] [info_logger] [info] Setting view...
+[2024-10-20 18:50:58.763] [info_logger] [info] Playing background music...

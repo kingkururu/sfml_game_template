@@ -12,6 +12,8 @@ void init_logging();
 void log_error(const std::string& message);
 void log_warning(const std::string& message);
 void log_info(const std::string& message);
+void signal_handler(int signal);
+void setup_signal_handlers();
 
 
 #endif // LOG_HPP

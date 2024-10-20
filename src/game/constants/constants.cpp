@@ -45,6 +45,9 @@ namespace Constants {
     //initializer function
     void initialize() {
         init_logging();
+        
+        setup_signal_handlers();
+
         log_info("\tConstants initialized ");
 
         if (!BACKGROUND_TEXTURE->loadFromFile(BACKGROUNDSPRITE_PATH)) {

@@ -3,6 +3,8 @@
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/spdlog.h>
 
+#include <csignal>
+
 void init_logging() {
     // Define the log file paths
     std::string info_log_file = "libs/logging/info.txt";
@@ -46,6 +48,7 @@ void log_error(const std::string& message) {
     auto logger = spdlog::get("error_logger");
     if (logger) {
         logger->error(message);
+        logger->flush();  // Ensure the log is written to the file
     }
 }
 
@@ -53,6 +56,7 @@ void log_warning(const std::string& message) {
     auto logger = spdlog::get("error_logger");
     if (logger) {
         logger->warn(message);
+        logger->flush();  // Ensure the log is written to the file
     }
 }
 
@@ -60,5 +64,27 @@ void log_info(const std::string& message) {
     auto logger = spdlog::get("info_logger");
     if (logger) {
         logger->info(message);
+        logger->flush();  // Ensure the log is written to the file
     }
 }
+
+void signal_handler(int signal) {
+    if (signal == SIGSEGV) {
+        // Log the segmentation fault using spdlog
+        auto logger = spdlog::get("error_logger");
+        if (logger) {
+            logger->error("Segmentation fault (SIGSEGV) caught. The program will terminate.");
+            logger->flush();  // Make sure the log is written before exiting
+        }
+
+    }
+
+    // Terminate the program safely
+    std::abort();
+}
+
+void setup_signal_handlers() {
+    // Register the signal handler for segmentation faults (SIGSEGV)
+    std::signal(SIGSEGV, signal_handler);
+}
+
