@@ -1,1 +1,0 @@
-[2024-10-20 18:50:58.763] [error_logger] [error] Segmentation fault (SIGSEGV) caught. The program will terminate.

@@ -20,6 +20,9 @@ Sprite::Sprite(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Text
             spriteCreated->setTexture(*tex); 
             spriteCreated->setPosition(position);
             spriteCreated->setScale(scale);
+
+            log_info("Sprite initialized successfully");
+
         } else {
             throw std::runtime_error("Texture is no longer available");
         }

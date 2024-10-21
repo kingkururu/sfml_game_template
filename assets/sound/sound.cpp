@@ -16,6 +16,9 @@ SoundClass::SoundClass(std::weak_ptr<sf::SoundBuffer> soundBuffer, float volume)
         }
         sound->setBuffer(*soundBuff);
         sound->setVolume(volume); 
+
+        log_info("Sound initialized successfully");
+
     } catch (const std::exception& e) {
         log_error(e.what());  // Use spdlog to log the error
         soundBuffer.reset();
@@ -34,7 +37,7 @@ MusicClass::MusicClass(std::unique_ptr<sf::Music> musicLoad, float volume)
         music->setLoop(true);  
         //music->play();
 
-        log_info("Music volume is " + std::to_string(volume));  // Log music volume using spdlog
+        log_info("Music initialized successfully, volume is " + std::to_string(volume));  // Log music volume using spdlog
 
     } catch (const std::exception& e) {
         log_error(e.what());  // Use spdlog to log the error

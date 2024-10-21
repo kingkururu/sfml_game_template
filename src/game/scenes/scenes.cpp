@@ -70,8 +70,9 @@ void gamePlayScene::createAssets() {
          }
         
          playerJumpSound = std::make_unique<SoundClass>(Constants::PLAYERJUMP_SOUNDBUFF, Constants::PLAYERJUMPSOUND_VOLUME); 
-
-      //   text1 = std::make_unique<TextClass>(Constants::TEXT_POSITION, Constants::TEXT_SIZE, Constants::TEXT_COLOR, Constants::TEXT_FONT, Constants::TEXT_MESSAGE);
+          
+         text1 = std::make_unique<TextClass>(Constants::TEXT_POSITION, Constants::TEXT_SIZE, Constants::TEXT_COLOR, Constants::TEXT_FONT, Constants::TEXT_MESSAGE);
+         
         } 
 
     catch (const std::exception& e) {
@@ -116,11 +117,7 @@ void gamePlayScene::handleInput() {
         if(sceneView)
             sceneView.getView().move(sf::Vector2f(0, -1)); 
     }
-    //if(flagEvents.mouseClicked){
-        // if(sprite1->getSpritePos().x == mouseClickedPos.x && 
-        // sprite1->getSpritePos().y == mouseClickedPos.y )
-        //     gameSceneEvents1.sceneEnd = true; 
-    //}
+    
 }
 
 /* Keeps sprites inside screen bounds, checks for collisions, update scores, and sets flagEvents.gameEnd to true in an event of collision */
@@ -144,19 +141,16 @@ void gamePlayScene::handleSceneFlags(){
 deleteInvisibleSprites is called to destroy invisible sprites for memory management */
 void gamePlayScene::update() {
     try {
-        log_info("Starting update in gamePlayScene");
+        //log_info("Starting update in gamePlayScene");
 
         // Remove invisible sprites
-        log_info("Calling deleteInvisibleSprites...");
+       // log_info("Calling deleteInvisibleSprites...");
         deleteInvisibleSprites();
 
-        log_info("Setting view...");
+       // log_info("Setting view...");
         window.setView(sceneView.getView()); 
         
-        log_info("Playing background music...");
-        backgroundMusic->returnMusic().play(); 
-
-        log_info("Finished update in gamePlayScene");
+       // log_info("Finished update in gamePlayScene");
     }
     catch (const std::exception& e) {
         log_error("Exception in updateSprites: " + std::string(e.what()));

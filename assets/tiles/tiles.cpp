@@ -14,6 +14,8 @@ Tile::Tile(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture>
             spriteCreated->setScale(scale);
             spriteCreated->setTextureRect(textureRect); 
             
+            log_info("Tile initialized successfully");
+
         } else {
             throw std::runtime_error("Tile texture is not available");
         }
@@ -37,6 +39,9 @@ TileMap::TileMap(unsigned int width, unsigned int height, float tileWidth, float
         addTile(x, y, defaultTile);
         }
     }
+
+    log_info("Tile map initialized successfully");
+
 }
 
 void TileMap::addTile(unsigned int x, unsigned int y, std::shared_ptr<Tile> tile) {

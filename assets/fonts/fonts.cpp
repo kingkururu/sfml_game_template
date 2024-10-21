@@ -21,6 +21,8 @@ TextClass::TextClass(sf::Vector2f position, unsigned int size, sf::Color color, 
         text->setFillColor(color);
         text->setPosition(position);
         text->setString(testMessage);
+        
+        log_info("text initialized successully");
     } 
     catch(const std::exception& e) {
         log_error(e.what());  // Log error using spdlog
