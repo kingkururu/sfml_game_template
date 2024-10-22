@@ -115,6 +115,8 @@ class gamePlayScene : public virtual Scene{
   std::unique_ptr<Tile> tile1; 
   std::unique_ptr<TileMap> tileMap1; 
 
+  std::unique_ptr<Button> button1; 
+
   std::unique_ptr<MusicClass> backgroundMusic;
   std::unique_ptr<SoundClass> playerJumpSound; 
 

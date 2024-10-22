@@ -127,6 +127,7 @@ void gamePlayScene::handleGameEvents() {
     // sprite collisions bool collision = physics::checkCollisions(sprite1, sprites, collisiontype) 
    
    // if collision, modify a sceneEvent
+   //if (physics::checkCollisions(button1, ))
 
 } 
 

@@ -208,6 +208,12 @@ void Bullet::setDirectionVector(sf::Vector2i projectionPos) {
     log_info("Bullet direction vector calculated.");
 }
 
+// void Button::setClickedBool(sf:Vector2i mousePos){
+//     if (){
+//         clicked = true;
+//     } 
+// }
+
 void Sprite3D::draw(sf::RenderTarget& target, sf::RenderStates states) {
     // Apply simple perspective scaling based on z-depth
     float perspectiveScale = 1.0f / (1.0f + zdepth / 500.0f);  // Example of perspective scaling

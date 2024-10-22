@@ -205,7 +205,13 @@ public:
     {}
     ~Button() override = default;
 
+    void setClickedBool(bool click) { clicked = click; }
+ //   void setClickedBool(sf::Vector2i mousePos); 
+
+    bool getClickedBool() const { return clicked; }
+    
 private:
+    bool clicked {}; 
 }; 
 
 class Sprite3D : public Sprite {
