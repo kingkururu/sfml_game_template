@@ -65,9 +65,9 @@ void gamePlayScene::createAssets() {
          tileMap1 = std::make_unique<TileMap>(Constants::MAP_WIDTH, Constants::MAP_HEIGHT, Constants::TILE_WIDTH, Constants::TILE_HEIGHT, std::move(tile1)); 
          backgroundMusic = std::make_unique<MusicClass>(std::move(Constants::BACKGROUNDMUSIC_MUSIC), Constants::BACKGROUNDMUSIC_VOLUME);
 
-         if (backgroundMusic){
-            backgroundMusic->returnMusic().play(); 
-         }
+        //  if (backgroundMusic){
+        //     backgroundMusic->returnMusic().play(); 
+        //  }
         
          playerJumpSound = std::make_unique<SoundClass>(Constants::PLAYERJUMP_SOUNDBUFF, Constants::PLAYERJUMPSOUND_VOLUME); 
           

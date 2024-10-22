@@ -241,6 +241,30 @@ namespace physics{
         return boundingBoxCollision(position1, size1, position2, size2);
     }
 
+    bool boundingBoxCollisionHelper(sf::Vector2i mousePos, const Sprite& sprite2){
+        // Convert mouse position to world coordinates
+        sf::Vector2f mouseWorldPos(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+
+        // Mouse is treated as a single point with zero size
+        sf::Vector2f position1(mouseWorldPos);
+        sf::Vector2f size1(1.f, 1.f);  // Treat the mouse as a point
+
+        // Retrieve global bounds of the sprite acting as a button
+        sf::FloatRect bounds2 = sprite2.returnSpritesShape().getGlobalBounds();
+
+        // Retrieve the current animation frame (IntRect) for sprite2
+        sf::IntRect rect2 = sprite2.getRects();
+
+        // Adjust the position using the left and top of the current frame
+        sf::Vector2f position2(bounds2.left + rect2.left, bounds2.top + rect2.top);
+
+        // Adjust the size using the width and height of the current frame
+        sf::Vector2f size2(static_cast<float>(rect2.width), static_cast<float>(rect2.height));
+
+        // Call the existing boundingBoxCollision function with adjusted values
+        return boundingBoxCollision(position1, size1, position2, size2);
+    }
+
     //pixel perfect collision helper to be passed in physics::collisions function 
     bool pixelPerfectCollisionHelper(const Sprite& obj1, const Sprite& obj2) {
         // Retrieve bitmasks for the current animation frame
