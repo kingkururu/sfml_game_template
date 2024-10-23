@@ -17,7 +17,7 @@ GameManager::GameManager()
     // make scenes here
     introScreenScene = std::make_unique<introScene>(mainWindow.getWindow()); 
     gameScene = std::make_unique<gamePlayScene>(mainWindow.getWindow());
-    gameSceneNext = std::make_unique<Scene>(mainWindow.getWindow());
+    gameSceneNext = std::make_unique<gamePlayScene2>(mainWindow.getWindow());
 
     log_info("\tGame initialized");
 }

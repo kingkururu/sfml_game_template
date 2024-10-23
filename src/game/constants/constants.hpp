@@ -52,8 +52,11 @@ namespace Constants {
     constexpr float BACKGROUND_SPEED = 35.0;
     extern const sf::Vector2f BACKGROUND_POSITION;
     extern const sf::Vector2f BACKGROUND_SCALE;
-    constexpr const char* BACKGROUNDSPRITE_PATH = "assets/sprites/png/5.png";
+    constexpr const char* BACKGROUNDSPRITE_PATH = "assets/sprites/png/background_day.png";
     extern std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE;
+
+    constexpr const char* BACKGROUNDSPRITE_PATH2 = "assets/sprites/png/background_night.png";
+    extern std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE2;
 
     // sprite components
     extern const sf::Vector2f SPRITE1_POSITION;

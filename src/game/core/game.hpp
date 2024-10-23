@@ -45,7 +45,7 @@ private:
     //std::unique_ptr<Scene> scene;
     std::unique_ptr<introScene> introScreenScene; 
     std::unique_ptr<gamePlayScene> gameScene;
-    std::unique_ptr<Scene> gameSceneNext; 
+    std::unique_ptr<gamePlayScene2> gameSceneNext; 
 
 };
 

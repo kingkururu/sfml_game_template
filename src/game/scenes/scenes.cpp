@@ -198,3 +198,48 @@ void gamePlayScene::draw() {
     }
 }
 
+void gamePlayScene2::createAssets() {
+ try {
+        // Initialize sprites and music here 
+         background = std::make_unique<Background>(Constants::BACKGROUND_POSITION, Constants::BACKGROUND_SCALE, Constants::BACKGROUND_TEXTURE2);
+        } 
+
+    catch (const std::exception& e) {
+        std::cerr << "Exception caught in createAssets: " << e.what() << std::endl;
+    }
+}
+
+void gamePlayScene2::handleInput() {
+    if(flagEvents.aPressed){
+        if(sceneView)
+            sceneView.getView().move(sf::Vector2f(-1, 0)); 
+    }
+    if(flagEvents.dPressed){
+        if(sceneView)
+            sceneView.getView().move(sf::Vector2f(1, 0)); 
+    }
+    if(flagEvents.sPressed){
+        if(sceneView)
+            sceneView.getView().move(sf::Vector2f(0, 1)); 
+    }
+    if(flagEvents.wPressed){
+        if(sceneView)
+            sceneView.getView().move(sf::Vector2f(0, -1)); 
+    }
+}
+
+void gamePlayScene2::draw() {
+    try {
+        window.clear();
+
+        if (background && background->getVisibleState()) {
+            window.draw(*background); 
+        }
+    
+        window.display(); 
+    } 
+    
+    catch (const std::exception& e) {
+        std::cerr << "Exception in draw: " << e.what() << std::endl;
+    }
+}

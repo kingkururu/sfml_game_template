@@ -125,4 +125,22 @@ class gamePlayScene : public virtual Scene{
 
 };
 
+class gamePlayScene2 : public virtual Scene{
+  public:
+  using Scene::Scene; 
+  ~gamePlayScene2() override = default; 
+ 
+  using Scene::createAssets;
+  void createAssets() override; 
+
+  using Scene::handleInput;
+  void handleInput() override; 
+
+  //using Scene::draw; 
+  void draw() override; 
+
+ private:
+  std::unique_ptr<Background> background; 
+};
+
 #endif /* scenes_hpp */
