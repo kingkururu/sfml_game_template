@@ -67,6 +67,7 @@
         "compare": "cpp",
         "concepts": "cpp",
         "exception": "cpp",
-        "type_traits": "cpp"
+        "type_traits": "cpp",
+        "csignal": "cpp"
     }
 }

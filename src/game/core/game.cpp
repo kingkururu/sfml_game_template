@@ -17,6 +17,7 @@ GameManager::GameManager()
     // make scenes here
     introScreenScene = std::make_unique<introScene>(mainWindow.getWindow()); 
     gameScene = std::make_unique<gamePlayScene>(mainWindow.getWindow());
+    gameSceneNext = std::make_unique<gamePlayScene>(mainWindow.getWindow());
 
     log_info("\tGame initialized");
 }
@@ -29,20 +30,37 @@ void GameManager::runGame() {
         return;
     }
 
-    try {
-        introScreenScene->createAssets(); 
-        gameScene->createAssets();
+    try {     
+    loadScenes(); 
 
         while (mainWindow.getWindow().isOpen()) {
             countTime();
             handleEventInput();
-            gameScene->runScene(deltaTime, globalTime); 
+            runScenesFlags(); 
         }
         log_info("\tGame Ended\n"); 
             
     } catch (const std::exception& e) {
         logger->error("Exception in runGame: {}", e.what());
     }
+}
+
+void GameManager::runScenesFlags(){
+    log_info("running scenes start");
+    if(!gameSceneEvents1Flags.sceneEnd){ 
+            log_info("running scene 1");
+
+        gameScene->runScene(deltaTime, globalTime);
+    }
+    if(gameSceneEvents1Flags.sceneEnd){
+        gameSceneNext->runScene(deltaTime, globalTime);
+    }
+}
+
+void GameManager::loadScenes(){
+    introScreenScene->createAssets(); 
+    gameScene->createAssets();
+    gameSceneNext->createAssets(); 
 }
 
 /* countTime counts global time and delta time for scenes to later use in runScene */

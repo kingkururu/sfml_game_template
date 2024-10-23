@@ -50,7 +50,6 @@ extern struct FlagEvents{
     
 } flagEvents;
 
-// private to scene 
 struct SceneEvents{
     bool sceneEnd;
     bool sceneStart; 
@@ -78,5 +77,8 @@ struct GameSceneEvents1{
         log_info("Flags have been successfully reset.");
     }
 };
+
+extern SceneEvents gameSceneNextFlags; // Declare the global instance
+extern GameSceneEvents1 gameSceneEvents1Flags; // Declare the global instance
 
 #endif /* flags_hpp */

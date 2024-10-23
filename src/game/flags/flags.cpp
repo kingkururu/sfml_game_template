@@ -7,6 +7,7 @@
 
 #include "flags.hpp"
 
-/* singleton declaration for flagEvents, global everywhere */
+/* declaration for flagEvents, global everywhere */
 FlagEvents flagEvents; 
-GameSceneEvents1 gameSceneEvents1; 
+GameSceneEvents1 gameSceneEvents1Flags; 
+SceneEvents gameSceneNextFlags; 
