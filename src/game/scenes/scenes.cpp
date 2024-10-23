@@ -8,7 +8,9 @@
 #include "scenes.hpp"
 
 /* Scene constructure sets up window and sprite respawn times */
-Scene::Scene( sf::RenderWindow& gameWindow ) : window(gameWindow), sceneView(Constants::VIEW_RECT) /* initialize other elements here */ {}
+Scene::Scene( sf::RenderWindow& gameWindow ) : window(gameWindow), sceneView(Constants::VIEW_RECT) /* initialize other elements here */ { 
+    log_info("scene made"); 
+}
 
 /* runScene that takes in delta time and global time from GameManager class to execute scene logic */
 void Scene::runScene(float deltaT, float globalT){
@@ -27,6 +29,12 @@ void Scene::runScene(float deltaT, float globalT){
     update();
     draw();
 }
+
+void Scene::draw(){
+    window.clear(sf::Color::Black);
+   // log_info("base scene draw call");
+    window.display(); 
+ }
 
 /* Resets everything for scene to start again. The position, moveState, flagEvents, etc are all reset */
 void Scene::restartScene() {
@@ -122,6 +130,12 @@ void gamePlayScene::handleInput() {
     if(flagEvents.mouseClicked){
         if (physics::boundingBoxCollisionHelper(mouseClickedPos, *button1)){
             log_info("button clicked"); 
+            gameScene1Flags.sceneEnd = true;
+            gameSceneNextFlags.sceneStart = true;
+            gameSceneNextFlags.sceneEnd = false;
+
+            window.clear();
+            return; 
         }
     }
     
@@ -139,9 +153,9 @@ void gamePlayScene::handleGameEvents() {
 
 void gamePlayScene::handleSceneFlags(){
     // if flagEvents.gameEnd is true or some event ... do somthing 
-    if(sceneEvents.sceneEnd){
-       
-    }
+    // if(gameScene1Flags.sceneEnd){
+    //    return; 
+    // }
 }
 
 /* Updates sprite and text positions when their moveState is true and their pointers are not null. 
@@ -183,3 +197,4 @@ void gamePlayScene::draw() {
         std::cerr << "Exception in draw: " << e.what() << std::endl;
     }
 }
+

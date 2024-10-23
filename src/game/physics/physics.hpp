@@ -91,23 +91,6 @@ namespace physics{
     bool pixelPerfectCollisionHelper(const Sprite& sprite1, const Sprite& sprite2);
     bool raycastCollisionHelper(const Sprite& sprite1, const Sprite& sprite2, float currentTime, size_t index);
 
-    // //mousePos vs sprite for button detection 
-    // template<typename SpriteType1, typename CollisionFunc>
-    // bool checkCollisions(const std::unique_ptr<SpriteType1>& first, const sf::Vector2i item2, const CollisionFunc& collisionFunc) {
-    
-    //     if(!first){
-    //         log_error("First sprite pointer is empty.");
-    //         throw std::runtime_error("first sprite pointer is empty.");
-    //     }
-
-    //     if (collisionFunc(*first, item2)) {
-    //         item2->setVisibleState(false); 
-    //         return true; // Collision detected
-    //     }
-    
-    //     return false; // No collisions detected
-    // }
-
     //sprite vs spritesvector collision check 
     template<typename SpriteType1, typename SpriteType2, typename CollisionFunc>
     bool checkCollisions(const std::unique_ptr<SpriteType1>& first, const std::vector<std::unique_ptr<SpriteType2>>& Group, const CollisionFunc& collisionFunc) {

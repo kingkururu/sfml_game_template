@@ -52,7 +52,7 @@ class Scene {
   virtual void handleSceneFlags(){}; 
 
   virtual void update(){};
-  virtual void draw(){}; 
+  virtual void draw(); 
     
  protected:
   // Times - copied from game.cpp
@@ -106,7 +106,8 @@ class gamePlayScene : public virtual Scene{
 
   using Scene::update; 
   void update() override; 
-  using Scene::draw; 
+  
+  //using Scene::draw; 
   void draw() override; 
 
  private:

@@ -9,5 +9,5 @@
 
 /* declaration for flagEvents, global everywhere */
 FlagEvents flagEvents; 
-GameSceneEvents1 gameSceneEvents1Flags; 
+GameSceneEvents1 gameScene1Flags; 
 SceneEvents gameSceneNextFlags; 

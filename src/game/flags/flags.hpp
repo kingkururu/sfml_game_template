@@ -55,7 +55,7 @@ struct SceneEvents{
     bool sceneStart; 
     /* add something more here */
     
-    SceneEvents() : sceneEnd(false), sceneStart(true) {} 
+    SceneEvents() : sceneEnd(false), sceneStart(false) {} 
 
     void resetFlags(){
         log_error("failed resetting scene Flags");
@@ -78,7 +78,7 @@ struct GameSceneEvents1{
     }
 };
 
+extern GameSceneEvents1 gameScene1Flags; // Declare the global instance
 extern SceneEvents gameSceneNextFlags; // Declare the global instance
-extern GameSceneEvents1 gameSceneEvents1Flags; // Declare the global instance
 
 #endif /* flags_hpp */

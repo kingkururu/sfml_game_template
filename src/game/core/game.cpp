@@ -17,7 +17,7 @@ GameManager::GameManager()
     // make scenes here
     introScreenScene = std::make_unique<introScene>(mainWindow.getWindow()); 
     gameScene = std::make_unique<gamePlayScene>(mainWindow.getWindow());
-    gameSceneNext = std::make_unique<gamePlayScene>(mainWindow.getWindow());
+    gameSceneNext = std::make_unique<Scene>(mainWindow.getWindow());
 
     log_info("\tGame initialized");
 }
@@ -46,13 +46,12 @@ void GameManager::runGame() {
 }
 
 void GameManager::runScenesFlags(){
-    log_info("running scenes start");
-    if(!gameSceneEvents1Flags.sceneEnd){ 
-            log_info("running scene 1");
 
+    if(gameScene1Flags.sceneStart && !gameScene1Flags.sceneEnd){ 
         gameScene->runScene(deltaTime, globalTime);
     }
-    if(gameSceneEvents1Flags.sceneEnd){
+
+    if(gameSceneNextFlags.sceneStart  && !gameSceneNextFlags.sceneEnd){
         gameSceneNext->runScene(deltaTime, globalTime);
     }
 }
