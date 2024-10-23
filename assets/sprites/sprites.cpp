@@ -157,7 +157,7 @@ sf::IntRect Animated::getRects() const {
         if (animationRects.empty()) {
             throw std::runtime_error("Animation rects are empty.");
         }
-        log_info("Returning animation rect for index " + std::to_string(currentIndex % animationRects.size()));
+       // log_info("Returning animation rect for index " + std::to_string(currentIndex % animationRects.size()));
         return animationRects[currentIndex % animationRects.size()];
     } 
     catch (const std::exception& e) {
@@ -207,12 +207,6 @@ void Bullet::setDirectionVector(sf::Vector2i projectionPos) {
     }
     log_info("Bullet direction vector calculated.");
 }
-
-// void Button::setClickedBool(sf:Vector2i mousePos){
-//     if (){
-//         clicked = true;
-//     } 
-// }
 
 void Sprite3D::draw(sf::RenderTarget& target, sf::RenderStates states) {
     // Apply simple perspective scaling based on z-depth

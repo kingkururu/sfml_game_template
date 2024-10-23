@@ -64,7 +64,9 @@ void gamePlayScene::createAssets() {
          tile1 = std::make_unique<Tile>(Constants::TILE1_POSITION, Constants::TILE1_SCALE, Constants::TILE1_TEXTURE, Constants::TILE1_RECT, Constants::TILE1_BOOL);
          tileMap1 = std::make_unique<TileMap>(Constants::MAP_WIDTH, Constants::MAP_HEIGHT, Constants::TILE_WIDTH, Constants::TILE_HEIGHT, std::move(tile1)); 
          backgroundMusic = std::make_unique<MusicClass>(std::move(Constants::BACKGROUNDMUSIC_MUSIC), Constants::BACKGROUNDMUSIC_VOLUME);
-
+        button1 = std::make_unique<Button>(Constants::SPRITE1_POSITION, Constants::SPRITE1_SCALE, Constants::SPRITE1_TEXTURE, 
+                                   Constants::BUTTON1_ANIMATIONRECTS, Constants::BUTTON1_INDEXMAX, 
+                                   utils::convertToWeakPtrVector(Constants::BUTTON1_BITMASK));
         //  if (backgroundMusic){
         //     backgroundMusic->returnMusic().play(); 
         //  }
@@ -117,6 +119,11 @@ void gamePlayScene::handleInput() {
         if(sceneView)
             sceneView.getView().move(sf::Vector2f(0, -1)); 
     }
+    if(flagEvents.mouseClicked){
+        if (physics::boundingBoxCollisionHelper(mouseClickedPos, *button1)){
+            log_info("button clicked"); 
+        }
+    }
     
 }
 
@@ -125,9 +132,8 @@ void gamePlayScene::handleGameEvents() {
     // increase score
 
     // sprite collisions bool collision = physics::checkCollisions(sprite1, sprites, collisiontype) 
-   
+
    // if collision, modify a sceneEvent
-   //if (physics::checkCollisions(button1, ))
 
 } 
 

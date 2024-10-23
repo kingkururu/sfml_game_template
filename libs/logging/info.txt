@@ -1,12 +1,29 @@
-[2024-10-22 15:56:41.543] [info_logger] [info] 	Constants initialized 
-[2024-10-22 15:56:41.563] [info_logger] [info] 	Game initialized
-[2024-10-22 15:56:41.563] [info_logger] [info] Sprite initialized successfully
-[2024-10-22 15:56:41.563] [info_logger] [info] Background created at position (0.000000, 0.000000)
-[2024-10-22 15:56:41.563] [info_logger] [info] Sprite initialized successfully
-[2024-10-22 15:56:41.563] [info_logger] [info] Tile initialized successfully
-[2024-10-22 15:56:41.563] [info_logger] [info] Tile map initialized successfully
-[2024-10-22 15:56:41.563] [info_logger] [info] Music initialized successfully, volume is 100.000000
-[2024-10-22 15:56:41.563] [info_logger] [info] Sound initialized successfully
-[2024-10-22 15:56:41.563] [info_logger] [info] text initialized successully
-[2024-10-22 15:56:45.117] [info_logger] [info] 	Game Ended
+[2024-10-23 13:35:09.917] [info_logger] [info] 	Constants initialized 
+[2024-10-23 13:35:09.945] [info_logger] [info] 	Game initialized
+[2024-10-23 13:35:09.945] [info_logger] [info] Sprite initialized successfully
+[2024-10-23 13:35:09.945] [info_logger] [info] Background created at position (0.000000, 0.000000)
+[2024-10-23 13:35:09.945] [info_logger] [info] Sprite initialized successfully
+[2024-10-23 13:35:09.945] [info_logger] [info] Tile initialized successfully
+[2024-10-23 13:35:09.945] [info_logger] [info] Tile map initialized successfully
+[2024-10-23 13:35:09.945] [info_logger] [info] Music initialized successfully, volume is 100.000000
+[2024-10-23 13:35:09.945] [info_logger] [info] Sprite initialized successfully
+[2024-10-23 13:35:09.945] [info_logger] [info] Sound initialized successfully
+[2024-10-23 13:35:09.945] [info_logger] [info] text initialized successully
+[2024-10-23 13:35:11.254] [info_logger] [info] Returning animation rect for index 0
+[2024-10-23 13:35:11.271] [info_logger] [info] Returning animation rect for index 0
+[2024-10-23 13:35:11.288] [info_logger] [info] Returning animation rect for index 0
+[2024-10-23 13:35:11.801] [info_logger] [info] Returning animation rect for index 0
+[2024-10-23 13:35:11.801] [info_logger] [info] button clicked
+[2024-10-23 13:35:11.818] [info_logger] [info] Returning animation rect for index 0
+[2024-10-23 13:35:11.818] [info_logger] [info] button clicked
+[2024-10-23 13:35:11.835] [info_logger] [info] Returning animation rect for index 0
+[2024-10-23 13:35:11.835] [info_logger] [info] button clicked
+[2024-10-23 13:35:12.153] [info_logger] [info] Returning animation rect for index 0
+[2024-10-23 13:35:12.153] [info_logger] [info] button clicked
+[2024-10-23 13:35:15.240] [info_logger] [info] Returning animation rect for index 0
+[2024-10-23 13:35:15.417] [info_logger] [info] Returning animation rect for index 0
+[2024-10-23 13:35:15.594] [info_logger] [info] Returning animation rect for index 0
+[2024-10-23 13:35:19.882] [info_logger] [info] Returning animation rect for index 0
+[2024-10-23 13:35:20.060] [info_logger] [info] Returning animation rect for index 0
+[2024-10-23 13:35:21.642] [info_logger] [info] 	Game Ended
 

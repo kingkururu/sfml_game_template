@@ -29,6 +29,12 @@ namespace Constants {
     const sf::Vector2f SPRITE1_SCALE = { 0.5f, 0.5f };
     std::shared_ptr<sf::Texture> SPRITE1_TEXTURE = std::make_shared<sf::Texture>();
 
+    const sf::Vector2f BUTTON1_POSITION = { 0.0f, 0.0f };
+    const sf::Vector2f BUTTON1_SCALE = { 0.5f, 0.5f };
+    std::shared_ptr<sf::Texture> BUTTON1_TEXTURE = std::make_shared<sf::Texture>();
+    std::vector<sf::IntRect> BUTTON1_ANIMATIONRECTS;
+    std::vector<std::shared_ptr<sf::Uint8[]>> BUTTON1_BITMASK;
+
     const sf::Vector2f TILE1_POSITION = { 0.0f, 0.0f };
     const sf::Vector2f TILE1_SCALE = { 0.5f, 0.5f };
     std::shared_ptr<sf::Texture> TILE1_TEXTURE = std::make_shared<sf::Texture>();
@@ -85,18 +91,15 @@ namespace Constants {
         */
      
         //make rects for animations     
-        /*
-        for(int i = 0; i < 6; ++i ){
-            sprite name_RECTS.emplace_back(sf::IntRect{ 200 * i, 0, 200, 200 }); 
+        
+        for(int i = 0; i < BUTTON1_INDEXMAX; ++i ){
+            BUTTON1_ANIMATIONRECTS.emplace_back(sf::IntRect{ 200 * i, 0, 200, 200 }); 
         }
-        */
 
         // make bitmasks
-        /*
-        for (const auto& rect : some_RECTS ) {
-            some_BITMASKS.emplace_back(createBitmask(some_TEXTURE, rect));
+        for (const auto& rect : BUTTON1_ANIMATIONRECTS ) {
+            BUTTON1_BITMASK.emplace_back(createBitmask(BUTTON1_TEXTURE, rect));
         }
-        */
 
     }
 
