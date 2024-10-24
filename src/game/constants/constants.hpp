@@ -70,7 +70,7 @@ namespace Constants {
     extern std::vector<sf::IntRect> BUTTON1_ANIMATIONRECTS;
     extern std::vector<std::shared_ptr<sf::Uint8[]>> BUTTON1_BITMASK;
     constexpr const short BUTTON1_INDEXMAX = 6; 
-    constexpr const char* BUTTON1_PATH = "assets/sprites/png/Static.png";
+    constexpr const char* BUTTON1_PATH = "assets/sprites/png/Nonstatic.png";
 
     extern const sf::Vector2f TILE1_POSITION;
     extern const sf::Vector2f TILE1_SCALE;

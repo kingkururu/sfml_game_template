@@ -27,17 +27,17 @@ namespace Constants {
     std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE2 = std::make_shared<sf::Texture>();
     
     const sf::Vector2f SPRITE1_POSITION = { 0.0f, 0.0f };
-    const sf::Vector2f SPRITE1_SCALE = { 0.5f, 0.5f };
+    const sf::Vector2f SPRITE1_SCALE = { 1.0f, 1.0f };
     std::shared_ptr<sf::Texture> SPRITE1_TEXTURE = std::make_shared<sf::Texture>();
 
     const sf::Vector2f BUTTON1_POSITION = { 0.0f, 0.0f };
-    const sf::Vector2f BUTTON1_SCALE = { 0.5f, 0.5f };
+    const sf::Vector2f BUTTON1_SCALE = { 1.0f, 1.0f };
     std::shared_ptr<sf::Texture> BUTTON1_TEXTURE = std::make_shared<sf::Texture>();
     std::vector<sf::IntRect> BUTTON1_ANIMATIONRECTS;
     std::vector<std::shared_ptr<sf::Uint8[]>> BUTTON1_BITMASK;
 
     const sf::Vector2f TILE1_POSITION = { 0.0f, 0.0f };
-    const sf::Vector2f TILE1_SCALE = { 0.5f, 0.5f };
+    const sf::Vector2f TILE1_SCALE = { 1.0f, 1.0f };
     std::shared_ptr<sf::Texture> TILE1_TEXTURE = std::make_shared<sf::Texture>();
     const sf::IntRect TILE1_RECT = { 1, 1, 2, 2 }; 
     
@@ -63,6 +63,10 @@ namespace Constants {
 
         if (!BACKGROUND_TEXTURE2->loadFromFile(BACKGROUNDSPRITE_PATH2)) {
             log_warning("Failed to load background texture");
+        }
+
+        if (!BUTTON1_TEXTURE->loadFromFile(BUTTON1_PATH)) {
+            log_warning("Failed to load button texture");
         }
 
         if (!SPRITE1_TEXTURE->loadFromFile(SPRITE1SPRITE_PATH)) {
@@ -98,7 +102,7 @@ namespace Constants {
         //make rects for animations     
         
         for(int i = 0; i < BUTTON1_INDEXMAX; ++i ){
-            BUTTON1_ANIMATIONRECTS.emplace_back(sf::IntRect{ 200 * i, 0, 200, 200 }); 
+            BUTTON1_ANIMATIONRECTS.emplace_back(sf::IntRect{ 170 * i, 0, 170, 170 }); 
         }
 
         // make bitmasks

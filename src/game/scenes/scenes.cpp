@@ -68,13 +68,14 @@ void gamePlayScene::createAssets() {
     try {
         // Initialize sprites and music here 
         background = std::make_unique<Background>(Constants::BACKGROUND_POSITION, Constants::BACKGROUND_SCALE, Constants::BACKGROUND_TEXTURE);
-        sprite1 = std::make_unique<Sprite>(Constants::SPRITE1_POSITION, Constants::SPRITE1_SCALE, Constants::SPRITE1_TEXTURE); 
-        tile1 = std::make_unique<Tile>(Constants::TILE1_POSITION, Constants::TILE1_SCALE, Constants::TILE1_TEXTURE, Constants::TILE1_RECT, Constants::TILE1_BOOL);
-        tileMap1 = std::make_unique<TileMap>(Constants::MAP_WIDTH, Constants::MAP_HEIGHT, Constants::TILE_WIDTH, Constants::TILE_HEIGHT, std::move(tile1)); 
+      //  sprite1 = std::make_unique<Sprite>(Constants::SPRITE1_POSITION, Constants::SPRITE1_SCALE, Constants::SPRITE1_TEXTURE); 
+      //  tile1 = std::make_unique<Tile>(Constants::TILE1_POSITION, Constants::TILE1_SCALE, Constants::TILE1_TEXTURE, Constants::TILE1_RECT, Constants::TILE1_BOOL);
+      //  tileMap1 = std::make_unique<TileMap>(Constants::MAP_WIDTH, Constants::MAP_HEIGHT, Constants::TILE_WIDTH, Constants::TILE_HEIGHT, std::move(tile1)); 
         backgroundMusic = std::make_unique<MusicClass>(std::move(Constants::BACKGROUNDMUSIC_MUSIC), Constants::BACKGROUNDMUSIC_VOLUME);
-        button1 = std::make_unique<Button>(Constants::SPRITE1_POSITION, Constants::SPRITE1_SCALE, Constants::SPRITE1_TEXTURE, 
+        button1 = std::make_unique<Button>(Constants::BUTTON1_POSITION, Constants::BUTTON1_SCALE, Constants::BUTTON1_TEXTURE, 
                                    Constants::BUTTON1_ANIMATIONRECTS, Constants::BUTTON1_INDEXMAX, 
                                    utils::convertToWeakPtrVector(Constants::BUTTON1_BITMASK));
+        button1->setRects(0); 
         //  if (backgroundMusic){
         //     backgroundMusic->returnMusic().play(); 
         //  }
@@ -167,6 +168,7 @@ void gamePlayScene::update() {
         // Remove invisible sprites
        // log_info("Calling deleteInvisibleSprites...");
         deleteInvisibleSprites();
+        button1->changeAnimation(deltaTime);
 
        // log_info("Setting view...");
         window.setView(sceneView.getView()); 
@@ -186,8 +188,8 @@ void gamePlayScene::draw() {
         if (background && background->getVisibleState()) {
             window.draw(*background); 
         }
-        if (sprite1 && sprite1->getVisibleState()) {
-            window.draw(*sprite1); 
+        if (button1 && button1->getVisibleState()) {
+            window.draw(*button1); 
         }
         
         window.display(); 

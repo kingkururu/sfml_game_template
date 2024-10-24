@@ -87,7 +87,7 @@ void Animated::setRects(int animNum){
             throw std::out_of_range("Animation index out of range.");
         }
         spriteCreated->setTextureRect(animationRects[animNum]);    
-        log_info("Animation frame set to index " + std::to_string(animNum));
+        
     }
     catch (const std::exception& e) {
         log_error("Error in setting texture: " + std::string(e.what()) + " | Index Max: " + std::to_string(indexMax) + " | Current Index: " + std::to_string(animNum));
@@ -106,7 +106,7 @@ void Animated::changeAnimation(float deltaTime) {
                 }
                 setRects(currentIndex);
                 elapsedTime = 0.0f;
-                log_info("Animation changed to frame " + std::to_string(currentIndex));
+                
             }
         }
     }
