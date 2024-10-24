@@ -109,9 +109,9 @@ void gamePlayScene::setTime(){
     // count respawn time here 
 } 
 
-/* deals with inputs from device, let known by flagEvents. If player's MoveState is true and its pointer is not null, it updates player's position */
+/* deals with inputs from device, let known by flagEvents. */
 void gamePlayScene::handleInput() {
-    // if player's getMoveState() is true, and flagEvents.somekeypressed is true, updatePlayer(sf::Vector2f newPosition)
+    // move view port 
     if(flagEvents.aPressed){
         if(sceneView)
             sceneView.getView().move(sf::Vector2f(-1, 0)); 
@@ -132,6 +132,9 @@ void gamePlayScene::handleInput() {
         if ( button1->getVisibleState() && 
             physics::boundingBoxCollisionHelper(mouseClickedPos, *button1)){
             log_info("button clicked"); 
+
+            button1->setClickedBool(true);
+
             gameScene1Flags.sceneEnd = true;
             gameSceneNextFlags.sceneStart = true;
             gameSceneNextFlags.sceneEnd = false;
@@ -139,7 +142,6 @@ void gamePlayScene::handleInput() {
             window.clear();
         }
     }
-    
 }
 
 /* Keeps sprites inside screen bounds, checks for collisions, update scores, and sets flagEvents.gameEnd to true in an event of collision */
@@ -168,8 +170,9 @@ void gamePlayScene::update() {
         // Remove invisible sprites
        // log_info("Calling deleteInvisibleSprites...");
         deleteInvisibleSprites();
-        button1->changeAnimation(deltaTime);
 
+        button1->changeAnimation(deltaTime);
+                
        // log_info("Setting view...");
         window.setView(sceneView.getView()); 
         

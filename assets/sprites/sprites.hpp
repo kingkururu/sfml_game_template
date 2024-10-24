@@ -44,6 +44,7 @@ public:
 
     // draws sprite using window.draw(*sprite)
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override { if (visibleState && spriteCreated) target.draw(*spriteCreated, states); }
+    virtual void updateVisibility(); 
 
 protected:
     sf::Vector2f position {};
@@ -116,7 +117,7 @@ public:
    explicit NonStatic(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, float speed, sf::Vector2f acceleration)
         : Sprite(position, scale, texture), speed(speed), acceleration(acceleration) {}
     ~NonStatic() override{}; 
-    void updatePos(); 
+
     bool const getMoveState() const { return moveState; }
     void setMoveState(bool newState) { moveState = newState; }
     void changePosition(sf::Vector2f newPos) { position = newPos; }  
@@ -175,7 +176,7 @@ public:
 private:
 };
 
-/* bullet class deriving from NonStatic; refers to moving bullets */
+/* example use of animated, nonstatic class: bullet deriving from NonStatic; refers to moving bullets */
 class Bullet : public NonStatic, public Animated {
 public:
    explicit Bullet(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, 
@@ -194,20 +195,17 @@ public:
 private:
 };
 
-class Button : public Static, public Animated {
+class Button : public Animated {
 public:
     explicit Button(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, 
                       const std::vector<sf::IntRect> animationRects, unsigned int indexMax, 
                       const std::vector<std::weak_ptr<sf::Uint8[]>>& bitMask)
         : Sprite(position, scale, texture),
-          Static(position, scale, texture), 
           Animated(position, scale, texture, animationRects, indexMax, bitMask) // Call Animated constructor
     {}
     ~Button() override = default;
 
     void setClickedBool(bool click) { clicked = click; }
- //   void setClickedBool(sf::Vector2i mousePos); 
-
     bool getClickedBool() const { return clicked; }
     
 private:

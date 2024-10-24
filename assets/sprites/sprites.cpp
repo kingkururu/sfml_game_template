@@ -134,7 +134,7 @@ float Animated::getRadius() const {
 }
 
 /* updates position to be assigned most recent position */
-void NonStatic::updatePos() {
+void Sprite::updateVisibility() {
     try {
         if (position.y > Constants::SCREEN_HEIGHT + Constants::SPRITE_OUT_OF_BOUNDS_OFFSET ||
             position.x > Constants::SCREEN_WIDTH + Constants::SPRITE_OUT_OF_BOUNDS_OFFSET ||
@@ -183,6 +183,7 @@ std::shared_ptr<sf::Uint8[]> const Animated::getBitmask(size_t index) const {
 
 /* specialized player position update method */
 void Player::updatePlayer(sf::Vector2f newPos) {
+    changePosition(position); 
     log_info("Player position updated to (" + std::to_string(newPos.x) + ", " + std::to_string(newPos.y) + ")");
 }
 

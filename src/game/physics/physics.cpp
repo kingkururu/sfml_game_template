@@ -240,28 +240,30 @@ namespace physics{
         // Call the existing boundingBoxCollision function with adjusted values
         return boundingBoxCollision(position1, size1, position2, size2);
     }
-
-    bool boundingBoxCollisionHelper(sf::Vector2i mousePos, const Sprite& sprite2){
-        // Convert mouse position to world coordinates
+    bool boundingBoxCollisionHelper(sf::Vector2i mousePos, const Sprite& sprite2) {
+        // Convert mouse position to world coordinates (already confirmed correct)
         sf::Vector2f mouseWorldPos(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
 
         // Mouse is treated as a single point with zero size
         sf::Vector2f position1(mouseWorldPos);
         sf::Vector2f size1(1.f, 1.f);  // Treat the mouse as a point
 
-        // Retrieve global bounds of the sprite acting as a button
+        // Retrieve global bounds of the sprite acting as a button (ensuring transformations are considered)
         sf::FloatRect bounds2 = sprite2.returnSpritesShape().getGlobalBounds();
 
         // Retrieve the current animation frame (IntRect) for sprite2
         sf::IntRect rect2 = sprite2.getRects();
 
-        // Adjust the position using the left and top of the current frame
-        sf::Vector2f position2(bounds2.left + rect2.left, bounds2.top + rect2.top);
-
-        // Adjust the size using the width and height of the current frame
+        // Calculate position considering the sprite's global bounds and the animation rect
+        sf::Vector2f position2(bounds2.left, bounds2.top);  // Use sprite's actual global position
         sf::Vector2f size2(static_cast<float>(rect2.width), static_cast<float>(rect2.height));
 
-        // Call the existing boundingBoxCollision function with adjusted values
+        // Log the information for debugging
+        std::cout << "Button sprite size: (" << size2.x << ", " << size2.y << ")" << std::endl;
+        std::cout << "Button sprite position: (" << position2.x << ", " << position2.y << ")" << std::endl;
+        std::cout << "Clicked position: (" << position1.x << ", " << position1.y << ")" << std::endl;
+
+        // Perform the collision check using the bounding box
         return boundingBoxCollision(position1, size1, position2, size2);
     }
 

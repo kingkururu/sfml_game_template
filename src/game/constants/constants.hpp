@@ -27,8 +27,9 @@ namespace Constants {
     extern void printBitmaskDebug(const std::shared_ptr<sf::Uint8[]>& bitmask, unsigned int width, unsigned int height);
 
     // basic game components
-    constexpr unsigned short SCREEN_WIDTH = 1920 * .5;
-    constexpr unsigned short SCREEN_HEIGHT = 1080 * .5;
+    constexpr float SCREEN_SCALE = 0.5f;
+    constexpr unsigned short SCREEN_WIDTH = 1920 * SCREEN_SCALE;
+    constexpr unsigned short SCREEN_HEIGHT = 1080 * SCREEN_SCALE;
     constexpr unsigned short FRAME_LIMIT = 60;
     constexpr const char* GAME_TITLE = "SFML game template";
     extern const sf::FloatRect VIEW_RECT; 
