@@ -126,7 +126,7 @@ class gamePlayScene : public virtual Scene{
 };
 
 class gamePlayScene2 : public virtual Scene{
-  public:
+public:
   using Scene::Scene; 
   ~gamePlayScene2() override = default; 
  
@@ -136,8 +136,8 @@ class gamePlayScene2 : public virtual Scene{
   using Scene::handleInput;
   void handleInput() override; 
 
-  //using Scene::draw; 
   void draw() override; 
+  void update() override; 
 
  private:
   std::unique_ptr<Background> background; 

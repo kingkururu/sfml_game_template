@@ -135,7 +135,6 @@ void gamePlayScene::handleInput() {
             gameSceneNextFlags.sceneEnd = false;
 
             window.clear();
-            return; 
         }
     }
     
@@ -210,6 +209,7 @@ void gamePlayScene2::createAssets() {
 }
 
 void gamePlayScene2::handleInput() {
+    
     if(flagEvents.aPressed){
         if(sceneView)
             sceneView.getView().move(sf::Vector2f(-1, 0)); 
@@ -226,6 +226,7 @@ void gamePlayScene2::handleInput() {
         if(sceneView)
             sceneView.getView().move(sf::Vector2f(0, -1)); 
     }
+    
 }
 
 void gamePlayScene2::draw() {
@@ -241,5 +242,23 @@ void gamePlayScene2::draw() {
     
     catch (const std::exception& e) {
         std::cerr << "Exception in draw: " << e.what() << std::endl;
+    }
+}
+
+void gamePlayScene2::update() {
+    try {
+        //log_info("Starting update in gamePlayScene");
+
+        // Remove invisible sprites
+       // log_info("Calling deleteInvisibleSprites...");
+        deleteInvisibleSprites();
+
+       // log_info("Setting view...");
+        window.setView(sceneView.getView()); 
+        
+       // log_info("Finished update in gamePlayScene");
+    }
+    catch (const std::exception& e) {
+        log_error("Exception in updateSprites: " + std::string(e.what()));
     }
 }
