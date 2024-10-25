@@ -23,6 +23,7 @@ void Scene::runScene(float deltaT, float globalT){
         handleInput();
         respawnAssets(); 
         handleGameEvents(); 
+        updateDrawablesVisibility(); 
     }
     /* inside the while loop in game, always runs */
     handleGameFlags(); 
@@ -80,14 +81,14 @@ void gamePlayScene::createAssets() {
         //     backgroundMusic->returnMusic().play(); 
         //  }
         
-         playerJumpSound = std::make_unique<SoundClass>(Constants::PLAYERJUMP_SOUNDBUFF, Constants::PLAYERJUMPSOUND_VOLUME); 
+        playerJumpSound = std::make_unique<SoundClass>(Constants::PLAYERJUMP_SOUNDBUFF, Constants::PLAYERJUMPSOUND_VOLUME); 
           
-         text1 = std::make_unique<TextClass>(Constants::TEXT_POSITION, Constants::TEXT_SIZE, Constants::TEXT_COLOR, Constants::TEXT_FONT, Constants::TEXT_MESSAGE);
+        text1 = std::make_unique<TextClass>(Constants::TEXT_POSITION, Constants::TEXT_SIZE, Constants::TEXT_COLOR, Constants::TEXT_FONT, Constants::TEXT_MESSAGE);
          
         } 
 
     catch (const std::exception& e) {
-        std::cerr << "Exception caught in createAssets: " << e.what() << std::endl;
+         log_error("Exception in createAssets: " + std::string(e.what()));
     }
 }
 
@@ -96,7 +97,7 @@ void gamePlayScene::respawnAssets(){
     // if certain respawn time variable is less than a certain value, respawn objects
 } 
 
-/* deletes sprites if their visibleState is false for memory management */
+/* delet some sprites if their visibleState is false for memory management */
 void gamePlayScene::deleteInvisibleSprites() {
     // Remove invisible sprites
    
@@ -183,6 +184,20 @@ void gamePlayScene::update() {
     }
 }
 
+void gamePlayScene::updateDrawablesVisibility(){
+    try{
+        if (button1 && sceneView){
+            std::cout << "set visible state";
+            button1->setVisibleState(
+            physics::boundingBoxCollisionHelper(sceneView, *button1)); 
+            std::cout << button1->getVisibleState() << std::endl;
+        }
+    }
+    catch(const std::exception & e){
+         log_error("Exception in updateDrawablesVisibility: " + std::string(e.what()));
+    }
+}
+
 /* Draws only the visible sprite and texts */
 void gamePlayScene::draw() {
     try {
@@ -199,7 +214,7 @@ void gamePlayScene::draw() {
     } 
     
     catch (const std::exception& e) {
-        std::cerr << "Exception in draw: " << e.what() << std::endl;
+         log_error("Exception in draw: " + std::string(e.what()));
     }
 }
 
@@ -210,7 +225,7 @@ void gamePlayScene2::createAssets() {
         } 
 
     catch (const std::exception& e) {
-        std::cerr << "Exception caught in createAssets: " << e.what() << std::endl;
+         log_error("Exception in createAssets: " + std::string(e.what()));
     }
 }
 
@@ -247,7 +262,7 @@ void gamePlayScene2::draw() {
     } 
     
     catch (const std::exception& e) {
-        std::cerr << "Exception in draw: " << e.what() << std::endl;
+         log_error("Exception in gamePlayScene2 draw: " + std::string(e.what()));
     }
 }
 

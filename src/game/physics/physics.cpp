@@ -258,10 +258,25 @@ namespace physics{
         sf::Vector2f position2(bounds2.left, bounds2.top);  // Use sprite's actual global position
         sf::Vector2f size2(static_cast<float>(rect2.width), static_cast<float>(rect2.height));
 
-        // Log the information for debugging
-        std::cout << "Button sprite size: (" << size2.x << ", " << size2.y << ")" << std::endl;
-        std::cout << "Button sprite position: (" << position2.x << ", " << position2.y << ")" << std::endl;
-        std::cout << "Clicked position: (" << position1.x << ", " << position1.y << ")" << std::endl;
+        // Perform the collision check using the bounding box
+        return boundingBoxCollision(position1, size1, position2, size2);
+    }
+
+    bool boundingBoxCollisionHelper(GameView view, const Sprite& sprite2) {
+        // Retrieve the current view's center and size
+        sf::Vector2f viewCenter = view.getView().getCenter();
+        sf::Vector2f viewSize = view.getView().getSize();
+        // Calculate the view's position (top-left corner of the view rectangle)
+        sf::Vector2f position1(viewCenter.x - viewSize.x / 2, viewCenter.y - viewSize.y / 2);
+        sf::Vector2f size1(viewSize.x, viewSize.y);
+
+        // Retrieve global bounds of the sprite acting as a button (ensuring transformations are considered)
+        sf::FloatRect bounds2 = sprite2.returnSpritesShape().getGlobalBounds();
+        // Retrieve the current animation frame (IntRect) for sprite2
+        sf::IntRect rect2 = sprite2.getRects();
+        // Calculate position considering the sprite's global bounds and the animation rect
+        sf::Vector2f position2(bounds2.left, bounds2.top);  // Use sprite's actual global position
+        sf::Vector2f size2(static_cast<float>(rect2.width), static_cast<float>(rect2.height));
 
         // Perform the collision check using the bounding box
         return boundingBoxCollision(position1, size1, position2, size2);

@@ -50,6 +50,7 @@ class Scene {
 
   virtual void handleGameEvents(){};
   virtual void handleSceneFlags(){}; 
+  virtual void updateDrawablesVisibility(){}; 
 
   virtual void update(){};
   virtual void draw(); 
@@ -107,7 +108,7 @@ class gamePlayScene : public virtual Scene{
   using Scene::update; 
   void update() override; 
   
-  //using Scene::draw; 
+  void updateDrawablesVisibility() override; 
   void draw() override; 
 
  private:

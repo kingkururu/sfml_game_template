@@ -19,7 +19,7 @@
 #include <functional> 
 #include "sprites.hpp"
 #include "flags.hpp"
-
+#include "window.hpp"
 
 /* declarations for physics methods */
 namespace physics{
@@ -82,11 +82,15 @@ namespace physics{
     bool pixelPerfectCollision( const std::shared_ptr<sf::Uint8[]> &bitmask1, const sf::Vector2f &position1, const sf::Vector2f &size1,
                                 const std::shared_ptr<sf::Uint8[]> &bitmask2, const sf::Vector2f &position2, const sf::Vector2f &size2);  
     
-    // collision helpers
+    // collision helpers ( sprite vs. sprite )
     bool circleCollisionHelper(const Sprite& sprite1, const Sprite& sprite2); 
-
     bool boundingBoxCollisionHelper(const Sprite& sprite1, const Sprite& sprite2); 
+
+    //for mouse position vs sprite
     bool boundingBoxCollisionHelper(sf::Vector2i mousePos, const Sprite& sprite2); 
+    
+    //for view vs. sprite
+    bool boundingBoxCollisionHelper(GameView view, const Sprite& sprite2); 
 
     bool pixelPerfectCollisionHelper(const Sprite& sprite1, const Sprite& sprite2);
     bool raycastCollisionHelper(const Sprite& sprite1, const Sprite& sprite2, float currentTime, size_t index);
