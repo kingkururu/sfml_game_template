@@ -36,7 +36,7 @@ This is my very basic game template for a 2D game.
 │   │   │   ├── physics.cpp
 │   │   │   └── physics.hpp
 │   │   │
-│   │   ├── /rendering                                  # SFML window and view 
+│   │   ├── /camera                                  # SFML window and view 
 │   │   │   ├── window.cpp
 │   │   │   └── window.hpp
 │   │   │

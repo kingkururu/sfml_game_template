@@ -4,7 +4,7 @@ all: install_deps $(TARGET)
 # Compiler and linker flags (Homebrew paths are now customizable)
 CXX = clang++
 CXXFLAGS = -std=c++17 -Wall \
-            -I./src -I./src/game -I./src/game/constants -I./src/game/flags -I./src/game/core -I./src/game/physics -I./src/game/rendering -I./src/game/utils -I./src/game/scenes \
+            -I./src -I./src/game -I./src/game/constants -I./src/game/flags -I./src/game/core -I./src/game/physics -I./src/game/camera -I./src/game/utils -I./src/game/scenes \
             -I./assets/sprites -I./assets/fonts -I./assets/sound -I./assets/tiles \
             -I./libs/logging
 
@@ -29,7 +29,7 @@ SRC = src/main.cpp \
       src/game/flags/flags.cpp \
       src/game/core/game.cpp \
       src/game/physics/physics.cpp \
-      src/game/rendering/window.cpp \
+      src/game/camera/window.cpp \
       src/game/utils/utils.cpp \
       src/game/scenes/scenes.cpp \
       assets/sprites/sprites.cpp \

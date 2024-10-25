@@ -140,7 +140,7 @@ namespace physics{
         }
 
             // Store the calculated time of closest approach
-            cachedRaycastResult.collisionTimes.push_back(timeToClosestApproach);
+            cachedRaycastResult.collisionTimes.emplace_back(timeToClosestApproach);
 
             // Log the calculated time for debugging
             std::cout << "Calculated Time to Closest Approach: " << timeToClosestApproach << std::endl;

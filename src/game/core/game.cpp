@@ -76,11 +76,13 @@ void GameManager::handleEventInput() {
     while (mainWindow.getWindow().pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
             mainWindow.getWindow().close();
+            return; 
         }
         if (event.type == sf::Event::Resized){ 
             sf::FloatRect visibleArea(0.0f, 0.0f, event.size.width, event.size.height);
             mainWindow.getWindow().setView(sf::View(visibleArea)); 
         }
+
 if (event.type == sf::Event::Resized) {
     // Get the new size of the window
     float newWidth = static_cast<float>(event.size.width);

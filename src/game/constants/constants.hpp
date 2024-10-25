@@ -30,12 +30,15 @@ namespace Constants {
     constexpr float SCREEN_SCALE = 0.5f;
     constexpr unsigned short SCREEN_WIDTH = 1920 * SCREEN_SCALE;
     constexpr unsigned short SCREEN_HEIGHT = 1080 * SCREEN_SCALE;
+
     constexpr unsigned short FRAME_LIMIT = 60;
+
     constexpr const char* GAME_TITLE = "SFML game template";
+
     constexpr float VIEW_SIZE_X = 1920.0f * SCREEN_SCALE;
     constexpr float VIEW_SIZE_Y = 1080.0f * SCREEN_SCALE;
-    inline const sf::FloatRect VIEW_RECT = { 0.0f, 0.0f, 500.0f, 500.0f }; 
-    inline const sf::Vector2f VIEW_INITIAL_CENTER = { 0.0f, 0.0f }; 
+    inline const sf::FloatRect VIEW_RECT = { 0.0f, 0.0f, VIEW_SIZE_X, VIEW_SIZE_Y };
+    inline const sf::Vector2f VIEW_INITIAL_CENTER = { VIEW_SIZE_X / 2.0f, VIEW_SIZE_Y / 2.0f };
 
     // score components
     constexpr unsigned short INITIAL_SCORE = 0;
@@ -57,7 +60,6 @@ namespace Constants {
     inline const sf::Vector2f BACKGROUND_SCALE = { 1.0f, 1.0f };
     inline std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE = std::make_shared<sf::Texture>();
     inline std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE2 = std::make_shared<sf::Texture>();
-    
 
     // sprite components
     constexpr const char* SPRITE1SPRITE_PATH = "assets/sprites/png/Static.png";
@@ -65,7 +67,7 @@ namespace Constants {
     inline const sf::Vector2f SPRITE1_SCALE = { 1.0f, 1.0f };
     inline std::shared_ptr<sf::Texture> SPRITE1_TEXTURE = std::make_shared<sf::Texture>();
 
-    constexpr const short BUTTON1_INDEXMAX = 6; 
+    constexpr short BUTTON1_INDEXMAX = 6; 
     constexpr const char* BUTTON1_PATH = "assets/sprites/png/Static.png";
     inline const sf::Vector2f BUTTON1_POSITION = { 0.0f, 0.0f };
     inline const sf::Vector2f BUTTON1_SCALE = { 1.0f, 1.0f };
@@ -73,6 +75,7 @@ namespace Constants {
     inline std::vector<sf::IntRect> BUTTON1_ANIMATIONRECTS;
     inline std::vector<std::shared_ptr<sf::Uint8[]>> BUTTON1_BITMASK;
 
+    // typical tile components 
     constexpr const char* TILE1_PATH = "assets/sprites/png/Player.png";
     constexpr bool TILE1_BOOL = true; 
     inline const sf::Vector2f TILE1_POSITION = { 0.0f, 0.0f };
@@ -80,10 +83,11 @@ namespace Constants {
     inline std::shared_ptr<sf::Texture> TILE1_TEXTURE = std::make_shared<sf::Texture>();
     inline const sf::IntRect TILE1_RECT = { 1, 1, 2, 2 }; 
 
+    // typical tile map componenets
     constexpr float MAP_WIDTH = 1.0f; 
     constexpr float MAP_HEIGHT = 1.0f;  
-    constexpr unsigned int TILE_WIDTH = 20;
-    constexpr unsigned int TILE_HEIGHT = 20;
+    constexpr unsigned short TILE_WIDTH = 20;
+    constexpr unsigned short TILE_HEIGHT = 20;
 
     // typical text components
     constexpr unsigned short TEXT_SIZE = 40;
@@ -102,5 +106,4 @@ namespace Constants {
     constexpr const char* PLAYERJUMPSOUND_PATH = "assets/sound/mp3,flac,wav/jump.wav";
     inline std::shared_ptr<sf::SoundBuffer> PLAYERJUMP_SOUNDBUFF = std::make_shared<sf::SoundBuffer>();
     constexpr float PLAYERJUMPSOUND_VOLUME = 100.0f; 
-
 }

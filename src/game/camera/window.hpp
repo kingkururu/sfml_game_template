@@ -12,7 +12,7 @@
 #include <SFML/Graphics.hpp>
 
 class GameWindow{
-public:
+public: 
     GameWindow( unsigned int screenWidth, unsigned int screenHeight, std::string gameTitle, unsigned int frameRate );
     sf::RenderWindow& getWindow() { return window; } 
 
