@@ -24,13 +24,9 @@ This is my very basic game template for a 2D game.
 │   │   ├── game.cpp                                    # Game loop and game state management
 │   │   ├── game.hpp
 │   │   │
-│   │   ├── /constants                                  # Constants 
-│   │   │   ├── constants.cpp
-│   │   │   └── constants.hpp
-│   │   │
-│   │   ├── /flags                                      # Flags and state indicators
-│   │   │   ├── flags.cpp
-│   │   │   └── flags.hpp
+│   │   ├── /globals                                  # Constants, flags, meta-components 
+│   │   │   ├── globals.cpp
+│   │   │   └── globals.hpp
 │   │   │
 │   │   ├── /physics                                    # Physics and collision detection
 │   │   │   ├── physics.cpp

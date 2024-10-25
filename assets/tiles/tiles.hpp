@@ -14,7 +14,7 @@
 #include <vector>
 #include <memory>
 #include <SFML/Graphics.hpp>
-#include "constants.hpp"
+#include "globals.hpp"
 
 class Tile {
 public:

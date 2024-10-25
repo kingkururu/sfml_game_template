@@ -18,7 +18,7 @@ void Scene::runScene(float deltaT, float globalT){
     globalTime = globalT; 
     
     /* inside the while loop in game, only runs when gameEnd state is false */
-    if (!flagEvents.gameEnd) {
+    if (!FlagSystem::flagEvents.gameEnd) {
         setTime();
         handleInput();
         respawnAssets(); 
@@ -54,15 +54,10 @@ void Scene::restartScene() {
 /* Handles events from flagEvents; deals with gameEnd state */
 void Scene::handleGameFlags(){
     // if flagEvents.gameEnd is true or some event ... do somthing 
-    if(flagEvents.gameEnd){
+    if(FlagSystem::flagEvents.gameEnd){
        
     }
 }
-
-/* Updates mouse position from GameManager input */
-void Scene::setMouseClickedPos(sf::Vector2i mousePos){
-    mouseClickedPos = mousePos; 
-} 
 
 /* Gets called once before the main game loop to handle cpu-heavy work only once at the beggining */
 void gamePlayScene::createAssets() {
@@ -113,32 +108,32 @@ void gamePlayScene::setTime(){
 /* deals with inputs from device, let known by flagEvents. */
 void gamePlayScene::handleInput() {
     // move view port 
-    if(flagEvents.aPressed){
+    if(FlagSystem::flagEvents.aPressed){
         if(sceneView)
             sceneView.getView().move(sf::Vector2f(-1, 0)); 
     }
-    if(flagEvents.dPressed){
+    if(FlagSystem::flagEvents.dPressed){
         if(sceneView)
             sceneView.getView().move(sf::Vector2f(1, 0)); 
     }
-    if(flagEvents.sPressed){
+    if(FlagSystem::flagEvents.sPressed){
         if(sceneView)
             sceneView.getView().move(sf::Vector2f(0, 1)); 
     }
-    if(flagEvents.wPressed){
+    if(FlagSystem::flagEvents.wPressed){
         if(sceneView)
             sceneView.getView().move(sf::Vector2f(0, -1)); 
     }
-    if(flagEvents.mouseClicked){
+    if(FlagSystem::flagEvents.mouseClicked){
         if ( button1->getVisibleState() && 
-            physics::boundingBoxCollisionHelper(mouseClickedPos, *button1)){
+            physics::boundingBoxCollisionHelper(MetaComponents::mouseClickedPosition, *button1)){
             log_info("button clicked"); 
 
             button1->setClickedBool(true);
 
-            gameScene1Flags.sceneEnd = true;
-            gameSceneNextFlags.sceneStart = true;
-            gameSceneNextFlags.sceneEnd = false;
+            FlagSystem::gameScene1Flags.sceneEnd = true;
+            FlagSystem::gameSceneNextFlags.sceneStart = true;
+            FlagSystem::gameSceneNextFlags.sceneEnd = false;
 
             window.clear();
         }
@@ -228,19 +223,19 @@ void gamePlayScene2::createAssets() {
 
 void gamePlayScene2::handleInput() {
     
-    if(flagEvents.aPressed){
+    if(FlagSystem::flagEvents.aPressed){
         if(sceneView)
             sceneView.getView().move(sf::Vector2f(-1, 0)); 
     }
-    if(flagEvents.dPressed){
+    if(FlagSystem::flagEvents.dPressed){
         if(sceneView)
             sceneView.getView().move(sf::Vector2f(1, 0)); 
     }
-    if(flagEvents.sPressed){
+    if(FlagSystem::flagEvents.sPressed){
         if(sceneView)
             sceneView.getView().move(sf::Vector2f(0, 1)); 
     }
-    if(flagEvents.wPressed){
+    if(FlagSystem::flagEvents.wPressed){
         if(sceneView)
             sceneView.getView().move(sf::Vector2f(0, -1)); 
     }

@@ -1,5 +1,5 @@
 //
-//  constants.hpp
+//  globals.hpp
 //  sfmlgame3
 //
 //  Created by Sunmyoung Yun on 2024/08
@@ -11,9 +11,13 @@
 #include <SFML/Audio.hpp>
 #include <vector>
 #include <iostream> 
-#include <unordered_map>
 
 #include "log.hpp"
+
+namespace MetaComponents{
+    inline sf::Vector2i mouseClickedPosition {}; 
+    
+}
 
 /* constant variables declared here */
 namespace Constants {
@@ -106,4 +110,71 @@ namespace Constants {
     constexpr const char* PLAYERJUMPSOUND_PATH = "assets/sound/mp3,flac,wav/jump.wav";
     inline std::shared_ptr<sf::SoundBuffer> PLAYERJUMP_SOUNDBUFF = std::make_shared<sf::SoundBuffer>();
     constexpr float PLAYERJUMPSOUND_VOLUME = 100.0f; 
+}
+
+// New namespace for flag events
+namespace FlagSystem {
+    
+    struct FlagEvents {
+        // game states
+        bool gameEnd; 
+
+        // keyboard inputs
+        bool wPressed;
+        bool aPressed;
+        bool sPressed;
+        bool dPressed;
+        bool bPressed;
+        bool spacePressed; 
+        bool mouseClicked;
+
+        FlagEvents() : wPressed(false), aPressed(false), sPressed(false), dPressed(false), bPressed(false), spacePressed(false), mouseClicked(false) {}
+
+        // resets every flag
+        void resetFlags() {
+            log_error("Failed resetting flagEvents");
+            std::memset(this, 0, sizeof(*this));
+            log_info("Flags have been successfully reset.");
+        }
+
+        // resets keyboard flags only 
+        void flagKeyReleased() {
+            wPressed = false;
+            aPressed = false;
+            sPressed = false;
+            dPressed = false;
+            bPressed = false;
+        }
+    };
+
+    inline FlagEvents flagEvents; // Declare the global instance
+
+    struct SceneEvents {
+        bool sceneEnd;
+        bool sceneStart; 
+
+        SceneEvents() : sceneEnd(false), sceneStart(false) {} 
+
+        void resetFlags() {
+            log_error("failed resetting scene Flags");
+            std::memset(this, 0, sizeof(*this));
+            log_info("Flags have been successfully reset.");
+        }
+    };
+
+    struct GameSceneEvents1 {
+        bool sceneEnd;
+        bool sceneStart; 
+
+        GameSceneEvents1() : sceneEnd(false), sceneStart(true) {} 
+
+        void resetFlags() {
+            log_error("failed resetting scene Flags");
+            std::memset(this, 0, sizeof(*this));
+            log_info("Flags have been successfully reset.");
+        }
+    };
+
+    inline GameSceneEvents1 gameScene1Flags; // Declare the global instance
+    inline SceneEvents gameSceneNextFlags; // Declare the global instance
 }

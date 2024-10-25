@@ -1,11 +1,11 @@
 //
-//  constants.cpp
+//  globals.cpp
 //  sfmlgame3
 //
 //  Created by Sunmyoung Yun on 2024/08
 //
 
-#include "constants.hpp"
+#include "globals.hpp"
 
 /* constant variables defined here */
 namespace Constants {

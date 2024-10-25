@@ -5,7 +5,7 @@
 //  Created by Sunmyoung Yun on 2024/09
 //
 
-#include "game.hpp"
+#include "game.hpp" 
 
 /* GameManager constructor sets up the window, intitializes constant variables, calls the random function, and makes scenes */
 GameManager::GameManager()
@@ -31,7 +31,7 @@ void GameManager::runGame() {
     }
 
     try {     
-    loadScenes(); 
+        loadScenes(); 
 
         while (mainWindow.getWindow().isOpen()) {
             countTime();
@@ -47,11 +47,11 @@ void GameManager::runGame() {
 
 void GameManager::runScenesFlags(){
 
-    if(gameScene1Flags.sceneStart && !gameScene1Flags.sceneEnd){ 
+    if(FlagSystem::gameScene1Flags.sceneStart && !FlagSystem::gameScene1Flags.sceneEnd){ 
         gameScene->runScene(deltaTime, globalTime);
     }
 
-    if(gameSceneNextFlags.sceneStart  && !gameSceneNextFlags.sceneEnd){
+    if(FlagSystem::gameSceneNextFlags.sceneStart  && !FlagSystem::gameSceneNextFlags.sceneEnd){
         gameSceneNext->runScene(deltaTime, globalTime);
     }
 }
@@ -83,55 +83,39 @@ void GameManager::handleEventInput() {
             mainWindow.getWindow().setView(sf::View(visibleArea)); 
         }
 
-if (event.type == sf::Event::Resized) {
-    // Get the new size of the window
-    float newWidth = static_cast<float>(event.size.width);
-    float newHeight = static_cast<float>(event.size.height);
-    
-    // Create a new view with the updated size
-    sf::FloatRect visibleArea(0.f, 0.f, newWidth, newHeight);
-    sf::View newView(visibleArea);
-
-    // Set the new view to the scene
-    gameScene->returnSceneView().setSceneView(newView);
-
-    // Optionally, you can also set it to the main window if needed
-    mainWindow.getWindow().setView(newView);
-}
-
         if (event.type == sf::Event::KeyPressed) {
             switch (event.key.code) {
                 case sf::Keyboard::A:
-                    flagEvents.aPressed = true;
+                    FlagSystem::flagEvents.aPressed = true;
                     break;
                 case sf::Keyboard::S:
-                    flagEvents.sPressed = true;
+                    FlagSystem::flagEvents.sPressed = true;
                     break;
                 case sf::Keyboard::W:
-                    flagEvents.wPressed = true;
+                    FlagSystem::flagEvents.wPressed = true;
                     break;
                 case sf::Keyboard::D:
-                    flagEvents.dPressed = true;
+                    FlagSystem::flagEvents.dPressed = true;
                     break;
                 case sf::Keyboard::B:
-                    flagEvents.bPressed = true;
+                    FlagSystem::flagEvents.bPressed = true;
                     break;
                 case sf::Keyboard::Space:
-                    flagEvents.spacePressed = true;
+                    FlagSystem::flagEvents.spacePressed = true;
                     break;
                 default:
                     break;
             }
         }
         if (event.type == sf::Event::KeyReleased) {
-            flagEvents.flagKeyReleased(); 
+            FlagSystem::flagEvents.flagKeyReleased(); 
         }
         if (event.type == sf::Event::MouseButtonPressed) {
-            flagEvents.mouseClicked = true;
-            gameScene->setMouseClickedPos(sf::Mouse::getPosition(mainWindow.getWindow())); 
+            FlagSystem::flagEvents.mouseClicked = true;
+            MetaComponents::mouseClickedPosition = sf::Mouse::getPosition(mainWindow.getWindow()); 
         }
         if (event.type == sf::Event::MouseButtonReleased) {
-            flagEvents.mouseClicked = false;
+            FlagSystem::flagEvents.mouseClicked = false;
         }
     }
 }

@@ -19,8 +19,7 @@
 #include "sprites.hpp"
 #include "sound.hpp"
 #include "fonts.hpp"
-#include "constants.hpp"
-#include "flags.hpp"
+#include "globals.hpp"
 #include "physics.hpp"
 #include "utils.hpp"
 #include "window.hpp"
@@ -36,7 +35,6 @@ class Scene {
   void runScene(float deltaTime, float globalTime);  
   void restartScene();
   void handleGameFlags(); 
-  void setMouseClickedPos(sf::Vector2i mouseClickedPos); 
 
   // blank templates here
   virtual void createAssets(){}; 
@@ -55,8 +53,6 @@ class Scene {
   virtual void update(){};
   virtual void draw(); 
   
-  GameView returnSceneView() const { return sceneView; }
-
  protected:
   // Times - copied from game.cpp
   float deltaTime {}; 
@@ -66,10 +62,7 @@ class Scene {
   sf::RenderWindow& window; // from game.hpp
 
   GameView sceneView; 
-  SceneEvents sceneEvents; 
-
-  // Position in screen where mouse was clicked
-  sf::Vector2i mouseClickedPos {}; 
+  FlagSystem::SceneEvents sceneEvents; 
 };
 
 /* costumize scenes by adding something */

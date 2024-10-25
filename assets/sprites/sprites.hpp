@@ -15,8 +15,7 @@
 #include <stdexcept>
 #include <map>
 #include <SFML/Graphics.hpp>
-#include "constants.hpp"
-#include "flags.hpp" 
+#include "globals.hpp"
 
 /* base class for all sprites; contains position, scale, and texture */
 class Sprite : public sf::Drawable {
