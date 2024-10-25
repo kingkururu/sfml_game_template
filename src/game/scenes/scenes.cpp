@@ -187,10 +187,7 @@ void gamePlayScene::update() {
 void gamePlayScene::updateDrawablesVisibility(){
     try{
         if (button1 && sceneView){
-            std::cout << "set visible state";
-            button1->setVisibleState(
-            physics::boundingBoxCollisionHelper(sceneView, *button1)); 
-            std::cout << button1->getVisibleState() << std::endl;
+            button1->setVisibleState(physics::boundingBoxCollisionHelper(sceneView, *button1)); 
         }
     }
     catch(const std::exception & e){

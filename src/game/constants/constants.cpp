@@ -16,39 +16,7 @@ namespace Constants {
         float yPos = 0.0f;
         return sf::Vector2f{ xPos, yPos }; 
     }
-
-    // declare sprite, text, sound, music components here ( ones without constexpr keywords )
-    const sf::FloatRect VIEW_RECT = { 0.0f, 0.0f, 500.0f, 500.0f }; 
-
-    const sf::Vector2f BACKGROUND_POSITION = { 0.0f, 0.0f };
-    const sf::Vector2f BACKGROUND_SCALE = { 0.5f, 0.5f };
-    const sf::Vector2f VIEW_INITIAL_CENTER = { 300.0f, 300.f }; 
-    std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE = std::make_shared<sf::Texture>();
-    std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE2 = std::make_shared<sf::Texture>();
     
-    const sf::Vector2f SPRITE1_POSITION = { 0.0f, 0.0f };
-    const sf::Vector2f SPRITE1_SCALE = { 1.0f, 1.0f };
-    std::shared_ptr<sf::Texture> SPRITE1_TEXTURE = std::make_shared<sf::Texture>();
-
-    const sf::Vector2f BUTTON1_POSITION = { 0.0f, 0.0f };
-    const sf::Vector2f BUTTON1_SCALE = { 1.0f, 1.0f };
-    std::shared_ptr<sf::Texture> BUTTON1_TEXTURE = std::make_shared<sf::Texture>();
-    std::vector<sf::IntRect> BUTTON1_ANIMATIONRECTS;
-    std::vector<std::shared_ptr<sf::Uint8[]>> BUTTON1_BITMASK;
-
-    const sf::Vector2f TILE1_POSITION = { 0.0f, 0.0f };
-    const sf::Vector2f TILE1_SCALE = { 1.0f, 1.0f };
-    std::shared_ptr<sf::Texture> TILE1_TEXTURE = std::make_shared<sf::Texture>();
-    const sf::IntRect TILE1_RECT = { 1, 1, 2, 2 }; 
-    
-    std::unique_ptr<sf::Music> BACKGROUNDMUSIC_MUSIC = std::make_unique<sf::Music>(); 
-    std::shared_ptr<sf::SoundBuffer> PLAYERJUMP_SOUNDBUFF = std::make_shared<sf::SoundBuffer>();
-
-    const sf::Vector2f TEXT_POSITION = { 0.0f, 0.0f };
-    const sf::Color TEXT_COLOR = sf::Color::Green;
-    std::shared_ptr<sf::Font> TEXT_FONT = std::make_shared<sf::Font>(); 
-
-
     //initializer function
     void initialize() {
         init_logging();

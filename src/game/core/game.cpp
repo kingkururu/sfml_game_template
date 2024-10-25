@@ -81,6 +81,22 @@ void GameManager::handleEventInput() {
             sf::FloatRect visibleArea(0.0f, 0.0f, event.size.width, event.size.height);
             mainWindow.getWindow().setView(sf::View(visibleArea)); 
         }
+if (event.type == sf::Event::Resized) {
+    // Get the new size of the window
+    float newWidth = static_cast<float>(event.size.width);
+    float newHeight = static_cast<float>(event.size.height);
+    
+    // Create a new view with the updated size
+    sf::FloatRect visibleArea(0.f, 0.f, newWidth, newHeight);
+    sf::View newView(visibleArea);
+
+    // Set the new view to the scene
+    gameScene->returnSceneView().setSceneView(newView);
+
+    // Optionally, you can also set it to the main window if needed
+    mainWindow.getWindow().setView(newView);
+}
+
         if (event.type == sf::Event::KeyPressed) {
             switch (event.key.code) {
                 case sf::Keyboard::A:

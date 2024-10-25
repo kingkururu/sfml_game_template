@@ -32,10 +32,10 @@ namespace Constants {
     constexpr unsigned short SCREEN_HEIGHT = 1080 * SCREEN_SCALE;
     constexpr unsigned short FRAME_LIMIT = 60;
     constexpr const char* GAME_TITLE = "SFML game template";
-    extern const sf::FloatRect VIEW_RECT; 
-    constexpr float VIEW_SIZE_X = 300.0f;
-    constexpr float VIEW_SIZE_Y = 300.0f;
-    extern const sf::Vector2f VIEW_INITIAL_CENTER; 
+    constexpr float VIEW_SIZE_X = 1920.0f * SCREEN_SCALE;
+    constexpr float VIEW_SIZE_Y = 1080.0f * SCREEN_SCALE;
+    inline const sf::FloatRect VIEW_RECT = { 0.0f, 0.0f, 500.0f, 500.0f }; 
+    inline const sf::Vector2f VIEW_INITIAL_CENTER = { 0.0f, 0.0f }; 
 
     // score components
     constexpr unsigned short INITIAL_SCORE = 0;
@@ -51,72 +51,56 @@ namespace Constants {
     
     // background components 
     constexpr float BACKGROUND_SPEED = 35.0;
-    extern const sf::Vector2f BACKGROUND_POSITION;
-    extern const sf::Vector2f BACKGROUND_SCALE;
     constexpr const char* BACKGROUNDSPRITE_PATH = "assets/sprites/png/background_day.png";
-    extern std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE;
-
-    constexpr const char* BACKGROUNDSPRITE_PATH2 = "assets/sprites/png/background_night.png";
-    extern std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE2;
+    constexpr const char* BACKGROUNDSPRITE_PATH2 = "assets/sprites/png/background_night.png";   
+    inline const sf::Vector2f BACKGROUND_POSITION = { 0.0f, 0.0f };
+    inline const sf::Vector2f BACKGROUND_SCALE = { 1.0f, 1.0f };
+    inline std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE = std::make_shared<sf::Texture>();
+    inline std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE2 = std::make_shared<sf::Texture>();
+    
 
     // sprite components
-    extern const sf::Vector2f SPRITE1_POSITION;
-    extern const sf::Vector2f SPRITE1_SCALE;
-    extern std::shared_ptr<sf::Texture> SPRITE1_TEXTURE; 
     constexpr const char* SPRITE1SPRITE_PATH = "assets/sprites/png/Static.png";
+    inline const sf::Vector2f SPRITE1_POSITION = { 0.0f, 0.0f };
+    inline const sf::Vector2f SPRITE1_SCALE = { 1.0f, 1.0f };
+    inline std::shared_ptr<sf::Texture> SPRITE1_TEXTURE = std::make_shared<sf::Texture>();
 
-    extern const sf::Vector2f BUTTON1_POSITION;
-    extern const sf::Vector2f BUTTON1_SCALE;
-    extern std::shared_ptr<sf::Texture> BUTTON1_TEXTURE;
-    extern std::vector<sf::IntRect> BUTTON1_ANIMATIONRECTS;
-    extern std::vector<std::shared_ptr<sf::Uint8[]>> BUTTON1_BITMASK;
     constexpr const short BUTTON1_INDEXMAX = 6; 
-    constexpr const char* BUTTON1_PATH = "assets/sprites/png/Nonstatic.png";
+    constexpr const char* BUTTON1_PATH = "assets/sprites/png/Static.png";
+    inline const sf::Vector2f BUTTON1_POSITION = { 0.0f, 0.0f };
+    inline const sf::Vector2f BUTTON1_SCALE = { 1.0f, 1.0f };
+    inline std::shared_ptr<sf::Texture> BUTTON1_TEXTURE = std::make_shared<sf::Texture>();
+    inline std::vector<sf::IntRect> BUTTON1_ANIMATIONRECTS;
+    inline std::vector<std::shared_ptr<sf::Uint8[]>> BUTTON1_BITMASK;
 
-    extern const sf::Vector2f TILE1_POSITION;
-    extern const sf::Vector2f TILE1_SCALE;
-    extern std::shared_ptr<sf::Texture> TILE1_TEXTURE; 
-    extern const sf::IntRect TILE1_RECT; 
     constexpr const char* TILE1_PATH = "assets/sprites/png/Player.png";
     constexpr bool TILE1_BOOL = true; 
+    inline const sf::Vector2f TILE1_POSITION = { 0.0f, 0.0f };
+    inline const sf::Vector2f TILE1_SCALE = { 1.0f, 1.0f };
+    inline std::shared_ptr<sf::Texture> TILE1_TEXTURE = std::make_shared<sf::Texture>();
+    inline const sf::IntRect TILE1_RECT = { 1, 1, 2, 2 }; 
 
     constexpr float MAP_WIDTH = 1.0f; 
     constexpr float MAP_HEIGHT = 1.0f;  
     constexpr unsigned int TILE_WIDTH = 20;
     constexpr unsigned int TILE_HEIGHT = 20;
 
-    // typical sprite components (non-static) / animated
-    /*
-    extern const sf::Vector2f OBSTACLE_POSITION;
-    extern const sf::Vector2f OBSTACLE_SCALE;
-    extern std::vector<sf::IntRect> OBSTACLESPRITE_RECTS;
-    constexpr const char* OBSTACLESPRITE_PATH = "src/assets/sprites/png/Obstacle.png";
-    extern std::shared_ptr<sf::Texture> OBSTACLE_TEXTURE;
-    constexpr unsigned short OBSTACLEANIM_MAX_INDEX = 5; 
-    constexpr float OBSTACLE_SPEED = 200.0f;
-    extern const sf::Vector2f OBSTACLE_ACCELERATION;
-    constexpr float OBSTACLE_INITIAL_RESPAWN_TIME = 3.0; 
-    constexpr float OBSTACLE_INTERVAL_DECREMENT = 0.08; 
-    constexpr short OBSTACLE_FALL_ANGLE = 150; 
-    extern std::vector<std::shared_ptr<sf::Uint8[]>> OBSTACLE_BITMASKS;
-    */
-
     // typical text components
-    extern const sf::Vector2f TEXT_POSITION;
     constexpr unsigned short TEXT_SIZE = 40;
-    extern const sf::Color TEXT_COLOR;
     constexpr const char* TEXT_PATH = "assets/fonts/ttf/font1.ttf";
-    extern std::shared_ptr<sf::Font> TEXT_FONT; 
     constexpr const char* TEXT_MESSAGE = "Some text here";
+    inline const sf::Vector2f TEXT_POSITION = { 0.0f, 0.0f };
+    inline const sf::Color TEXT_COLOR = sf::Color::Green;
+    inline std::shared_ptr<sf::Font> TEXT_FONT = std::make_shared<sf::Font>(); 
 
     // typical music components 
     constexpr const char* BACKGROUNDMUSIC_PATH = "assets/sound/mp3/bgm.mp3";
-    extern std::unique_ptr<sf::Music> BACKGROUNDMUSIC_MUSIC;
+    inline std::unique_ptr<sf::Music> BACKGROUNDMUSIC_MUSIC = std::make_unique<sf::Music>(); 
     constexpr float BACKGROUNDMUSIC_VOLUME = 100.0f;
    
     // typical sound components
     constexpr const char* PLAYERJUMPSOUND_PATH = "assets/sound/mp3,flac,wav/jump.wav";
-    extern std::shared_ptr<sf::SoundBuffer> PLAYERJUMP_SOUNDBUFF;
+    inline std::shared_ptr<sf::SoundBuffer> PLAYERJUMP_SOUNDBUFF = std::make_shared<sf::SoundBuffer>();
     constexpr float PLAYERJUMPSOUND_VOLUME = 100.0f; 
 
 }

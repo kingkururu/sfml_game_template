@@ -54,7 +54,9 @@ class Scene {
 
   virtual void update(){};
   virtual void draw(); 
-    
+  
+  GameView returnSceneView() const { return sceneView; }
+
  protected:
   // Times - copied from game.cpp
   float deltaTime {}; 
