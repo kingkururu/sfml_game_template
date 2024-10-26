@@ -1,97 +1,112 @@
-Made on September 2024 by Sunmyoung Yun.
 
-This is my very basic game template for a 2D game. 
+# SFML Game Template
 
---------------------------------------------------------- HOW TO OPEN AND LAUNCH GAME
+This repository provides a foundational template for building 2D games using C++ and SFML. It's designed for developers looking to implement essential game features like game loops, asset management, physics, and scene management. Built with Visual Studio Code, this setup should also work in other environments that support Makefile builds.
 
-1)  Clone repo in VScode
-2)  Type "make" in VScode terminal ("Should automatically download brew, sfml and fmt in this stage")
-3)  Type "run" in VScode terminal
 
-- Type "make clean" to removed build
-- Type "make" to make build
-- Type "run" to run build
 
---------------------------------------------------------- CODE STRUCTURE
-/sfml_game_template
+## Features
+
+-   2D Game Template: Provides a structured layout to help you kickstart 2D games in C++.
+-   Built-in Dependencies: Uses spdlog for logging and fmt for formatted text output.
+-   Modular Design: Organizes code by game components, assets, and utilities.
+-   Scene Management: Supports multiple scenes (e.g., main menu, gameplay).
+-   Asset Management: Structure for managing sprites, sounds, fonts, and tiles.
+-   Physics & Collision Detection: Includes a basic physics module to detect collisions.
+## Prerequisites
+
+-   Compiler: Requires clang++ (or g++) with support for C++17
+-   SFML: Simple and Fast Multimedia Library for graphics, windowing, and audio.
+-   Homebrew (macOS): Setup includes steps to auto-install Homebrew and dependencies if missing.
+
+## Installation & Setup
+
+1. Clone the Repository
+
+```bash
+  git clone <https://github.com/kingkururu/sfml_game_template>
+  cd sfml_game_template
+```
+
+2. Build the Project
+Open Visual Studio Code, navigate to the project directory, and run:
+```bash
+  make
+```
+This will:
+
+-   Install Homebrew if missing.
+-   Install sfml, spdlog, and fmt via Homebrew.
+-   Compile and build the project executable.
+
+3. Run the game 
+```bash
+  ./run
+```
+4. Clean the Build
+Remove compiled files with:
+```bash
+  make clean
+```
+
+## File Structure
+The codebase is organized for ease of modification and scalability:
+
+```bash
+  /sfml_game_template
 │
-├── /.vscode                                            # VSCode settings and configurations
+├── .vscode                    # VSCode settings and configurations
 │
-├── /src                                                # Source files
-│   ├── main.cpp                                        # Main entry point of the game
-│   │
-│   ├── /game                                           # Core engine functionalities
-│   │   ├── game.cpp                                    # Game loop and game state management
-│   │   ├── game.hpp
-│   │   │
-│   │   ├── /globals                                  # Constants, flags, meta-components 
-│   │   │   ├── globals.cpp
-│   │   │   └── globals.hpp
-│   │   │
-│   │   ├── /physics                                    # Physics and collision detection
-│   │   │   ├── physics.cpp
-│   │   │   └── physics.hpp
-│   │   │
-│   │   ├── /camera                                  # SFML window and view 
-│   │   │   ├── window.cpp
-│   │   │   └── window.hpp
-│   │   │
-│   │   ├── /utils                                      # Utility functions and classes
-│   │   │   ├── utils.cpp
-│   │   │   └── utils.hpp
-│   │   │
-│   │   ├── /scenes                                     # Scene management
-│   │   │   ├── scenes.cpp
-│   │   │   └── scenes.hpp
-│   
-├── /assets                                             # Game assets
-│   ├── /fonts                                          # Font files
-│   │   ├── /ttf                                        # TrueType font files
-│   │   │   └── font1.ttf
-│   │   ├── fonts.cpp                                   # Font-related source file 
-│   │   └── fonts.hpp                                   # Font-related header file 
-│   │
-│   ├── /sound                                          # Sound effects
-│   │   ├── /mp3                                        # MP3 files
-│   │   ├── /wav                                        # WAV files
-│   │   │   └── bgm.mp3                                 # Example background music file
-│   │   ├── sound.cpp                                   # Sound-related source file 
-│   │   └── sound.hpp                                   # Sound-related header file 
-│   │
-│   ├── /sprites                                        # Sprite images
-│   │   ├── /png                                        # PNG files
-│   │   │   └── background.png
-│   │   ├── sprites.cpp                                 # Sprite-related source file 
-│   │   └── sprites.hpp                                 # Sprite-related header file 
-│  
-├── /libs                   
-│   ├── /logging                                         # spdlog for logging 
-│   │   ├── log.cpp
-│   │   └── log.hpp
-│   │   ├── errors.txt
-│   │   └── info.txt
-│ 
-├── /.coderabbit.yaml                                   # Coderabbit configuration file (if applicable)
+├── src                        # Source files for game engine
+│   ├── main.cpp               # Main entry point of the game
+│   └── game                   # Core engine functionalities
+│       ├── globals            # Constants and flags
+│       ├── core               # Game loop and state management
+│       ├── physics            # Physics and collision detection
+│       ├── camera             # SFML window and view management
+│       ├── utils              # Utility functions
+│       └── scenes             # Scene management
 │
-├── /.gitignore                                         # Git ignore file
+├── assets                     # Game assets
+│   ├── fonts                  # Font files and sources
+│   ├── sound                  # Sound effects
+│   └── sprites                # Sprite images
 │
-├── /Makefile                                           # Makefile for building the project
+├── libs                       # External libraries
+│   └── logging                # Logging (spdlog-based)
 │
-└── README.md                                           # Project documentation
+├── Makefile                   # Build instructions
+└── README.md                  # Project documentation
 
---------------------------------------------------------- USEFUL SOURCES FOR ASSETS
+```
+This template includes assets and utilities to simplify your development process, with logging and debug information to help you track runtime behavior.
 
-SPRITES:
-    - https://craftpix.net/
 
-MUSIC:
-    - https://pixabay.com/music/
 
-SOUND: 
-    - https://pixabay.com/sound-effects/
+## Customization & Usage
 
-    - https://freesound.org/
+-   Adjust Constants: Modify constants in globals.cpp for screen dimensions, physics parameters, or other game settings.
+-   Add Scenes: Create new files under /scenes to implement unique game states (e.g., MenuScene, GameScene).
+-   Asset Management: Add or modify sprites, sounds, and fonts in the respective folders under /assets.
+## Potential Extensions
+-   Additional Scenes: Extend functionality by adding new game scenes for different states or menus.
+-   Networking: Integrate SFML networking components for multiplayer features.
+-   Custom Physics: Extend physics capabilities for advanced collision or physics-based interactions.
+## Dependencies
 
-FONT:
-    - https://www.dafont.com/
+-   SFML: For graphics, windowing, and audio handling.
+-   spdlog: Logging support for debug and error tracking.
+-   fmt: Text formatting library for easier output management.
 
+## License
+
+This project is licensed under the MIT License.
+
+## License
+
+This project is licensed under the MIT License.
+
+##  
+
+Note: Adjust file paths, include dependencies, and modify other sections based on your environment, as some systems may require manual setup for Homebrew or custom paths.
+## Game Architecture Overview
