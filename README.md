@@ -106,7 +106,7 @@ This project is licensed under the MIT License.
 
 Note: Adjust file paths, include dependencies, and modify other sections based on your environment, as some systems may require manual setup for Homebrew or custom paths.
 ## Game Architecture Overview
-<img width="984" alt="Screenshot 2024-10-27 at 2 29 28 PM" src="https://github.com/user-attachments/assets/24564066-80af-46f9-a6f5-a82b19f82bf2">
-
 <img width="976" alt="Screenshot 2024-10-26 at 8 25 33 PM" src="https://github.com/user-attachments/assets/5b57e765-6977-43a8-a479-05965d5e8a9c">
+ 
+ <img width="984" alt="Screenshot 2024-10-27 at 2 29 28 PM" src="https://github.com/user-attachments/assets/24564066-80af-46f9-a6f5-a82b19f82bf2">
  
