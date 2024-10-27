@@ -9,7 +9,8 @@
 
 namespace MetaComponents {
     sf::Clock clock;
-}
+    sf::View view; 
+}   
 
 /* constant variables defined here */
 namespace Constants {

@@ -22,6 +22,7 @@ namespace MetaComponents{
     inline float deltaTime {}; 
 
     extern sf::Clock clock;
+    extern sf::View view;
 }
 
 /* constant variables declared here */

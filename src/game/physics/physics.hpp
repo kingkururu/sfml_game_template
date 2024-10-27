@@ -90,7 +90,7 @@ namespace physics{
     bool boundingBoxCollisionHelper(sf::Vector2i mousePos, const Sprite& sprite2); 
     
     //for view vs. sprite
-    bool boundingBoxCollisionHelper(GameView view, const Sprite& sprite2); 
+    bool boundingBoxCollisionHelper(sf::View view, const Sprite& sprite2); 
 
     bool pixelPerfectCollisionHelper(const Sprite& sprite1, const Sprite& sprite2);
     bool raycastCollisionHelper(const Sprite& sprite1, const Sprite& sprite2, float currentTime, size_t index);

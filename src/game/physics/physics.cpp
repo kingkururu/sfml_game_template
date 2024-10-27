@@ -262,10 +262,10 @@ namespace physics{
         return boundingBoxCollision(position1, size1, position2, size2);
     }
 
-    bool boundingBoxCollisionHelper(GameView view, const Sprite& sprite2) {
+    bool boundingBoxCollisionHelper(sf::View view, const Sprite& sprite2) {
         // Retrieve the current view's center and size
-        sf::Vector2f viewCenter = view.getView().getCenter();
-        sf::Vector2f viewSize = view.getView().getSize();
+        sf::Vector2f viewCenter = view.getCenter();
+        sf::Vector2f viewSize = view.getSize();
         // Calculate the view's position (top-left corner of the view rectangle)
         sf::Vector2f position1(viewCenter.x - viewSize.x / 2, viewCenter.y - viewSize.y / 2);
         sf::Vector2f size1(viewSize.x, viewSize.y);

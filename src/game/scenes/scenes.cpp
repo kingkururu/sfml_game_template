@@ -8,7 +8,8 @@
 #include "scenes.hpp"
 
 /* Scene constructure sets up window and sprite respawn times */
-Scene::Scene( sf::RenderWindow& gameWindow ) : window(gameWindow), sceneView(Constants::VIEW_RECT) /* initialize other elements here */ { 
+Scene::Scene( sf::RenderWindow& gameWindow ) : window(gameWindow) /* initialize other elements here */ { 
+    MetaComponents::view = sf::View(Constants::VIEW_RECT); 
     log_info("scene made"); 
 }
 
@@ -103,20 +104,16 @@ void gamePlayScene::setTime(){
 void gamePlayScene::handleInput() {
     // move view port 
     if(FlagSystem::flagEvents.aPressed){
-        if(sceneView)
-            sceneView.getView().move(sf::Vector2f(-1, 0)); 
+        MetaComponents::view.move(sf::Vector2f(-1, 0)); 
     }
     if(FlagSystem::flagEvents.dPressed){
-        if(sceneView)
-            sceneView.getView().move(sf::Vector2f(1, 0)); 
+        MetaComponents::view.move(sf::Vector2f(1, 0)); 
     }
     if(FlagSystem::flagEvents.sPressed){
-        if(sceneView)
-            sceneView.getView().move(sf::Vector2f(0, 1)); 
+        MetaComponents::view.move(sf::Vector2f(0, 1)); 
     }
     if(FlagSystem::flagEvents.wPressed){
-        if(sceneView)
-            sceneView.getView().move(sf::Vector2f(0, -1)); 
+        MetaComponents::view.move(sf::Vector2f(0, -1)); 
     }
     if(FlagSystem::flagEvents.mouseClicked){
         if ( button1->getVisibleState() && 
@@ -163,8 +160,8 @@ void gamePlayScene::update() {
 
         button1->changeAnimation(MetaComponents::deltaTime);
                 
-       // log_info("Setting view...");
-        window.setView(sceneView.getView()); 
+        window.setView(MetaComponents::view);
+        //window.setView(sceneView.getView()); 
         
        // log_info("Finished update in gamePlayScene");
     }
@@ -175,8 +172,8 @@ void gamePlayScene::update() {
 
 void gamePlayScene::updateDrawablesVisibility(){
     try{
-        if (button1 && sceneView){
-            button1->setVisibleState(physics::boundingBoxCollisionHelper(sceneView, *button1)); 
+        if (button1){
+            button1->setVisibleState(physics::boundingBoxCollisionHelper(MetaComponents::view, *button1)); 
         }
     }
     catch(const std::exception & e){
@@ -218,20 +215,16 @@ void gamePlayScene2::createAssets() {
 void gamePlayScene2::handleInput() {
     
     if(FlagSystem::flagEvents.aPressed){
-        if(sceneView)
-            sceneView.getView().move(sf::Vector2f(-1, 0)); 
+        MetaComponents::view.move(sf::Vector2f(-1, 0)); 
     }
     if(FlagSystem::flagEvents.dPressed){
-        if(sceneView)
-            sceneView.getView().move(sf::Vector2f(1, 0)); 
+        MetaComponents::view.move(sf::Vector2f(1, 0)); 
     }
     if(FlagSystem::flagEvents.sPressed){
-        if(sceneView)
-            sceneView.getView().move(sf::Vector2f(0, 1)); 
+        MetaComponents::view.move(sf::Vector2f(0, 1)); 
     }
     if(FlagSystem::flagEvents.wPressed){
-        if(sceneView)
-            sceneView.getView().move(sf::Vector2f(0, -1)); 
+        MetaComponents::view.move(sf::Vector2f(0, -1)); 
     }
     
 }
@@ -261,7 +254,7 @@ void gamePlayScene2::update() {
         deleteInvisibleSprites();
 
        // log_info("Setting view...");
-        window.setView(sceneView.getView()); 
+        window.setView(MetaComponents::view); 
         
        // log_info("Finished update in gamePlayScene");
     }

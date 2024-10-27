@@ -59,7 +59,7 @@ class Scene {
   // Other game components 
   sf::RenderWindow& window; // from game.hpp
 
-  GameView sceneView; 
+  //GameView sceneView; 
   FlagSystem::SceneEvents sceneEvents; 
 };
 
