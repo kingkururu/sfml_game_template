@@ -157,19 +157,14 @@ void gamePlayScene::handleSceneFlags(){
 deleteInvisibleSprites is called to destroy invisible sprites for memory management */
 void gamePlayScene::update() {
     try {
-        //log_info("Starting update in gamePlayScene");
-
         // Remove invisible sprites
-       // log_info("Calling deleteInvisibleSprites...");
         deleteInvisibleSprites();
 
         if(button1) button1->changeAnimation();
         if(background) background->updateBackground(Constants::BACKGROUND_SPEED);
                 
         window.setView(MetaComponents::view);
-        //window.setView(sceneView.getView()); 
         
-       // log_info("Finished update in gamePlayScene");
     }
     catch (const std::exception& e) {
         log_error("Exception in updateSprites: " + std::string(e.what()));
