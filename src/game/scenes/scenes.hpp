@@ -34,7 +34,7 @@ class Scene {
   virtual ~Scene() = default; 
 
   // base functions inside scene
-  void runScene(float deltaTime, float globalTime);  
+  void runScene();  
   void restartScene();
   void handleGameFlags(); 
 
@@ -56,10 +56,6 @@ class Scene {
   virtual void draw(); 
   
  protected:
-  // Times - copied from game.cpp
-  float deltaTime {}; 
-  float globalTime {}; 
-
   // Other game components 
   sf::RenderWindow& window; // from game.hpp
 

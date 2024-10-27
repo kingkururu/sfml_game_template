@@ -13,10 +13,7 @@ Scene::Scene( sf::RenderWindow& gameWindow ) : window(gameWindow), sceneView(Con
 }
 
 /* runScene that takes in delta time and global time from GameManager class to execute scene logic */
-void Scene::runScene(float deltaT, float globalT){
-    deltaTime = deltaT;
-    globalTime = globalT; 
-    
+void Scene::runScene(){
     /* inside the while loop in game, only runs when gameEnd state is false */
     if (!FlagSystem::flagEvents.gameEnd) {
         setTime();
@@ -167,7 +164,7 @@ void gamePlayScene::update() {
        // log_info("Calling deleteInvisibleSprites...");
         deleteInvisibleSprites();
 
-        button1->changeAnimation(deltaTime);
+        button1->changeAnimation(MetaComponents::deltaTime);
                 
        // log_info("Setting view...");
         window.setView(sceneView.getView()); 

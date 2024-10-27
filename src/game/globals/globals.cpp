@@ -7,6 +7,10 @@
 
 #include "globals.hpp"
 
+namespace MetaComponents {
+    sf::Clock clock;
+}
+
 /* constant variables defined here */
 namespace Constants {
 

@@ -24,12 +24,6 @@ GameManager::GameManager()
 
 /* runGame calls to createAssets from scenes and loops until window is closed to run scene events */
 void GameManager::runGame() {
-    auto logger = spdlog::get("error_logger"); 
-    if (!logger) {
-        spdlog::error("Logger not initialized.");
-        return;
-    }
-
     try {     
         loadScenes(); 
 
@@ -41,18 +35,19 @@ void GameManager::runGame() {
         log_info("\tGame Ended\n"); 
             
     } catch (const std::exception& e) {
-        logger->error("Exception in runGame: {}", e.what());
+        log_error("Exception in runGame: {}" + std::string(e.what())); 
+        mainWindow.getWindow().close(); 
     }
 }
 
 void GameManager::runScenesFlags(){
 
     if(FlagSystem::gameScene1Flags.sceneStart && !FlagSystem::gameScene1Flags.sceneEnd){ 
-        gameScene->runScene(deltaTime, globalTime);
+        gameScene->runScene();
     }
 
     if(FlagSystem::gameSceneNextFlags.sceneStart  && !FlagSystem::gameSceneNextFlags.sceneEnd){
-        gameSceneNext->runScene(deltaTime, globalTime);
+        gameSceneNext->runScene();
     }
 }
 
@@ -65,8 +60,8 @@ void GameManager::loadScenes(){
 /* countTime counts global time and delta time for scenes to later use in runScene */
 void GameManager::countTime() {
     sf::Time frameTime = clock.restart();
-    deltaTime = frameTime.asSeconds(); 
-    globalTime += deltaTime;
+    MetaComponents::deltaTime = frameTime.asSeconds(); 
+    MetaComponents::globalTime += MetaComponents::deltaTime;
 }
 
 /* handleEventInput takes in keyboard and mouse input. It modifies flagEvents and calls setMouseClickedPos in scene to 
@@ -79,10 +74,10 @@ void GameManager::handleEventInput() {
             return; 
         }
         if (event.type == sf::Event::Resized){ 
-            sf::FloatRect visibleArea(0.0f, 0.0f, event.size.width, event.size.height);
-            mainWindow.getWindow().setView(sf::View(visibleArea)); 
+            float aspectRatio = static_cast<float>(event.size.width) / event.size.height;
+            sf::FloatRect visibleArea(0.0f, 0.0f, Constants::VIEW_SIZE_X, Constants::VIEW_SIZE_X / aspectRatio);
+            mainWindow.getWindow().setView(sf::View(visibleArea));
         }
-
         if (event.type == sf::Event::KeyPressed) {
             switch (event.key.code) {
                 case sf::Keyboard::A:

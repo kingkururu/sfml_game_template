@@ -13,10 +13,16 @@
 #include <iostream> 
 
 #include "log.hpp" 
+#include "window.hpp"
 
 namespace MetaComponents{
     inline sf::Vector2i mouseClickedPosition {}; 
-    
+
+    inline float globalTime {};
+    inline float deltaTime {}; 
+
+    //extern GameWindow mainWindow;
+    extern sf::Clock clock;
 }
 
 /* constant variables declared here */
