@@ -32,6 +32,22 @@ void Scene::draw(){
     window.display(); 
  }
 
+void Scene::moveViewPortWASD(){
+    // move view port 
+    if(FlagSystem::flagEvents.aPressed){
+        MetaComponents::view.move(sf::Vector2f(-1, 0)); 
+    }
+    if(FlagSystem::flagEvents.dPressed){
+        MetaComponents::view.move(sf::Vector2f(1, 0)); 
+    }
+    if(FlagSystem::flagEvents.sPressed){
+        MetaComponents::view.move(sf::Vector2f(0, 1)); 
+    }
+    if(FlagSystem::flagEvents.wPressed){
+        MetaComponents::view.move(sf::Vector2f(0, -1)); 
+    }
+}
+
 /* Resets everything for scene to start again. The position, moveState, flagEvents, etc are all reset */
 void Scene::restartScene() {
     // re-play background music
@@ -102,19 +118,8 @@ void gamePlayScene::setTime(){
 
 /* deals with inputs from device, let known by flagEvents. */
 void gamePlayScene::handleInput() {
-    // move view port 
-    if(FlagSystem::flagEvents.aPressed){
-        MetaComponents::view.move(sf::Vector2f(-1, 0)); 
-    }
-    if(FlagSystem::flagEvents.dPressed){
-        MetaComponents::view.move(sf::Vector2f(1, 0)); 
-    }
-    if(FlagSystem::flagEvents.sPressed){
-        MetaComponents::view.move(sf::Vector2f(0, 1)); 
-    }
-    if(FlagSystem::flagEvents.wPressed){
-        MetaComponents::view.move(sf::Vector2f(0, -1)); 
-    }
+    moveViewPortWASD();
+
     if(FlagSystem::flagEvents.mouseClicked){
         if ( button1->getVisibleState() && 
             physics::boundingBoxCollisionHelper(MetaComponents::mouseClickedPosition, *button1)){
@@ -213,20 +218,7 @@ void gamePlayScene2::createAssets() {
 }
 
 void gamePlayScene2::handleInput() {
-    
-    if(FlagSystem::flagEvents.aPressed){
-        MetaComponents::view.move(sf::Vector2f(-1, 0)); 
-    }
-    if(FlagSystem::flagEvents.dPressed){
-        MetaComponents::view.move(sf::Vector2f(1, 0)); 
-    }
-    if(FlagSystem::flagEvents.sPressed){
-        MetaComponents::view.move(sf::Vector2f(0, 1)); 
-    }
-    if(FlagSystem::flagEvents.wPressed){
-        MetaComponents::view.move(sf::Vector2f(0, -1)); 
-    }
-    
+    moveViewPortWASD();
 }
 
 void gamePlayScene2::draw() {

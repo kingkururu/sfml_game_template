@@ -37,7 +37,8 @@ class Scene {
   void runScene();  
   void restartScene();
   void handleGameFlags(); 
-
+  void moveViewPortWASD();
+  
   // blank templates here
   virtual void createAssets(){}; 
   virtual void respawnAssets(){}; 
@@ -59,8 +60,7 @@ class Scene {
   // Other game components 
   sf::RenderWindow& window; // from game.hpp
 
-  //GameView sceneView; 
-  FlagSystem::SceneEvents sceneEvents; 
+  FlagSystem::SceneEvents sceneEvents; // scene's own flag events
 };
 
 /* costumize scenes by adding something */
