@@ -19,35 +19,35 @@ namespace physics{
 
     // falling objects 
     sf::Vector2f freeFall( float speed, sf::Vector2f originalPos){
-        return { originalPos.x, originalPos.y += speed * timeStep * gravity };
+        return { originalPos.x, originalPos.y += speed * MetaComponents::deltaTime * gravity };
     }
 
     // object moving in a direction vector
     sf::Vector2f follow( float speed, sf::Vector2f originalPos, sf::Vector2f acceleration, const sf::Vector2f& direction){
-         sf::Vector2f movement(direction.x * speed * timeStep * acceleration.x, direction.y * speed * timeStep * acceleration.y);
+         sf::Vector2f movement(direction.x * speed * MetaComponents::deltaTime * acceleration.x, direction.y * speed * MetaComponents::deltaTime * acceleration.y);
         return originalPos + movement;
     }
 
     // moving x or y positions based on directions
     sf::Vector2f moveLeft( float speed, sf::Vector2f originalPos, sf::Vector2f acceleration){
-        return { originalPos.x -= speed * timeStep * acceleration.x, originalPos.y };
+        return { originalPos.x -= speed * MetaComponents::deltaTime * acceleration.x, originalPos.y };
     }
     sf::Vector2f moveRight( float speed, sf::Vector2f originalPos, sf::Vector2f acceleration){
-        return { originalPos.x += speed * timeStep * acceleration.x, originalPos.y };
+        return { originalPos.x += speed * MetaComponents::deltaTime * acceleration.x, originalPos.y };
     }
     sf::Vector2f moveUp( float speed, sf::Vector2f originalPos, sf::Vector2f acceleration){
-        return { originalPos.x, originalPos.y -= speed * timeStep * acceleration.y};
+        return { originalPos.x, originalPos.y -= speed * MetaComponents::deltaTime * acceleration.y};
     }
     sf::Vector2f moveDown( float speed, sf::Vector2f originalPos, sf::Vector2f acceleration){
-        return { originalPos.x, originalPos.y += speed * timeStep * acceleration.y};
+        return { originalPos.x, originalPos.y += speed * MetaComponents::deltaTime * acceleration.y};
     }
 
     // jumping sprites 
-    sf::Vector2f jump(float& elapsedTime, float speed, sf::Vector2f originalPos, float deltaTime ){
+    sf::Vector2f jump(float& elapsedTime, float speed, sf::Vector2f originalPos){
        if(elapsedTime < 0.4f){
-            return { originalPos.x, originalPos.y -= speed * deltaTime * gravity };
+            return { originalPos.x, originalPos.y -= speed * MetaComponents::deltaTime * gravity };
         } else if (elapsedTime > 0.4f && elapsedTime < 0.8f){
-            return { originalPos.x, originalPos.y += speed * deltaTime * gravity }; 
+            return { originalPos.x, originalPos.y += speed * MetaComponents::deltaTime * gravity }; 
         } else {
             FlagSystem::flagEvents.spacePressed = false; 
             elapsedTime = 0.0f; 

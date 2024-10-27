@@ -26,7 +26,6 @@ namespace physics{
     extern RaycastResult cachedRaycastResult; 
 
     constexpr float gravity = 9.8f;
-    constexpr float timeStep = 0.01667;
 
     // falling objects
     sf::Vector2f freeFall(float speed, sf::Vector2f originalPo);
@@ -37,7 +36,7 @@ namespace physics{
     sf::Vector2f moveRight( float speed, sf::Vector2f originalPos, sf::Vector2f acceleration = {1.0f, 1.0f});
     sf::Vector2f moveUp( float speed, sf::Vector2f originalPos, sf::Vector2f acceleration = {1.0f, 1.0f});
     sf::Vector2f moveDown( float speed, sf::Vector2f originalPos, sf::Vector2f acceleration = {1.0f, 1.0f});
-    sf::Vector2f jump(float& elapsedTime, float speed, sf::Vector2f originalPos, float deltaTime ); 
+    sf::Vector2f jump(float& elapsedTime, float speed, sf::Vector2f originalPos); 
 
     template<typename SpriteType, typename MoveFunc>
     void spriteMover(std::unique_ptr<SpriteType>& sprite, const MoveFunc& moveFunc) {
@@ -65,7 +64,7 @@ namespace physics{
 
         // Handle different types of MoveFunc
         if constexpr (std::is_invocable_v<MoveFunc, float&, float, sf::Vector2f, float>){
-            sprite->changePosition(moveFunc(elapsedTime, speed, originalPos, timeStep)); 
+            sprite->changePosition(moveFunc(elapsedTime, speed, originalPos)); 
         }
         sprite->updatePos();  // Update sprite's position after applying the move function
     }
