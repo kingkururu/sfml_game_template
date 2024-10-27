@@ -9,7 +9,7 @@
 
 #include "game.hpp"
 
-int main( ){
+int main(){
     GameManager makeGame;
 
     makeGame.runGame();

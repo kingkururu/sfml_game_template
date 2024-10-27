@@ -18,7 +18,6 @@
 #include <math.h>
 #include <functional> 
 #include "sprites.hpp"
-#include "window.hpp"
 #include "globals.hpp"
 
 /* declarations for physics methods */

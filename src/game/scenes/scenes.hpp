@@ -23,7 +23,6 @@
 #include "globals.hpp"
 #include "physics.hpp"
 #include "utils.hpp"
-#include "window.hpp"
 #include "tiles.hpp"
 #include "log.hpp"
 
@@ -38,7 +37,7 @@ class Scene {
   void restartScene();
   void handleGameFlags(); 
   void moveViewPortWASD();
-  
+
   // blank templates here
   virtual void createAssets(){}; 
   virtual void respawnAssets(){}; 
