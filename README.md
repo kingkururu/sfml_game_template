@@ -108,5 +108,5 @@ Note: Adjust file paths, include dependencies, and modify other sections based o
 ## Game Architecture Overview
 <img width="976" alt="Screenshot 2024-10-26 at 8 25 33 PM" src="https://github.com/user-attachments/assets/5b57e765-6977-43a8-a479-05965d5e8a9c">
  
- <img width="984" alt="Screenshot 2024-10-27 at 2 29 28 PM" src="https://github.com/user-attachments/assets/24564066-80af-46f9-a6f5-a82b19f82bf2">
+<img width="1232" alt="Screenshot 2024-10-27 at 2 39 21 PM" src="https://github.com/user-attachments/assets/17f4318e-7e0b-402e-916b-69122d6d4300">
  
