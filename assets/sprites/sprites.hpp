@@ -63,7 +63,7 @@ public:
     void setAnimation(std::vector<sf::IntRect> AnimationRects) { animationRects = AnimationRects; } 
     
     void setAnimChangeState(bool newState) { animChangeState = newState; }
-    void changeAnimation(float deltaTime); 
+    void changeAnimation(); 
     void setRects(int animNum); 
 
     using Sprite::getRadius;
@@ -94,7 +94,7 @@ class Background : public Sprite{
 public:
    explicit Background(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture);
     ~Background() override{};
-    void updateBackground(float deltaTime, float backgroundSpeed); 
+    void updateBackground(float backgroundSpeed); 
     sf::Sprite& returnSpritesShape2() { return *spriteCreated2; }
     bool getBackgroundMoveState() { return backgroundMoveState; } 
     void setBackgroundMoveState(bool newState) { backgroundMoveState = newState; }

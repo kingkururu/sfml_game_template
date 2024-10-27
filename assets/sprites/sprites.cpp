@@ -64,10 +64,10 @@ Background::Background(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<
 }
 
 /* moves background to the left and fills the screen with the same image stuck next to the original image */
-void Background::updateBackground(float deltaTime, float speed) {
+void Background::updateBackground(float speed) {
         // Move both background sprites to the left
-        spriteCreated->move(-speed * deltaTime, 0);
-        spriteCreated2->move(-speed * deltaTime, 0);
+        spriteCreated->move(-speed * MetaComponents::deltaTime, 0);
+        spriteCreated2->move(-speed * MetaComponents::deltaTime, 0);
 
         // Reposition sprites when they go off screen
         if (spriteCreated->getPosition().x + spriteCreated->getGlobalBounds().width < 0) {
@@ -95,10 +95,10 @@ void Animated::setRects(int animNum){
 }
 
 /* changes animation based on time */
-void Animated::changeAnimation(float deltaTime) {
+void Animated::changeAnimation() {
     try {
         if (animChangeState) {
-            elapsedTime += deltaTime;
+            elapsedTime += MetaComponents::deltaTime;
             if (elapsedTime > Constants::ANIMATION_CHANGE_TIME) {
                 ++currentIndex;
                 if (currentIndex >= indexMax) {

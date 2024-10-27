@@ -163,7 +163,8 @@ void gamePlayScene::update() {
        // log_info("Calling deleteInvisibleSprites...");
         deleteInvisibleSprites();
 
-        button1->changeAnimation(MetaComponents::deltaTime);
+        if(button1) button1->changeAnimation();
+        if(background) background->updateBackground(Constants::BACKGROUND_SPEED);
                 
         window.setView(MetaComponents::view);
         //window.setView(sceneView.getView()); 
