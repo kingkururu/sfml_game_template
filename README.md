@@ -108,7 +108,7 @@ Note: Adjust file paths, include dependencies, and modify other sections based o
 ## Game Architecture Overview
 <img width="976" alt="Screenshot 2024-10-26 at 8 25 33 PM" src="https://github.com/user-attachments/assets/5b57e765-6977-43a8-a479-05965d5e8a9c">
  
-<img width="1232" alt="Screenshot 2024-10-27 at 2 39 21 PM" src="https://github.com/user-attachments/assets/17f4318e-7e0b-402e-916b-69122d6d4300">
+<img width="1336" alt="Screenshot 2024-10-27 at 4 54 42 PM" src="https://github.com/user-attachments/assets/9276b751-5177-43eb-8c70-76a05e7df1d0">
  
 ## How to Use the 2D Game Template
 This guide explains how to set up and start building your 2D game using the provided game template. Follow these steps to add scenes, manage constants, and integrate other game elements.
