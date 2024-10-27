@@ -59,7 +59,7 @@ void GameManager::loadScenes(){
 
 /* countTime counts global time and delta time for scenes to later use in runScene */
 void GameManager::countTime() {
-    sf::Time frameTime = clock.restart();
+    sf::Time frameTime = MetaComponents::clock.restart();
     MetaComponents::deltaTime = frameTime.asSeconds(); 
     MetaComponents::globalTime += MetaComponents::deltaTime;
 }

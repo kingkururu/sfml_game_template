@@ -36,7 +36,6 @@ private:
 
     /* Game components (private in GameManager) */
     GameWindow mainWindow;
-    sf::Clock clock;
 
     /* Make more scene here. ex) name it openingScene, scene1, etc */
     //std::unique_ptr<Scene> scene;

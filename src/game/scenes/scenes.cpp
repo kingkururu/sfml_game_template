@@ -13,17 +13,14 @@ Scene::Scene( sf::RenderWindow& gameWindow ) : window(gameWindow), sceneView(Con
 }
 
 /* runScene that takes in delta time and global time from GameManager class to execute scene logic */
-void Scene::runScene(){
-    /* inside the while loop in game, only runs when gameEnd state is false */
-    if (!FlagSystem::flagEvents.gameEnd) {
-        setTime();
-        handleInput();
-        respawnAssets(); 
-        handleGameEvents(); 
-        updateDrawablesVisibility(); 
-    }
-    /* inside the while loop in game, always runs */
-    handleGameFlags(); 
+void Scene::runScene() {
+    if (FlagSystem::flagEvents.gameEnd) return; // Early exit if game ended
+    setTime();
+    handleInput();
+    respawnAssets();
+    handleGameEvents();
+    updateDrawablesVisibility();
+    handleGameFlags();
     update();
     draw();
 }

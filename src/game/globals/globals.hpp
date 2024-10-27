@@ -21,7 +21,6 @@ namespace MetaComponents{
     inline float globalTime {};
     inline float deltaTime {}; 
 
-    //extern GameWindow mainWindow;
     extern sf::Clock clock;
 }
 
@@ -138,10 +137,10 @@ namespace FlagSystem {
 
         // resets every flag
         void resetFlags() {
-            log_error("Failed resetting flagEvents");
-            std::memset(this, 0, sizeof(*this));
+            gameEnd = wPressed = aPressed = sPressed = dPressed = bPressed = spacePressed = mouseClicked = false;
             log_info("Flags have been successfully reset.");
         }
+
 
         // resets keyboard flags only 
         void flagKeyReleased() {
