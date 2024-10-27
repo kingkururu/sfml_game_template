@@ -19,11 +19,13 @@
 #include "sprites.hpp"
 #include "sound.hpp"
 #include "fonts.hpp"
+
 #include "globals.hpp"
 #include "physics.hpp"
 #include "utils.hpp"
 #include "window.hpp"
 #include "tiles.hpp"
+#include "log.hpp"
 
 /* Base scene class */
 class Scene {

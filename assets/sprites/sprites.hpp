@@ -15,6 +15,7 @@
 #include <stdexcept>
 #include <map>
 #include <SFML/Graphics.hpp>
+#include "log.hpp"
 #include "globals.hpp"
 
 /* base class for all sprites; contains position, scale, and texture */

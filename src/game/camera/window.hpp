@@ -10,6 +10,7 @@
 #define window_hpp
 
 #include <SFML/Graphics.hpp>
+#include "log.hpp" 
 
 class GameWindow{
 public: 

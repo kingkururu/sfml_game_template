@@ -1,9 +1,4 @@
 #include "log.hpp"
-#include <spdlog/sinks/basic_file_sink.h>
-#include <spdlog/sinks/stdout_color_sinks.h>
-#include <spdlog/spdlog.h>
-
-#include <csignal>
 
 void init_logging() {
     // Define the log file paths

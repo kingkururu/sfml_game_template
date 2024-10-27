@@ -19,6 +19,7 @@
 #include "scenes.hpp"
 #include "globals.hpp"
 #include "window.hpp"
+#include "log.hpp" 
 
 class GameManager {
 public:

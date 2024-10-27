@@ -14,7 +14,7 @@
 #include <string>
 #include <iostream> 
 #include <stdexcept>
-#include "globals.hpp"
+#include "log.hpp" 
 
 /* text class declaration */
 class TextClass : public sf::Drawable {

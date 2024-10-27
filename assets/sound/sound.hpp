@@ -14,7 +14,7 @@
 #include <string>
 #include <stdexcept>
 #include <iostream>
-#include "globals.hpp"
+#include "log.hpp"
 
 /* sound class containing elements to make up a sound */
 class SoundClass{

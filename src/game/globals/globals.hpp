@@ -12,7 +12,7 @@
 #include <vector>
 #include <iostream> 
 
-#include "log.hpp"
+#include "log.hpp" 
 
 namespace MetaComponents{
     inline sf::Vector2i mouseClickedPosition {}; 
