@@ -10,9 +10,9 @@
 #include "game.hpp"
 
 int main(){
-    GameManager makeGame;
+    GameManager game1;
 
-    makeGame.runGame();
+    game1.runGame();
     
     return 0; 
 }

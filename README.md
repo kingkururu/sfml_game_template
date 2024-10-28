@@ -13,6 +13,15 @@ This repository provides a foundational template for building 2D games using C++
 -   Scene Management: Supports multiple scenes (e.g., main menu, gameplay).
 -   Asset Management: Structure for managing sprites, sounds, fonts, and tiles.
 -   Physics & Collision Detection: Includes a basic physics module to detect collisions.
+
+Note: This template does not include a UI layer for customization. Changes must be made directly in the code to implement specific game functionality.
+
+
+
+
+
+
+
 ## Prerequisites
 
 -   Compiler: Requires clang++ (or g++) with support for C++17
