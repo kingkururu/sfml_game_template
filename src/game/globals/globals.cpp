@@ -35,7 +35,7 @@ namespace Constants {
         }
 
         if (!BACKGROUND_TEXTURE2->loadFromFile(BACKGROUNDSPRITE_PATH2)) {
-            log_warning("Failed to load background texture");
+            log_warning("Failed to load background2 texture");
         }
 
         if (!BUTTON1_TEXTURE->loadFromFile(BUTTON1_PATH)) {
@@ -61,19 +61,8 @@ namespace Constants {
         if (!TEXT_FONT->loadFromFile(TEXT_PATH)) {
             log_warning("Failed to load text font");
         }
-
-        /* 
-        if (! (some texture or font or sound) -> loadFromFile (some_PATH)) {
-            log_warning("\Failed to load ", );
-            std::cerr << "Failed to load ... from file: " << some_PATH << std::endl;
-        }
-         if (! (some music ) -> openFromFile (some_PATH)) {
-            std::cerr << "Failed to load ... from file: " << some_PATH << std::endl;
-        }
-        */
      
         //make rects for animations     
-        
         for(int i = 0; i < BUTTON1_INDEXMAX; ++i ){
             BUTTON1_ANIMATIONRECTS.emplace_back(sf::IntRect{ 170 * i, 0, 170, 170 }); 
         }
@@ -86,27 +75,26 @@ namespace Constants {
     }
 
     std::shared_ptr<sf::Uint8[]> createBitmask( const std::shared_ptr<sf::Texture>& texture, const sf::IntRect& rect) {
+        if (!texture) {
+            log_warning("\tfailed to create bitmask ( texture is empty )");
+            return nullptr;
+        }
 
-    if (!texture) {
-        log_warning("\tfailed to create bitmask ( texture is empty )");
-        return nullptr;
-    }
+        // Ensure the rect is within the bounds of the texture
+        sf::Vector2u textureSize = texture->getSize();
+        if (rect.left < 0 || rect.top < 0 || 
+            rect.left + rect.width > static_cast<int>(textureSize.x) || 
+            rect.top + rect.height > static_cast<int>(textureSize.y)) {
+            log_warning("\tfailed to create bitmask ( rect is out of bounds)");
+            return nullptr;
+        }
 
-    // Ensure the rect is within the bounds of the texture
-    sf::Vector2u textureSize = texture->getSize();
-    if (rect.left < 0 || rect.top < 0 || 
-        rect.left + rect.width > static_cast<int>(textureSize.x) || 
-        rect.top + rect.height > static_cast<int>(textureSize.y)) {
-        log_warning("\tfailed to create bitmask ( rect is out of bounds)");
-        return nullptr;
-    }
+        sf::Image image = texture->copyToImage();
+        unsigned int width = rect.width;
+        unsigned int height = rect.height;
 
-    sf::Image image = texture->copyToImage();
-    unsigned int width = rect.width;
-    unsigned int height = rect.height;
-
-    unsigned int bitmaskSize = (width * height) / 8 + ((width * height) % 8 != 0); // rounding up
-    std::shared_ptr<sf::Uint8[]> bitmask(new sf::Uint8[bitmaskSize](), std::default_delete<sf::Uint8[]>());
+        unsigned int bitmaskSize = (width * height) / 8 + ((width * height) % 8 != 0); // rounding up
+        std::shared_ptr<sf::Uint8[]> bitmask(new sf::Uint8[bitmaskSize](), std::default_delete<sf::Uint8[]>());
 
          for (unsigned int y = 0; y < height; ++y) {
             for (unsigned int x = 0; x < width; ++x) {
