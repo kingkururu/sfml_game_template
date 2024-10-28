@@ -6,9 +6,6 @@
 //
 #pragma once
 
-#ifndef physics_hpp
-#define physics_hpp
-
 #include <type_traits>
 #include <iostream>
 #include <memory>
@@ -178,4 +175,3 @@ namespace physics{
 
 }
 
-#endif /* game_hpp */

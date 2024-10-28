@@ -7,9 +7,6 @@
 
 #pragma once
 
-#ifndef tiles_hpp
-#define tiles_hpp
-
 #include <stdio.h>
 #include <vector>
 #include <memory>
@@ -65,4 +62,3 @@ private:
 };
 
 
-#endif /* tiles_hpp */

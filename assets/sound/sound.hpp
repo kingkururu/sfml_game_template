@@ -6,9 +6,6 @@
 //
 #pragma once
 
-#ifndef sound_hpp
-#define sound_hpp
-
 #include <SFML/Audio.hpp>
 #include <memory>
 #include <string>
@@ -24,7 +21,7 @@ public:
     const sf::Sound& returnSound() const { return *sound; }
     ~SoundClass() = default; 
     void setVolume(float volume);
-    float const getVolume() { return volume; } 
+    float const getVolume() const { return volume; } 
 
 protected:
     std::weak_ptr<sf::SoundBuffer> soundBuffer;
@@ -45,4 +42,3 @@ private:
     float volume{};
 };
 
-#endif /* sound_hpp */

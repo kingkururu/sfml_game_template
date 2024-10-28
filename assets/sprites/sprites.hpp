@@ -6,9 +6,6 @@
 //
 #pragma once
 
-#ifndef sprites_hpp
-#define sprites_hpp
-
 #include <stdio.h>
 #include <string> 
 #include <iostream>
@@ -228,4 +225,3 @@ private:
 };
 
 
-#endif /* sprites_hpp */

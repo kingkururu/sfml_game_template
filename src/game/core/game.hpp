@@ -8,9 +8,6 @@
 
 #pragma once
 
-#ifndef GAME_HPP
-#define GAME_HPP
-
 #include <iostream>
 #include <stdexcept>
 
@@ -45,4 +42,3 @@ private:
 
 };
 
-#endif // GAME_HPP

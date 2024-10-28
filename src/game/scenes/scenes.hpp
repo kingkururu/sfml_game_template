@@ -6,9 +6,6 @@
 //
 #pragma once
 
-#ifndef scenes_hpp
-#define scenes_hpp
-
 #include <iostream>
 #include <stdexcept>
 
@@ -136,4 +133,3 @@ public:
   std::unique_ptr<Background> background; 
 };
 
-#endif /* scenes_hpp */

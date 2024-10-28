@@ -235,16 +235,12 @@ void gamePlayScene2::draw() {
 
 void gamePlayScene2::update() {
     try {
-        //log_info("Starting update in gamePlayScene");
 
         // Remove invisible sprites
-       // log_info("Calling deleteInvisibleSprites...");
         deleteInvisibleSprites();
 
-       // log_info("Setting view...");
         window.setView(MetaComponents::view); 
         
-       // log_info("Finished update in gamePlayScene");
     }
     catch (const std::exception& e) {
         log_error("Exception in updateSprites: " + std::string(e.what()));

@@ -1,8 +1,5 @@
 #pragma once
 
-#ifndef LOG_HPP
-#define LOG_HPP
-
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/basic_file_sink.h> 
 #include <filesystem> 
@@ -19,4 +16,3 @@ void signal_handler(int signal);
 void setup_signal_handlers();
 
 
-#endif // LOG_HPP

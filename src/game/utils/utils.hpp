@@ -7,9 +7,6 @@
 
 #pragma once
 
-#ifndef utils_hpp
-#define utils_hpp
-
 #include <vector>
 #include <memory>
 
@@ -20,4 +17,3 @@ namespace utils {
 }
 
 
-#endif // utils_hpp

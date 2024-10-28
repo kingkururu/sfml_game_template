@@ -6,9 +6,6 @@
 //
 #pragma once
 
-#ifndef fonts_hpp
-#define fonts_hpp
-
 #include <SFML/Graphics.hpp>
 #include <memory>
 #include <string>
@@ -43,4 +40,3 @@ private:
 };
 
 
-#endif /* fonts_hpp */

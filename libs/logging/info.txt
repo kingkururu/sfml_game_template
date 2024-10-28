@@ -1,16 +1,16 @@
-[2024-10-27 21:25:32.627] [info_logger] [info] 	Constants initialized 
-[2024-10-27 21:25:32.667] [info_logger] [info] scene made
-[2024-10-27 21:25:32.667] [info_logger] [info] scene made
-[2024-10-27 21:25:32.667] [info_logger] [info] scene made
-[2024-10-27 21:25:32.667] [info_logger] [info] 	Game initialized
-[2024-10-27 21:25:32.667] [info_logger] [info] Sprite initialized successfully
-[2024-10-27 21:25:32.667] [info_logger] [info] Background created at position (0.000000, 0.000000)
-[2024-10-27 21:25:32.667] [info_logger] [info] Music initialized successfully, volume is 100.000000
-[2024-10-27 21:25:32.667] [info_logger] [info] Sprite initialized successfully
-[2024-10-27 21:25:32.667] [info_logger] [info] Sound initialized successfully
-[2024-10-27 21:25:32.667] [info_logger] [info] text initialized successully
-[2024-10-27 21:25:32.667] [info_logger] [info] Sprite initialized successfully
-[2024-10-27 21:25:32.667] [info_logger] [info] Background created at position (0.000000, 0.000000)
-[2024-10-27 21:26:01.861] [info_logger] [info] button clicked
-[2024-10-27 21:26:05.406] [info_logger] [info] 	Game Ended
+[2024-10-28 09:50:57.633] [info_logger] [info] 	Constants initialized 
+[2024-10-28 09:50:57.672] [info_logger] [info] scene made
+[2024-10-28 09:50:57.672] [info_logger] [info] scene made
+[2024-10-28 09:50:57.672] [info_logger] [info] scene made
+[2024-10-28 09:50:57.672] [info_logger] [info] 	Game initialized
+[2024-10-28 09:50:57.672] [info_logger] [info] Sprite initialized successfully
+[2024-10-28 09:50:57.672] [info_logger] [info] Background created at position (0.000000, 0.000000)
+[2024-10-28 09:50:57.672] [info_logger] [info] Music initialized successfully, volume is 100.000000
+[2024-10-28 09:50:57.672] [info_logger] [info] Sprite initialized successfully
+[2024-10-28 09:50:57.672] [info_logger] [info] Sound initialized successfully
+[2024-10-28 09:50:57.672] [info_logger] [info] text initialized successully
+[2024-10-28 09:50:57.672] [info_logger] [info] Sprite initialized successfully
+[2024-10-28 09:50:57.672] [info_logger] [info] Background created at position (0.000000, 0.000000)
+[2024-10-28 09:50:59.869] [info_logger] [info] button clicked
+[2024-10-28 09:51:01.793] [info_logger] [info] 	Game Ended
 
