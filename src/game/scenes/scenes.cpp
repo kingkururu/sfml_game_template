@@ -147,7 +147,7 @@ void gamePlayScene::handleInput() {
     }
 }
 
-// makes the view only stay inside background sprite 
+/* makes the view only stay inside background sprite  */ 
 void gamePlayScene::moveViewPortWASD(){
     if (!background){
         return; 
