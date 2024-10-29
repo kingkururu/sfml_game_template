@@ -7,6 +7,12 @@
 
 #include "scenes.hpp"
 
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Base scene functions  
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+
 /* Scene constructure sets up window and sprite respawn times */
 Scene::Scene( sf::RenderWindow& gameWindow ) : window(gameWindow) /* initialize other elements here */ { 
     MetaComponents::view = sf::View(Constants::VIEW_RECT); 
@@ -70,6 +76,12 @@ void Scene::handleGameFlags(){
     }
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Game Scene #1 down below 
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+
 /* Gets called once before the main game loop to handle cpu-heavy work only once at the beggining */
 void gamePlayScene::createAssets() {
     try {
@@ -83,9 +95,7 @@ void gamePlayScene::createAssets() {
                                    Constants::BUTTON1_ANIMATIONRECTS, Constants::BUTTON1_INDEXMAX, 
                                    utils::convertToWeakPtrVector(Constants::BUTTON1_BITMASK));
         button1->setRects(0); 
-        //  if (backgroundMusic){
-        //     backgroundMusic->returnMusic().play(); 
-        //  }
+        //  if (backgroundMusic) backgroundMusic->returnMusic().play(); 
         
         playerJumpSound = std::make_unique<SoundClass>(Constants::PLAYERJUMP_SOUNDBUFF, Constants::PLAYERJUMPSOUND_VOLUME); 
           
@@ -132,7 +142,42 @@ void gamePlayScene::handleInput() {
             FlagSystem::gameSceneNextFlags.sceneEnd = false;
 
             window.clear();
+            return; // put here for anything that could be added below in the future
         }
+    }
+}
+
+// makes the view only stay inside background sprite 
+void gamePlayScene::moveViewPortWASD(){
+    if (!background){
+        return; 
+    }
+    // Define boundaries based on the background sprite
+    float bgLeft = background->returnSpritesShape().getGlobalBounds().left;
+    float bgRight = bgLeft + background->returnSpritesShape().getGlobalBounds().width;
+    float bgTop = background->returnSpritesShape().getGlobalBounds().top;
+    float bgBottom = bgTop + background->returnSpritesShape().getGlobalBounds().height;
+
+    // Get the current view boundaries
+    sf::FloatRect viewBounds(
+        MetaComponents::view.getCenter().x - MetaComponents::view.getSize().x / 2,
+        MetaComponents::view.getCenter().y - MetaComponents::view.getSize().y / 2,
+        MetaComponents::view.getSize().x,
+        MetaComponents::view.getSize().y
+    );
+
+    // Move viewport only if within background boundaries
+    if(FlagSystem::flagEvents.aPressed && viewBounds.left > bgLeft){
+        MetaComponents::view.move(sf::Vector2f(-1, 0)); 
+    }
+    if(FlagSystem::flagEvents.dPressed && viewBounds.left + viewBounds.width < bgRight){
+        MetaComponents::view.move(sf::Vector2f(1, 0)); 
+    }
+    if(FlagSystem::flagEvents.sPressed && viewBounds.top + viewBounds.height < bgBottom){
+        MetaComponents::view.move(sf::Vector2f(0, 1)); 
+    }
+    if(FlagSystem::flagEvents.wPressed && viewBounds.top > bgTop){
+        MetaComponents::view.move(sf::Vector2f(0, -1)); 
     }
 }
 
@@ -147,10 +192,7 @@ void gamePlayScene::handleGameEvents() {
 } 
 
 void gamePlayScene::handleSceneFlags(){
-    // if flagEvents.gameEnd is true or some event ... do somthing 
-    // if(gameScene1Flags.sceneEnd){
-    //    return; 
-    // }
+    // do something from its private flag
 }
 
 /* Updates sprite and text positions when their moveState is true and their pointers are not null. 
@@ -201,6 +243,12 @@ void gamePlayScene::draw() {
          log_error("Exception in draw: " + std::string(e.what()));
     }
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Game Scene #1 from down below 
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
 
 void gamePlayScene2::createAssets() {
  try {

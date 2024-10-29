@@ -12,8 +12,8 @@ namespace physics{
     
     // struct to hold raycast operation results that use vector of sprites
     struct RaycastResult {
-    std::vector<float> collisionTimes;
-    int counter; 
+        std::vector<float> collisionTimes;
+        int counter; 
     };
     RaycastResult cachedRaycastResult {}; 
 

@@ -33,7 +33,6 @@ class Scene {
   void runScene();  
   void restartScene();
   void handleGameFlags(); 
-  void moveViewPortWASD();
 
   // blank templates here
   virtual void createAssets(){}; 
@@ -51,7 +50,8 @@ class Scene {
 
   virtual void update(){};
   virtual void draw(); 
-  
+  virtual void moveViewPortWASD();
+
  protected:
   // Other game components 
   sf::RenderWindow& window; // from game.hpp
@@ -99,6 +99,7 @@ class gamePlayScene : public virtual Scene{
   
   void updateDrawablesVisibility() override; 
   void draw() override; 
+  void moveViewPortWASD() override; 
 
  private:
   std::unique_ptr<Background> background; 
