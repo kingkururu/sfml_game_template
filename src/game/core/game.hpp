@@ -18,6 +18,7 @@
 #include "window.hpp"
 #include "log.hpp" 
 
+// can be manipulated for extra functionality in game
 class GameManager {
 public:
     GameManager();

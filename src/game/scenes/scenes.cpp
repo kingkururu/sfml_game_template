@@ -41,16 +41,16 @@ void Scene::draw(){
 void Scene::moveViewPortWASD(){
     // move view port 
     if(FlagSystem::flagEvents.aPressed){
-        MetaComponents::view.move(sf::Vector2f(-1, 0)); 
+        MetaComponents::view.move(sf::Vector2f(-10, 0)); 
     }
     if(FlagSystem::flagEvents.dPressed){
-        MetaComponents::view.move(sf::Vector2f(1, 0)); 
+        MetaComponents::view.move(sf::Vector2f(10, 0)); 
     }
     if(FlagSystem::flagEvents.sPressed){
-        MetaComponents::view.move(sf::Vector2f(0, 1)); 
+        MetaComponents::view.move(sf::Vector2f(0, 10)); 
     }
     if(FlagSystem::flagEvents.wPressed){
-        MetaComponents::view.move(sf::Vector2f(0, -1)); 
+        MetaComponents::view.move(sf::Vector2f(0, -10)); 
     }
 }
 
@@ -149,7 +149,7 @@ void gamePlayScene::handleInput() {
 
 /* makes the view only stay inside background sprite  */ 
 void gamePlayScene::moveViewPortWASD(){
-    if (!background){
+ if (!background){
         return; 
     }
     // Define boundaries based on the background sprite
@@ -157,6 +157,11 @@ void gamePlayScene::moveViewPortWASD(){
     float bgRight = bgLeft + background->returnSpritesShape().getGlobalBounds().width;
     float bgTop = background->returnSpritesShape().getGlobalBounds().top;
     float bgBottom = bgTop + background->returnSpritesShape().getGlobalBounds().height;
+
+    float bgLeft2 = background->returnSpritesShape2().getGlobalBounds().left;
+    float bgRight2 = bgLeft2 + background->returnSpritesShape2().getGlobalBounds().width;
+    float bgTop2 = background->returnSpritesShape2().getGlobalBounds().top;
+    float bgBottom2 = bgTop2 + background->returnSpritesShape2().getGlobalBounds().height;
 
     // Get the current view boundaries
     sf::FloatRect viewBounds(
@@ -167,18 +172,23 @@ void gamePlayScene::moveViewPortWASD(){
     );
 
     // Move viewport only if within background boundaries
-    if(FlagSystem::flagEvents.aPressed && viewBounds.left > bgLeft){
-        MetaComponents::view.move(sf::Vector2f(-1, 0)); 
+    if(FlagSystem::flagEvents.aPressed && 
+    (viewBounds.left > bgLeft || viewBounds.left > bgLeft2)){
+        MetaComponents::view.move(sf::Vector2f(-10, 0)); 
     }
-    if(FlagSystem::flagEvents.dPressed && viewBounds.left + viewBounds.width < bgRight){
-        MetaComponents::view.move(sf::Vector2f(1, 0)); 
+    if(FlagSystem::flagEvents.dPressed && 
+    (viewBounds.left + viewBounds.width < bgRight || viewBounds.left + viewBounds.width < bgRight2 )){
+        MetaComponents::view.move(sf::Vector2f(10, 0)); 
     }
-    if(FlagSystem::flagEvents.sPressed && viewBounds.top + viewBounds.height < bgBottom){
-        MetaComponents::view.move(sf::Vector2f(0, 1)); 
+    if(FlagSystem::flagEvents.sPressed && 
+    (viewBounds.top + viewBounds.height < bgBottom || viewBounds.top + viewBounds.height < bgBottom2 )){
+        MetaComponents::view.move(sf::Vector2f(0, 10)); 
     }
-    if(FlagSystem::flagEvents.wPressed && viewBounds.top > bgTop){
-        MetaComponents::view.move(sf::Vector2f(0, -1)); 
+    if(FlagSystem::flagEvents.wPressed && 
+    (viewBounds.top > bgTop || viewBounds.top > bgTop2 )){
+        MetaComponents::view.move(sf::Vector2f(0, -10)); 
     }
+
 }
 
 /* Keeps sprites inside screen bounds, checks for collisions, update scores, and sets flagEvents.gameEnd to true in an event of collision */
@@ -246,7 +256,7 @@ void gamePlayScene::draw() {
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
-// Game Scene #1 from down below 
+// Game Scene #2 from down below 
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 

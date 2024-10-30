@@ -95,6 +95,7 @@ public:
     sf::Sprite& returnSpritesShape2() { return *spriteCreated2; }
     bool getBackgroundMoveState() { return backgroundMoveState; } 
     void setBackgroundMoveState(bool newState) { backgroundMoveState = newState; }
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const override; 
 
 private:
     std::unique_ptr<sf::Sprite> spriteCreated2;

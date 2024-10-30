@@ -56,28 +56,63 @@ float Sprite::getRadius() const {
 /* background class constructor; takes in position, scale, texture */
 Background::Background(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture) : Sprite(position, scale, texture) {
     if (auto tex = texture.lock()) {
+        spriteCreated = std::make_unique<sf::Sprite>(*tex);
+        spriteCreated->setScale(scale);
+        spriteCreated->setPosition(position.x, position.y); 
+
         spriteCreated2 = std::make_unique<sf::Sprite>(*tex);
         spriteCreated2->setScale(scale);
         spriteCreated2->setPosition(position.x + tex->getSize().x * scale.x, position.y);
-        log_info("Background created at position (" + std::to_string(position.x) + ", " + std::to_string(position.y) + ")");    
+
+        log_info("Background created");    
     }
 }
 
-/* moves background to the left and fills the screen with the same image stuck next to the original image */
+// /* moves background to the left and fills the screen with the same image stuck next to the original image */
 void Background::updateBackground(float speed) {
-        // Move both background sprites to the left
-        spriteCreated->move(-speed * MetaComponents::deltaTime, 0);
-        spriteCreated2->move(-speed * MetaComponents::deltaTime, 0);
+    // Calculate the current movement offset based on speed and deltaTime
+    float offset = speed * MetaComponents::deltaTime;
 
-        // Reposition sprites when they go off screen
-        if (spriteCreated->getPosition().x + spriteCreated->getGlobalBounds().width < 0) {
-            spriteCreated->setPosition(spriteCreated2->getPosition().x + spriteCreated2->getGlobalBounds().width, spriteCreated->getPosition().y);
-            log_info("Background sprite 1 repositioned.");
+    // Move both background sprites by the offset
+    spriteCreated->move(-offset, 0);
+    spriteCreated2->move(-offset, 0);
+
+    float width = spriteCreated->getGlobalBounds().width; 
+    sf::Vector2f position1 = spriteCreated->getPosition(); 
+    sf::Vector2f position2 = spriteCreated2->getPosition(); 
+
+        // Get the global bounds of the view
+    sf::FloatRect viewBounds(
+        MetaComponents::view.getCenter().x - MetaComponents::view.getSize().x / 2,
+        MetaComponents::view.getCenter().y - MetaComponents::view.getSize().y / 2,
+        MetaComponents::view.getSize().x,
+        MetaComponents::view.getSize().y
+    );
+
+    // Check if spriteCreated is off-screen to the left
+    if (position1.x + width < viewBounds.left) {
+        // Reposition spriteCreated to the right of spriteCreated2
+        spriteCreated->setPosition(position2.x + width, position1.y);
+        log_info("Background sprite 1 repositioned.");
+    }
+
+    // Check if spriteCreated2 is off-screen to the left
+    if (position2.x + width < viewBounds.left) {
+        // Reposition spriteCreated2 to the right of spriteCreated
+        spriteCreated2->setPosition(position1.x + width, position2.y);
+        log_info("Background sprite 2 repositioned.");
+    }
+}
+
+void Background::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+    if (visibleState) {
+        if (spriteCreated) {
+            target.draw(*spriteCreated, states);
         }
-        if (spriteCreated2->getPosition().x + spriteCreated2->getGlobalBounds().width < 0) {
-            spriteCreated2->setPosition(spriteCreated->getPosition().x + spriteCreated->getGlobalBounds().width, spriteCreated2->getPosition().y);
-            log_info("Background sprite 2 repositioned.");
+        if (spriteCreated2) {
+            target.draw(*spriteCreated2, states);
         }
+    }
 }
 
 /* sets cut-out rect for sprite animation */
