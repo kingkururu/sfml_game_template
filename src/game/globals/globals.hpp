@@ -183,3 +183,13 @@ namespace FlagSystem {
     inline GameSceneEvents1 gameScene1Flags; // Declare the global instance
     inline SceneEvents gameSceneNextFlags; // Declare the global instance
 }
+
+namespace SpriteComponents {
+    // Enum for direction (updated for four directions)
+    enum Direction {
+        LEFT = 1,
+        RIGHT = -1,
+        UP = -2,
+        DOWN = 2
+    };
+}

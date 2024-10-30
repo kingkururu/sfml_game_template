@@ -1,16 +1,15 @@
-[2024-10-30 13:21:32.272] [info_logger] [info] 	Constants initialized 
-[2024-10-30 13:21:32.309] [info_logger] [info] scene made
-[2024-10-30 13:21:32.309] [info_logger] [info] scene made
-[2024-10-30 13:21:32.309] [info_logger] [info] scene made
-[2024-10-30 13:21:32.309] [info_logger] [info] 	Game initialized
-[2024-10-30 13:21:32.309] [info_logger] [info] Sprite initialized successfully
-[2024-10-30 13:21:32.309] [info_logger] [info] Background created
-[2024-10-30 13:21:32.309] [info_logger] [info] Music initialized successfully, volume is 100.000000
-[2024-10-30 13:21:32.309] [info_logger] [info] Sprite initialized successfully
-[2024-10-30 13:21:32.309] [info_logger] [info] Sound initialized successfully
-[2024-10-30 13:21:32.309] [info_logger] [info] text initialized successully
-[2024-10-30 13:21:32.309] [info_logger] [info] Sprite initialized successfully
-[2024-10-30 13:21:32.309] [info_logger] [info] Background created
-[2024-10-30 13:22:38.037] [info_logger] [info] Background sprite 1 repositioned.
-[2024-10-30 13:22:50.369] [info_logger] [info] 	Game Ended
+[2024-10-30 14:08:39.568] [info_logger] [info] 	Constants initialized 
+[2024-10-30 14:08:39.608] [info_logger] [info] scene made
+[2024-10-30 14:08:39.609] [info_logger] [info] scene made
+[2024-10-30 14:08:39.609] [info_logger] [info] scene made
+[2024-10-30 14:08:39.609] [info_logger] [info] 	Game initialized
+[2024-10-30 14:08:39.609] [info_logger] [info] Sprite initialized successfully
+[2024-10-30 14:08:39.609] [info_logger] [info] Background created
+[2024-10-30 14:08:39.609] [info_logger] [info] Music initialized successfully, volume is 100.000000
+[2024-10-30 14:08:39.609] [info_logger] [info] Sprite initialized successfully
+[2024-10-30 14:08:39.609] [info_logger] [info] Sound initialized successfully
+[2024-10-30 14:08:39.609] [info_logger] [info] text initialized successully
+[2024-10-30 14:08:39.609] [info_logger] [info] Sprite initialized successfully
+[2024-10-30 14:08:39.609] [info_logger] [info] Background created
+[2024-10-30 14:08:48.981] [info_logger] [info] 	Game Ended
 

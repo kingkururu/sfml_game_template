@@ -91,7 +91,10 @@ class Background : public Sprite{
 public:
    explicit Background(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture);
     ~Background() override{};
-    void updateBackground(float backgroundSpeed); 
+
+    // make background 
+    void updateBackground(float speed, SpriteComponents::Direction direction);  
+
     sf::Sprite& returnSpritesShape2() { return *spriteCreated2; }
     bool getBackgroundMoveState() { return backgroundMoveState; } 
     void setBackgroundMoveState(bool newState) { backgroundMoveState = newState; }
@@ -99,6 +102,8 @@ public:
 
 private:
     std::unique_ptr<sf::Sprite> spriteCreated2;
+    std::unique_ptr<sf::Sprite> spriteCreated3;
+    
     bool backgroundMoveState = true; 
 };
 

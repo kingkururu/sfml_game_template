@@ -68,20 +68,33 @@ Background::Background(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<
     }
 }
 
-// /* moves background to the left and fills the screen with the same image stuck next to the original image */
-void Background::updateBackground(float speed) {
-    // Calculate the current movement offset based on speed and deltaTime
-    float offset = speed * MetaComponents::deltaTime;
+// Updates the background to move in a specified direction
+void Background::updateBackground(float speed, SpriteComponents::Direction direction) {
+    // Calculate the current movement offset based on speed, deltaTime
+    float offsetX = 0; // horizontal offset
+    float offsetY = 0; // vertical offset
 
-    // Move both background sprites by the offset
-    spriteCreated->move(-offset, 0);
-    spriteCreated2->move(-offset, 0);
+    // Set the offsets based on direction
+    if (direction == SpriteComponents::Direction::RIGHT) {
+        offsetX = -speed * MetaComponents::deltaTime;
+    } else if (direction == SpriteComponents::Direction::LEFT) {
+        offsetX = speed * MetaComponents::deltaTime;
+    } else if (direction == SpriteComponents::Direction::DOWN) {
+        offsetY = -speed * MetaComponents::deltaTime;
+    } else if (direction == SpriteComponents::Direction::UP) {
+        offsetY = speed * MetaComponents::deltaTime;
+    }
+
+    // Move both background sprites by the calculated offsets
+    spriteCreated->move(offsetX, offsetY);
+    spriteCreated2->move(offsetX, offsetY);
 
     float width = spriteCreated->getGlobalBounds().width; 
+    float height = spriteCreated->getGlobalBounds().height; 
     sf::Vector2f position1 = spriteCreated->getPosition(); 
     sf::Vector2f position2 = spriteCreated2->getPosition(); 
 
-        // Get the global bounds of the view
+    // Get the global bounds of the view
     sf::FloatRect viewBounds(
         MetaComponents::view.getCenter().x - MetaComponents::view.getSize().x / 2,
         MetaComponents::view.getCenter().y - MetaComponents::view.getSize().y / 2,
@@ -90,18 +103,28 @@ void Background::updateBackground(float speed) {
     );
 
     // Check if spriteCreated is off-screen to the left
-    if (position1.x + width < viewBounds.left) {
-        // Reposition spriteCreated to the right of spriteCreated2
-        spriteCreated->setPosition(position2.x + width, position1.y);
-        log_info("Background sprite 1 repositioned.");
-    }
+    if (position1.x + width < viewBounds.left) spriteCreated->setPosition(position2.x + width, position1.y);
 
     // Check if spriteCreated2 is off-screen to the left
-    if (position2.x + width < viewBounds.left) {
-        // Reposition spriteCreated2 to the right of spriteCreated
-        spriteCreated2->setPosition(position1.x + width, position2.y);
-        log_info("Background sprite 2 repositioned.");
-    }
+    if (position2.x + width < viewBounds.left) spriteCreated2->setPosition(position1.x + width, position2.y);
+
+    // Check if spriteCreated is off-screen to the right
+    if (position1.x > viewBounds.left + viewBounds.width) spriteCreated->setPosition(position2.x - width, position1.y);
+
+    // Check if spriteCreated2 is off-screen to the right
+    if (position2.x > viewBounds.left + viewBounds.width) spriteCreated2->setPosition(position1.x - width, position2.y);
+
+    // Check if spriteCreated is off-screen above
+    if (position1.y + height < viewBounds.top) spriteCreated->setPosition(position1.x, position2.y + height);
+
+    // Check if spriteCreated2 is off-screen above
+    if (position2.y + height < viewBounds.top) spriteCreated2->setPosition(position2.x, position1.y + height);
+
+    // Check if spriteCreated is off-screen below
+    if (position1.y > viewBounds.top + viewBounds.height) spriteCreated->setPosition(position1.x, position2.y - height);
+
+    // Check if spriteCreated2 is off-screen below
+    if (position2.y > viewBounds.top + viewBounds.height) spriteCreated2->setPosition(position2.x, position1.y - height);
 }
 
 void Background::draw(sf::RenderTarget& target, sf::RenderStates states) const {

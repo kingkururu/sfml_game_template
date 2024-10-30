@@ -128,7 +128,7 @@ void gamePlayScene::setTime(){
 
 /* deals with inputs from device, let known by flagEvents. */
 void gamePlayScene::handleInput() {
-    moveViewPortWASD();
+    Scene::moveViewPortWASD();
 
     if(FlagSystem::flagEvents.mouseClicked){
         if ( button1->getVisibleState() && 
@@ -213,7 +213,7 @@ void gamePlayScene::update() {
         deleteInvisibleSprites();
 
         if(button1) button1->changeAnimation();
-        if(background) background->updateBackground(Constants::BACKGROUND_SPEED);
+        if(background) background->updateBackground(Constants::BACKGROUND_SPEED, SpriteComponents::Direction::RIGHT );
                 
         window.setView(MetaComponents::view);
         
