@@ -60,14 +60,20 @@ Background::Background(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<
         spriteCreated->setScale(scale);
         spriteCreated->setPosition(position.x, position.y); 
 
+        // initially position background sprite2 to the right side (off screen)
         spriteCreated2 = std::make_unique<sf::Sprite>(*tex);
         spriteCreated2->setScale(scale);
         spriteCreated2->setPosition(position.x + tex->getSize().x * scale.x, position.y);
 
+         // initially position background sprite2 to the down side (off screen)
+        spriteCreated3 = std::make_unique<sf::Sprite>(*tex);
+        spriteCreated3->setScale(scale);
+        spriteCreated3->setPosition(position.x, position.y + tex->getSize().y * scale.y);
+
         log_info("Background created");    
     }
 }
-
+ 
 // Updates the background to move in a specified direction
 void Background::updateBackground(float speed, SpriteComponents::Direction direction) {
     // Calculate the current movement offset based on speed, deltaTime
@@ -88,11 +94,13 @@ void Background::updateBackground(float speed, SpriteComponents::Direction direc
     // Move both background sprites by the calculated offsets
     spriteCreated->move(offsetX, offsetY);
     spriteCreated2->move(offsetX, offsetY);
+    spriteCreated3->move(offsetX, offsetY);
 
     float width = spriteCreated->getGlobalBounds().width; 
     float height = spriteCreated->getGlobalBounds().height; 
     sf::Vector2f position1 = spriteCreated->getPosition(); 
     sf::Vector2f position2 = spriteCreated2->getPosition(); 
+    sf::Vector2f position3 = spriteCreated3->getPosition(); 
 
     // Get the global bounds of the view
     sf::FloatRect viewBounds(
@@ -115,16 +123,16 @@ void Background::updateBackground(float speed, SpriteComponents::Direction direc
     if (position2.x > viewBounds.left + viewBounds.width) spriteCreated2->setPosition(position1.x - width, position2.y);
 
     // Check if spriteCreated is off-screen above
-    if (position1.y + height < viewBounds.top) spriteCreated->setPosition(position1.x, position2.y + height);
+    if (position1.y + height < viewBounds.top) spriteCreated->setPosition(position1.x, position3.y + height);
 
     // Check if spriteCreated2 is off-screen above
-    if (position2.y + height < viewBounds.top) spriteCreated2->setPosition(position2.x, position1.y + height);
+    if (position3.y + height < viewBounds.top) spriteCreated3->setPosition(position3.x, position1.y + height);
 
     // Check if spriteCreated is off-screen below
-    if (position1.y > viewBounds.top + viewBounds.height) spriteCreated->setPosition(position1.x, position2.y - height);
+    if (position1.y > viewBounds.top + viewBounds.height) spriteCreated->setPosition(position1.x, position3.y - height);
 
     // Check if spriteCreated2 is off-screen below
-    if (position2.y > viewBounds.top + viewBounds.height) spriteCreated2->setPosition(position2.x, position1.y - height);
+    if (position3.y > viewBounds.top + viewBounds.height) spriteCreated3->setPosition(position3.x, position1.y - height);
 }
 
 void Background::draw(sf::RenderTarget& target, sf::RenderStates states) const {
@@ -134,6 +142,9 @@ void Background::draw(sf::RenderTarget& target, sf::RenderStates states) const {
         }
         if (spriteCreated2) {
             target.draw(*spriteCreated2, states);
+        }
+         if (spriteCreated3) {
+            target.draw(*spriteCreated3, states);
         }
     }
 }

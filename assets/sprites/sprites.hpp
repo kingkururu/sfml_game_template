@@ -96,12 +96,15 @@ public:
     void updateBackground(float speed, SpriteComponents::Direction direction);  
 
     sf::Sprite& returnSpritesShape2() { return *spriteCreated2; }
+    sf::Sprite& returnSpritesShape3() { return *spriteCreated3; }
     bool getBackgroundMoveState() { return backgroundMoveState; } 
     void setBackgroundMoveState(bool newState) { backgroundMoveState = newState; }
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override; 
 
 private:
+    // for right and left
     std::unique_ptr<sf::Sprite> spriteCreated2;
+    // for up and down 
     std::unique_ptr<sf::Sprite> spriteCreated3;
     
     bool backgroundMoveState = true; 
