@@ -1,15 +1,15 @@
-[2024-10-30 14:25:34.258] [info_logger] [info] 	Constants initialized 
-[2024-10-30 14:25:34.290] [info_logger] [info] scene made
-[2024-10-30 14:25:34.290] [info_logger] [info] scene made
-[2024-10-30 14:25:34.290] [info_logger] [info] scene made
-[2024-10-30 14:25:34.290] [info_logger] [info] 	Game initialized
-[2024-10-30 14:25:34.290] [info_logger] [info] Sprite initialized successfully
-[2024-10-30 14:25:34.290] [info_logger] [info] Background created
-[2024-10-30 14:25:34.290] [info_logger] [info] Music initialized successfully, volume is 100.000000
-[2024-10-30 14:25:34.290] [info_logger] [info] Sprite initialized successfully
-[2024-10-30 14:25:34.290] [info_logger] [info] Sound initialized successfully
-[2024-10-30 14:25:34.290] [info_logger] [info] text initialized successully
-[2024-10-30 14:25:34.290] [info_logger] [info] Sprite initialized successfully
-[2024-10-30 14:25:34.290] [info_logger] [info] Background created
-[2024-10-30 14:25:37.403] [info_logger] [info] 	Game Ended
+[2024-10-31 10:01:42.356] [info_logger] [info] 	Constants initialized 
+[2024-10-31 10:01:42.399] [info_logger] [info] scene made
+[2024-10-31 10:01:42.399] [info_logger] [info] scene made
+[2024-10-31 10:01:42.399] [info_logger] [info] scene made
+[2024-10-31 10:01:42.399] [info_logger] [info] 	Game initialized
+[2024-10-31 10:01:42.399] [info_logger] [info] Sprite initialized successfully
+[2024-10-31 10:01:42.399] [info_logger] [info] Background created
+[2024-10-31 10:01:42.399] [info_logger] [info] Music initialized successfully, volume is 100.000000
+[2024-10-31 10:01:42.399] [info_logger] [info] Sprite initialized successfully
+[2024-10-31 10:01:42.399] [info_logger] [info] Sound initialized successfully
+[2024-10-31 10:01:42.399] [info_logger] [info] text initialized successully
+[2024-10-31 10:01:42.399] [info_logger] [info] Sprite initialized successfully
+[2024-10-31 10:01:42.399] [info_logger] [info] Background created
+[2024-10-31 10:01:57.160] [info_logger] [info] 	Game Ended
 

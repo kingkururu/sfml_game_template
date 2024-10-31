@@ -65,33 +65,56 @@ Background::Background(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<
         spriteCreated2->setScale(scale);
         spriteCreated2->setPosition(position.x + tex->getSize().x * scale.x, position.y);
 
-         // initially position background sprite2 to the down side (off screen)
+        // initially position background sprite2 to the down side (off screen)
         spriteCreated3 = std::make_unique<sf::Sprite>(*tex);
         spriteCreated3->setScale(scale);
         spriteCreated3->setPosition(position.x, position.y + tex->getSize().y * scale.y);
+
+        // initially position background sprite2 to the down side (off screen)
+        spriteCreated4 = std::make_unique<sf::Sprite>(*tex);
+        spriteCreated4->setScale(scale);
+        spriteCreated4->setPosition(position.x, position.y);
 
         log_info("Background created");    
     }
 }
  
-// Updates the background to move in a specified direction
-void Background::updateBackground(float speed, SpriteComponents::Direction direction) {
-    // Calculate the current movement offset based on speed, deltaTime
+ // Updates the background to move in a specified direction; need to fix it later cus the forth sprite doesn't wrap properly 
+void Background::updateBackground(float speed, SpriteComponents::Direction primaryDirection, SpriteComponents::Direction secondaryDirection) {
+    // Get the global bounds of the view
+    sf::FloatRect viewBounds(
+        MetaComponents::view.getCenter().x - MetaComponents::view.getSize().x / 2,
+        MetaComponents::view.getCenter().y - MetaComponents::view.getSize().y / 2,
+        MetaComponents::view.getSize().x,
+        MetaComponents::view.getSize().y
+    );
+        // Calculate the current movement offset based on speed, deltaTime
     float offsetX = 0; // horizontal offset
     float offsetY = 0; // vertical offset
 
     // Set the offsets based on direction
-    if (direction == SpriteComponents::Direction::RIGHT) {
+    if (primaryDirection == SpriteComponents::Direction::RIGHT) {
         offsetX = -speed * MetaComponents::deltaTime;
-    } else if (direction == SpriteComponents::Direction::LEFT) {
+    } else if (primaryDirection == SpriteComponents::Direction::LEFT) {
         offsetX = speed * MetaComponents::deltaTime;
-    } else if (direction == SpriteComponents::Direction::DOWN) {
+    } else if (primaryDirection == SpriteComponents::Direction::DOWN) {
         offsetY = -speed * MetaComponents::deltaTime;
-    } else if (direction == SpriteComponents::Direction::UP) {
+    } else if (primaryDirection == SpriteComponents::Direction::UP) {
         offsetY = speed * MetaComponents::deltaTime;
     }
 
-    // Move both background sprites by the calculated offsets
+    // Calculate offset for secondary direction (if provided)
+    if (secondaryDirection == SpriteComponents::Direction::RIGHT) {
+        offsetX = -speed * MetaComponents::deltaTime;
+    } else if (secondaryDirection == SpriteComponents::Direction::LEFT) {
+        offsetX = speed * MetaComponents::deltaTime;
+    } else if (secondaryDirection == SpriteComponents::Direction::DOWN) {
+        offsetY = -speed * MetaComponents::deltaTime;
+    } else if (secondaryDirection == SpriteComponents::Direction::UP) {
+        offsetY = speed * MetaComponents::deltaTime;
+    }
+
+    // Move all background sprites by the calculated offsets
     spriteCreated->move(offsetX, offsetY);
     spriteCreated2->move(offsetX, offsetY);
     spriteCreated3->move(offsetX, offsetY);
@@ -101,38 +124,19 @@ void Background::updateBackground(float speed, SpriteComponents::Direction direc
     sf::Vector2f position1 = spriteCreated->getPosition(); 
     sf::Vector2f position2 = spriteCreated2->getPosition(); 
     sf::Vector2f position3 = spriteCreated3->getPosition(); 
-
-    // Get the global bounds of the view
-    sf::FloatRect viewBounds(
-        MetaComponents::view.getCenter().x - MetaComponents::view.getSize().x / 2,
-        MetaComponents::view.getCenter().y - MetaComponents::view.getSize().y / 2,
-        MetaComponents::view.getSize().x,
-        MetaComponents::view.getSize().y
-    );
-
-    // Check if spriteCreated is off-screen to the left
+    
+    // horizontal wrapping
     if (position1.x + width < viewBounds.left) spriteCreated->setPosition(position2.x + width, position1.y);
-
-    // Check if spriteCreated2 is off-screen to the left
     if (position2.x + width < viewBounds.left) spriteCreated2->setPosition(position1.x + width, position2.y);
-
-    // Check if spriteCreated is off-screen to the right
     if (position1.x > viewBounds.left + viewBounds.width) spriteCreated->setPosition(position2.x - width, position1.y);
-
-    // Check if spriteCreated2 is off-screen to the right
     if (position2.x > viewBounds.left + viewBounds.width) spriteCreated2->setPosition(position1.x - width, position2.y);
 
-    // Check if spriteCreated is off-screen above
+    // vertical wrapping 
     if (position1.y + height < viewBounds.top) spriteCreated->setPosition(position1.x, position3.y + height);
-
-    // Check if spriteCreated2 is off-screen above
     if (position3.y + height < viewBounds.top) spriteCreated3->setPosition(position3.x, position1.y + height);
-
-    // Check if spriteCreated is off-screen below
     if (position1.y > viewBounds.top + viewBounds.height) spriteCreated->setPosition(position1.x, position3.y - height);
-
-    // Check if spriteCreated2 is off-screen below
     if (position3.y > viewBounds.top + viewBounds.height) spriteCreated3->setPosition(position3.x, position1.y - height);
+
 }
 
 void Background::draw(sf::RenderTarget& target, sf::RenderStates states) const {
@@ -143,9 +147,12 @@ void Background::draw(sf::RenderTarget& target, sf::RenderStates states) const {
         if (spriteCreated2) {
             target.draw(*spriteCreated2, states);
         }
-         if (spriteCreated3) {
+        if (spriteCreated3) {
             target.draw(*spriteCreated3, states);
         }
+        // if (spriteCreated4) {
+        //     target.draw(*spriteCreated4, states);
+        // }
     }
 }
 

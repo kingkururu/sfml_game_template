@@ -128,7 +128,7 @@ void gamePlayScene::setTime(){
 
 /* deals with inputs from device, let known by flagEvents. */
 void gamePlayScene::handleInput() {
-    Scene::moveViewPortWASD();
+    moveViewPortWASD();
 
     if(FlagSystem::flagEvents.mouseClicked){
         if ( button1->getVisibleState() && 
@@ -171,7 +171,7 @@ void gamePlayScene::moveViewPortWASD(){
         MetaComponents::view.getSize().y
     );
 
-    // Move viewport only if within background boundaries
+    // Move viewport only if within background y-pos (doesn't get above or below)
     if(FlagSystem::flagEvents.aPressed && 
     (viewBounds.left > bgLeft || viewBounds.left > bgLeft2)){
         MetaComponents::view.move(sf::Vector2f(-10, 0)); 
@@ -213,7 +213,7 @@ void gamePlayScene::update() {
         deleteInvisibleSprites();
 
         if(button1) button1->changeAnimation();
-        if(background) background->updateBackground(Constants::BACKGROUND_SPEED, SpriteComponents::Direction::RIGHT );
+        if(background) background->updateBackground(Constants::BACKGROUND_SPEED, Constants::BACKGROUND_MOVING_DIRECTION);
                 
         window.setView(MetaComponents::view);
         

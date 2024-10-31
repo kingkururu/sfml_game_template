@@ -92,11 +92,14 @@ public:
    explicit Background(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture);
     ~Background() override{};
 
-    // make background 
-    void updateBackground(float speed, SpriteComponents::Direction direction);  
+    // make background (can put any direction if only using primaryDirection, but need to put up/down in primary and right/left in secondary if using both)
+    void updateBackground(float speed, SpriteComponents::Direction primaryDirection, 
+                          SpriteComponents::Direction secondaryDirection = SpriteComponents::Direction::NONE);  
 
     sf::Sprite& returnSpritesShape2() { return *spriteCreated2; }
     sf::Sprite& returnSpritesShape3() { return *spriteCreated3; }
+    sf::Sprite& returnSpritesShape4() { return *spriteCreated4; }
+
     bool getBackgroundMoveState() { return backgroundMoveState; } 
     void setBackgroundMoveState(bool newState) { backgroundMoveState = newState; }
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override; 
@@ -106,7 +109,9 @@ private:
     std::unique_ptr<sf::Sprite> spriteCreated2;
     // for up and down 
     std::unique_ptr<sf::Sprite> spriteCreated3;
-    
+    // for left-over blank space 
+    std::unique_ptr<sf::Sprite> spriteCreated4;
+
     bool backgroundMoveState = true; 
 };
 

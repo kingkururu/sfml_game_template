@@ -14,6 +14,17 @@
 
 #include "log.hpp" 
 
+namespace SpriteComponents {
+    // Enum for direction (updated for four directions)
+    enum Direction {
+        NONE = 0, 
+        LEFT = 1,
+        RIGHT = -1,
+        UP = -2,
+        DOWN = 2
+    };
+}
+
 namespace MetaComponents{
     inline sf::Vector2i mouseClickedPosition {}; 
 
@@ -69,6 +80,7 @@ namespace Constants {
     inline const sf::Vector2f BACKGROUND_SCALE = { 1.0f, 1.0f };
     inline std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE = std::make_shared<sf::Texture>();
     inline std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE2 = std::make_shared<sf::Texture>();
+    inline SpriteComponents::Direction BACKGROUND_MOVING_DIRECTION = SpriteComponents::Direction::RIGHT; 
 
     // sprite components
     constexpr const char* SPRITE1SPRITE_PATH = "assets/sprites/png/Static.png";
@@ -182,14 +194,4 @@ namespace FlagSystem {
 
     inline GameSceneEvents1 gameScene1Flags; // Declare the global instance
     inline SceneEvents gameSceneNextFlags; // Declare the global instance
-}
-
-namespace SpriteComponents {
-    // Enum for direction (updated for four directions)
-    enum Direction {
-        LEFT = 1,
-        RIGHT = -1,
-        UP = -2,
-        DOWN = 2
-    };
 }
