@@ -15,7 +15,6 @@
 #include "log.hpp" 
 
 namespace SpriteComponents {
-    // Enum for direction (updated for four directions)
     enum Direction {
         NONE = 0, 
         LEFT = 1,

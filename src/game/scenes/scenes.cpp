@@ -19,7 +19,6 @@ Scene::Scene( sf::RenderWindow& gameWindow ) : window(gameWindow) /* initialize 
     log_info("scene made"); 
 }
 
-/* runScene that takes in delta time and global time from GameManager class to execute scene logic */
 void Scene::runScene() {
     if (FlagSystem::flagEvents.gameEnd) return; // Early exit if game ended
     setTime();
@@ -34,7 +33,6 @@ void Scene::runScene() {
 
 void Scene::draw(){
     window.clear(sf::Color::Black);
-   // log_info("base scene draw call");
     window.display(); 
  }
 

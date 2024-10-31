@@ -115,13 +115,6 @@ namespace Constants {
     void printBitmaskDebug(const std::shared_ptr<sf::Uint8[]>& bitmask, unsigned int width, unsigned int height) {
         unsigned int bitmaskSize = (width * height + 7) / 8;
         
-        // Create or get a logger (assuming 'info_logger' is your logger)
-        auto logger = spdlog::get("info_logger");
-        if (!logger) {
-            log_error("Logger not initialized.");
-            return;
-        }
-        
         std::stringstream bitmaskStream; // Use a stringstream to accumulate the bitmask output
 
         for (unsigned int i = 0; i < bitmaskSize; ++i) {
@@ -134,7 +127,7 @@ namespace Constants {
         }
         
         // Log the accumulated bitmask
-        logger->info(bitmaskStream.str());
+        log_info(bitmaskStream.str());
     }
 }
 

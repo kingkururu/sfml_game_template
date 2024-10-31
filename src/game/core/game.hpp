@@ -2,7 +2,6 @@
 //  game.hpp
 //  sfml game template 
 //
-//  Created by Sunmyoung Yun on 2024/09
 
 /* This is the game.hpp file containing all the declarations for game.cpp's GameManager class. */
 
