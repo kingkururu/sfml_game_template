@@ -1,5 +1,7 @@
 #include "log.hpp"
 
+#if ENABLE_LOGGING
+
 void init_logging() {
     // Define the log file paths
     std::string info_log_file = "libs/logging/info.txt";
@@ -71,7 +73,6 @@ void signal_handler(int signal) {
             logger->error("Segmentation fault (SIGSEGV) caught. The program will terminate.");
             logger->flush();  // Make sure the log is written before exiting
         }
-
     }
 
     // Terminate the program safely
@@ -82,4 +83,4 @@ void setup_signal_handlers() {
     // Register the signal handler for segmentation faults (SIGSEGV)
     std::signal(SIGSEGV, signal_handler);
 }
-
+#endif // ENABLE_LOGGING
