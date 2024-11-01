@@ -2,7 +2,6 @@
 //  fonts.hpp
 //  sfml game template
 //
-//  Created by Sunmyoung Yun on 2024/00
 //
 #pragma once
 

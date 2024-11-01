@@ -2,7 +2,6 @@
 //  scenes.cpp
 //  sfml game template
 //
-//  Created by Sunmyoung Yun on 2024/09
 //
 
 #include "scenes.hpp"
@@ -21,6 +20,7 @@ Scene::Scene( sf::RenderWindow& gameWindow ) : window(gameWindow) /* initialize 
 
 void Scene::runScene() {
     if (FlagSystem::flagEvents.gameEnd) return; // Early exit if game ended
+    
     setTime();
     handleInput();
     respawnAssets();
@@ -147,9 +147,8 @@ void gamePlayScene::handleInput() {
 
 /* makes the view only stay inside background sprite  */ 
 void gamePlayScene::moveViewPortWASD(){
- if (!background){
-        return; 
-    }
+    if (!background) return; 
+
     // Define boundaries based on the background sprite
     float bgLeft = background->returnSpritesShape().getGlobalBounds().left;
     float bgRight = bgLeft + background->returnSpritesShape().getGlobalBounds().width;
@@ -261,8 +260,8 @@ void gamePlayScene::draw() {
 void gamePlayScene2::createAssets() {
  try {
         // Initialize sprites and music here 
-         background = std::make_unique<Background>(Constants::BACKGROUND_POSITION, Constants::BACKGROUND_SCALE, Constants::BACKGROUND_TEXTURE2);
-        } 
+        background = std::make_unique<Background>(Constants::BACKGROUND_POSITION, Constants::BACKGROUND_SCALE, Constants::BACKGROUND_TEXTURE2);
+    } 
 
     catch (const std::exception& e) {
          log_error("Exception in createAssets: " + std::string(e.what()));
@@ -285,14 +284,12 @@ void gamePlayScene2::draw() {
     } 
     
     catch (const std::exception& e) {
-         log_error("Exception in gamePlayScene2 draw: " + std::string(e.what()));
+        log_error("Exception in gamePlayScene2 draw: " + std::string(e.what()));
     }
 }
 
 void gamePlayScene2::update() {
     try {
-
-        // Remove invisible sprites
         deleteInvisibleSprites();
 
         window.setView(MetaComponents::view); 

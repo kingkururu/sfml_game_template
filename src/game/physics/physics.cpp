@@ -2,14 +2,12 @@
 //  physics.cpp
 //  sfml game template
 //
-//  Created by Sunmyoung Yun on 2024/09
 //
 
 #include "physics.hpp"
 
 /* physics namespace to have sprites move */
 namespace physics{
-    
     // struct to hold raycast operation results that use vector of sprites
     struct RaycastResult {
         std::vector<float> collisionTimes;

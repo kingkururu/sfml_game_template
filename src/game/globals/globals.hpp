@@ -36,7 +36,6 @@ namespace MetaComponents{
 
 /* constant variables declared here */
 namespace Constants {
-
     // make random positions each time
     extern sf::Vector2f makeRandomPosition(); 
 
@@ -163,7 +162,7 @@ namespace FlagSystem {
         }
     };
 
-    inline FlagEvents flagEvents; // Declare the global instance
+    inline FlagEvents flagEvents; 
 
     struct SceneEvents {
         bool sceneEnd;
@@ -191,6 +190,6 @@ namespace FlagSystem {
         }
     };
 
-    inline GameSceneEvents1 gameScene1Flags; // Declare the global instance
-    inline SceneEvents gameSceneNextFlags; // Declare the global instance
+    inline GameSceneEvents1 gameScene1Flags; 
+    inline SceneEvents gameSceneNextFlags;
 }

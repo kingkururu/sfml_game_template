@@ -2,7 +2,6 @@
 //  game.cpp
 //  sfml game template
 //
-//  Created by Sunmyoung Yun on 2024/09
 //
 
 #include "game.hpp" 
@@ -40,7 +39,6 @@ void GameManager::runGame() {
 }
 
 void GameManager::runScenesFlags(){
-
     if(FlagSystem::gameScene1Flags.sceneStart && !FlagSystem::gameScene1Flags.sceneEnd){ 
         gameScene->runScene();
     }

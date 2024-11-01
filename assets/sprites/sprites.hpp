@@ -2,7 +2,6 @@
 //  sprites.hpp
 //  sfml game template
 //
-//  Created by Sunmyoung Yun on 2024/08
 //
 #pragma once
 

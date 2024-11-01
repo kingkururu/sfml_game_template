@@ -14,7 +14,6 @@ namespace MetaComponents {
 
 /* constant variables defined here */
 namespace Constants {
-
     // make random position function (random from upper right corner)
     sf::Vector2f makeRandomPosition(){
         float xPos = static_cast<float>(SCREEN_WIDTH - std::rand() % static_cast<int>(SCREEN_WIDTH / 2));
