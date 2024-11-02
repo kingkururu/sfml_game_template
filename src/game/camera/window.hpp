@@ -25,7 +25,6 @@ private:
 class GameView{
 public:
     GameView(sf::FloatRect viewRect);
-    //sf::View& getView() { return view; } 
     const sf::View& getView() const { return view; }
     ~GameView() = default;
 
