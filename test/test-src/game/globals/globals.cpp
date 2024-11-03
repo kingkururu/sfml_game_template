@@ -1,11 +1,9 @@
 //
 //  globals.cpp
-//  sfmlgame3
 //
-//  Created by Sunmyoung Yun on 2024/08
 //
 
-#include "globals.hpp"
+#include "globals.hpp" 
 
 namespace MetaComponents {
     sf::Clock clock;

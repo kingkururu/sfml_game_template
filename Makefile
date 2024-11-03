@@ -4,13 +4,6 @@ all: install_deps $(TARGET)
 # Compiler and linker settings
 CXX := clang++
 
-CXXFLAGS := -std=c++17 -Wall \
-            -I./src -I./src/game -I./src/game/globals -I./src/game/core -I./src/game/physics -I./src/game/camera -I./src/game/utils -I./src/game/scenes \
-            -I./assets/sprites -I./assets/fonts -I./assets/sound -I./assets/tiles \
-            -I./libs/logging \
-            -I./test/test-src -I./test/test-assets -I./test/test-logging \
-            -I./test/test-src/game -I./test/test-src/game/globals -I./test/test-src/game/core -I./test/test-src/game/physics -I./test/test-src/game/camera -I./test/test-src/game/utils -I./test/test-src/game/scenes
-
 # Homebrew paths, allow override via environment variables
 HOMEBREW_PREFIX ?= /opt/homebrew
 SPDLOG_INCLUDE ?= $(HOMEBREW_PREFIX)/opt/spdlog/include
@@ -20,8 +13,17 @@ SPDLOG_LIB ?= $(HOMEBREW_PREFIX)/opt/spdlog/lib
 FMT_LIB ?= $(HOMEBREW_PREFIX)/opt/fmt/lib
 SFML_LIB ?= $(HOMEBREW_PREFIX)/opt/sfml/lib
 
-# Adding Homebrew include paths dynamically
-CXXFLAGS += -I$(SPDLOG_INCLUDE) -I$(FMT_INCLUDE) -I$(SFML_INCLUDE)
+# Include and compiler flags
+CXXFLAGS := -std=c++17 -Wall \
+            -I./src -I./src/game -I./src/game/globals -I./src/game/core -I./src/game/physics -I./src/game/camera -I./src/game/utils -I./src/game/scenes \
+            -I./assets/sprites -I./assets/fonts -I./assets/sound -I./assets/tiles \
+            -I./libs/logging \
+            -I$(SPDLOG_INCLUDE) -I$(FMT_INCLUDE) -I$(SFML_INCLUDE)
+
+# Separate flags for test compilation, adding Homebrew paths
+TEST_CXXFLAGS := $(CXXFLAGS) -DTESTING \
+                 -I./test/test-src -I./test/test-assets -I./test/test-logging \
+                 -I./test/test-src/game -I./test/test-src/game/globals -I./test/test-src/game/core -I./test/test-src/game/physics -I./test/test-src/game/camera -I./test/test-src/game/utils -I./test/test-src/game/scenes
 
 # Library paths and linking
 LDFLAGS = -L$(SPDLOG_LIB) -L$(FMT_LIB) -L$(SFML_LIB) -L$(HOMEBREW_PREFIX)/lib -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lspdlog -lfmt
@@ -92,7 +94,7 @@ $(TARGET): $(OBJ)
 
 # Test build target
 $(TEST_TARGET): $(TEST_OBJ)
-	$(CXX) $(CXXFLAGS) -DTESTING -o $(TEST_TARGET) $(TEST_OBJ) $(LDFLAGS)
+	$(CXX) $(TEST_CXXFLAGS) -o $(TEST_TARGET) $(TEST_OBJ) $(LDFLAGS)
 
 # Rule to build main object files
 $(BUILD_DIR)/%.o: %.cpp
@@ -102,7 +104,7 @@ $(BUILD_DIR)/%.o: %.cpp
 # Rule to build test object files
 $(TEST_BUILD_DIR)/%.o: %.cpp
 	@mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) -DTESTING -c $< -o $@
+	$(CXX) $(TEST_CXXFLAGS) -c $< -o $@
 
 # Clean up all build artifacts
 clean:
@@ -112,6 +114,8 @@ clean:
 run: $(TARGET)
 	./$(TARGET)
 
-# Run tests
+# Before the test target
 test: $(TEST_TARGET)
-	./$(TEST_TARGET) 
+	@echo "Building test target with the following object files:"
+	@echo $(TEST_OBJ)
+	./$(TEST_TARGET)

@@ -11,6 +11,7 @@
 #include <SFML/Audio.hpp>
 #include <vector>
 #include <iostream> 
+#include <sstream>
 
 #include "log.hpp" 
 

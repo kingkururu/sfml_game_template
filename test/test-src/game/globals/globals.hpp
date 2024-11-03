@@ -1,8 +1,6 @@
 //
 //  globals.hpp
-//  sfmlgame3
 //
-//  Created by Sunmyoung Yun on 2024/08
 //
 
 #pragma once
@@ -11,6 +9,7 @@
 #include <SFML/Audio.hpp>
 #include <vector>
 #include <iostream> 
+#include <sstream>
 
 #include "log.hpp" 
 
