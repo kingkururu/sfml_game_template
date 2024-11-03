@@ -1,8 +1,11 @@
-# Default target (build the project)
-all: install_deps $(TARGET)
-
 # Compiler and linker settings
 CXX := clang++
+
+# Compiler flags
+CXXFLAGS := -std=c++17 -Wall \
+            -I./src -I./src/game -I./src/game/globals -I./src/game/core -I./src/game/physics -I./src/game/camera -I./src/game/utils -I./src/game/scenes \
+            -I./assets/sprites -I./assets/fonts -I./assets/sound -I./assets/tiles \
+            -I./libs/logging
 
 # Homebrew paths, allow override via environment variables
 HOMEBREW_PREFIX ?= /opt/homebrew
@@ -13,22 +16,25 @@ SPDLOG_LIB ?= $(HOMEBREW_PREFIX)/opt/spdlog/lib
 FMT_LIB ?= $(HOMEBREW_PREFIX)/opt/fmt/lib
 SFML_LIB ?= $(HOMEBREW_PREFIX)/opt/sfml/lib
 
-# Include and compiler flags
-CXXFLAGS := -std=c++17 -Wall \
-            -I./src -I./src/game -I./src/game/globals -I./src/game/core -I./src/game/physics -I./src/game/camera -I./src/game/utils -I./src/game/scenes \
-            -I./assets/sprites -I./assets/fonts -I./assets/sound -I./assets/tiles \
-            -I./libs/logging \
-            -I$(SPDLOG_INCLUDE) -I$(FMT_INCLUDE) -I$(SFML_INCLUDE)
+# Include paths for Homebrew libraries
+BREW_INCLUDE_FLAGS := -I$(SPDLOG_INCLUDE) -I$(FMT_INCLUDE) -I$(SFML_INCLUDE)
+CXXFLAGS += $(BREW_INCLUDE_FLAGS)
 
-# Separate flags for test compilation, adding Homebrew paths
-TEST_CXXFLAGS := $(CXXFLAGS) -DTESTING \
-                 -I./test/test-src -I./test/test-assets -I./test/test-logging \
-                 -I./test/test-src/game -I./test/test-src/game/globals -I./test/test-src/game/core -I./test/test-src/game/physics -I./test/test-src/game/camera -I./test/test-src/game/utils -I./test/test-src/game/scenes
+TEST_CXXFLAGS := -std=c++17 -Wall \
+                 -I./test/test-src \
+                 -I./test/test-src/game/core -I./test/test-src/game/camera \
+                 -I./test/test-src/game/globals -I./test/test-src/game/physics \
+                 -I./test/test-src/game/scenes -I./test/test-src/game/utils \
+                 -I./test/test-assets -I./test/test-assets/fonts \
+                 -I./test/test-assets/sound -I./test/test-assets/tiles \
+                 -I./test/test-assets/sprites -I./test/test-logging \
+                 -I$(SPDLOG_INCLUDE) -I$(FMT_INCLUDE) -I$(SFML_INCLUDE) \
+                 -DTESTING
 
 # Library paths and linking
 LDFLAGS = -L$(SPDLOG_LIB) -L$(FMT_LIB) -L$(SFML_LIB) -L$(HOMEBREW_PREFIX)/lib -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lspdlog -lfmt
 
-# Directories for builds
+# Build directories
 BUILD_DIR := build
 TEST_BUILD_DIR := test_build
 
@@ -68,33 +74,24 @@ TEST_OBJ := $(TEST_SRC:%.cpp=$(TEST_BUILD_DIR)/%.o)
 TARGET := sfml_game
 TEST_TARGET := sfml_game_test
 
-# Homebrew check
-HOMEBREW_CHECK := $(shell command -v brew 2>/dev/null)
+.PHONY: all install_deps build clean test run
 
-.PHONY: check_homebrew install_deps build clean test run
-
-# Check if Homebrew is installed
-check_homebrew:
-ifdef HOMEBREW_CHECK
-	@echo "Homebrew is already installed."
-else
-	@echo "Homebrew not found. Installing Homebrew..."
-	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-endif
+# Default target (build the main application)
+all: $(TARGET)
 
 # Check and install required dependencies via Homebrew
-install_deps: check_homebrew
+install_deps:
 	@brew list spdlog >/dev/null 2>&1 || (echo "Installing spdlog..."; brew install spdlog)
 	@brew list fmt >/dev/null 2>&1 || (echo "Installing fmt..."; brew install fmt)
 	@brew list sfml >/dev/null 2>&1 || (echo "Installing sfml..."; brew install sfml)
 
 # Main application build target
 $(TARGET): $(OBJ)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJ) $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) -o $@ $(OBJ) $(LDFLAGS)
 
 # Test build target
 $(TEST_TARGET): $(TEST_OBJ)
-	$(CXX) $(TEST_CXXFLAGS) -o $(TEST_TARGET) $(TEST_OBJ) $(LDFLAGS)
+	$(CXX) $(TEST_CXXFLAGS) -o $@ $(TEST_OBJ) $(LDFLAGS)
 
 # Rule to build main object files
 $(BUILD_DIR)/%.o: %.cpp
@@ -108,14 +105,12 @@ $(TEST_BUILD_DIR)/%.o: %.cpp
 
 # Clean up all build artifacts
 clean:
-	rm -f $(TARGET) $(TEST_TARGET) $(OBJ) $(TEST_OBJ)
+	rm -rf $(BUILD_DIR) $(TEST_BUILD_DIR) $(TARGET) $(TEST_TARGET)
 
 # Run the application
 run: $(TARGET)
 	./$(TARGET)
 
-# Before the test target
+# Run tests
 test: $(TEST_TARGET)
-	@echo "Building test target with the following object files:"
-	@echo $(TEST_OBJ)
 	./$(TEST_TARGET)

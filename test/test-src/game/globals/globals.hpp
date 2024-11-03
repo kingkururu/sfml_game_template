@@ -50,7 +50,7 @@ namespace Constants {
 
     constexpr unsigned short FRAME_LIMIT = 60;
 
-    constexpr const char* GAME_TITLE = "SFML game template";
+    constexpr const char* GAME_TITLE = "SFML game template tester";
 
     constexpr float VIEW_SIZE_X = 1920.0f * SCREEN_SCALE;
     constexpr float VIEW_SIZE_Y = 1080.0f * SCREEN_SCALE;
@@ -71,8 +71,8 @@ namespace Constants {
     
     // background components 
     constexpr float BACKGROUND_SPEED = 35.0;
-    constexpr const char* BACKGROUNDSPRITE_PATH = "assets/sprites/png/background_day.png";
-    constexpr const char* BACKGROUNDSPRITE_PATH2 = "assets/sprites/png/background_night.png";   
+    constexpr const char* BACKGROUNDSPRITE_PATH = "test/test-assets/sprites/png/background_day.png";
+    constexpr const char* BACKGROUNDSPRITE_PATH2 = "test/test-assets/sprites/png/background_night.png";   
     inline const sf::Vector2f BACKGROUND_POSITION = { 0.0f, 0.0f };
     inline const sf::Vector2f BACKGROUND_SCALE = { 1.0f, 1.0f };
     inline std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE = std::make_shared<sf::Texture>();
@@ -80,13 +80,13 @@ namespace Constants {
     inline SpriteComponents::Direction BACKGROUND_MOVING_DIRECTION = SpriteComponents::Direction::RIGHT; 
 
     // sprite components
-    constexpr const char* SPRITE1SPRITE_PATH = "assets/sprites/png/Static.png";
+    constexpr const char* SPRITE1SPRITE_PATH = "test/test-assets/sprites/png/Static.png";
     inline const sf::Vector2f SPRITE1_POSITION = { 0.0f, 0.0f };
     inline const sf::Vector2f SPRITE1_SCALE = { 1.0f, 1.0f };
     inline std::shared_ptr<sf::Texture> SPRITE1_TEXTURE = std::make_shared<sf::Texture>();
 
     constexpr short BUTTON1_INDEXMAX = 6; 
-    constexpr const char* BUTTON1_PATH = "assets/sprites/png/Static.png";
+    constexpr const char* BUTTON1_PATH = "test/test-assets/sprites/png/Static.png";
     inline const sf::Vector2f BUTTON1_POSITION = { 0.0f, 0.0f };
     inline const sf::Vector2f BUTTON1_SCALE = { 1.0f, 1.0f };
     inline std::shared_ptr<sf::Texture> BUTTON1_TEXTURE = std::make_shared<sf::Texture>();
@@ -94,7 +94,7 @@ namespace Constants {
     inline std::vector<std::shared_ptr<sf::Uint8[]>> BUTTON1_BITMASK;
 
     // typical tile components 
-    constexpr const char* TILE1_PATH = "assets/sprites/png/Player.png";
+    constexpr const char* TILE1_PATH = "test/test-assets/sprites/png/Player.png";
     constexpr bool TILE1_BOOL = true; 
     inline const sf::Vector2f TILE1_POSITION = { 0.0f, 0.0f };
     inline const sf::Vector2f TILE1_SCALE = { 1.0f, 1.0f };
@@ -109,19 +109,19 @@ namespace Constants {
 
     // typical text components
     constexpr unsigned short TEXT_SIZE = 40;
-    constexpr const char* TEXT_PATH = "assets/fonts/ttf/font1.ttf";
+    constexpr const char* TEXT_PATH = "test/test-assets/fonts/ttf/font1.ttf";
     constexpr const char* TEXT_MESSAGE = "Some text here";
     inline const sf::Vector2f TEXT_POSITION = { 0.0f, 0.0f };
     inline const sf::Color TEXT_COLOR = sf::Color::Green;
     inline std::shared_ptr<sf::Font> TEXT_FONT = std::make_shared<sf::Font>(); 
 
     // typical music components 
-    constexpr const char* BACKGROUNDMUSIC_PATH = "assets/sound/mp3/bgm.mp3";
+    constexpr const char* BACKGROUNDMUSIC_PATH = "test/test-assets/sound/mp3/bgm.mp3";
     inline std::unique_ptr<sf::Music> BACKGROUNDMUSIC_MUSIC = std::make_unique<sf::Music>(); 
     constexpr float BACKGROUNDMUSIC_VOLUME = 100.0f;
    
     // typical sound components
-    constexpr const char* PLAYERJUMPSOUND_PATH = "assets/sound/mp3,flac,wav/jump.wav";
+    constexpr const char* PLAYERJUMPSOUND_PATH = "test/test-assets/sound/mp3,flac,wav/jump.wav";
     inline std::shared_ptr<sf::SoundBuffer> PLAYERJUMP_SOUNDBUFF = std::make_shared<sf::SoundBuffer>();
     constexpr float PLAYERJUMPSOUND_VOLUME = 100.0f; 
 }
