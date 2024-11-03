@@ -211,15 +211,9 @@ float Animated::getRadius() const {
 /* updates position to be assigned most recent position */
 void Sprite::updateVisibility() {
     try {
-        if (position.y > Constants::SCREEN_HEIGHT + Constants::SPRITE_OUT_OF_BOUNDS_OFFSET ||
-            position.x > Constants::SCREEN_WIDTH + Constants::SPRITE_OUT_OF_BOUNDS_OFFSET ||
-            position.y < 0 - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET ||
-            position.x < 0 - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET) {
-                // do something else 
+            // under some condition 
             setVisibleState(false);
             log_info("Sprite moved out of bounds and is no longer visible.");
-        }
-        log_info("Sprite position updated to (" + std::to_string(position.x) + ", " + std::to_string(position.y) + ")");
     }
     catch (const std::exception& e) {
         log_error("Error in updating position: " + std::string(e.what()));
@@ -255,42 +249,3 @@ std::shared_ptr<sf::Uint8[]> const Animated::getBitmask(size_t index) const {
         throw;  // Rethrow the exception for further handling if necessary
     }
 }
-
-/* specialized player position update method */
-void Player::updatePlayer(sf::Vector2f newPos) {
-    changePosition(position); 
-    log_info("Player position updated to (" + std::to_string(newPos.x) + ", " + std::to_string(newPos.y) + ")");
-}
-
-/* calculates obstacle's direction vector when bullet is made */
-void Obstacle::setDirectionVector(float angle) {
-    float angleRad = angle * (3.14f / 180.f);
-    directionVector.x = std::cos(angleRad);
-    directionVector.y = std::sin(angleRad);
-    log_info("Obstacle direction vector set based on angle " + std::to_string(angle));
-}
-
-/* sets bullet's direction vector */
-void Bullet::setDirectionVector(sf::Vector2i projectionPos) {
-    directionVector = static_cast<sf::Vector2f>(projectionPos) - position;
-    
-    // Calculate the length of the direction vector (distance to the target)
-    float length = std::sqrt(directionVector.x * directionVector.x + directionVector.y * directionVector.y);
-
-    if (length != 0) {
-        directionVector.x /= length;
-        directionVector.y /= length;
-    }
-    log_info("Bullet direction vector calculated.");
-}
-
-void Sprite3D::draw(sf::RenderTarget& target, sf::RenderStates states) {
-    // Apply simple perspective scaling based on z-depth
-    float perspectiveScale = 1.0f / (1.0f + zdepth / 500.0f);  // Example of perspective scaling
-
-    sf::Transform transform;
-    transform.scale(perspectiveScale, perspectiveScale);
-    states.transform *= transform;
-
-    Sprite::draw(target, states);  // Draw the sprite with perspective
-} 

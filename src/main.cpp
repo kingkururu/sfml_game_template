@@ -1,7 +1,7 @@
+ #include "game.hpp"
 
-// #include "game.hpp"
-// #include "testMain.cpp"
+int main(){
+    GameManager game;
 
-// int main(){
-//     game1.runGame();
-// }
+    game.runGame();
+}

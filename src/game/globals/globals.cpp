@@ -29,48 +29,6 @@ namespace Constants {
 
         log_info("\tConstants initialized ");
 
-        if (!BACKGROUND_TEXTURE->loadFromFile(BACKGROUNDSPRITE_PATH)) {
-            log_warning("Failed to load background texture");
-        }
-
-        if (!BACKGROUND_TEXTURE2->loadFromFile(BACKGROUNDSPRITE_PATH2)) {
-            log_warning("Failed to load background2 texture");
-        }
-
-        if (!BUTTON1_TEXTURE->loadFromFile(BUTTON1_PATH)) {
-            log_warning("Failed to load button texture");
-        }
-
-        if (!SPRITE1_TEXTURE->loadFromFile(SPRITE1SPRITE_PATH)) {
-            log_warning("Failed to load sprite1 texture");
-        }
-
-        if (!TILE1_TEXTURE->loadFromFile(TILE1_PATH)) {
-            log_warning("Failed to load tile1 texture");
-        }
-
-        if (!BACKGROUNDMUSIC_MUSIC->openFromFile(BACKGROUNDMUSIC_PATH)) {
-            log_warning("Failed to load background music");
-        }
-
-        if (!PLAYERJUMP_SOUNDBUFF->loadFromFile(PLAYERJUMPSOUND_PATH)) {
-            log_warning("Failed to load player jump sound");
-        }
-
-        if (!TEXT_FONT->loadFromFile(TEXT_PATH)) {
-            log_warning("Failed to load text font");
-        }
-     
-        //make rects for animations     
-        for(int i = 0; i < BUTTON1_INDEXMAX; ++i ){
-            BUTTON1_ANIMATIONRECTS.emplace_back(sf::IntRect{ 170 * i, 0, 170, 170 }); 
-        }
-
-        // make bitmasks
-        for (const auto& rect : BUTTON1_ANIMATIONRECTS ) {
-            BUTTON1_BITMASK.emplace_back(createBitmask(BUTTON1_TEXTURE, rect));
-        }
-
     }
 
     std::shared_ptr<sf::Uint8[]> createBitmask( const std::shared_ptr<sf::Texture>& texture, const sf::IntRect& rect) {

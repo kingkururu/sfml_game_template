@@ -35,9 +35,7 @@ private:
     GameWindow mainWindow;
 
     /* Make more scene here. ex) name it openingScene, scene1, etc */
-    std::unique_ptr<introScene> introScreenScene; 
-    std::unique_ptr<gamePlayScene> gameScene;
-    std::unique_ptr<gamePlayScene2> gameSceneNext; 
+    std::unique_ptr<Scene> scene1; 
 
 };
 

@@ -10,9 +10,8 @@
 GameManager::GameManager()
     : mainWindow(Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT, Constants::GAME_TITLE, Constants::FRAME_LIMIT),
     
-    introScreenScene(std::make_unique<introScene>(mainWindow.getWindow())),  
-    gameScene(std::make_unique<gamePlayScene>(mainWindow.getWindow())),
-    gameSceneNext(std::make_unique<gamePlayScene2>(mainWindow.getWindow())) {
+    scene1(std::make_unique<Scene>(mainWindow.getWindow()))  
+    {
 
     Constants::initialize();
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
@@ -39,19 +38,15 @@ void GameManager::runGame() {
 }
 
 void GameManager::runScenesFlags(){
-    if(FlagSystem::gameScene1Flags.sceneStart && !FlagSystem::gameScene1Flags.sceneEnd){ 
-        gameScene->runScene();
+    if(!FlagSystem::flagEvents.gameEnd){ 
+        scene1->runScene();
     }
 
-    if(FlagSystem::gameSceneNextFlags.sceneStart  && !FlagSystem::gameSceneNextFlags.sceneEnd){
-        gameSceneNext->runScene();
-    }
 }
 
 void GameManager::loadScenes(){
-    introScreenScene->createAssets(); 
-    gameScene->createAssets();
-    gameSceneNext->createAssets(); 
+    scene1->createAssets(); 
+
 }
 
 /* countTime counts global time and delta time for scenes to later use in runScene */
