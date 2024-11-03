@@ -1,11 +1,7 @@
 
-#include "game.hpp"
+// #include "game.hpp"
+// #include "testMain.cpp"
 
-// can add more games here, but must modify GameManger first
-int main(){
-    GameManager game1;
-
-    game1.runGame();
-    
-    return 0; 
-}
+// int main(){
+//     game1.runGame();
+// }
