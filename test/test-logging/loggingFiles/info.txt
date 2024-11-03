@@ -1,0 +1,13 @@
+[2024-11-03 20:25:53.951] [info_logger] [info] 	Constants initialized 
+[2024-11-03 20:25:53.993] [info_logger] [info] 	Game initialized
+[2024-11-03 20:25:53.993] [info_logger] [info] Sprite initialized successfully
+[2024-11-03 20:25:53.993] [info_logger] [info] Background created
+[2024-11-03 20:25:53.993] [info_logger] [info] Music initialized successfully, volume is 100.000000
+[2024-11-03 20:25:53.993] [info_logger] [info] Sprite initialized successfully
+[2024-11-03 20:25:53.993] [info_logger] [info] Sound initialized successfully
+[2024-11-03 20:25:53.993] [info_logger] [info] text initialized successully
+[2024-11-03 20:25:53.993] [info_logger] [info] Sprite initialized successfully
+[2024-11-03 20:25:53.993] [info_logger] [info] Background created
+[2024-11-03 20:25:55.302] [info_logger] [info] button clicked
+[2024-11-03 20:25:56.235] [info_logger] [info] 	Game Ended
+

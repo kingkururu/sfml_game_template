@@ -32,8 +32,8 @@ private:
     sf::Vector2f scale {};
     std::weak_ptr<sf::Texture> texture;
     sf::IntRect textureRect {};   // Texture portion for this tile
-    std::unique_ptr<sf::Sprite> spriteCreated;
     bool walkable;                // Whether the tile is walkable (for pathfinding, collision, etc.)
+    std::unique_ptr<sf::Sprite> spriteCreated;
 };
 
 class TileMap : public sf::Drawable {
@@ -49,6 +49,8 @@ public:
 
     // Load the entire tilemap by modifying the existing tiles
     void loadTileMap(const std::vector<int>& map, const std::vector<std::shared_ptr<Tile>>& tileSet);
+    float const getTileWidth() const { return tileWidth; }
+    float const getTileHeight() const { return tileHeight; }
 
 private:
     unsigned int width;

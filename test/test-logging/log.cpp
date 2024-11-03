@@ -4,8 +4,8 @@
 
 void init_logging() {
     // Define the log file paths
-    std::string info_log_file = "libs/logging/info.txt";
-    std::string error_log_file = "libs/logging/errors.txt";
+    std::string info_log_file = "test/test-logging/loggingFiles/info.txt";
+    std::string error_log_file = "test/test-logging/loggingFiles/errors.txt";
 
     // Create sinks for info and error logs
     auto info_console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
