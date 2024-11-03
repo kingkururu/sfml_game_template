@@ -1,7 +1,7 @@
 
 ## SFML Game Template
 
-This repository provides a foundational template for building 2D games using C++ and SFML. It's designed for developers looking to implement essential game features like game loops, asset management, physics, and scene management. Built with Visual Studio Code, this setup should also work in other environments that support Makefile builds.
+This repository provides a foundational template for building 2D games using C++ and SFML. It's designed for basic game features like game loops, asset management, physics, and scene management. Built with Visual Studio Code, this setup should also work in other environments that support Makefile builds.
 
 
 
