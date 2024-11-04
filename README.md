@@ -48,9 +48,13 @@ This will:
 -   Install sfml, spdlog, and fmt via Homebrew.
 -   Compile and build the project executable.
 
-3. Run the game 
+3.1 Run the game ( run the tester )
 ```bash
-  ./run
+  make test
+```
+3.2 Run the game ( run the actual )
+```bash
+  make run
 ```
 4. Clean the Build
 Remove compiled files with:
