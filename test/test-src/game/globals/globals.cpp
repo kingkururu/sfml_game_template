@@ -86,6 +86,36 @@ namespace Constants {
         }
     }
 
+    void writeRandomTileMap(const std::string& filePath) {
+        try{
+            std::ofstream fileStream(filePath);
+        
+            if (!fileStream.is_open()) {
+                throw std::runtime_error("Unable to open file: " + filePath);
+            }
+
+            for (unsigned short y = 0; y < TILEMAP_HEIGHT; ++y) {
+                for (unsigned short x = 0; x < TILEMAP_WIDTH; ++x) {
+                    // Generate a random tile index using rand()
+                    unsigned int tileIndex = std::rand() % TILES_NUMBER;
+                    fileStream << tileIndex;
+
+                    if (x < TILEMAP_WIDTH - 1) { // Avoid adding extra space at the end of the line
+                        fileStream << " ";
+                    }
+                }
+                fileStream << std::endl; // New line after each row
+            }
+            
+            fileStream.close();
+
+            log_info("successfuly made a random tile map"); 
+        }
+        catch (const std::exception& e){
+            log_warning("Error in writing random tile map: " + std::string(e.what()));
+        }
+    }
+
     std::shared_ptr<sf::Uint8[]> createBitmask( const std::shared_ptr<sf::Texture>& texture, const sf::IntRect& rect) {
         if (!texture) {
             log_warning("\tfailed to create bitmask ( texture is empty )");

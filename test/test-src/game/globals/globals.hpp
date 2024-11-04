@@ -10,6 +10,7 @@
 #include <vector>
 #include <iostream> 
 #include <sstream>
+#include <fstream> 
 
 #include "log.hpp" 
 
@@ -37,6 +38,7 @@ namespace MetaComponents{
 namespace Constants {
     // make random positions each time
     extern sf::Vector2f makeRandomPosition(); 
+    extern void writeRandomTileMap(const std::string& filePath); 
 
     // load textures, fonts, music, and sound
     extern void initialize(); 
@@ -103,12 +105,12 @@ namespace Constants {
     inline std::vector<sf::IntRect> TILES_SINGLE_RECTS;
     inline std::vector<std::shared_ptr<sf::Uint8[]>> TILES_BITMASKS;
     inline std::array<bool, TILES_NUMBER> TILES_BOOLS {}; 
-
-    // typical tile map componenets 
-    constexpr float MAP_WIDTH = 320.f; 
-    constexpr float MAP_HEIGHT = 192.f;  
     constexpr unsigned short TILE_WIDTH = 32;
     constexpr unsigned short TILE_HEIGHT = 32;
+    
+    // typical tile map componenets 
+    constexpr float TILEMAP_WIDTH = 320.f; 
+    constexpr float TILEMAP_HEIGHT = 192.f;  
     constexpr const char* TILEMAP_FILEPATH = "test/test-assets/tiles/tilemap.txt";
 
     // typical text components

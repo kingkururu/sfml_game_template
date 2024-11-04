@@ -15,6 +15,7 @@ GameManager::GameManager()
     gameSceneNext(std::make_unique<gamePlayScene2>(mainWindow.getWindow())) {
 
     Constants::initialize();
+
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
     log_info("\tGame initialized");
