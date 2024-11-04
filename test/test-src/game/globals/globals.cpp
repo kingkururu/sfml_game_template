@@ -43,8 +43,8 @@ namespace Constants {
             log_warning("Failed to load sprite1 texture");
         }
 
-        if (!TILE1_TEXTURE->loadFromFile(TILE1_PATH)) {
-            log_warning("Failed to load tile1 texture");
+        if (!TILES_TEXTURE->loadFromFile(TILES_PATH)) {
+            log_warning("Failed to load tiles texture");
         }
 
         if (!BACKGROUNDMUSIC_MUSIC->openFromFile(BACKGROUNDMUSIC_PATH)) {
@@ -58,17 +58,32 @@ namespace Constants {
         if (!TEXT_FONT->loadFromFile(TEXT_PATH)) {
             log_warning("Failed to load text font");
         }
-     
-        //make rects for animations     
+
+        BUTTON1_ANIMATIONRECTS.reserve(BUTTON1_INDEXMAX); 
+        // make rects for animations     
         for(int i = 0; i < BUTTON1_INDEXMAX; ++i ){
             BUTTON1_ANIMATIONRECTS.emplace_back(sf::IntRect{ 170 * i, 0, 170, 170 }); 
         }
 
+        BUTTON1_BITMASK.reserve(BUTTON1_INDEXMAX); 
         // make bitmasks
         for (const auto& rect : BUTTON1_ANIMATIONRECTS ) {
             BUTTON1_BITMASK.emplace_back(createBitmask(BUTTON1_TEXTURE, rect));
         }
 
+        TILES_SINGLE_RECTS.reserve(TILES_NUMBER); 
+        // Populate individual tile rectangles
+        for (int row = 0; row < TILES_ROWS; ++row) {
+            for (int col = 0; col < TILES_COLUMNS; ++col) {
+                TILES_SINGLE_RECTS.emplace_back(sf::IntRect{col * TILE_WIDTH, row * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT});
+            }
+        }
+
+        TILES_BITMASKS.reserve(TILES_NUMBER); 
+        // make bitmasks for tiles 
+        for (const auto& rect : TILES_SINGLE_RECTS ) {
+            TILES_BITMASKS.emplace_back(createBitmask(TILES_TEXTURE, rect));
+        }
     }
 
     std::shared_ptr<sf::Uint8[]> createBitmask( const std::shared_ptr<sf::Texture>& texture, const sf::IntRect& rect) {

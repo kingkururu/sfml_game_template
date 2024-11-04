@@ -55,7 +55,7 @@ class Animated : public virtual Sprite {
 public:
     explicit Animated( sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, const std::vector<sf::IntRect> animationRects, unsigned const int indexMax,  const std::vector<std::weak_ptr<sf::Uint8[]>>& bitMask) 
         : Sprite(position, scale, texture), animationRects(animationRects), indexMax(indexMax), bitMask(bitMask) {}
-    std::vector<sf::IntRect> getAnimationRects() const { return animationRects; } 
+    std::vector<sf::IntRect> const getAnimationRects() const { return animationRects; } 
     void setAnimation(std::vector<sf::IntRect> AnimationRects) { animationRects = AnimationRects; } 
     
     void setAnimChangeState(bool newState) { animChangeState = newState; }

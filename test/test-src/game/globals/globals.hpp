@@ -94,18 +94,22 @@ namespace Constants {
     inline std::vector<std::shared_ptr<sf::Uint8[]>> BUTTON1_BITMASK;
 
     // typical tile components 
-    constexpr const char* TILE1_PATH = "test/test-assets/sprites/png/Player.png";
-    constexpr bool TILE1_BOOL = true; 
-    inline const sf::Vector2f TILE1_POSITION = { 0.0f, 0.0f };
-    inline const sf::Vector2f TILE1_SCALE = { 1.0f, 1.0f };
-    inline std::shared_ptr<sf::Texture> TILE1_TEXTURE = std::make_shared<sf::Texture>();
-    inline const sf::IntRect TILE1_RECT = { 1, 1, 2, 2 }; 
+    constexpr const char* TILES_PATH = "test/test-assets/tiles/png/Tileset.png";
+    constexpr unsigned short TILES_NUMBER = 60; 
+    inline const sf::Vector2f TILES_SCALE = { 1.0f, 1.0f };
+    inline std::shared_ptr<sf::Texture> TILES_TEXTURE = std::make_shared<sf::Texture>();
+    inline std::vector<sf::IntRect> TILES_SINGLE_RECTS;
+    inline std::vector<std::shared_ptr<sf::Uint8[]>> TILES_BITMASKS;
+    inline std::array<bool, TILES_NUMBER> TILES_BOOLS {}; 
 
-    // typical tile map componenets
-    constexpr float MAP_WIDTH = 1.0f; 
-    constexpr float MAP_HEIGHT = 1.0f;  
-    constexpr unsigned short TILE_WIDTH = 20;
-    constexpr unsigned short TILE_HEIGHT = 20;
+    // typical tile map componenets 
+    constexpr float MAP_WIDTH = 320.f; 
+    constexpr float MAP_HEIGHT = 192.f;  
+    constexpr unsigned short TILE_WIDTH = 32;
+    constexpr unsigned short TILE_HEIGHT = 32;
+
+    constexpr unsigned short TILES_ROWS = 6;
+    constexpr unsigned short TILES_COLUMNS = 10;
 
     // typical text components
     constexpr unsigned short TEXT_SIZE = 40;

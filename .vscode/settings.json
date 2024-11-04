@@ -68,6 +68,10 @@
         "concepts": "cpp",
         "exception": "cpp",
         "type_traits": "cpp",
-        "csignal": "cpp"
+        "csignal": "cpp",
+        "__mutex_base": "cpp",
+        "chrono": "cpp",
+        "format": "cpp",
+        "fstream": "cpp"
     }
 }

@@ -1,8 +1,8 @@
 //
 //  scenes.hpp
-//  sfml game template
 //
 //
+
 #pragma once
 
 #include <iostream>
@@ -11,15 +11,17 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <memory>
+#include <array>
 
 #include "sprites.hpp"
 #include "sound.hpp"
 #include "fonts.hpp"
+#include "tiles.hpp"
 
 #include "globals.hpp"
 #include "physics.hpp"
 #include "utils.hpp"
-#include "tiles.hpp"
+
 #include "log.hpp"
 
 /* Base scene class */
@@ -103,10 +105,11 @@ class gamePlayScene : public virtual Scene{
  private:
   std::unique_ptr<Background> background; 
   std::unique_ptr<Sprite> sprite1; 
-  std::unique_ptr<Tile> tile1; 
-  std::unique_ptr<TileMap> tileMap1; 
 
-  std::unique_ptr<Button> button1; 
+  std::array<std::unique_ptr<Tile>, Constants::TILES_NUMBER> tiles1;   
+  // std::unique_ptr<TileMap> tileMap1; 
+
+  std::unique_ptr<Button> button1;  
 
   std::unique_ptr<MusicClass> backgroundMusic;
   std::unique_ptr<SoundClass> playerJumpSound; 
