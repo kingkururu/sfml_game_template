@@ -57,10 +57,10 @@ private:
     unsigned int tilesArraySize {};
     size_t tileMapWidth{};
     size_t tileMapHeight{}; 
-    unsigned int width {};
-    unsigned int height {};
+
     float tileWidth {};
     float tileHeight {};
+
     std::vector<std::shared_ptr<Tile>> tiles;  // Store tiles as shared pointers
 
     // Override the draw function of sf::Drawable to draw all tiles

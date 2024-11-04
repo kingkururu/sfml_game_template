@@ -77,3 +77,24 @@ void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
         }
     }
 }
+
+// Add a tile to the map at the specified grid position (x, y)
+void TileMap::addTile(unsigned int x, unsigned int y, std::weak_ptr<Tile> tile) {
+    // Check if the specified position is within the bounds of the tile map
+    if (x >= tileMapWidth || y >= tileMapHeight) {
+        throw std::out_of_range("Tile position out of bounds: (" + std::to_string(x) + ", " + std::to_string(y) + ")");
+    }
+
+    // Calculate the index in the tiles vector
+    unsigned int index = y * tileMapWidth + x;
+
+    // Check if the tile is valid (lock the weak_ptr to get a shared_ptr)
+    if (auto sharedTile = tile.lock()) {
+        // Update the tile at the calculated index with the new tile
+        tiles[index] = sharedTile;
+        // Optionally set the position of the tile if the Tile class has a method for that
+        sharedTile->getTileSprite().setPosition(x * tileWidth, y * tileHeight);
+    } else {
+        throw std::runtime_error("Attempted to add an expired tile.");
+    }
+}
