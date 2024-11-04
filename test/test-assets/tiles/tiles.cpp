@@ -39,24 +39,26 @@ TileMap::TileMap(std::shared_ptr<Tile>* tileTypesArray, unsigned int tileTypesNu
         }
 
         std::string line;
-        while (std::getline(fileStream, line)) {
-            std::istringstream lineStream(line);
-            unsigned int tileIndex;
+        unsigned int currentY = 0; // Track the current row
 
-            for (unsigned int y = 0; y < tileMapHeight; ++y) {
-                for (unsigned int x = 0; x < tileMapWidth; ++x) {
-                    if (lineStream >> tileIndex) {
-                        if (tileIndex < tileTypesNumber) {
-                            // Access the shared_ptr directly and create a copy of the Tile object
-                            tiles.emplace_back(std::make_shared<Tile>(*tileTypesArray[tileIndex].get()));
-                        } else {
-                            throw std::out_of_range("Tile index out of bounds: " + std::to_string(tileIndex));
-                        }
-                    } else {
-                        throw std::runtime_error("Error reading tile index from file: " + filePath);
-                    }
+        while (std::getline(fileStream, line) && currentY < tileMapHeight) {
+            std::istringstream lineStream(line);
+            std::string tileIndexStr;
+            unsigned int currentX = 0; // Track the current column
+
+            while (lineStream >> tileIndexStr && currentX < tileMapWidth) {
+                unsigned int tileIndex = std::stoul(tileIndexStr); // Convert to unsigned int
+                if (tileIndex < tileTypesNumber) {
+                    // Create a copy of the Tile object and set its position
+                    auto tile = std::make_shared<Tile>(*tileTypesArray[tileIndex].get());
+                    tile->getTileSprite().setPosition(currentX * tileWidth, currentY * tileHeight); // Set the tile's position
+                    tiles.emplace_back(tile);
+                } else {
+                    throw std::out_of_range("Tile index out of bounds: " + std::to_string(tileIndex));
                 }
+                currentX++; // Increment column index
             }
+            currentY++; // Increment row index
         }
 
         fileStream.close();
