@@ -24,16 +24,13 @@ public:
 
     sf::IntRect const getTextureRect() const { return textureRect; }
     std::weak_ptr<sf::Uint8[]>  const getBitMask() const { return bitmask; }
-    
-    // sf::Vector2f getPosition() const { return position; }
-    void setPosition(sf::Vector2f newPos);
-    
+ 
     bool getWalkable() const { return walkable; }
     void setWalkable(bool newWalkable) { walkable = newWalkable; }
 
 private:
-    // sf::Vector2f position {};
-    std::unique_ptr<sf::Sprite> tileSprite {};
+    sf::Vector2f position {};
+    std::shared_ptr<sf::Sprite> tileSprite {};
     sf::Vector2f scale {};
     std::weak_ptr<sf::Texture> texture;
     sf::IntRect textureRect {};   // Texture portion for this tile
@@ -41,36 +38,33 @@ private:
     bool walkable {};
 };
 
-// class TileMap : public sf::Drawable {
-// public:
-//     // Constructor now accepts a shared_ptr to a default tile, and initializes the map with it
-//     explicit TileMap(unsigned int width, unsigned int height, float tileWidth, float tileHeight, std::shared_ptr<Tile> defaultTile);
-//     ~TileMap() = default;
+class TileMap : public sf::Drawable {
+public:
+    // Constructor now accepts a shared_ptr to a default tile, and initializes the map with it
+    explicit TileMap(const std::vector<std::shared_ptr<Tile>>& tileTypesVector, unsigned int tileMapWidth, unsigned int tileMapHeight, float tileWidth, float tileHeight, const std::string& filePath);
+    ~TileMap() = default;
 
-//     // Add a tile to the map at the specified grid position (x, y)
-//     void addTile(unsigned int x, unsigned int y, std::shared_ptr<Tile> tile); 
+    // Add a tile to the map at the specified grid position (x, y)
+    void addTile(unsigned int x, unsigned int y, std::weak_ptr<Tile> tile); 
 
-//     // Access a tile at a specific grid position
-//     std::shared_ptr<Tile> getTile(unsigned int x, unsigned int y) const; 
+    // Access a tile at a specific grid position
+    std::weak_ptr<Tile> getTile(unsigned int x, unsigned int y) const; 
 
-//     // Load the entire tilemap by modifying the existing tiles
-//     void loadTileMap(const std::vector<int>& map, const std::vector<std::shared_ptr<Tile>>& tileSet);
-    
-//     // New method to load tile map data from a file
-//     void loadTileMapFromFile(const std::string& filename, const std::vector<std::shared_ptr<Tile>>& tileSet);
-    
-//     float const getTileWidth() const { return tileWidth; }
-//     float const getTileHeight() const { return tileHeight; }
+    float const getTileWidth() const { return tileWidth; }
+    float const getTileHeight() const { return tileHeight; }
 
-// private:
-//     unsigned int width;
-//     unsigned int height;
-//     float tileWidth;
-//     float tileHeight;
-//     std::vector<std::shared_ptr<Tile>> tiles;  // Store tiles as shared pointers
+private:
+    unsigned int tilesArraySize {};
+    size_t tileMapWidth{};
+    size_t tileMapHeight{}; 
+    unsigned int width {};
+    unsigned int height {};
+    float tileWidth {};
+    float tileHeight {};
+    std::vector<std::shared_ptr<Tile>> tiles;  // Store tiles as shared pointers
 
-//     // Override the draw function of sf::Drawable to draw all tiles
-//     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-// };
+    // Override the draw function of sf::Drawable to draw all tiles
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+};
 
 

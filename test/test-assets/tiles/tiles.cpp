@@ -3,7 +3,7 @@
 Tile::Tile(sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, sf::IntRect textureRect, std::weak_ptr<sf::Uint8[]> bitmask, bool walkable)
           : scale(scale), texture(texture), textureRect(textureRect), bitmask(bitmask), walkable(walkable) {
     try{
-        tileSprite = std::make_unique<sf::Sprite>();
+        tileSprite = std::make_shared<sf::Sprite>();
 
         if (auto sharedTexture = texture.lock()) {
             sf::Vector2u textureSize = sharedTexture->getSize(); 
@@ -26,96 +26,51 @@ Tile::Tile(sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, sf::IntRect t
     }
 }
 
-// void Tile::setPosition(sf::Vector2f newPos) { 
-//     position = newPos; 
-//     spriteCreated->setPosition(position);
-// }
+TileMap::TileMap(const std::vector<std::shared_ptr<Tile>>& tileTypesVector, unsigned int tileMapWidth, unsigned int tileMapHeight, float tileWidth, float tileHeight, const std::string& filePath) 
+    : tileMapWidth(tileMapWidth), tileMapHeight(tileMapHeight), tileWidth(tileWidth), tileHeight(tileHeight) {
 
-// TileMap::TileMap(unsigned int width, unsigned int height, float tileWidth, float tileHeight, std::shared_ptr<Tile> defaultTile) 
-//     : width(width), height(height), tileWidth(tileWidth), tileHeight(tileHeight), tiles(width * height) {
+    try{
+        tiles.reserve( tileMapWidth * tileMapHeight ); 
 
-//   // Initialize the tile map with the default tile at each position
-//     for (unsigned int y = 0; y < height; ++y) {
-//         for (unsigned int x = 0; x < width; ++x) {
-//         addTile(x, y, defaultTile);
-//         }
-//     }
+        std::ifstream fileStream(filePath);
+        
+        if (!fileStream.is_open()) {
+            throw std::runtime_error("Unable to open file: " + filePath);
+        }
 
-//     log_info("Tile map initialized successfully");
+        std::string line;
+        while (std::getline(fileStream, line)) {
+            std::istringstream lineStream(line);
+            unsigned int tileIndex;
 
-// }
+            for (unsigned int y = 0; y < tileMapHeight; ++y) {
+                for (unsigned int x = 0; x < tileMapWidth; ++x) {
+                    if (lineStream >> tileIndex) {
+                        if (tileIndex < tileTypesVector.size()) {
+                            tiles.push_back(std::make_shared<Tile>(*tileTypesVector[tileIndex]));
+                        } else {
+                            throw std::out_of_range("Tile index out of bounds: " + std::to_string(tileIndex));
+                        }
+                    } else {
+                        throw std::runtime_error("Error reading tile index from file: " + filePath);
+                    }
+                }
+            }
+        }
 
-// void TileMap::addTile(unsigned int x, unsigned int y, std::shared_ptr<Tile> tile) {
-//     if (x < width && y < height) {
-//         tiles[y * width + x] = tile;
-//     } else {
-//         throw std::out_of_range("Tile position out of bounds");
-//     }
-// }
+        fileStream.close();
 
-// std::shared_ptr<Tile> TileMap::getTile(unsigned int x, unsigned int y) const {
-//     if (x < width && y < height) {
-//         return tiles[y * width + x];
-//     }
-//     throw std::out_of_range("Tile position out of bounds");
-// }
+        log_info("Tile map initialized successfully");
+    }
+    catch (const std::exception& e) {
+        log_error("Error in updating position: " + std::string(e.what()));
+    }
+}
 
-// void TileMap::loadTileMap(const std::vector<int>& map, const std::vector<std::shared_ptr<Tile>>& tileSet) {
-//     if (map.size() != width * height) {
-//         throw std::invalid_argument("Map size does not match TileMap dimensions");
-//     }
-
-//     for (unsigned int y = 0; y < height; ++y) {
-//         for (unsigned int x = 0; x < width; ++x) {
-//             int tileIndex = map[y * width + x];
-//             if (tileIndex >= 0 && static_cast<size_t>(tileIndex) < tileSet.size()) {
-//                 // Replace the corresponding tile in the map with one from the tileSet
-//                 addTile(x, y, tileSet[tileIndex]);
-//             } else {
-//                 throw std::runtime_error("Invalid tile index in map");
-//             }
-//         }
-//     }
-// }
-
-// void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-//     for (const auto& tile : tiles) {
-//         if (tile) {
-//             target.draw(tile->getTileSprite(), states);
-//         }
-//     }
-// }
-
-// void TileMap::loadTileMapFromFile(const std::string& filename, const std::vector<std::shared_ptr<Tile>>& tileSet) {
-//     std::ifstream file(filename);
-//     if (!file.is_open()) {
-//         throw std::runtime_error("Unable to open file: " + filename);
-//     }
-
-//     std::vector<int> map;
-//     std::string line;
-//     unsigned int row = 0;
-
-//     while (std::getline(file, line) && row < height) {
-//         std::istringstream ss(line);
-//         int tileIndex;
-//         unsigned int col = 0;
-
-//         while (ss >> tileIndex && col < width) {
-//             map.push_back(tileIndex);
-//             ++col;
-//         }
-
-//         if (col != width) {
-//             throw std::runtime_error("Invalid number of columns in row " + std::to_string(row) + " of the tile map file.");
-//         }
-//         ++row;
-//     }
-
-//     if (map.size() != width * height) {
-//         throw std::runtime_error("Map size does not match TileMap dimensions");
-//     }
-
-//     // Load the tile map with the parsed data
-//     loadTileMap(map, tileSet);
-// }
+void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+    for (const auto& tile : tiles) {
+        if (tile) {
+            target.draw(tile->getTileSprite(), states);
+        }
+    }
+}

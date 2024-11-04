@@ -72,6 +72,7 @@
         "__mutex_base": "cpp",
         "chrono": "cpp",
         "format": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "system_error": "cpp"
     }
 }
