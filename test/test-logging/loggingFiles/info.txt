@@ -1,72 +1,72 @@
-[2024-11-04 15:26:22.812] [info_logger] [info] 	Constants initialized 
-[2024-11-04 15:26:22.858] [info_logger] [info] 	Game initialized
-[2024-11-04 15:26:22.858] [info_logger] [info] Sprite initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Background created
-[2024-11-04 15:26:22.858] [info_logger] [info] Music initialized successfully, volume is 100.000000
-[2024-11-04 15:26:22.858] [info_logger] [info] Sprite initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Tile initialized successfully
-[2024-11-04 15:26:22.858] [info_logger] [info] Sound initialized successfully
-[2024-11-04 15:26:22.859] [info_logger] [info] text initialized successully
-[2024-11-04 15:26:22.859] [info_logger] [info] Sprite initialized successfully
-[2024-11-04 15:26:22.859] [info_logger] [info] Background created
-[2024-11-04 15:26:28.914] [info_logger] [info] 	Game Ended
+[2024-11-04 15:35:59.903] [info_logger] [info] 	Constants initialized 
+[2024-11-04 15:35:59.947] [info_logger] [info] 	Game initialized
+[2024-11-04 15:35:59.947] [info_logger] [info] Sprite initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Background created
+[2024-11-04 15:35:59.947] [info_logger] [info] Music initialized successfully, volume is 100.000000
+[2024-11-04 15:35:59.947] [info_logger] [info] Sprite initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.947] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Tile initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Sound initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] text initialized successully
+[2024-11-04 15:35:59.948] [info_logger] [info] Sprite initialized successfully
+[2024-11-04 15:35:59.948] [info_logger] [info] Background created
+[2024-11-04 15:36:13.555] [info_logger] [info] 	Game Ended
 
