@@ -15,13 +15,7 @@
 #include "log.hpp" 
 
 namespace SpriteComponents {
-    enum Direction {
-        NONE = 0, 
-        LEFT = 1,
-        RIGHT = -1,
-        UP = -2,
-        DOWN = 2
-    };
+    enum Direction { NONE, LEFT, RIGHT, UP, DOWN };
 }
 
 namespace MetaComponents{

@@ -70,6 +70,11 @@ TEST_SRC := test/test-src/testMain.cpp \
 
 TEST_OBJ := $(TEST_SRC:%.cpp=$(TEST_BUILD_DIR)/%.o)
 
+# New target to copy YAML config file
+COPY_CONFIG:
+	@mkdir -p $(TEST_BUILD_DIR)/configs
+	cp test/test-src/game/globals/configs.yaml $(TEST_BUILD_DIR)/configs/
+
 # Target executables
 TARGET := sfml_game
 TEST_TARGET := sfml_game_test
@@ -112,5 +117,5 @@ run: $(TARGET)
 	./$(TARGET)
 
 # Run tests
-test: $(TEST_TARGET)
+test: $(TEST_TARGET) COPY_CONFIG
 	./$(TEST_TARGET)
