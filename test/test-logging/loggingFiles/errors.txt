@@ -1,0 +1,1 @@
+[2024-11-04 15:26:22.858] [error_logger] [error] Error in updating position: Error reading tile index from file: test/test-assets/tiles/tilemap.txt

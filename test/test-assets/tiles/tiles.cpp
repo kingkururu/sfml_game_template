@@ -26,7 +26,7 @@ Tile::Tile(sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, sf::IntRect t
     }
 }
 
-TileMap::TileMap(const std::vector<std::shared_ptr<Tile>>& tileTypesVector, unsigned int tileMapWidth, unsigned int tileMapHeight, float tileWidth, float tileHeight, const std::string& filePath) 
+TileMap::TileMap(std::shared_ptr<Tile>* tileTypesArray, unsigned int tileTypesNumber, unsigned int tileMapWidth, unsigned int tileMapHeight, float tileWidth, float tileHeight, const std::string& filePath) 
     : tileMapWidth(tileMapWidth), tileMapHeight(tileMapHeight), tileWidth(tileWidth), tileHeight(tileHeight) {
 
     try{
@@ -46,8 +46,9 @@ TileMap::TileMap(const std::vector<std::shared_ptr<Tile>>& tileTypesVector, unsi
             for (unsigned int y = 0; y < tileMapHeight; ++y) {
                 for (unsigned int x = 0; x < tileMapWidth; ++x) {
                     if (lineStream >> tileIndex) {
-                        if (tileIndex < tileTypesVector.size()) {
-                            tiles.push_back(std::make_shared<Tile>(*tileTypesVector[tileIndex]));
+                        if (tileIndex < tileTypesNumber) {
+                            // Access the shared_ptr directly and create a copy of the Tile object
+                            tiles.emplace_back(std::make_shared<Tile>(*tileTypesArray[tileIndex].get()));
                         } else {
                             throw std::out_of_range("Tile index out of bounds: " + std::to_string(tileIndex));
                         }

@@ -95,7 +95,9 @@ namespace Constants {
 
     // typical tile components 
     constexpr const char* TILES_PATH = "test/test-assets/tiles/png/Tileset.png";
-    constexpr unsigned short TILES_NUMBER = 60; 
+    constexpr unsigned short TILES_ROWS = 6;
+    constexpr unsigned short TILES_COLUMNS = 10;
+    constexpr unsigned short TILES_NUMBER = TILES_ROWS * TILES_COLUMNS; 
     inline const sf::Vector2f TILES_SCALE = { 1.0f, 1.0f };
     inline std::shared_ptr<sf::Texture> TILES_TEXTURE = std::make_shared<sf::Texture>();
     inline std::vector<sf::IntRect> TILES_SINGLE_RECTS;
@@ -107,9 +109,7 @@ namespace Constants {
     constexpr float MAP_HEIGHT = 192.f;  
     constexpr unsigned short TILE_WIDTH = 32;
     constexpr unsigned short TILE_HEIGHT = 32;
-
-    constexpr unsigned short TILES_ROWS = 6;
-    constexpr unsigned short TILES_COLUMNS = 10;
+    constexpr const char* TILEMAP_FILEPATH = "test/test-assets/tiles/tilemap.txt";
 
     // typical text components
     constexpr unsigned short TEXT_SIZE = 40;

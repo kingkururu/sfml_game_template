@@ -96,8 +96,7 @@ void gamePlayScene::createAssets() {
         for (int i = 0; i < Constants::TILES_NUMBER; ++i) {
             tiles1.at(i) = std::make_shared<Tile>(Constants::TILES_SCALE, Constants::TILES_TEXTURE, Constants::TILES_SINGLE_RECTS[i], Constants::TILES_BITMASKS[i], Constants::TILES_BOOLS[i]); 
         }
-        //tileMap1 = std::make_unique<TileMap>(Constants::MAP_WIDTH, Constants::MAP_HEIGHT, Constants::TILE_WIDTH, Constants::TILE_HEIGHT, std::move(tile1)); 
-
+        tileMap1 = std::make_unique<TileMap>(tiles1.data(), Constants::TILES_NUMBER, Constants::MAP_WIDTH, Constants::MAP_HEIGHT, Constants::TILE_WIDTH, Constants::TILE_HEIGHT, Constants::TILEMAP_FILEPATH); 
 
         playerJumpSound = std::make_unique<SoundClass>(Constants::PLAYERJUMP_SOUNDBUFF, Constants::PLAYERJUMPSOUND_VOLUME); 
           
@@ -246,6 +245,7 @@ void gamePlayScene::draw() {
         if (button1 && button1->getVisibleState()) {
             window.draw(*button1); 
         }
+        if (tileMap1) window.draw(*tileMap1); 
         
         window.display(); 
     } 

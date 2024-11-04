@@ -41,7 +41,7 @@ private:
 class TileMap : public sf::Drawable {
 public:
     // Constructor now accepts a shared_ptr to a default tile, and initializes the map with it
-    explicit TileMap(const std::vector<std::shared_ptr<Tile>>& tileTypesVector, unsigned int tileMapWidth, unsigned int tileMapHeight, float tileWidth, float tileHeight, const std::string& filePath);
+    explicit TileMap(std::shared_ptr<Tile>* tileTypesArray, unsigned int tileTypesNumber, unsigned int tileMapWidth, unsigned int tileMapHeight, float tileWidth, float tileHeight, const std::string& filePath);
     ~TileMap() = default;
 
     // Add a tile to the map at the specified grid position (x, y)
@@ -66,5 +66,3 @@ private:
     // Override the draw function of sf::Drawable to draw all tiles
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
-
-
