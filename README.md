@@ -63,14 +63,13 @@ Remove compiled files with:
 ```
 
 ## File Structure
-The codebase is organized for ease of modification and scalability:
 
 ```bash
   /sfml_game_template
 │
 ├── .vscode                    # VSCode settings and configurations
 │
-├── src                        # Source files for game engine
+├── src                        # Source files
 │   ├── main.cpp               # Main entry point of the game
 │   └── game                   # Core engine functionalities
 │       ├── globals            # Constants and flags
@@ -86,13 +85,12 @@ The codebase is organized for ease of modification and scalability:
 │   └── sprites                # Sprite images
 │
 ├── libs                       # External libraries
-│   └── logging                # Logging (spdlog-based)
+│   └── logging                # Logging 
 │
 ├── Makefile                   # Build instructions
 └── README.md                  # Project documentation
 
 ```
-This template includes assets and utilities to simplify your development process, with logging and debug information to help you track runtime behavior.
 
 
 
@@ -100,13 +98,13 @@ This template includes assets and utilities to simplify your development process
 
 -   Adjust Constants: Modify constants in globals.cpp for screen dimensions, physics parameters, or other game settings.
 -   Add Scenes: Create new files under /scenes to implement unique game states (e.g., MenuScene, GameScene).
--   Asset Management: Add or modify sprites, sounds, and fonts in the respective folders under /assets.
+-   Asset Management: Add or modify sprites, sounds, fonts, etc in the respective folders under /assets.
 ## Potential Extensions
 -   Additional Scenes: Extend functionality by adding new game scenes for different states or menus.
 -   Networking: Integrate SFML networking components for multiplayer features.
 -   Custom Physics: Extend physics capabilities for advanced collision or physics-based interactions.
+-   
 ## Dependencies
-
 -   SFML: For graphics, windowing, and audio handling.
 -   spdlog: Logging support for debug and error tracking.
 -   fmt: Text formatting library for easier output management.
@@ -128,20 +126,17 @@ This guide explains how to set up and start building your 2D game using the prov
 
 1. Game Manager and Scene Management
 - Add Scenes: Use GameManager to manage all your game scenes (like IntroScene, GameplayScene, etc.). Each scene should inherit from the base Scene class, which includes virtual methods like update, draw, and handleEvents.
-- Registering Scenes: In GameManager, register scenes by adding them to the scene stack. For example, you can use gameManager.addScene(std::make_unique<GamePlayScene>()); to push a new scene onto the stack.
-- Scene Transitioning: Use scene switching functions to manage transitions between scenes, ensuring smooth gameplay flow.
 
 2. Constants Management
-- Add New Constants: Define essential constants (like screen dimensions, game view settings, and scaling values) in the Constants namespace. This includes things like SCREEN_WIDTH, VIEW_SIZE_X, SCREEN_SCALE, etc.
+- Add New Constants: Define constants (like screen dimensions, game view settings, and scaling values) in the Constants namespace. This includes things like SCREEN_WIDTH, VIEW_SIZE_X, SCREEN_SCALE, etc.
 - Accessing Constants: To access these constants in other files, simply include the Constants.h file and refer to them as Constants::SCREEN_WIDTH, for example.
-- Updating View and Scaling: If your game view dimensions change, update VIEW_RECT and SCREEN_SCALE in Constants to maintain the proper scaling for sprites and UI elements.
 
 3. MetaComponents Setup
 - Global Variables: Variables in the MetaComponents namespace—like mouseClickedPosition, globalTime, deltaTime, and clock—are meant to be global and accessible from any file without duplication.
 - Using MetaComponents: Access variables directly through MetaComponents to manage input, time, and the main window. For example, MetaComponents::globalTime provides the time since the game started, useful for animations or timed events.
 
 4. Sprites and 2D Components
-- Adding Sprites: Use the Sprite or Sprite3D classes to manage your game visuals. Sprite3D supports 3D-like depth, but for standard 2D games, stick with Sprite.
+- Adding Sprites: Use the Sprite manage your game visuals
 - Visibility and Out-of-Bounds: The template includes functions to set sprites visible if within bounds. Leverage these checks to manage performance, hiding sprites when they’re completely offscreen; note that this only works inside a set view, where the entire window is the view.
 - Collision Handling: Collision detection functions in the Physics namespace help handle sprite collisions and movement. Use Physics::checkCollision(sprite1, sprite2, helperFunctionType) for basic collision checks.
 
@@ -150,10 +145,9 @@ This guide explains how to set up and start building your 2D game using the prov
 - Customizing Movement: Adjust movement speeds, jump heights, or gravity as needed by editing functions in Physics. You can also log debug information if using spdlog by adding logging calls in this namespace.
 
 6. Logging (Using spdlog)
-- Debug Logging: Logging can help debug scenes and check variable states. spdlog functions are accessible throughout the project; initialize logging in GameManager or any key game class to monitor state changes or performance metrics.
+- Debug Logging: Logging can help debug scenes and check variable states. spdlog functions are accessible throughout the project; logging is initialized in GameManager or any key game class to monitor state changes or performance metrics.
 
 7. Build and Run
-- Compilation: Use make with the provided Makefile to compile the project. Ensure g++ and all linked libraries like sfml and spdlog are set up correctly.
-- Running the Game: After building, run the executable to start the game loop, which will initialize GameManager and the main window.
+- Compilation: Use make with the provided Makefile to compile the project
 
 Feel free to modify these sections according to your game’s needs, adding more scenes, adjusting constants, or extending components as needed.
