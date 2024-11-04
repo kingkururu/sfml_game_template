@@ -2,8 +2,8 @@
 
 Tile::Tile(sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, sf::IntRect textureRect, 
            std::weak_ptr<sf::Uint8[]> bitmask, bool walkable)
-    : scale(scale), texture(texture), textureRect(textureRect), bitmask(bitmask), walkable(walkable) 
-{
+    : scale(scale), texture(texture), textureRect(textureRect), bitmask(bitmask), walkable(walkable) {
+    
     try {
         tileSprite = std::make_unique<sf::Sprite>(); // Use unique_ptr for tileSprite
 
@@ -28,8 +28,8 @@ Tile::Tile(sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, sf::IntRect t
 Tile::Tile(const Tile& other)
     : position(other.position), scale(other.scale),
       texture(other.texture), textureRect(other.textureRect),
-      bitmask(other.bitmask), walkable(other.walkable) 
-{
+      bitmask(other.bitmask), walkable(other.walkable) {
+
     // Create a new sprite with the same texture and scale
     tileSprite = std::make_unique<sf::Sprite>();
 
@@ -45,7 +45,7 @@ Tile::Tile(const Tile& other)
     }
 }
 
-TileMap::TileMap(std::shared_ptr<Tile>* tileTypesArray, unsigned int tileTypesNumber, unsigned int tileMapWidth, unsigned int tileMapHeight, float tileWidth, float tileHeight, const std::string& filePath) 
+TileMap::TileMap(std::shared_ptr<Tile>* tileTypesArray, unsigned int tileTypesNumber, size_t tileMapWidth, size_t tileMapHeight, float tileWidth, float tileHeight, const std::string& filePath) 
     : tileMapWidth(tileMapWidth), tileMapHeight(tileMapHeight), tileWidth(tileWidth), tileHeight(tileHeight), filePath(filePath) {
 
     try{
@@ -60,20 +60,17 @@ TileMap::TileMap(std::shared_ptr<Tile>* tileTypesArray, unsigned int tileTypesNu
         std::string line;
         unsigned int currentY = 0; // Track the current row
 
-        while (std::getline(fileStream, line) && currentY < (tileMapHeight / tileHeight)) {
+        while (std::getline(fileStream, line) && currentY < tileMapHeight) {
             std::istringstream lineStream(line);
             std::string tileIndexStr;
             unsigned int currentX = 0; // Track the current column
 
-            while (lineStream >> tileIndexStr && currentX < (tileMapWidth / tileWidth)) {
+            while (lineStream >> tileIndexStr && currentX < tileMapWidth) {
                 unsigned int tileIndex = std::stoul(tileIndexStr); // Convert to unsigned int
                 
                 if (tileIndex < tileTypesNumber) {
-                    // Create a copy of the Tile object and set its position
                     auto tile = tileTypesArray[tileIndex]->clone();
-
-                    tile->getTileSprite().setPosition(currentX * tileWidth, currentY * tileHeight); // Set the tile's position
-
+                    tile->getTileSprite().setPosition(currentX * tileWidth, currentY * tileHeight); 
                     tiles.emplace_back(std::move(tile));
                     
                 } else {
@@ -83,12 +80,6 @@ TileMap::TileMap(std::shared_ptr<Tile>* tileTypesArray, unsigned int tileTypesNu
             }
             currentY++; // Increment row index
         }
-
-for (int i = 0; i < tiles.size();++i){
-        std::cout << "at tiles index" << i << " the x position is: " << tiles[i]->getTileSprite().getPosition().x << " and y: "<<tiles[i]->getTileSprite().getPosition().y<< "\n"; 
-
-
-}
 
         fileStream.close();
 

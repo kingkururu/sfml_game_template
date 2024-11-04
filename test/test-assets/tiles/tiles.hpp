@@ -28,6 +28,7 @@ public:
     bool getWalkable() const { return walkable; }
     void setWalkable(bool newWalkable) { walkable = newWalkable; }
     
+    // making copies for use in tilemap
     virtual std::unique_ptr<Tile> clone() const {
         return std::unique_ptr<Tile>(new Tile(*this)); // Create a new instance with the same properties
     }
@@ -47,7 +48,7 @@ private:
 class TileMap : public sf::Drawable {
 public:
     // Constructor now accepts a shared_ptr to a default tile, and initializes the map with it
-    explicit TileMap(std::shared_ptr<Tile>* tileTypesArray, unsigned int tileTypesNumber, unsigned int tileMapWidth, unsigned int tileMapHeight, float tileWidth, float tileHeight, const std::string& filePath);
+    explicit TileMap(std::shared_ptr<Tile>* tileTypesArray, unsigned int tileTypesNumber, size_t tileMapWidth, size_t tileMapHeight, float tileWidth, float tileHeight, const std::string& filePath);
     ~TileMap() = default;
 
     // Add a tile to the map at the specified grid position (x, y)

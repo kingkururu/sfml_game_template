@@ -1,14 +1,13 @@
-[2024-11-04 17:15:45.305] [info_logger] [info] 	Constants initialized 
-[2024-11-04 17:15:45.354] [info_logger] [info] 	Game initialized
-[2024-11-04 17:15:45.354] [info_logger] [info] Sprite initialized successfully
-[2024-11-04 17:15:45.354] [info_logger] [info] Background created
-[2024-11-04 17:15:45.354] [info_logger] [info] Music initialized successfully, volume is 100.000000
-[2024-11-04 17:15:45.354] [info_logger] [info] Sprite initialized successfully
-[2024-11-04 17:15:45.355] [info_logger] [info] Tile map initialized successfully
-[2024-11-04 17:15:45.355] [info_logger] [info] Sound initialized successfully
-[2024-11-04 17:15:45.355] [info_logger] [info] text initialized successully
-[2024-11-04 17:15:45.355] [info_logger] [info] Sprite initialized successfully
-[2024-11-04 17:15:45.355] [info_logger] [info] Background created
-[2024-11-04 17:15:49.358] [info_logger] [info] button clicked
-[2024-11-04 17:15:50.924] [info_logger] [info] 	Game Ended
+[2024-11-04 17:25:50.018] [info_logger] [info] 	Constants initialized 
+[2024-11-04 17:25:50.067] [info_logger] [info] 	Game initialized
+[2024-11-04 17:25:50.068] [info_logger] [info] Sprite initialized successfully
+[2024-11-04 17:25:50.068] [info_logger] [info] Background created
+[2024-11-04 17:25:50.068] [info_logger] [info] Music initialized successfully, volume is 100.000000
+[2024-11-04 17:25:50.068] [info_logger] [info] Sprite initialized successfully
+[2024-11-04 17:25:50.088] [info_logger] [info] Tile map initialized successfully
+[2024-11-04 17:25:50.089] [info_logger] [info] Sound initialized successfully
+[2024-11-04 17:25:50.089] [info_logger] [info] text initialized successully
+[2024-11-04 17:25:50.089] [info_logger] [info] Sprite initialized successfully
+[2024-11-04 17:25:50.089] [info_logger] [info] Background created
+[2024-11-04 17:25:52.710] [info_logger] [info] 	Game Ended
 
