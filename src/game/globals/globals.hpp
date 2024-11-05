@@ -12,6 +12,7 @@
 #include <iostream> 
 #include <sstream>
 #include <yaml-cpp/yaml.h>
+#include <filesystem>
 
 #include "log.hpp" 
 
@@ -38,13 +39,12 @@ namespace Constants {
 
     // make random positions each time
     extern sf::Vector2f makeRandomPosition(); 
-    extern void writeRandomTileMap(const std::string& filePath); 
 
     // load textures, fonts, music, and sound
     extern std::shared_ptr<sf::Uint8[]> createBitmask( const std::shared_ptr<sf::Texture>& texture, const sf::IntRect& rect );
     extern void printBitmaskDebug(const std::shared_ptr<sf::Uint8[]>& bitmask, unsigned int width, unsigned int height);
     extern void loadAssets(); 
-    extern void readFromYaml(const std::string& configFile); 
+    extern void readFromYaml(std::filesystem::path configFile);  
     extern void makeRectsAndBitmasks(); 
 
     // Game display settings

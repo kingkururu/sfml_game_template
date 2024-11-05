@@ -167,7 +167,7 @@ namespace Constants {
 
     }
 
-    void loadAssets(){ 
+    void loadAssets(){  // load all sprites textures and stuff across scenes 
         if (!BACKGROUND_TEXTURE->loadFromFile(BACKGROUNDSPRITE_PATH)) log_warning("Failed to load background texture");
 
         if (!BACKGROUND_TEXTURE2->loadFromFile(BACKGROUNDSPRITE_PATH2)) log_warning("Failed to load background2 texture");

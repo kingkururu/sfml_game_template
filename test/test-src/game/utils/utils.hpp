@@ -15,5 +15,3 @@ namespace utils {
     std::vector<std::weak_ptr<unsigned char[]>> convertToWeakPtrVector(const std::vector<std::shared_ptr<unsigned char[]>>& bitMask);
 
 }
-
-
