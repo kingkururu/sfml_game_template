@@ -30,7 +30,7 @@ Tiles & Tilemap:
 - Includes random map generator
 
 
-Logging: Toggle logging per state with preprocessor directives.
+Logging: Toggle logging per state with macros.
 
 
 Physics:
