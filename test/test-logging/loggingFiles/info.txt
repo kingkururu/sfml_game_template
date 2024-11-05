@@ -1,20 +1,18 @@
-[2024-11-05 15:06:34.182] [info_logger] [info] Succesfuly read yaml file
-[2024-11-05 15:06:34.248] [info_logger] [info] 	Constants initialized 
-[2024-11-05 15:06:34.284] [info_logger] [info] creating assets in scene 1 - 0.001000ms
-[2024-11-05 15:06:35.285] [info_logger] [info] scene made
-[2024-11-05 15:06:35.285] [info_logger] [info] creating assets in scene 1 - 0.006000ms
-[2024-11-05 15:06:36.287] [info_logger] [info] scene made
-[2024-11-05 15:06:36.287] [info_logger] [info] creating assets in scene 1 - 0.001000ms
-[2024-11-05 15:06:37.288] [info_logger] [info] scene made
-[2024-11-05 15:06:37.288] [info_logger] [info] 	Game initialized
-[2024-11-05 15:06:37.288] [info_logger] [info] Sprite initialized successfully
-[2024-11-05 15:06:37.288] [info_logger] [info] Background created
-[2024-11-05 15:06:37.288] [info_logger] [info] Music initialized successfully, volume is 80.000000
-[2024-11-05 15:06:37.288] [info_logger] [info] Sprite initialized successfully
-[2024-11-05 15:06:37.290] [info_logger] [info] Tile map initialized successfully
-[2024-11-05 15:06:37.291] [info_logger] [info] Sound initialized successfully
-[2024-11-05 15:06:37.291] [info_logger] [info] text initialized successully
-[2024-11-05 15:06:37.291] [info_logger] [info] Sprite initialized successfully
-[2024-11-05 15:06:37.291] [info_logger] [info] Background created
-[2024-11-05 15:06:38.985] [info_logger] [info] 	Game Ended
+[2024-11-05 15:26:34.225] [info_logger] [info] Succesfuly read yaml file
+[2024-11-05 15:26:34.295] [info_logger] [info] 	Constants initialized 
+[2024-11-05 15:26:34.337] [info_logger] [info] scene made
+[2024-11-05 15:26:34.337] [info_logger] [info] scene made
+[2024-11-05 15:26:34.337] [info_logger] [info] scene made
+[2024-11-05 15:26:34.337] [info_logger] [info] 	Game initialized
+[2024-11-05 15:26:34.337] [info_logger] [info] Sprite initialized successfully
+[2024-11-05 15:26:34.337] [info_logger] [info] Background created
+[2024-11-05 15:26:34.337] [info_logger] [info] Music initialized successfully, volume is 80.000000
+[2024-11-05 15:26:34.337] [info_logger] [info] Sprite initialized successfully
+[2024-11-05 15:26:34.337] [info_logger] [info] Tile map initialized successfully
+[2024-11-05 15:26:34.337] [info_logger] [info] Sound initialized successfully
+[2024-11-05 15:26:34.337] [info_logger] [info] text initialized successully
+[2024-11-05 15:26:34.337] [info_logger] [info] initializing assets in scene 10.412000ms
+[2024-11-05 15:26:34.337] [info_logger] [info] Sprite initialized successfully
+[2024-11-05 15:26:34.337] [info_logger] [info] Background created
+[2024-11-05 15:26:39.484] [info_logger] [info] 	Game Ended
 

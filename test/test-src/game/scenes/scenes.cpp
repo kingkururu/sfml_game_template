@@ -16,6 +16,7 @@
 Scene::Scene( sf::RenderWindow& gameWindow ) : window(gameWindow) /* initialize other elements here */ { 
     MetaComponents::view = sf::View(Constants::VIEW_RECT); 
     log_info("scene made"); 
+
 }
 
 void Scene::runScene() {
@@ -83,6 +84,8 @@ void Scene::handleGameFlags(){
 /* Gets called once before the main game loop to handle cpu-heavy work only once at the beggining */
 void gamePlayScene::createAssets() {
     try {
+       // globalTimer.Reset();  
+
         // Initialize sprites and music here 
         background = std::make_unique<Background>(Constants::BACKGROUND_POSITION, Constants::BACKGROUND_SCALE, Constants::BACKGROUND_TEXTURE);
 
@@ -102,7 +105,8 @@ void gamePlayScene::createAssets() {
           
         text1 = std::make_unique<TextClass>(Constants::TEXT_POSITION, Constants::TEXT_SIZE, Constants::TEXT_COLOR, Constants::TEXT_FONT, Constants::TEXT_MESSAGE);
         
-        } 
+        //globalTimer.End("initializing assets in scene 1"); 
+    } 
 
     catch (const std::exception& e) {
          log_error("Exception in createAssets: " + std::string(e.what()));
