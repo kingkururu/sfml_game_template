@@ -60,7 +60,7 @@ public:
     void setAnimation(std::vector<sf::IntRect> AnimationRects) { animationRects = AnimationRects; } 
     
     void setAnimChangeState(bool newState) { animChangeState = newState; }
-    void changeAnimation(); 
+    virtual void changeAnimation(); 
     void setRects(int animNum); 
 
     using Sprite::getRadius;
@@ -72,7 +72,7 @@ public:
     using Sprite::getBitmask; 
     std::shared_ptr<sf::Uint8[]> const getBitmask(size_t index) const override; 
 
-private:
+protected:
     std::vector<sf::IntRect> animationRects{}; 
     int currentIndex {};
     int indexMax {}; 
@@ -143,6 +143,7 @@ public:
     virtual float getSpeed() const override { return speed; }
     using Sprite::getAcceleration;
     virtual sf::Vector2f getAcceleration() const override{ return acceleration; }
+    virtual void updatePos() { spriteCreated->setPosition(position); }
 
 protected:
     bool moveState = true;
@@ -153,7 +154,7 @@ protected:
 
 /* player class deriving from NonStatic; refers to movable player */
 class Player : public NonStatic, public Animated {
-public:
+ public:
    explicit Player(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture,
                 float speed, sf::Vector2f acceleration,  
                 const std::vector<sf::IntRect> animationRects, unsigned int indexMax, 
@@ -164,6 +165,11 @@ public:
 
    ~Player() override = default;
     void updatePlayer(sf::Vector2f newPos); 
+    void changeAnimation() override; 
+
+ private:
+    bool firstTurnInstance = true; 
+    bool prevTurnBool{}; 
 };
 
 /* obstacle class deriving from NonStatic; refers to movable obstacles */

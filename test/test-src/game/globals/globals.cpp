@@ -103,6 +103,11 @@ namespace Constants {
 
             // Load sprite paths and settings
             SPRITE1_PATH = config["sprites"]["sprite1"]["path"].as<std::string>();
+            SPRITE1_SPEED = config["sprites"]["sprite1"]["speed"].as<float>();
+            SPRITE1_ACCELERATION = {config["sprites"]["sprite1"]["acceleration"]["x"].as<float>(),
+                                config["sprites"]["sprite1"]["acceleration"]["y"].as<float>()};            
+            SPRITE1_INDEXMAX = config["sprites"]["sprite1"]["index_max"].as<short>();
+            SPRITE1_ANIMATIONROWS = config["sprites"]["sprite1"]["animation_rows"].as<short>();
             SPRITE1_POSITION = {config["sprites"]["sprite1"]["position"]["x"].as<float>(),
                                 config["sprites"]["sprite1"]["position"]["y"].as<float>()};
             SPRITE1_SCALE = {config["sprites"]["sprite1"]["scale"]["x"].as<float>(),
@@ -193,6 +198,14 @@ namespace Constants {
     }
 
     void makeRectsAndBitmasks(){
+        SPRITE1_ANIMATIONRECTS.reserve(SPRITE1_INDEXMAX); 
+        for (int row = 0; row < SPRITE1_ANIMATIONROWS; ++row) {
+            for (int col = 0; col < SPRITE1_INDEXMAX / SPRITE1_ANIMATIONROWS; ++col) {
+                // Create the IntRect for the current sprite
+                SPRITE1_ANIMATIONRECTS.emplace_back(sf::IntRect{col * 32, row * 32, 32, 32});
+            }
+        }
+
         BUTTON1_ANIMATIONRECTS.reserve(BUTTON1_INDEXMAX); 
         // make rects for animations     
         for(int i = 0; i < BUTTON1_INDEXMAX; ++i ){
@@ -217,6 +230,12 @@ namespace Constants {
         // make bitmasks for tiles 
         for (const auto& rect : TILES_SINGLE_RECTS ) {
             TILES_BITMASKS.emplace_back(createBitmask(TILES_TEXTURE, rect));
+        }
+
+        SPRITE1_BITMASK.reserve(SPRITE1_INDEXMAX); 
+        // make bitmasks for tiles 
+        for (const auto& rect : SPRITE1_ANIMATIONRECTS ) {
+            SPRITE1_BITMASK.emplace_back(createBitmask(SPRITE1_TEXTURE, rect));
         }
         
         log_info("\tConstants initialized ");

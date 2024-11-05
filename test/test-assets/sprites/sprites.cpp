@@ -262,6 +262,48 @@ void Player::updatePlayer(sf::Vector2f newPos) {
     log_info("Player position updated to (" + std::to_string(newPos.x) + ", " + std::to_string(newPos.y) + ")");
 }
 
+void Player::changeAnimation() {
+    try {
+        // Update the firstTurnInstance flag
+        firstTurnInstance = (prevTurnBool == firstTurnInstance) ? false : true;
+
+        // Proceed only if animation state is active
+        if (animChangeState) {
+            elapsedTime += MetaComponents::deltaTime;
+
+            // Check if enough time has elapsed to change the animation
+            if (elapsedTime > Constants::ANIMATION_CHANGE_TIME) {
+                // Check the state of flagEvents.aPressed to determine the animation range
+                if (FlagSystem::flagEvents.aPressed) {
+                    // When 'A' key is pressed, cycle through indices 6 to 11
+                    prevTurnBool = false;
+
+                    // Increment the index and wrap around if necessary
+                    currentIndex++;
+                    if (currentIndex > 11) { // Assuming indices 6 to 11
+                        currentIndex = 6; // Wrap back to 6
+                    }
+                } else {
+                    // When 'A' key is not pressed, cycle through indices 0 to 5
+                    prevTurnBool = true;
+
+                    // Increment the index and wrap around if necessary
+                    currentIndex++;
+                    if (currentIndex > 5) { // Assuming indices 0 to 5
+                        currentIndex = 0; // Wrap back to 0
+                    }
+                }
+
+                // Update the sprite rectangles based on the current index
+                setRects(currentIndex);
+                elapsedTime = 0.0f; // Reset elapsed time after the animation change
+            }
+        }
+    } catch (const std::exception& e) {
+        log_error("Error in changing animation: " + std::string(e.what()) + " | Current Index: " + std::to_string(currentIndex));
+    }
+}
+
 /* calculates obstacle's direction vector when bullet is made */
 void Obstacle::setDirectionVector(float angle) {
     float angleRad = angle * (3.14f / 180.f);

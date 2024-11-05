@@ -89,6 +89,10 @@ void gamePlayScene::createAssets() {
         // Initialize sprites and music here 
         background = std::make_unique<Background>(Constants::BACKGROUND_POSITION, Constants::BACKGROUND_SCALE, Constants::BACKGROUND_TEXTURE);
 
+        player = std::make_unique<Player>(Constants::SPRITE1_POSITION, Constants::SPRITE1_SCALE, Constants::SPRITE1_TEXTURE, Constants::SPRITE1_SPEED, Constants::SPRITE1_ACCELERATION, 
+                                          Constants::SPRITE1_ANIMATIONRECTS, Constants::SPRITE1_INDEXMAX, utils::convertToWeakPtrVector(Constants::SPRITE1_BITMASK));
+        player->setRects(0); 
+
         backgroundMusic = std::make_unique<MusicClass>(std::move(Constants::BACKGROUNDMUSIC_MUSIC), Constants::BACKGROUNDMUSIC_VOLUME);
         button1 = std::make_unique<Button>(Constants::BUTTON1_POSITION, Constants::BUTTON1_SCALE, Constants::BUTTON1_TEXTURE, 
                                    Constants::BUTTON1_ANIMATIONRECTS, Constants::BUTTON1_INDEXMAX, 
@@ -176,21 +180,21 @@ void gamePlayScene::moveViewPortWASD(){
     );
 
     // Move viewport only if within background y-pos (doesn't get above or below)
-    if(FlagSystem::flagEvents.aPressed && 
-    (viewBounds.left > bgLeft || viewBounds.left > bgLeft2)){
-        MetaComponents::view.move(sf::Vector2f(-10, 0)); 
+    if(FlagSystem::flagEvents.aPressed){
+        MetaComponents::view.move(sf::Vector2f(-3, 0)); 
+        physics::spriteMover(player, physics::moveLeft); 
     }
-    if(FlagSystem::flagEvents.dPressed && 
-    (viewBounds.left + viewBounds.width < bgRight || viewBounds.left + viewBounds.width < bgRight2 )){
-        MetaComponents::view.move(sf::Vector2f(10, 0)); 
+    if(FlagSystem::flagEvents.dPressed ){
+        MetaComponents::view.move(sf::Vector2f(1, 0)); 
+        physics::spriteMover(player, physics::moveRight); 
     }
     if(FlagSystem::flagEvents.sPressed && 
     (viewBounds.top + viewBounds.height < bgBottom || viewBounds.top + viewBounds.height < bgBottom2 )){
-        MetaComponents::view.move(sf::Vector2f(0, 10)); 
+        MetaComponents::view.move(sf::Vector2f(0, 1)); 
     }
     if(FlagSystem::flagEvents.wPressed && 
     (viewBounds.top > bgTop || viewBounds.top > bgTop2 )){
-        MetaComponents::view.move(sf::Vector2f(0, -10)); 
+        MetaComponents::view.move(sf::Vector2f(0, -1)); 
     }
 
 }
@@ -217,8 +221,11 @@ void gamePlayScene::update() {
         deleteInvisibleSprites();
 
         if(button1) button1->changeAnimation();
-        //if(background) background->updateBackground(Constants::BACKGROUND_SPEED, Constants::BACKGROUND_MOVING_DIRECTION);
-                
+        if(player) player->changeAnimation();
+        if(background) background->updateBackground(Constants::BACKGROUND_SPEED, Constants::BACKGROUND_MOVING_DIRECTION);
+        
+        MetaComponents::view.move(sf::Vector2f(0.7f, 0.0f)); 
+
         window.setView(MetaComponents::view);
         
     }
@@ -252,6 +259,10 @@ void gamePlayScene::draw() {
         }
         if (tileMap1) window.draw(*tileMap1); 
         
+        if (player && player->getVisibleState()) {
+            window.draw(*player); 
+        }
+
         window.display(); 
     } 
     

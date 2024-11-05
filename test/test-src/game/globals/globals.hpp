@@ -83,10 +83,16 @@ namespace Constants { // not actually "constants" in terms of being fixed, but s
     inline std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE2 = std::make_shared<sf::Texture>();
   
     // Sprite paths and settings
+    inline short SPRITE1_INDEXMAX;
+    inline short SPRITE1_ANIMATIONROWS;  
     inline std::filesystem::path SPRITE1_PATH;
     inline sf::Vector2f SPRITE1_POSITION;
     inline sf::Vector2f SPRITE1_SCALE;
+    inline float SPRITE1_SPEED;
+    inline sf::Vector2f SPRITE1_ACCELERATION;
     inline std::shared_ptr<sf::Texture> SPRITE1_TEXTURE = std::make_shared<sf::Texture>();
+    inline std::vector<sf::IntRect> SPRITE1_ANIMATIONRECTS;
+    inline std::vector<std::shared_ptr<sf::Uint8[]>> SPRITE1_BITMASK;
 
     // Button settings
     inline short BUTTON1_INDEXMAX;

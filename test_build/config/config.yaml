@@ -44,10 +44,16 @@ background:
 # Sprite paths
 sprites:
   sprite1:
-    path: "test/test-assets/sprites/png/Static.png"
+    speed: 100.0
+    acceleration:
+      x: 2.0 
+      y: 2.0
+    index_max: 12
+    animation_rows: 2 
+    path: "test/test-assets/sprites/png/player.png"
     position:
-      x: 0.0 # pixels 
-      y: 0.0 # pixels 
+      x: 200.0 # pixels 
+      y: 380.0 # pixels 
     scale:
       x: 1.0
       y: 1.0
