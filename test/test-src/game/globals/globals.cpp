@@ -56,12 +56,12 @@ namespace Constants {
         init_logging();
         setup_signal_handlers();
 
-        readFromYaml("test/test-src/game/globals/config.yaml");
+        readFromYaml(std::filesystem::path("test/test-src/game/globals/config.yaml"));
         loadAssets();
         makeRectsAndBitmasks(); 
     }
 
-    void readFromYaml(const std::string& configFile) {
+    void readFromYaml(const std::filesystem::path configFile) {
         try{ 
             YAML::Node config = YAML::LoadFile(configFile);
 
@@ -124,6 +124,7 @@ namespace Constants {
             TILE_WIDTH = config["tiles"]["tile_width"].as<unsigned short>();
             TILE_HEIGHT = config["tiles"]["tile_height"].as<unsigned short>();
             if (config["tiles"]["walkable"]) {
+               // TILES_BOOLS.resize(TILES_NUM, false); 
                 for (unsigned short i = 0; i < TILES_NUM; ++i) {
                     // Check if the index exists to avoid bad conversion
                     if (config["tiles"]["walkable"].size() > i) {
@@ -214,12 +215,12 @@ namespace Constants {
         log_info("\tConstants initialized ");
     }
 
-    void writeRandomTileMap(const std::string& filePath) {
+    void writeRandomTileMap(const std::filesystem::path filePath) {
         try{
             std::ofstream fileStream(filePath);
         
             if (!fileStream.is_open()) {
-                throw std::runtime_error("Unable to open file: " + filePath);
+                throw std::runtime_error("Unable to open file: " + filePath.string());
             }
 
             for (unsigned short y = 0; y < TILEMAP_HEIGHT; ++y) {

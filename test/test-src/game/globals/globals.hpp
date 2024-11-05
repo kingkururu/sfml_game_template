@@ -12,9 +12,10 @@
 #include <sstream>
 #include <fstream> 
 #include <yaml-cpp/yaml.h>
+#include <filesystem>
 
 #include "../test-logging/log.hpp"
-
+#include "../utils/utils.hpp"
 
 namespace SpriteComponents {
     enum Direction { NONE, LEFT, RIGHT, UP, DOWN };
@@ -39,13 +40,13 @@ namespace Constants { // not actually "constants" in terms of being fixed, but s
 
     // make random positions each time
     extern sf::Vector2f makeRandomPosition(); 
-    extern void writeRandomTileMap(const std::string& filePath); 
+    extern void writeRandomTileMap(const std::filesystem::path filePath); 
 
     // load textures, fonts, music, and sound
     extern std::shared_ptr<sf::Uint8[]> createBitmask( const std::shared_ptr<sf::Texture>& texture, const sf::IntRect& rect );
     extern void printBitmaskDebug(const std::shared_ptr<sf::Uint8[]>& bitmask, unsigned int width, unsigned int height);
     extern void loadAssets(); 
-    extern void readFromYaml(const std::string& configFile); 
+    extern void readFromYaml(const std::filesystem::path configFile); 
     extern void makeRectsAndBitmasks(); 
 
     // Game display settings
@@ -73,8 +74,8 @@ namespace Constants { // not actually "constants" in terms of being fixed, but s
 
     // Background settings
     inline float BACKGROUND_SPEED;
-    inline std::string BACKGROUNDSPRITE_PATH;
-    inline std::string BACKGROUNDSPRITE_PATH2;
+    inline std::filesystem::path BACKGROUNDSPRITE_PATH;
+    inline std::filesystem::path BACKGROUNDSPRITE_PATH2;
     inline sf::Vector2f BACKGROUND_POSITION;
     inline sf::Vector2f BACKGROUND_SCALE;
     inline SpriteComponents::Direction BACKGROUND_MOVING_DIRECTION;
@@ -82,14 +83,14 @@ namespace Constants { // not actually "constants" in terms of being fixed, but s
     inline std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE2 = std::make_shared<sf::Texture>();
   
     // Sprite paths and settings
-    inline std::string SPRITE1_PATH;
+    inline std::filesystem::path SPRITE1_PATH;
     inline sf::Vector2f SPRITE1_POSITION;
     inline sf::Vector2f SPRITE1_SCALE;
     inline std::shared_ptr<sf::Texture> SPRITE1_TEXTURE = std::make_shared<sf::Texture>();
 
     // Button settings
     inline short BUTTON1_INDEXMAX;
-    inline std::string BUTTON1_PATH;
+    inline std::filesystem::path BUTTON1_PATH;
     inline sf::Vector2f BUTTON1_POSITION;
     inline sf::Vector2f BUTTON1_SCALE;
     inline std::shared_ptr<sf::Texture> BUTTON1_TEXTURE = std::make_shared<sf::Texture>();
@@ -97,13 +98,13 @@ namespace Constants { // not actually "constants" in terms of being fixed, but s
     inline std::vector<std::shared_ptr<sf::Uint8[]>> BUTTON1_BITMASK;
 
     // Tile settings
-    inline std::string TILES_PATH;
+    inline std::filesystem::path TILES_PATH;
     inline unsigned short TILES_ROWS;
     inline unsigned short TILES_COLUMNS;
     inline unsigned short TILES_NUM;
     //////////////////////////////////////////////
-    inline const unsigned short TILES_NUMBER = 60; // for const in tile making
-    inline std::array<bool, TILES_NUMBER> TILES_BOOLS {}; 
+    inline unsigned short const TILES_NUMBER = 60; // const in tile making (need to fix later)
+    inline std::array<bool, TILES_NUMBER> TILES_BOOLS; 
     //////////////////////////////////////////////
 
     inline sf::Vector2f TILES_SCALE;
@@ -116,23 +117,23 @@ namespace Constants { // not actually "constants" in terms of being fixed, but s
     // Tilemap settings
     inline size_t TILEMAP_WIDTH;
     inline size_t TILEMAP_HEIGHT;
-    inline std::string TILEMAP_FILEPATH;
+    inline std::filesystem::path TILEMAP_FILEPATH;
 
     // Text settings
     inline unsigned short TEXT_SIZE;
-    inline std::string TEXT_PATH;
+    inline std::filesystem::path TEXT_PATH;
     inline std::string TEXT_MESSAGE;
     inline sf::Vector2f TEXT_POSITION;
     inline sf::Color TEXT_COLOR;
     inline std::shared_ptr<sf::Font> TEXT_FONT = std::make_shared<sf::Font>(); 
 
     // Music settings
-    inline std::string BACKGROUNDMUSIC_PATH;
+    inline std::filesystem::path BACKGROUNDMUSIC_PATH;
     inline float BACKGROUNDMUSIC_VOLUME;
     inline std::unique_ptr<sf::Music> BACKGROUNDMUSIC_MUSIC = std::make_unique<sf::Music>(); 
 
     // Sound settings
-    inline std::string PLAYERJUMPSOUND_PATH;
+    inline std::filesystem::path PLAYERJUMPSOUND_PATH;
     inline float PLAYERJUMPSOUND_VOLUME;
     inline std::shared_ptr<sf::SoundBuffer> PLAYERJUMP_SOUNDBUFF = std::make_shared<sf::SoundBuffer>();
 }

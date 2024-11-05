@@ -147,10 +147,8 @@ namespace physics{
         }
 
         // bounding box collision
-        bool boundingBoxCollision(const sf::Vector2f &position1, 
-                                const sf::Vector2f &size1,
-                                const sf::Vector2f &position2, 
-                                const sf::Vector2f &size2) {
+        bool boundingBoxCollision(const sf::Vector2f &position1, const sf::Vector2f &size1,
+                                const sf::Vector2f &position2, const sf::Vector2f &size2) {
 
             float xOverlapStart = std::max(position1.x, position2.x);
             float yOverlapStart = std::max(position1.y, position2.y);
