@@ -98,6 +98,7 @@ namespace Constants { // not actually "constants" in terms of being fixed, but s
     inline std::vector<std::shared_ptr<sf::Uint8[]>> BUTTON1_BITMASK;
 
     // Tile settings
+    inline sf::Vector2f TILEMAP_POSITION; 
     inline std::filesystem::path TILES_PATH;
     inline unsigned short TILES_ROWS;
     inline unsigned short TILES_COLUMNS;

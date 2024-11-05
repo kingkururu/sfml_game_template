@@ -75,6 +75,9 @@ tiles:
 
 # Tile map settings
 tilemap:
+  position: 
+    x: 0.0 # pixels
+    y: 400.0 # pixels
   width: 320 # number of grids in a row 
   height: 192 # number of grids in a column 
   filepath: "test/test-assets/tiles/tilemap.txt"
@@ -90,7 +93,7 @@ text:
   message: "Some text here" # actual content in the text
   position:
     x: 0.0 # pixels 
-    y: 0.0 # pixels 
+    y: 200.0 # pixels 
   color: "Green" # sf::Color 
 
 # Music settings

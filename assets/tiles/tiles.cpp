@@ -44,9 +44,9 @@ Tile::Tile(const Tile& other)
         throw std::runtime_error("Texture for copied tile is not available");
     }
 }
-
-TileMap::TileMap(std::shared_ptr<Tile>* tileTypesArray, unsigned int tileTypesNumber, size_t tileMapWidth, size_t tileMapHeight, float tileWidth, float tileHeight, const std::string& filePath) 
-    : tileMapWidth(tileMapWidth), tileMapHeight(tileMapHeight), tileWidth(tileWidth), tileHeight(tileHeight), filePath(filePath) {
+ 
+TileMap::TileMap(std::shared_ptr<Tile>* tileTypesArray, unsigned int tileTypesNumber, size_t tileMapWidth, size_t tileMapHeight, float tileWidth, float tileHeight, std::filesystem::path filePath, sf::Vector2f tileMapPosition) 
+    : tileMapWidth(tileMapWidth), tileMapHeight(tileMapHeight), tileWidth(tileWidth), tileHeight(tileHeight), tileMapPosition(tileMapPosition) {
 
     try{
         tiles.reserve( tileMapWidth * tileMapHeight ); 
@@ -54,7 +54,7 @@ TileMap::TileMap(std::shared_ptr<Tile>* tileTypesArray, unsigned int tileTypesNu
         std::ifstream fileStream(filePath);
         
         if (!fileStream.is_open()) {
-            throw std::runtime_error("Unable to open file: " + filePath);
+            throw std::runtime_error("Unable to open file: " + filePath.string());
         }
 
         std::string line;
@@ -70,14 +70,14 @@ TileMap::TileMap(std::shared_ptr<Tile>* tileTypesArray, unsigned int tileTypesNu
                 
                 if (tileIndex < tileTypesNumber) {
                     auto tile = tileTypesArray[tileIndex]->clone();
-                    tile->getTileSprite().setPosition(currentX * tileWidth, currentY * tileHeight); 
+                    tile->getTileSprite().setPosition(tileMapPosition.x + currentX * tileWidth, tileMapPosition.y + currentY * tileHeight); 
                     tiles.emplace_back(std::move(tile));
                     
                 } else {
                     throw std::out_of_range("Tile index out of bounds: " + std::to_string(tileIndex));
                 }
                 currentX++; // Increment column index
-            }
+            } 
             currentY++; // Increment row index
         }
 
@@ -116,5 +116,5 @@ void TileMap::addTile(unsigned int x, unsigned int y, std::unique_ptr<Tile> tile
     tiles[index] = std::move(tile);
 
     // Optionally set the position of the tile if the Tile class has a method for that
-    tiles[index]->getTileSprite().setPosition(x * tileWidth, y * tileHeight);
+    tiles[index]->getTileSprite().setPosition(tileMapPosition.x + x * tileWidth, tileMapPosition.y + y * tileHeight);
 }

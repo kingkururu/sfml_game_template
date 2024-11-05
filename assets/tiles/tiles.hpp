@@ -9,11 +9,11 @@
 #include <vector>
 #include <memory>
 #include <SFML/Graphics.hpp>
-#include "log.hpp"
 #include <fstream>
 #include <sstream>
 
-#include <iostream>
+#include "../../test-logging/log.hpp"
+
 
 class Tile {
 public:
@@ -48,15 +48,11 @@ private:
 class TileMap : public sf::Drawable {
 public:
     // Constructor now accepts a shared_ptr to a default tile, and initializes the map with it
-    explicit TileMap(std::shared_ptr<Tile>* tileTypesArray, unsigned int tileTypesNumber, size_t tileMapWidth, size_t tileMapHeight, float tileWidth, float tileHeight, const std::string& filePath);
+    explicit TileMap(std::shared_ptr<Tile>* tileTypesArray, unsigned int tileTypesNumber, size_t tileMapWidth, size_t tileMapHeight, float tileWidth, float tileHeight, std::filesystem::path filePath, sf::Vector2f tileMapPosition);
     ~TileMap() = default;
-
+    
     // Add a tile to the map at the specified grid position (x, y)
     void addTile(unsigned int x, unsigned int y, std::unique_ptr<Tile> tile); 
-
-    // Access a tile at a specific grid position
-    std::weak_ptr<Tile> getTile(unsigned int x, unsigned int y) const; 
-
     float const getTileWidth() const { return tileWidth; }
     float const getTileHeight() const { return tileHeight; }
 
@@ -67,9 +63,9 @@ private:
 
     float tileWidth {};
     float tileHeight {};
-    const std::string& filePath{};
 
-    std::vector<std::unique_ptr<Tile>> tiles;  // Store tiles as shared pointers
+    std::vector<std::unique_ptr<Tile>> tiles; 
+    sf::Vector2f tileMapPosition; 
 
     // Override the draw function of sf::Drawable to draw all tiles
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
