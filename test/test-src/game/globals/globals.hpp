@@ -11,11 +11,14 @@
 #include <iostream> 
 #include <sstream>
 #include <fstream> 
+#include <yaml-cpp/yaml.h>
 
 #include "log.hpp" 
 
 namespace SpriteComponents {
     enum Direction { NONE, LEFT, RIGHT, UP, DOWN };
+
+    Direction toDirection(const std::string& direction); // Declaration only
 }
 
 namespace MetaComponents{
@@ -30,100 +33,105 @@ namespace MetaComponents{
 
 /* constant variables declared here */
 namespace Constants {
+    extern void initialize();
+
     // make random positions each time
     extern sf::Vector2f makeRandomPosition(); 
     extern void writeRandomTileMap(const std::string& filePath); 
 
     // load textures, fonts, music, and sound
-    extern void initialize(); 
     extern std::shared_ptr<sf::Uint8[]> createBitmask( const std::shared_ptr<sf::Texture>& texture, const sf::IntRect& rect );
     extern void printBitmaskDebug(const std::shared_ptr<sf::Uint8[]>& bitmask, unsigned int width, unsigned int height);
+    extern void loadAssets(); 
+    extern void readFromYaml(const std::string& configFile); 
+    extern void makeRectsAndBitmasks(); 
 
-    // basic game components
-    constexpr float SCREEN_SCALE = 0.5f;
-    constexpr unsigned short SCREEN_WIDTH = 1920 * SCREEN_SCALE;
-    constexpr unsigned short SCREEN_HEIGHT = 1080 * SCREEN_SCALE;
+    // Game display settings
+    inline float SCREEN_SCALE;
+    inline unsigned short SCREEN_WIDTH;
+    inline unsigned short SCREEN_HEIGHT;
+    inline unsigned short FRAME_LIMIT;
+    inline std::string GAME_TITLE;
+    inline sf::Vector2f VIEW_INITIAL_CENTER;
+    inline float VIEW_SIZE_X;
+    inline float VIEW_SIZE_Y;
+    inline sf::FloatRect VIEW_RECT;
 
-    constexpr unsigned short FRAME_LIMIT = 60;
+    // Score settings
+    inline unsigned short INITIAL_SCORE;
 
-    constexpr const char* GAME_TITLE = "SFML game template tester";
+    // Animation settings
+    inline float ANIMATION_CHANGE_TIME;
+    inline short PASSTHROUGH_OFFSET;
 
-    constexpr float VIEW_SIZE_X = 1920.0f * SCREEN_SCALE;
-    constexpr float VIEW_SIZE_Y = 1080.0f * SCREEN_SCALE;
-    inline const sf::FloatRect VIEW_RECT = { 0.0f, 0.0f, VIEW_SIZE_X, VIEW_SIZE_Y };
-    inline const sf::Vector2f VIEW_INITIAL_CENTER = { VIEW_SIZE_X / 2.0f, VIEW_SIZE_Y / 2.0f };
+    // Sprite and text settings
+    inline unsigned short SPRITE_OUT_OF_BOUNDS_OFFSET;
+    inline unsigned short SPRITE_OUT_OF_BOUNDS_ADJUSTMENT;
+    inline unsigned short PLAYER_Y_POS_BOUNDS_RUN;
 
-    // score components
-    constexpr unsigned short INITIAL_SCORE = 0;
-
-    // basic animation standards
-    constexpr float ANIMATION_CHANGE_TIME = 0.1f;
-    constexpr short PASSTHROUGH_OFFSET = 65; 
-
-    // typical screen buffers for sprites and texts
-    constexpr unsigned short SPRITE_OUT_OF_BOUNDS_OFFSET = 110;
-    constexpr unsigned short SPRITE_OUT_OF_BOUNDS_ADJUSTMENT = 100;
-    constexpr unsigned short PLAYER_Y_POS_BOUNDS_RUN = SCREEN_HEIGHT - SPRITE_OUT_OF_BOUNDS_ADJUSTMENT; 
-    
-    // background components 
-    constexpr float BACKGROUND_SPEED = 35.0;
-    constexpr const char* BACKGROUNDSPRITE_PATH = "test/test-assets/sprites/png/background_day.png";
-    constexpr const char* BACKGROUNDSPRITE_PATH2 = "test/test-assets/sprites/png/background_night.png";   
-    inline const sf::Vector2f BACKGROUND_POSITION = { 0.0f, 0.0f };
-    inline const sf::Vector2f BACKGROUND_SCALE = { 1.0f, 1.0f };
+    // Background settings
+    inline float BACKGROUND_SPEED;
+    inline std::string BACKGROUNDSPRITE_PATH;
+    inline std::string BACKGROUNDSPRITE_PATH2;
+    inline sf::Vector2f BACKGROUND_POSITION;
+    inline sf::Vector2f BACKGROUND_SCALE;
+    inline SpriteComponents::Direction BACKGROUND_MOVING_DIRECTION;
     inline std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE = std::make_shared<sf::Texture>();
     inline std::shared_ptr<sf::Texture> BACKGROUND_TEXTURE2 = std::make_shared<sf::Texture>();
-    inline SpriteComponents::Direction BACKGROUND_MOVING_DIRECTION = SpriteComponents::Direction::RIGHT; 
-
-    // sprite components
-    constexpr const char* SPRITE1SPRITE_PATH = "test/test-assets/sprites/png/Static.png";
-    inline const sf::Vector2f SPRITE1_POSITION = { 0.0f, 0.0f };
-    inline const sf::Vector2f SPRITE1_SCALE = { 1.0f, 1.0f };
+  
+    // Sprite paths and settings
+    inline std::string SPRITE1_PATH;
+    inline sf::Vector2f SPRITE1_POSITION;
+    inline sf::Vector2f SPRITE1_SCALE;
     inline std::shared_ptr<sf::Texture> SPRITE1_TEXTURE = std::make_shared<sf::Texture>();
 
-    constexpr short BUTTON1_INDEXMAX = 6; 
-    constexpr const char* BUTTON1_PATH = "test/test-assets/sprites/png/Static.png";
-    inline const sf::Vector2f BUTTON1_POSITION = { 0.0f, 0.0f };
-    inline const sf::Vector2f BUTTON1_SCALE = { 1.0f, 1.0f };
+    // Button settings
+    inline short BUTTON1_INDEXMAX;
+    inline std::string BUTTON1_PATH;
+    inline sf::Vector2f BUTTON1_POSITION;
+    inline sf::Vector2f BUTTON1_SCALE;
     inline std::shared_ptr<sf::Texture> BUTTON1_TEXTURE = std::make_shared<sf::Texture>();
     inline std::vector<sf::IntRect> BUTTON1_ANIMATIONRECTS;
     inline std::vector<std::shared_ptr<sf::Uint8[]>> BUTTON1_BITMASK;
 
-    // typical tile components 
-    constexpr const char* TILES_PATH = "test/test-assets/tiles/png/Tileset.png";
-    constexpr unsigned short TILES_ROWS = 6;
-    constexpr unsigned short TILES_COLUMNS = 10;
-    constexpr unsigned short TILES_NUMBER = TILES_ROWS * TILES_COLUMNS; 
-    inline const sf::Vector2f TILES_SCALE = { 1.0f, 1.0f };
+    // Tile settings
+    inline std::string TILES_PATH;
+    inline unsigned short TILES_ROWS;
+    inline unsigned short TILES_COLUMNS;
+    inline unsigned short TILES_NUM;
+    //////////////////////////////////////////////
+    constexpr unsigned short TILES_NUMBER = 60; // for const in tile making
+    inline std::array<bool, TILES_NUMBER> TILES_BOOLS {}; 
+
+    inline sf::Vector2f TILES_SCALE;
+    inline unsigned short TILE_WIDTH;
+    inline unsigned short TILE_HEIGHT;
     inline std::shared_ptr<sf::Texture> TILES_TEXTURE = std::make_shared<sf::Texture>();
     inline std::vector<sf::IntRect> TILES_SINGLE_RECTS;
     inline std::vector<std::shared_ptr<sf::Uint8[]>> TILES_BITMASKS;
-    inline std::array<bool, TILES_NUMBER> TILES_BOOLS {}; 
-    constexpr unsigned short TILE_WIDTH = 32;
-    constexpr unsigned short TILE_HEIGHT = 32;
 
-    // typical tile map componenets (number is actual grid size, not pixels)
-    constexpr size_t TILEMAP_WIDTH = 320; 
-    constexpr size_t TILEMAP_HEIGHT = 192;  
-    constexpr const char* TILEMAP_FILEPATH = "test/test-assets/tiles/tilemap.txt";
+    // Tilemap settings
+    inline size_t TILEMAP_WIDTH;
+    inline size_t TILEMAP_HEIGHT;
+    inline std::string TILEMAP_FILEPATH;
 
-    // typical text components
-    constexpr unsigned short TEXT_SIZE = 40;
-    constexpr const char* TEXT_PATH = "test/test-assets/fonts/ttf/font1.ttf";
-    constexpr const char* TEXT_MESSAGE = "Some text here";
-    inline const sf::Vector2f TEXT_POSITION = { 0.0f, 0.0f };
-    inline const sf::Color TEXT_COLOR = sf::Color::Green;
+    // Text settings
+    inline unsigned short TEXT_SIZE;
+    inline std::string TEXT_PATH;
+    inline std::string TEXT_MESSAGE;
+    inline sf::Vector2f TEXT_POSITION;
+    inline sf::Color TEXT_COLOR;
     inline std::shared_ptr<sf::Font> TEXT_FONT = std::make_shared<sf::Font>(); 
 
-    // typical music components 
-    constexpr const char* BACKGROUNDMUSIC_PATH = "test/test-assets/sound/mp3/bgm.mp3";
+    // Music settings
+    inline std::string BACKGROUNDMUSIC_PATH;
+    inline float BACKGROUNDMUSIC_VOLUME;
     inline std::unique_ptr<sf::Music> BACKGROUNDMUSIC_MUSIC = std::make_unique<sf::Music>(); 
-    constexpr float BACKGROUNDMUSIC_VOLUME = 100.0f;
-   
-    // typical sound components
-    constexpr const char* PLAYERJUMPSOUND_PATH = "test/test-assets/sound/mp3,flac,wav/jump.wav";
+
+    // Sound settings
+    inline std::string PLAYERJUMPSOUND_PATH;
+    inline float PLAYERJUMPSOUND_VOLUME;
     inline std::shared_ptr<sf::SoundBuffer> PLAYERJUMP_SOUNDBUFF = std::make_shared<sf::SoundBuffer>();
-    constexpr float PLAYERJUMPSOUND_VOLUME = 100.0f; 
 }
 
 // New namespace for flag events

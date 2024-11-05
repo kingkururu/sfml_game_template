@@ -15,9 +15,10 @@ SFML_INCLUDE ?= $(HOMEBREW_PREFIX)/opt/sfml/include
 SPDLOG_LIB ?= $(HOMEBREW_PREFIX)/opt/spdlog/lib
 FMT_LIB ?= $(HOMEBREW_PREFIX)/opt/fmt/lib
 SFML_LIB ?= $(HOMEBREW_PREFIX)/opt/sfml/lib
+YAML_INCLUDE ?= $(HOMEBREW_PREFIX)/Cellar/yaml-cpp/0.8.0/include
 
 # Include paths for Homebrew libraries
-BREW_INCLUDE_FLAGS := -I$(SPDLOG_INCLUDE) -I$(FMT_INCLUDE) -I$(SFML_INCLUDE)
+BREW_INCLUDE_FLAGS := -I$(SPDLOG_INCLUDE) -I$(FMT_INCLUDE) -I$(SFML_INCLUDE) -I$(YAML_INCLUDE)
 CXXFLAGS += $(BREW_INCLUDE_FLAGS)
 
 TEST_CXXFLAGS := -std=c++17 -Wall \
@@ -28,11 +29,11 @@ TEST_CXXFLAGS := -std=c++17 -Wall \
                  -I./test/test-assets -I./test/test-assets/fonts \
                  -I./test/test-assets/sound -I./test/test-assets/tiles \
                  -I./test/test-assets/sprites -I./test/test-logging \
-                 -I$(SPDLOG_INCLUDE) -I$(FMT_INCLUDE) -I$(SFML_INCLUDE) \
+                 -I$(SPDLOG_INCLUDE) -I$(FMT_INCLUDE) -I$(SFML_INCLUDE) -I$(YAML_INCLUDE) \
                  -DTESTING
 
 # Library paths and linking
-LDFLAGS = -L$(SPDLOG_LIB) -L$(FMT_LIB) -L$(SFML_LIB) -L$(HOMEBREW_PREFIX)/lib -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lspdlog -lfmt
+LDFLAGS = -L$(SPDLOG_LIB) -L$(FMT_LIB) -L$(SFML_LIB) -L$(HOMEBREW_PREFIX)/lib -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lspdlog -lfmt -lyaml-cpp
 
 # Build directories
 BUILD_DIR := build
@@ -72,8 +73,8 @@ TEST_OBJ := $(TEST_SRC:%.cpp=$(TEST_BUILD_DIR)/%.o)
 
 # New target to copy YAML config file
 COPY_CONFIG:
-	@mkdir -p $(TEST_BUILD_DIR)/configs
-	cp test/test-src/game/globals/configs.yaml $(TEST_BUILD_DIR)/configs/
+	@mkdir -p $(TEST_BUILD_DIR)/config
+	cp test/test-src/game/globals/config.yaml $(TEST_BUILD_DIR)/config/
 
 # Target executables
 TARGET := sfml_game
@@ -89,6 +90,7 @@ install_deps:
 	@brew list spdlog >/dev/null 2>&1 || (echo "Installing spdlog..."; brew install spdlog)
 	@brew list fmt >/dev/null 2>&1 || (echo "Installing fmt..."; brew install fmt)
 	@brew list sfml >/dev/null 2>&1 || (echo "Installing sfml..."; brew install sfml)
+	@brew list yaml-cpp >/dev/null 2>&1 || (echo "Installing yaml-cpp..."; brew install yaml-cpp) 
 
 # Main application build target
 $(TARGET): $(OBJ)

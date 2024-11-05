@@ -3,12 +3,23 @@
 //
 //
 
-#include "globals.hpp" 
+#include "game/globals/globals.hpp"  
 
 namespace MetaComponents {
     sf::Clock clock;
     sf::View view; 
 }   
+
+namespace SpriteComponents {
+    Direction toDirection(const std::string& direction) {
+        if (direction == "LEFT") return Direction::LEFT;
+        if (direction == "RIGHT") return Direction::RIGHT;
+        if (direction == "UP") return Direction::UP;
+        if (direction == "DOWN") return Direction::DOWN;
+        
+        return Direction::NONE;
+    }
+}
 
 /* constant variables defined here */
 namespace Constants {
@@ -19,46 +30,131 @@ namespace Constants {
         return sf::Vector2f{ xPos, yPos }; 
     }
     
-    //initializer function
-    void initialize() {
+    void initialize(){
+        std::srand(static_cast<unsigned int>(std::time(nullptr)));
+
         init_logging();
-        
         setup_signal_handlers();
 
-        log_info("\tConstants initialized ");
+        readFromYaml("test/test-src/game/globals/config.yaml");
+        loadAssets();
+        makeRectsAndBitmasks(); 
+    }
 
-        if (!BACKGROUND_TEXTURE->loadFromFile(BACKGROUNDSPRITE_PATH)) {
-            log_warning("Failed to load background texture");
+    void readFromYaml(const std::string& configFile) {
+        try{ 
+            YAML::Node config = YAML::LoadFile(configFile);
+
+            // Load game display settings
+            SCREEN_SCALE = config["screen"]["scale"].as<float>();
+            SCREEN_WIDTH = config["screen"]["width"].as<unsigned short>();
+            SCREEN_HEIGHT = config["screen"]["height"].as<unsigned short>();
+            FRAME_LIMIT = config["screen"]["frame_limit"].as<unsigned short>();
+            GAME_TITLE = config["screen"]["title"].as<std::string>();
+            VIEW_SIZE_X = config["screen"]["view"]["size_x"].as<float>();
+            VIEW_SIZE_Y = config["screen"]["view"]["size_y"].as<float>();
+            VIEW_INITIAL_CENTER = {config["screen"]["view"]["initial_center"]["x"].as<float>(),
+                                config["screen"]["view"]["initial_center"]["y"].as<float>()};
+            VIEW_RECT = { 0.0f, 0.0f, VIEW_SIZE_X, VIEW_SIZE_Y };
+
+            // Load score settings
+            INITIAL_SCORE = config["score"]["initial"].as<unsigned short>(); 
+
+            // Load animation settings
+            ANIMATION_CHANGE_TIME = config["animation"]["change_time"].as<float>();
+            PASSTHROUGH_OFFSET = config["animation"]["passthrough_offset"].as<short>();
+
+            // Load sprite and text settings
+            SPRITE_OUT_OF_BOUNDS_OFFSET = config["sprite"]["out_of_bounds_offset"].as<unsigned short>();
+            SPRITE_OUT_OF_BOUNDS_ADJUSTMENT = config["sprite"]["out_of_bounds_adjustment"].as<unsigned short>();
+            PLAYER_Y_POS_BOUNDS_RUN = config["sprite"]["player_y_pos_bounds_run"].as<unsigned short>();
+
+            // Load background settings
+            BACKGROUND_SPEED = config["background"]["speed"].as<float>();
+            BACKGROUNDSPRITE_PATH = config["background"]["textures"]["day_path"].as<std::string>();
+            BACKGROUNDSPRITE_PATH2 = config["background"]["textures"]["night_path"].as<std::string>();
+            BACKGROUND_POSITION = {config["background"]["position"]["x"].as<float>(),
+                                config["background"]["position"]["y"].as<float>()};
+            BACKGROUND_SCALE = {config["background"]["scale"]["x"].as<float>(),
+                                config["background"]["scale"]["y"].as<float>()};
+            BACKGROUND_MOVING_DIRECTION = SpriteComponents::toDirection(config["background"]["moving_direction"].as<std::string>());
+
+            // Load sprite paths and settings
+            SPRITE1_PATH = config["sprites"]["sprite1"]["path"].as<std::string>();
+            SPRITE1_POSITION = {config["sprites"]["sprite1"]["position"]["x"].as<float>(),
+                                config["sprites"]["sprite1"]["position"]["y"].as<float>()};
+            SPRITE1_SCALE = {config["sprites"]["sprite1"]["scale"]["x"].as<float>(),
+                            config["sprites"]["sprite1"]["scale"]["y"].as<float>()};
+
+            // Load button settings
+            BUTTON1_INDEXMAX = config["sprites"]["button1"]["index_max"].as<short>();
+            BUTTON1_PATH = config["sprites"]["button1"]["path"].as<std::string>();
+            BUTTON1_POSITION = {config["sprites"]["button1"]["position"]["x"].as<float>(),
+                                config["sprites"]["button1"]["position"]["y"].as<float>()};
+            BUTTON1_SCALE = {config["sprites"]["button1"]["scale"]["x"].as<float>(),
+                            config["sprites"]["button1"]["scale"]["y"].as<float>()};
+
+            // Load tile settings
+            TILES_PATH = config["tiles"]["path"].as<std::string>();
+            TILES_ROWS = config["tiles"]["rows"].as<unsigned short>();
+            TILES_COLUMNS = config["tiles"]["columns"].as<unsigned short>();
+            //TILES_NUMBER = config["tiles"]["number"].as<unsigned short>();
+            TILES_SCALE = {config["tiles"]["scale"]["x"].as<float>(),
+                        config["tiles"]["scale"]["y"].as<float>()};
+            TILE_WIDTH = config["tiles"]["tile_width"].as<unsigned short>();
+            TILE_HEIGHT = config["tiles"]["tile_height"].as<unsigned short>();
+
+            // Load tilemap settings
+            TILEMAP_WIDTH = config["tilemap"]["width"].as<size_t>();
+            TILEMAP_HEIGHT = config["tilemap"]["height"].as<size_t>();
+            TILEMAP_FILEPATH = config["tilemap"]["filepath"].as<std::string>();
+
+            // Load text settings
+            TEXT_SIZE = config["text"]["size"].as<unsigned short>();
+            TEXT_PATH = config["text"]["font_path"].as<std::string>();
+            TEXT_MESSAGE = config["text"]["message"].as<std::string>();
+            TEXT_POSITION = {config["text"]["position"]["x"].as<float>(),
+                            config["text"]["position"]["y"].as<float>()};
+            TEXT_COLOR = sf::Color::Green; // Example color, modify as needed
+
+            // Load music settings
+            BACKGROUNDMUSIC_PATH = config["music"]["background_music"]["path"].as<std::string>();
+            BACKGROUNDMUSIC_VOLUME = config["music"]["background_music"]["volume"].as<float>();
+
+            // Load sound settings
+            PLAYERJUMPSOUND_PATH = config["sound"]["player_jump"]["path"].as<std::string>();
+            PLAYERJUMPSOUND_VOLUME = config["sound"]["player_jump"]["volume"].as<float>();
+            
+            log_info("Succesfuly read yaml file");
+        } 
+        catch (const YAML::BadFile& e) {
+            log_error("Failed to load config file: " + std::string(e.what()));
+        } 
+        catch (const YAML::Exception& e) {
+            log_error("YAML parsing error: " + std::string(e.what()));
         }
 
-        if (!BACKGROUND_TEXTURE2->loadFromFile(BACKGROUNDSPRITE_PATH2)) {
-            log_warning("Failed to load background2 texture");
-        }
+    }
 
-        if (!BUTTON1_TEXTURE->loadFromFile(BUTTON1_PATH)) {
-            log_warning("Failed to load button texture");
-        }
+    void loadAssets(){ 
+        if (!BACKGROUND_TEXTURE->loadFromFile(BACKGROUNDSPRITE_PATH)) log_warning("Failed to load background texture");
 
-        if (!SPRITE1_TEXTURE->loadFromFile(SPRITE1SPRITE_PATH)) {
-            log_warning("Failed to load sprite1 texture");
-        }
+        if (!BACKGROUND_TEXTURE2->loadFromFile(BACKGROUNDSPRITE_PATH2)) log_warning("Failed to load background2 texture");
+        
+        if (!BUTTON1_TEXTURE->loadFromFile(BUTTON1_PATH)) log_warning("Failed to load button texture");
 
-        if (!TILES_TEXTURE->loadFromFile(TILES_PATH)) {
-            log_warning("Failed to load tiles texture");
-        }
+        if (!SPRITE1_TEXTURE->loadFromFile(SPRITE1_PATH)) log_warning("Failed to load sprite1 texture");
 
-        if (!BACKGROUNDMUSIC_MUSIC->openFromFile(BACKGROUNDMUSIC_PATH)) {
-            log_warning("Failed to load background music");
-        }
+        if (!TILES_TEXTURE->loadFromFile(TILES_PATH)) log_warning("Failed to load tiles texture");
 
-        if (!PLAYERJUMP_SOUNDBUFF->loadFromFile(PLAYERJUMPSOUND_PATH)) {
-            log_warning("Failed to load player jump sound");
-        }
+        if (!BACKGROUNDMUSIC_MUSIC->openFromFile(BACKGROUNDMUSIC_PATH)) log_warning("Failed to load background music");
 
-        if (!TEXT_FONT->loadFromFile(TEXT_PATH)) {
-            log_warning("Failed to load text font");
-        }
+        if (!PLAYERJUMP_SOUNDBUFF->loadFromFile(PLAYERJUMPSOUND_PATH)) log_warning("Failed to load player jump sound");
 
+        if (!TEXT_FONT->loadFromFile(TEXT_PATH)) log_warning("Failed to load text font");
+    }
+
+    void makeRectsAndBitmasks(){
         BUTTON1_ANIMATIONRECTS.reserve(BUTTON1_INDEXMAX); 
         // make rects for animations     
         for(int i = 0; i < BUTTON1_INDEXMAX; ++i ){
@@ -84,6 +180,8 @@ namespace Constants {
         for (const auto& rect : TILES_SINGLE_RECTS ) {
             TILES_BITMASKS.emplace_back(createBitmask(TILES_TEXTURE, rect));
         }
+        
+        log_info("\tConstants initialized ");
     }
 
     void writeRandomTileMap(const std::string& filePath) {

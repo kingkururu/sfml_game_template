@@ -1,0 +1,102 @@
+# Game display settings
+screen:
+  scale: 0.5
+  width: 960    # 1920 * scale
+  height: 540   # 1080 * scale
+  frame_limit: 60
+  title: "SFML game 1"
+  view:
+    size_x: 960.0
+    size_y: 540.0
+    initial_center:
+      x: 480.0
+      y: 270.0
+
+# Game score settings
+score:
+  initial: 0
+
+# Animation settings
+animation:
+  change_time: 0.1
+  passthrough_offset: 65
+
+# Sprite and text settings
+sprite:
+  out_of_bounds_offset: 110
+  out_of_bounds_adjustment: 100
+  player_y_pos_bounds_run: 440  # SCREEN_HEIGHT - SPRITE_OUT_OF_BOUNDS_ADJUSTMENT
+
+# Background settings
+background:
+  speed: 35.0
+  textures:
+    day_path: "test/test-assets/sprites/png/background_day.png"
+    night_path: "test/test-assets/sprites/png/background_night.png"
+  position:
+    x: 0.0
+    y: 0.0
+  scale:
+    x: 1.0
+    y: 1.0
+  moving_direction: "RIGHT"
+
+# Sprite paths
+sprites:
+  sprite1:
+    path: "test/test-assets/sprites/png/Static.png"
+    position:
+      x: 0.0
+      y: 0.0
+    scale:
+      x: 1.0
+      y: 1.0
+  button1:
+    index_max: 6
+    path: "test/test-assets/sprites/png/Static.png"
+    position:
+      x: 0.0
+      y: 0.0
+    scale:
+      x: 1.0
+      y: 1.0
+
+# Tile settings
+tiles:
+  path: "test/test-assets/tiles/png/Tileset.png"
+  rows: 6
+  columns: 10
+  number: 60
+  scale:
+    x: 1.0
+    y: 1.0
+  tile_width: 32
+  tile_height: 32
+
+# Tile map settings
+tilemap:
+  width: 320
+  height: 192
+  filepath: "test/test-assets/tiles/tilemap.txt"
+
+# Text settings
+text:
+  size: 40
+  font_path: "test/test-assets/fonts/ttf/font1.ttf"
+  message: "Some text here"
+  position:
+    x: 0.0
+    y: 0.0
+  color: "green"
+
+# Music settings
+music:
+  background_music:
+    path: "test/test-assets/sound/mp3/bgm.mp3"
+    volume: 80.0
+
+# Sound settings
+sound:
+  player_jump:
+    path: "test/test-assets/sound/mp3,flac,wav/jump.wav"
+    volume: 90.0

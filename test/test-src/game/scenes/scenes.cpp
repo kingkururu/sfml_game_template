@@ -85,12 +85,12 @@ void gamePlayScene::createAssets() {
     try {
         // Initialize sprites and music here 
         background = std::make_unique<Background>(Constants::BACKGROUND_POSITION, Constants::BACKGROUND_SCALE, Constants::BACKGROUND_TEXTURE);
+
         backgroundMusic = std::make_unique<MusicClass>(std::move(Constants::BACKGROUNDMUSIC_MUSIC), Constants::BACKGROUNDMUSIC_VOLUME);
         button1 = std::make_unique<Button>(Constants::BUTTON1_POSITION, Constants::BUTTON1_SCALE, Constants::BUTTON1_TEXTURE, 
                                    Constants::BUTTON1_ANIMATIONRECTS, Constants::BUTTON1_INDEXMAX, 
                                    utils::convertToWeakPtrVector(Constants::BUTTON1_BITMASK));
         button1->setRects(0); 
-        //  if (backgroundMusic) backgroundMusic->returnMusic().play(); 
         
         // Initialize individual Tiles in the array
         for (int i = 0; i < Constants::TILES_NUMBER; ++i) {
@@ -101,7 +101,7 @@ void gamePlayScene::createAssets() {
         playerJumpSound = std::make_unique<SoundClass>(Constants::PLAYERJUMP_SOUNDBUFF, Constants::PLAYERJUMPSOUND_VOLUME); 
           
         text1 = std::make_unique<TextClass>(Constants::TEXT_POSITION, Constants::TEXT_SIZE, Constants::TEXT_COLOR, Constants::TEXT_FONT, Constants::TEXT_MESSAGE);
-         
+        
         } 
 
     catch (const std::exception& e) {
@@ -237,11 +237,12 @@ void gamePlayScene::updateDrawablesVisibility(){
 /* Draws only the visible sprite and texts */
 void gamePlayScene::draw() {
     try {
-        window.clear();
+        window.clear(sf::Color::Blue);
 
         if (background && background->getVisibleState()) {
             window.draw(*background); 
         }
+
         if (button1 && button1->getVisibleState()) {
             window.draw(*button1); 
         }
