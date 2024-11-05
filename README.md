@@ -7,12 +7,23 @@ This repository provides a foundational template for building 2D games using C++
 
 ## Features
 
--   2D Game Template: Provides a structured layout to help you kickstart 2D games in C++.
--   Built-in Dependencies: Uses spdlog for logging and fmt for formatted text output.
--   Modular Design: Organizes code by game components, assets, and utilities.
--   Scene Management: Supports multiple scenes (e.g., main menu, gameplay).
--   Asset Management: Structure for managing sprites, sounds, fonts, and tiles.
--   Physics & Collision Detection: Includes a basic physics module to detect collisions.
+Overview
+Game Manager: Manages game loop, scenes, and input.
+Scenes: Handles specialized events for different states.
+Sprites:
+Extends sf::Sprite
+- Static vs. Non-Static
+- Animated vs. Non-Animated
+Fonts: Customizes sf::Text for versatile typography.
+Sounds: Extends sf::Sound and sf::Music for audio control.
+Tiles & Tilemap:
+Loads tilemaps from text files
+Includes random map generator.
+Logging: Toggle logging per state with preprocessor directives.
+Physics:
+- AABB and Circle collision
+- Pixel-perfect collision detection
+Constants & Globals: Configured via YAML files.
 
 Note: This template does not include a UI layer for customization. Changes must be made directly in the code to implement specific game functionality.
 
@@ -92,18 +103,6 @@ Remove compiled files with:
 
 ```
 
-
-
-## Customization & Usage
-
--   Adjust Constants: Modify constants in configs.yaml and globals for screen dimensions, physics parameters, or other game settings.
--   Add Scenes: Create new files under /scenes to implement unique game states (e.g., MenuScene, GameScene).
--   Asset Management: Add or modify sprites, sounds, fonts, etc in the respective folders under /assets.
-## Potential Extensions
--   Additional Scenes: Extend functionality by adding new game scenes for different states or menus.
--   Networking: Integrate SFML networking components for multiplayer features.
--   Custom Physics: Extend physics capabilities for advanced collision or physics-based interactions.
--   
 ## Dependencies
 -   SFML: For graphics, windowing, and audio handling.
 -   spdlog: Logging support for debug and error tracking.
