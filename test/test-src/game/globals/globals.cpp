@@ -3,7 +3,7 @@
 //
 //
 
-#include "game/globals/globals.hpp"  
+#include "globals.hpp"  
 
 namespace MetaComponents {
     sf::Clock clock;

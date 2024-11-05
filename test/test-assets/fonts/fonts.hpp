@@ -10,7 +10,9 @@
 #include <string>
 #include <iostream> 
 #include <stdexcept>
-#include "log.hpp" 
+
+#include "../../test-logging/log.hpp"
+
 
 /* text class declaration */
 class TextClass : public sf::Drawable {

@@ -13,8 +13,8 @@
 #include <SFML/Graphics.hpp>
 #include <math.h>
 #include <functional> 
-#include "sprites.hpp"
-#include "globals.hpp"
+#include "../globals/globals.hpp" 
+#include "../../test-assets/sprites/sprites.hpp" 
 
 /* declarations for physics methods */
 namespace physics{

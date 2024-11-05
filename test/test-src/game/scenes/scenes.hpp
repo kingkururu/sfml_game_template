@@ -13,16 +13,16 @@
 #include <memory>
 #include <array>
 
-#include "sprites.hpp"
-#include "sound.hpp"
-#include "fonts.hpp"
-#include "tiles.hpp"
+#include "../test-assets/sprites/sprites.hpp"  
+#include "../test-assets/sound/sound.hpp"      
+#include "../test-assets/fonts/fonts.hpp"      
+#include "../test-assets/tiles/tiles.hpp"      
 
-#include "globals.hpp"
-#include "physics.hpp"
-#include "utils.hpp"
+#include "../globals/globals.hpp"              
+#include "../physics/physics.hpp"             
+#include "../utils/utils.hpp"                 
 
-#include "log.hpp"
+#include "../test-logging/log.hpp"              
 
 /* Base scene class */
 class Scene {

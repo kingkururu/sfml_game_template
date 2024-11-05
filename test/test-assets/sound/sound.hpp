@@ -10,7 +10,9 @@
 #include <string>
 #include <stdexcept>
 #include <iostream>
-#include "log.hpp"
+
+#include "../../test-logging/log.hpp"
+
 
 /* sound class containing elements to make up a sound */
 class SoundClass{

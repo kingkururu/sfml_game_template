@@ -9,11 +9,11 @@
 #include <vector>
 #include <memory>
 #include <SFML/Graphics.hpp>
-#include "log.hpp"
 #include <fstream>
 #include <sstream>
 
-#include <iostream>
+#include "../../test-logging/log.hpp"
+
 
 class Tile {
 public:

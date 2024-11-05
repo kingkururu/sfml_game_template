@@ -3,14 +3,16 @@
         {
             "name": "Mac",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "/opt/homebrew/Cellar/yaml-cpp/0.8.0/include", // Adjust this path if necessary
+                "/opt/homebrew/opt/spdlog/include",
+                "/opt/homebrew/opt/fmt/include",
+                "/opt/homebrew/opt/sfml/include"
             ],
             "defines": [],
-            "macFrameworkPath": [
-                "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"
-            ],
-            "cStandard": "c17",
+            "macFrameworkPath": [],
             "compilerPath": "/usr/bin/clang++",
+            "cStandard": "c11",
             "cppStandard": "c++17",
             "intelliSenseMode": "macos-clang-arm64"
         }

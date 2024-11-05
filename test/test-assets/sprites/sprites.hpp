@@ -11,8 +11,9 @@
 #include <stdexcept>
 #include <map>
 #include <SFML/Graphics.hpp>
-#include "log.hpp"
-#include "globals.hpp"
+
+#include "../../test-logging/log.hpp"
+#include "../globals/globals.hpp"
 
 /* base class for all sprites; contains position, scale, and texture */
 class Sprite : public sf::Drawable {

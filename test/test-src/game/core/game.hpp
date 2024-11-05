@@ -12,10 +12,10 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "scenes.hpp"
-#include "globals.hpp"
-#include "window.hpp"
-#include "log.hpp" 
+#include "../camera/window.hpp"
+#include "../scenes/scenes.hpp"
+#include "../globals/globals.hpp"
+#include "../test-logging/log.hpp"
 
 // can be manipulated for extra functionality in game
 class GameManager {

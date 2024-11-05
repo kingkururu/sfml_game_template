@@ -13,7 +13,8 @@
 #include <fstream> 
 #include <yaml-cpp/yaml.h>
 
-#include "log.hpp" 
+#include "../test-logging/log.hpp"
+
 
 namespace SpriteComponents {
     enum Direction { NONE, LEFT, RIGHT, UP, DOWN };

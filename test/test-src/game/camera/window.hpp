@@ -6,7 +6,8 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "log.hpp" 
+#include "../test-logging/log.hpp" 
+
 
 class GameWindow{
 public: 
