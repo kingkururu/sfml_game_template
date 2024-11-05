@@ -96,7 +96,7 @@ Remove compiled files with:
 
 ## Customization & Usage
 
--   Adjust Constants: Modify constants in globals.cpp for screen dimensions, physics parameters, or other game settings.
+-   Adjust Constants: Modify constants in configs.yaml and globals for screen dimensions, physics parameters, or other game settings.
 -   Add Scenes: Create new files under /scenes to implement unique game states (e.g., MenuScene, GameScene).
 -   Asset Management: Add or modify sprites, sounds, fonts, etc in the respective folders under /assets.
 ## Potential Extensions
