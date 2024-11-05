@@ -133,6 +133,11 @@ void gamePlayScene::deleteInvisibleSprites() {
 elapsed times from when bullets were spawned and when space button was pressed */
 void gamePlayScene::setTime(){
     // count respawn time here 
+    if (FlagSystem::flagEvents.spacePressed){
+        MetaComponents::spacePressedElapsedTime += MetaComponents::deltaTime; 
+    } else {
+        MetaComponents::spacePressedElapsedTime = 0.0f; 
+    }
 } 
 
 /* deals with inputs from device, let known by flagEvents. */
@@ -153,6 +158,9 @@ void gamePlayScene::handleInput() {
             window.clear();
             return; // put here for anything that could be added below in the future
         }
+    }
+    if(FlagSystem::flagEvents.spacePressed){
+        if (player->getMoveState()) physics::spriteMover(player, physics::jump, MetaComponents::spacePressedElapsedTime); 
     }
 }
 

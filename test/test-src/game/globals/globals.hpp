@@ -29,6 +29,7 @@ namespace MetaComponents{
 
     inline float globalTime {};
     inline float deltaTime {}; 
+    inline float spacePressedElapsedTime{};
 
     extern sf::Clock clock;
     extern sf::View view;

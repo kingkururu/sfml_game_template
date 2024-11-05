@@ -41,11 +41,11 @@ namespace physics{
     }
 
     // jumping sprites 
-    sf::Vector2f jump(float& elapsedTime, float speed, sf::Vector2f originalPos){
+    sf::Vector2f jump(float& elapsedTime, float speed, sf::Vector2f originalPos, sf::Vector2f acceleration){
        if(elapsedTime < 0.4f){
-            return { originalPos.x, originalPos.y -= speed * MetaComponents::deltaTime * gravity };
+            return { originalPos.x, originalPos.y -= speed * MetaComponents::deltaTime * gravity * acceleration.y };
         } else if (elapsedTime > 0.4f && elapsedTime < 0.8f){
-            return { originalPos.x, originalPos.y += speed * MetaComponents::deltaTime * gravity }; 
+            return { originalPos.x, originalPos.y += speed * MetaComponents::deltaTime * gravity * acceleration.y }; 
         } else {
             FlagSystem::flagEvents.spacePressed = false; 
             elapsedTime = 0.0f; 

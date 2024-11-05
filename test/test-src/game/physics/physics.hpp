@@ -32,7 +32,7 @@ namespace physics{
     sf::Vector2f moveRight( float speed, sf::Vector2f originalPos, sf::Vector2f acceleration = {1.0f, 1.0f});
     sf::Vector2f moveUp( float speed, sf::Vector2f originalPos, sf::Vector2f acceleration = {1.0f, 1.0f});
     sf::Vector2f moveDown( float speed, sf::Vector2f originalPos, sf::Vector2f acceleration = {1.0f, 1.0f});
-    sf::Vector2f jump(float& elapsedTime, float speed, sf::Vector2f originalPos); 
+    sf::Vector2f jump(float& elapsedTime, float speed, sf::Vector2f originalPos, sf::Vector2f acceleration = {1.0f, 1.0f}); 
 
     template<typename SpriteType, typename MoveFunc>
     void spriteMover(std::unique_ptr<SpriteType>& sprite, const MoveFunc& moveFunc) {
@@ -57,10 +57,11 @@ namespace physics{
     void spriteMover(std::unique_ptr<SpriteType>& sprite, const MoveFunc& moveFunc, float& elapsedTime) {
         float speed = sprite->getSpeed(); 
         sf::Vector2f originalPos = sprite->getSpritePos(); 
-
+        sf::Vector2f acceleration = sprite->getAcceleration();
+        
         // Handle different types of MoveFunc
-        if constexpr (std::is_invocable_v<MoveFunc, float&, float, sf::Vector2f, float>){
-            sprite->changePosition(moveFunc(elapsedTime, speed, originalPos)); 
+        if constexpr (std::is_invocable_v<MoveFunc, float&, float, sf::Vector2f, sf::Vector2f>){
+            sprite->changePosition(moveFunc(MetaComponents::spacePressedElapsedTime, speed, originalPos, acceleration)); 
         }
         sprite->updatePos();  // Update sprite's position after applying the move function
     }
