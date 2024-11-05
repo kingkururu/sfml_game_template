@@ -7,9 +7,6 @@ This repository provides a foundational template for building 2D games using C++
 
 ## Features
 
-Overview
-
-
 Game Manager: Manages game loop, scenes, and input.
 
 
