@@ -78,6 +78,10 @@ tilemap:
   width: 320 # number of grids in a row 
   height: 192 # number of grids in a column 
   filepath: "test/test-assets/tiles/tilemap.txt"
+  walkable: 
+    - false
+    - true
+    # Add more values here, make sure there are as many as TILES_NUM
 
 # Text settings
 text:

@@ -34,7 +34,7 @@ namespace MetaComponents{
 }
 
 /* constant variables declared here */
-namespace Constants {
+namespace Constants { // not actually "constants" in terms of being fixed, but should never be altered after being read from the config.yaml file
     extern void initialize();
 
     // make random positions each time
@@ -102,8 +102,9 @@ namespace Constants {
     inline unsigned short TILES_COLUMNS;
     inline unsigned short TILES_NUM;
     //////////////////////////////////////////////
-    constexpr unsigned short TILES_NUMBER = 60; // for const in tile making
+    inline const unsigned short TILES_NUMBER = 60; // for const in tile making
     inline std::array<bool, TILES_NUMBER> TILES_BOOLS {}; 
+    //////////////////////////////////////////////
 
     inline sf::Vector2f TILES_SCALE;
     inline unsigned short TILE_WIDTH;

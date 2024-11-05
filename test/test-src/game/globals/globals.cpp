@@ -118,11 +118,21 @@ namespace Constants {
             TILES_PATH = config["tiles"]["path"].as<std::string>();
             TILES_ROWS = config["tiles"]["rows"].as<unsigned short>();
             TILES_COLUMNS = config["tiles"]["columns"].as<unsigned short>();
-            //TILES_NUMBER = config["tiles"]["number"].as<unsigned short>();
+            TILES_NUM = config["tiles"]["number"].as<unsigned short>();
             TILES_SCALE = {config["tiles"]["scale"]["x"].as<float>(),
                         config["tiles"]["scale"]["y"].as<float>()};
             TILE_WIDTH = config["tiles"]["tile_width"].as<unsigned short>();
             TILE_HEIGHT = config["tiles"]["tile_height"].as<unsigned short>();
+            if (config["tiles"]["walkable"]) {
+                for (unsigned short i = 0; i < TILES_NUM; ++i) {
+                    // Check if the index exists to avoid bad conversion
+                    if (config["tiles"]["walkable"].size() > i) {
+                        TILES_BOOLS[i] = config["tiles"]["walkable"][i].as<bool>();
+                    } else {
+                        TILES_BOOLS[i] = false; // Or set a default value
+                    }
+                }
+            }
 
             // Load tilemap settings
             TILEMAP_WIDTH = config["tilemap"]["width"].as<size_t>();
