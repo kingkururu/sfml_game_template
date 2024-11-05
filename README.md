@@ -31,6 +31,7 @@ Tiles & Tilemap:
 
 
 Logging: Toggle logging per state with macros.
+- includes a timer (thanks to cherno: https://gist.github.com/TheCherno/b2c71c9291a4a1a29c889e76173c8d14) 
 
 
 Physics:
