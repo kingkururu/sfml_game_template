@@ -18,7 +18,8 @@
 namespace SpriteComponents {
     enum Direction { NONE, LEFT, RIGHT, UP, DOWN };
 
-    Direction toDirection(const std::string& direction); // Declaration only
+    Direction toDirection(const std::string& direction); // convert string from yaml to Direction
+    sf::Color toSfColor(const std::string& color); // convert string from yaml to sf::Color
 }
 
 namespace MetaComponents{

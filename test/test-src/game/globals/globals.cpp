@@ -12,12 +12,32 @@ namespace MetaComponents {
 
 namespace SpriteComponents {
     Direction toDirection(const std::string& direction) {
-        if (direction == "LEFT") return Direction::LEFT;
-        if (direction == "RIGHT") return Direction::RIGHT;
-        if (direction == "UP") return Direction::UP;
-        if (direction == "DOWN") return Direction::DOWN;
-        
-        return Direction::NONE;
+        static const std::unordered_map<std::string, Direction> directionMap = {
+            {"LEFT", Direction::LEFT},
+            {"RIGHT", Direction::RIGHT},
+            {"UP", Direction::UP},
+            {"DOWN", Direction::DOWN}
+        };
+
+        auto it = directionMap.find(direction);
+        return (it != directionMap.end()) ? it->second : Direction::NONE;
+    }
+
+    sf::Color toSfColor(const std::string& color) {
+        static const std::unordered_map<std::string, sf::Color> colorMap = {
+            {"RED", sf::Color::Red},
+            {"GREEN", sf::Color::Green},
+            {"BLUE", sf::Color::Blue},
+            {"YELLOW", sf::Color::Yellow},
+            {"MAGENTA", sf::Color::Magenta},
+            {"CYAN", sf::Color::Cyan},
+            {"WHITE", sf::Color::White},
+            {"BLACK", sf::Color::Black},
+            {"TRANSPARENT", sf::Color::Transparent}
+        };
+
+        auto it = colorMap.find(color);
+        return (it != colorMap.end()) ? it->second : sf::Color::Black; // Default to Black if not found
     }
 }
 
@@ -115,7 +135,7 @@ namespace Constants {
             TEXT_MESSAGE = config["text"]["message"].as<std::string>();
             TEXT_POSITION = {config["text"]["position"]["x"].as<float>(),
                             config["text"]["position"]["y"].as<float>()};
-            TEXT_COLOR = sf::Color::Green; // Example color, modify as needed
+            TEXT_COLOR = SpriteComponents::toSfColor(config["text"]["color"].as<std::string>());
 
             // Load music settings
             BACKGROUNDMUSIC_PATH = config["music"]["background_music"]["path"].as<std::string>();

@@ -87,7 +87,7 @@ text:
   position:
     x: 0.0
     y: 0.0
-  color: "green"
+  color: "Green" 
 
 # Music settings
 music:
