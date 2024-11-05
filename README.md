@@ -11,7 +11,11 @@ Overview
 
 
 Game Manager: Manages game loop, scenes, and input.
+
+
 Scenes: Handles specialized events for different states.
+
+
 Sprites:
 Extends sf::Sprite
 - Static vs. Non-Static
@@ -19,17 +23,26 @@ Extends sf::Sprite
 
 
 Fonts: Customizes sf::Text for versatile typography.
+
+
 Sounds: Extends sf::Sound and sf::Music for audio control.
+
+
 Tiles & Tilemap:
-Loads tilemaps from text files
-Includes random map generator.
+- Loads tilemaps from text files
+- Includes random map generator
+
+
 Logging: Toggle logging per state with preprocessor directives.
+
+
 Physics:
 - AABB and Circle collision
 - Pixel-perfect collision detection
 
 
 Constants & Globals: Configured via YAML files.
+
 
 Note: This template does not include a UI layer for customization. Changes must be made directly in the code to implement specific game functionality.
 
