@@ -63,6 +63,8 @@ namespace Constants {
 
     void readFromYaml(const std::filesystem::path configFile) {
         try{ 
+            //globalTimer.Reset();
+
             YAML::Node config = YAML::LoadFile(configFile);
 
             // Load game display settings
@@ -157,6 +159,9 @@ namespace Constants {
             PLAYERJUMPSOUND_VOLUME = config["sound"]["player_jump"]["volume"].as<float>();
             
             log_info("Succesfuly read yaml file");
+            
+            // globalTimer.End("read from yaml file"); 
+
         } 
         catch (const YAML::BadFile& e) {
             log_error("Failed to load config file: " + std::string(e.what()));

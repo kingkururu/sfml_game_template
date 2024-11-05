@@ -16,6 +16,7 @@ void log_warning(const std::string& message);
 void log_info(const std::string& message);
 void signal_handler(int signal);
 void setup_signal_handlers();
+
 class Timer // code by cherno, from: https://gist.github.com/TheCherno/b2c71c9291a4a1a29c889e76173c8d14
 {
 public:
@@ -23,7 +24,7 @@ public:
 	void Reset() { m_Start = std::chrono::high_resolution_clock::now(); }
 	float Elapsed() const { return std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - m_Start).count() * 0.001f * 0.001f; }
 	float ElapsedMillis() const { return std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - m_Start).count() * 0.001f; }
-    void End(const std::string& message) { float elapsed = ElapsedMillis(); log_info(message + std::to_string(elapsed) + "ms"); } // added this for logging
+    void End(const std::string& message) { float elapsed = ElapsedMillis(); log_info(message + ": " + std::to_string(elapsed) + "ms"); } // added this for logging
 
 private:
 	std::chrono::time_point<std::chrono::high_resolution_clock> m_Start; 
