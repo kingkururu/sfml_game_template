@@ -11,17 +11,15 @@
 #include <vector>
 #include <iostream> 
 #include <sstream>
+#include <yaml-cpp/yaml.h>
 
 #include "log.hpp" 
 
 namespace SpriteComponents {
-    enum Direction {
-        NONE = 0, 
-        LEFT = 1,
-        RIGHT = -1,
-        UP = -2,
-        DOWN = 2
-    };
+    enum Direction { NONE, LEFT, RIGHT, UP, DOWN };
+
+    Direction toDirection(const std::string& direction); // convert string from yaml to Direction
+    sf::Color toSfColor(const std::string& color); // convert string from yaml to sf::Color
 }
 
 namespace MetaComponents{
@@ -36,29 +34,35 @@ namespace MetaComponents{
 
 /* constant variables declared here */
 namespace Constants {
+    extern void initialize();
+
     // make random positions each time
     extern sf::Vector2f makeRandomPosition(); 
+    extern void writeRandomTileMap(const std::string& filePath); 
 
     // load textures, fonts, music, and sound
-    extern void initialize(); 
     extern std::shared_ptr<sf::Uint8[]> createBitmask( const std::shared_ptr<sf::Texture>& texture, const sf::IntRect& rect );
     extern void printBitmaskDebug(const std::shared_ptr<sf::Uint8[]>& bitmask, unsigned int width, unsigned int height);
+    extern void loadAssets(); 
+    extern void readFromYaml(const std::string& configFile); 
+    extern void makeRectsAndBitmasks(); 
 
-    // basic game components
-    constexpr float SCREEN_SCALE = 0.5f;
-    constexpr unsigned short SCREEN_WIDTH = 1920 * SCREEN_SCALE;
-    constexpr unsigned short SCREEN_HEIGHT = 1080 * SCREEN_SCALE;
+    // Game display settings
+    inline float SCREEN_SCALE;
+    inline unsigned short SCREEN_WIDTH;
+    inline unsigned short SCREEN_HEIGHT;
+    inline unsigned short FRAME_LIMIT;
+    inline std::string GAME_TITLE;
+    inline sf::Vector2f VIEW_INITIAL_CENTER;
+    inline float VIEW_SIZE_X;
+    inline float VIEW_SIZE_Y;
+    inline sf::FloatRect VIEW_RECT;
 
-    constexpr unsigned short FRAME_LIMIT = 60;
+    // Score settings
+    inline unsigned short INITIAL_SCORE;
 
-    constexpr const char* GAME_TITLE = "SFML game template";
-
-    constexpr float VIEW_SIZE_X = 1920.0f * SCREEN_SCALE;
-    constexpr float VIEW_SIZE_Y = 1080.0f * SCREEN_SCALE;
-    inline const sf::FloatRect VIEW_RECT = { 0.0f, 0.0f, VIEW_SIZE_X, VIEW_SIZE_Y };
-    inline const sf::Vector2f VIEW_INITIAL_CENTER = { VIEW_SIZE_X / 2.0f, VIEW_SIZE_Y / 2.0f };
-
-    constexpr float ANIMATION_CHANGE_TIME = 0.3; 
+    // Animation settings
+    inline float ANIMATION_CHANGE_TIME;
 }
 
 // New namespace for flag events

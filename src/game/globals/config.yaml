@@ -1,0 +1,17 @@
+# Game display settings
+screen:
+  scale: 0.5
+  width: 960    # 1920 * scale
+  height: 540   # 1080 * scale
+  frame_limit: 60 # fps
+  title: "SFML game 1"
+  view:
+    size_x: 960.0 # pixels 
+    size_y: 540.0 # pixels 
+    initial_center:
+      x: 480.0 # pixels, absoloute from window
+      y: 270.0 # pixels, absoloute from window
+
+# Animation settings
+animation:
+  change_time: 0.1 # seconds

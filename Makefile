@@ -115,7 +115,7 @@ clean:
 	rm -rf $(BUILD_DIR) $(TEST_BUILD_DIR) $(TARGET) $(TEST_TARGET)
 
 # Run the application
-run: $(TARGET)
+run: $(TARGET) COPY_CONFIG
 	./$(TARGET)
 
 # Run tests

@@ -3,14 +3,14 @@ screen:
   scale: 0.5
   width: 960    # 1920 * scale
   height: 540   # 1080 * scale
-  frame_limit: 60
+  frame_limit: 60 # fps
   title: "SFML game 1"
   view:
-    size_x: 960.0
-    size_y: 540.0
+    size_x: 960.0 # pixels 
+    size_y: 540.0 # pixels 
     initial_center:
-      x: 480.0
-      y: 270.0
+      x: 480.0 # pixels, absoloute from window
+      y: 270.0 # pixels, absoloute from window
 
 # Game score settings
 score:
@@ -18,24 +18,24 @@ score:
 
 # Animation settings
 animation:
-  change_time: 0.1
-  passthrough_offset: 65
+  change_time: 0.1 # seconds
+  passthrough_offset: 65 # pixels
 
 # Sprite and text settings
 sprite:
-  out_of_bounds_offset: 110
-  out_of_bounds_adjustment: 100
+  out_of_bounds_offset: 110 # pixels 
+  out_of_bounds_adjustment: 100 # pixels 
   player_y_pos_bounds_run: 440  # SCREEN_HEIGHT - SPRITE_OUT_OF_BOUNDS_ADJUSTMENT
 
 # Background settings
 background:
-  speed: 35.0
+  speed: 35.0 
   textures:
     day_path: "test/test-assets/sprites/png/background_day.png"
     night_path: "test/test-assets/sprites/png/background_night.png"
   position:
-    x: 0.0
-    y: 0.0
+    x: 0.0 # pixels 
+    y: 0.0 # pixels 
   scale:
     x: 1.0
     y: 1.0
@@ -46,17 +46,17 @@ sprites:
   sprite1:
     path: "test/test-assets/sprites/png/Static.png"
     position:
-      x: 0.0
-      y: 0.0
+      x: 0.0 # pixels 
+      y: 0.0 # pixels 
     scale:
       x: 1.0
       y: 1.0
   button1:
-    index_max: 6
+    index_max: 6 # number of animation frame
     path: "test/test-assets/sprites/png/Static.png"
     position:
-      x: 0.0
-      y: 0.0
+      x: 0.0 # pixels 
+      y: 0.0 # pixels 
     scale:
       x: 1.0
       y: 1.0
@@ -64,39 +64,39 @@ sprites:
 # Tile settings
 tiles:
   path: "test/test-assets/tiles/png/Tileset.png"
-  rows: 6
-  columns: 10
-  number: 60
+  rows: 6 # number of tiles in rows in tile map
+  columns: 10 # number of tiles in columns in tile map
+  number: 60 # total number of tiles 
   scale:
     x: 1.0
     y: 1.0
-  tile_width: 32
-  tile_height: 32
+  tile_width: 32 # pixels 
+  tile_height: 32 # pixels 
 
 # Tile map settings
 tilemap:
-  width: 320
-  height: 192
+  width: 320 # number of grids in a row 
+  height: 192 # number of grids in a column 
   filepath: "test/test-assets/tiles/tilemap.txt"
 
 # Text settings
 text:
-  size: 40
+  size: 40 # pixels 
   font_path: "test/test-assets/fonts/ttf/font1.ttf"
-  message: "Some text here"
+  message: "Some text here" # actual content in the text
   position:
-    x: 0.0
-    y: 0.0
-  color: "Green" 
+    x: 0.0 # pixels 
+    y: 0.0 # pixels 
+  color: "Green" # sf::Color 
 
 # Music settings
 music:
   background_music:
     path: "test/test-assets/sound/mp3/bgm.mp3"
-    volume: 80.0
+    volume: 80.0 # percent
 
 # Sound settings
 sound:
   player_jump:
     path: "test/test-assets/sound/mp3,flac,wav/jump.wav"
-    volume: 90.0
+    volume: 90.0 # percent
