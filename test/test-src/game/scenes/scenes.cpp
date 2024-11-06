@@ -181,24 +181,37 @@ void gamePlayScene::handleMovementKeys() {
     sf::FloatRect background2Bounds = background->getViewBounds(background->returnSpritesShape2());
     sf::FloatRect viewBounds = MetaComponents::getViewBounds();
 
+    // Left movement
     if (FlagSystem::flagEvents.aPressed) {
-        if (physics::boundingBoxCollisionHelper(*tileMap1, *player)) physics::spriteMover(player, physics::moveLeft);
+        if (!physics::boundingBoxCollisionHelper(*tileMap1, *player) || player->getSpritePos().x > tileMap1->getTileMapPosition().x) {
+            physics::spriteMover(player, physics::moveLeft);
+        }
     }
+    // Right movement
     if (FlagSystem::flagEvents.dPressed) {
-        if (physics::boundingBoxCollisionHelper(*tileMap1, *player)) physics::spriteMover(player, physics::moveRight);
+        if (!physics::boundingBoxCollisionHelper(*tileMap1, *player) || player->getSpritePos().x + player->getRects().width < tileMap1->getTileMapPosition().x + tileMap1->getTileMapWidth() * tileMap1->getTileWidth()) {
+            physics::spriteMover(player, physics::moveRight);
+        }
     }
+    // Down movement
     if (FlagSystem::flagEvents.sPressed) {
-        if (physics::boundingBoxCollisionHelper(*tileMap1, *player)) physics::spriteMover(player, physics::moveDown);
+        if (!physics::boundingBoxCollisionHelper(*tileMap1, *player) || player->getSpritePos().y + player->getRects().height < tileMap1->getTileMapPosition().y + tileMap1->getTileMapHeight() * tileMap1->getTileHeight()) {
+            physics::spriteMover(player, physics::moveDown);
+        }
         if (viewBounds.top + viewBounds.height < background1Bounds.height || viewBounds.top + viewBounds.height < background2Bounds.height) {
             MetaComponents::view.move(sf::Vector2f(0, 1));
         }
     }
+    // Up movement
     if (FlagSystem::flagEvents.wPressed) {
-        if (physics::boundingBoxCollisionHelper(*tileMap1, *player)) physics::spriteMover(player, physics::moveUp);
+        if (!physics::boundingBoxCollisionHelper(*tileMap1, *player) || player->getSpritePos().y > tileMap1->getTileMapPosition().y) {
+            physics::spriteMover(player, physics::moveUp);
+        }
         if (viewBounds.top > background1Bounds.top || viewBounds.top > background2Bounds.top) {
             MetaComponents::view.move(sf::Vector2f(0, -1));
         }
-    } 
+    }
+    // Mouse click event
     if (FlagSystem::flagEvents.mouseClicked){
         player->updatePlayer(MetaComponents::mouseClickedPosition_f); 
     }
