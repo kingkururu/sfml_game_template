@@ -138,6 +138,15 @@ void Background::updateBackground(float speed, SpriteComponents::Direction prima
 
 }
 
+sf::FloatRect const Background::getViewBounds(sf::Sprite& spriteNum) const {
+    return {
+        spriteNum.getGlobalBounds().left, 
+        spriteNum.getGlobalBounds().width, 
+        spriteNum.getGlobalBounds().top, 
+        spriteNum.getGlobalBounds().height
+    }; 
+}
+
 void Background::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     if (visibleState) {
         if (spriteCreated) {

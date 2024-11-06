@@ -180,18 +180,8 @@ void gamePlayScene::handleInput() {
 /* makes the view only stay inside background sprite  */ 
 void gamePlayScene::moveViewPortWASD(){
     if (!background) return; 
-
-    // Define boundaries based on the background sprite
-    float bgLeft = background->returnSpritesShape().getGlobalBounds().left;
-    float bgRight = bgLeft + background->returnSpritesShape().getGlobalBounds().width;
-    float bgTop = background->returnSpritesShape().getGlobalBounds().top;
-    float bgBottom = bgTop + background->returnSpritesShape().getGlobalBounds().height;
-
-    float bgLeft2 = background->returnSpritesShape2().getGlobalBounds().left;
-    float bgRight2 = bgLeft2 + background->returnSpritesShape2().getGlobalBounds().width;
-    float bgTop2 = background->returnSpritesShape2().getGlobalBounds().top;
-    float bgBottom2 = bgTop2 + background->returnSpritesShape2().getGlobalBounds().height;
-
+    sf::FloatRect background1Bounds = background->getViewBounds(background->returnSpritesShape()); 
+    sf::FloatRect background2Bounds = background->getViewBounds(background->returnSpritesShape2()); 
     sf::FloatRect viewBounds = MetaComponents::getViewBounds(); 
 
     // Move viewport only if within background y-pos (doesn't get above or below)
@@ -202,11 +192,11 @@ void gamePlayScene::moveViewPortWASD(){
         MetaComponents::view.move(sf::Vector2f(1, 0)); 
     }
     if(FlagSystem::flagEvents.sPressed && 
-    (viewBounds.top + viewBounds.height < bgBottom || viewBounds.top + viewBounds.height < bgBottom2 )){
+    (viewBounds.top + viewBounds.height < background1Bounds.height || viewBounds.top + viewBounds.height < background2Bounds.height )){
         MetaComponents::view.move(sf::Vector2f(0, 1)); 
     }
     if(FlagSystem::flagEvents.wPressed && 
-    (viewBounds.top > bgTop || viewBounds.top > bgTop2 )){
+    (viewBounds.top > background1Bounds.top || viewBounds.top > background2Bounds.top )){
         MetaComponents::view.move(sf::Vector2f(0, -1)); 
     }
 

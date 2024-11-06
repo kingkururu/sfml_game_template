@@ -100,6 +100,8 @@ public:
     sf::Sprite& returnSpritesShape3() { return *spriteCreated3; }
     sf::Sprite& returnSpritesShape4() { return *spriteCreated4; }
 
+    sf::FloatRect const getViewBounds(sf::Sprite& spriteNum) const;
+
     bool getBackgroundMoveState() { return backgroundMoveState; } 
     void setBackgroundMoveState(bool newState) { backgroundMoveState = newState; }
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override; 
