@@ -33,6 +33,8 @@ namespace MetaComponents{
 
     extern sf::Clock clock;
     extern sf::View view;
+
+    extern sf::FloatRect getViewBounds();
 }
 
 /* constant variables declared here */

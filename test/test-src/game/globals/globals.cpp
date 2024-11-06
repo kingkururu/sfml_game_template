@@ -8,6 +8,15 @@
 namespace MetaComponents {
     sf::Clock clock;
     sf::View view; 
+
+    sf::FloatRect getViewBounds(){
+        return {
+            MetaComponents::view.getCenter().x - MetaComponents::view.getSize().x / 2,
+            MetaComponents::view.getCenter().y - MetaComponents::view.getSize().y / 2,
+            MetaComponents::view.getSize().x,
+            MetaComponents::view.getSize().y
+        };
+    }
 }   
 
 namespace SpriteComponents {

@@ -264,39 +264,28 @@ void Player::updatePlayer(sf::Vector2f newPos) {
 
 void Player::changeAnimation() {
     try {
-        // Update the firstTurnInstance flag
+        // Toggle firstTurnInstance based on previous turn
         firstTurnInstance = (prevTurnBool == firstTurnInstance) ? false : true;
 
-        // Proceed only if animation state is active
         if (animChangeState) {
             elapsedTime += MetaComponents::deltaTime;
 
-            // Check if enough time has elapsed to change the animation
+            // Change animation only if elapsed time exceeds threshold
             if (elapsedTime > Constants::ANIMATION_CHANGE_TIME) {
-                // Check the state of flagEvents.aPressed to determine the animation range
+                // Update animation index based on 'A' key press
                 if (FlagSystem::flagEvents.aPressed) {
-                    // When 'A' key is pressed, cycle through indices 6 to 11
                     prevTurnBool = false;
-
-                    // Increment the index and wrap around if necessary
-                    currentIndex++;
-                    if (currentIndex > 11) { // Assuming indices 6 to 11
-                        currentIndex = 6; // Wrap back to 6
-                    }
+                    currentIndex = 6 + (currentIndex - 6 + 1) % 6; // Range 6 to 11
                 } else {
-                    // When 'A' key is not pressed, cycle through indices 0 to 5
                     prevTurnBool = true;
-
-                    // Increment the index and wrap around if necessary
-                    currentIndex++;
-                    if (currentIndex > 5) { // Assuming indices 0 to 5
-                        currentIndex = 0; // Wrap back to 0
-                    }
+                    currentIndex = (currentIndex + 1) % 6; // Range 0 to 5
                 }
 
-                // Update the sprite rectangles based on the current index
+                // Apply new animation frame
                 setRects(currentIndex);
-                elapsedTime = 0.0f; // Reset elapsed time after the animation change
+
+                // Reset elapsed time after animation change
+                elapsedTime = 0.0f;
             }
         }
     } catch (const std::exception& e) {

@@ -162,6 +162,19 @@ void gamePlayScene::handleInput() {
     if(FlagSystem::flagEvents.spacePressed){
         if (player->getMoveState()) physics::spriteMover(player, physics::jump, MetaComponents::spacePressedElapsedTime); 
     }
+    if(FlagSystem::flagEvents.aPressed){
+        physics::spriteMover(player, physics::moveLeft); 
+    }
+    if(FlagSystem::flagEvents.dPressed ){
+        MetaComponents::view.move(sf::Vector2f(1, 0)); 
+        physics::spriteMover(player, physics::moveRight); 
+    }
+    if(FlagSystem::flagEvents.sPressed){
+        physics::spriteMover(player, physics::moveDown); 
+    }
+    if(FlagSystem::flagEvents.wPressed){
+        physics::spriteMover(player, physics::moveUp); 
+    }
 }
 
 /* makes the view only stay inside background sprite  */ 
@@ -179,22 +192,14 @@ void gamePlayScene::moveViewPortWASD(){
     float bgTop2 = background->returnSpritesShape2().getGlobalBounds().top;
     float bgBottom2 = bgTop2 + background->returnSpritesShape2().getGlobalBounds().height;
 
-    // Get the current view boundaries
-    sf::FloatRect viewBounds(
-        MetaComponents::view.getCenter().x - MetaComponents::view.getSize().x / 2,
-        MetaComponents::view.getCenter().y - MetaComponents::view.getSize().y / 2,
-        MetaComponents::view.getSize().x,
-        MetaComponents::view.getSize().y
-    );
+    sf::FloatRect viewBounds = MetaComponents::getViewBounds(); 
 
     // Move viewport only if within background y-pos (doesn't get above or below)
     if(FlagSystem::flagEvents.aPressed){
         MetaComponents::view.move(sf::Vector2f(-3, 0)); 
-        physics::spriteMover(player, physics::moveLeft); 
     }
     if(FlagSystem::flagEvents.dPressed ){
         MetaComponents::view.move(sf::Vector2f(1, 0)); 
-        physics::spriteMover(player, physics::moveRight); 
     }
     if(FlagSystem::flagEvents.sPressed && 
     (viewBounds.top + viewBounds.height < bgBottom || viewBounds.top + viewBounds.height < bgBottom2 )){
