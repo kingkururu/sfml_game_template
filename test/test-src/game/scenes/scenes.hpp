@@ -100,7 +100,6 @@ class gamePlayScene : public virtual Scene{
   
   void updateDrawablesVisibility() override; 
   void draw() override; 
-  void moveViewPortWASD() override; 
 
  private:
   std::unique_ptr<Background> background; 

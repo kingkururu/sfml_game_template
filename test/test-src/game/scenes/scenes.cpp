@@ -142,7 +142,9 @@ void gamePlayScene::setTime(){
 
 /* deals with inputs from device, let known by flagEvents. */
 void gamePlayScene::handleInput() {
-    moveViewPortWASD();
+    sf::FloatRect background1Bounds = background->getViewBounds(background->returnSpritesShape()); 
+    sf::FloatRect background2Bounds = background->getViewBounds(background->returnSpritesShape2()); 
+    sf::FloatRect viewBounds = MetaComponents::getViewBounds();     
 
     if(FlagSystem::flagEvents.mouseClicked){
         if ( button1->getVisibleState() && 
@@ -163,6 +165,7 @@ void gamePlayScene::handleInput() {
         if (player->getMoveState()) physics::spriteMover(player, physics::jump, MetaComponents::spacePressedElapsedTime); 
     }
     if(FlagSystem::flagEvents.aPressed){
+        MetaComponents::view.move(sf::Vector2f(-3, 0)); 
         physics::spriteMover(player, physics::moveLeft); 
     }
     if(FlagSystem::flagEvents.dPressed ){
@@ -170,36 +173,13 @@ void gamePlayScene::handleInput() {
         physics::spriteMover(player, physics::moveRight); 
     }
     if(FlagSystem::flagEvents.sPressed){
+        if(viewBounds.top + viewBounds.height < background1Bounds.height || viewBounds.top + viewBounds.height < background2Bounds.height) MetaComponents::view.move(sf::Vector2f(0, 1)); 
         physics::spriteMover(player, physics::moveDown); 
     }
     if(FlagSystem::flagEvents.wPressed){
+        if(viewBounds.top > background1Bounds.top || viewBounds.top > background2Bounds.top) MetaComponents::view.move(sf::Vector2f(0, -1)); 
         physics::spriteMover(player, physics::moveUp); 
     }
-}
-
-/* makes the view only stay inside background sprite  */ 
-void gamePlayScene::moveViewPortWASD(){
-    if (!background) return; 
-    sf::FloatRect background1Bounds = background->getViewBounds(background->returnSpritesShape()); 
-    sf::FloatRect background2Bounds = background->getViewBounds(background->returnSpritesShape2()); 
-    sf::FloatRect viewBounds = MetaComponents::getViewBounds(); 
-
-    // Move viewport only if within background y-pos (doesn't get above or below)
-    if(FlagSystem::flagEvents.aPressed){
-        MetaComponents::view.move(sf::Vector2f(-3, 0)); 
-    }
-    if(FlagSystem::flagEvents.dPressed ){
-        MetaComponents::view.move(sf::Vector2f(1, 0)); 
-    }
-    if(FlagSystem::flagEvents.sPressed && 
-    (viewBounds.top + viewBounds.height < background1Bounds.height || viewBounds.top + viewBounds.height < background2Bounds.height )){
-        MetaComponents::view.move(sf::Vector2f(0, 1)); 
-    }
-    if(FlagSystem::flagEvents.wPressed && 
-    (viewBounds.top > background1Bounds.top || viewBounds.top > background2Bounds.top )){
-        MetaComponents::view.move(sf::Vector2f(0, -1)); 
-    }
-
 }
 
 /* Keeps sprites inside screen bounds, checks for collisions, update scores, and sets flagEvents.gameEnd to true in an event of collision */
