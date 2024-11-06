@@ -1,31 +1,18 @@
-[2024-11-06 12:03:10.168] [info_logger] [info] Succesfuly read yaml file
-[2024-11-06 12:03:10.230] [info_logger] [info] 	Constants initialized 
-[2024-11-06 12:03:10.265] [info_logger] [info] scene made
-[2024-11-06 12:03:10.266] [info_logger] [info] scene made
-[2024-11-06 12:03:10.266] [info_logger] [info] scene made
-[2024-11-06 12:03:10.266] [info_logger] [info] 	Game initialized
-[2024-11-06 12:03:10.266] [info_logger] [info] Sprite initialized successfully
-[2024-11-06 12:03:10.266] [info_logger] [info] Background created
-[2024-11-06 12:03:10.266] [info_logger] [info] Sprite initialized successfully
-[2024-11-06 12:03:10.266] [info_logger] [info] Music initialized successfully, volume is 80.000000
-[2024-11-06 12:03:10.266] [info_logger] [info] Sprite initialized successfully
-[2024-11-06 12:03:10.268] [info_logger] [info] Tile map initialized successfully
-[2024-11-06 12:03:10.268] [info_logger] [info] Sound initialized successfully
-[2024-11-06 12:03:10.268] [info_logger] [info] text initialized successully
-[2024-11-06 12:03:10.268] [info_logger] [info] Sprite initialized successfully
-[2024-11-06 12:03:10.268] [info_logger] [info] Background created
-[2024-11-06 12:03:11.656] [info_logger] [info] Player position updated to (886.900940, 282.000000)
-[2024-11-06 12:03:12.681] [info_logger] [info] Player position updated to (307.501709, 171.000000)
-[2024-11-06 12:03:12.698] [info_logger] [info] Player position updated to (307.501709, 171.000000)
-[2024-11-06 12:03:13.368] [info_logger] [info] Player position updated to (555.802185, 414.000000)
-[2024-11-06 12:03:13.386] [info_logger] [info] Player position updated to (555.802185, 414.000000)
-[2024-11-06 12:03:13.403] [info_logger] [info] Player position updated to (555.802185, 414.000000)
-[2024-11-06 12:03:13.421] [info_logger] [info] Player position updated to (555.802185, 414.000000)
-[2024-11-06 12:03:13.898] [info_logger] [info] Player position updated to (798.802551, 186.000000)
-[2024-11-06 12:03:14.357] [info_logger] [info] Player position updated to (570.002869, 206.000000)
-[2024-11-06 12:03:14.781] [info_logger] [info] Player position updated to (722.803162, 375.000000)
-[2024-11-06 12:03:14.799] [info_logger] [info] Player position updated to (722.803162, 375.000000)
-[2024-11-06 12:03:17.819] [info_logger] [info] button clicked
-[2024-11-06 12:03:17.820] [info_logger] [info] Player position updated to (94.805176, 93.999985)
-[2024-11-06 12:03:19.370] [info_logger] [info] 	Game Ended
+[2024-11-06 12:27:45.980] [info_logger] [info] Succesfuly read yaml file
+[2024-11-06 12:27:46.046] [info_logger] [info] 	Constants initialized 
+[2024-11-06 12:27:46.109] [info_logger] [info] scene made
+[2024-11-06 12:27:46.109] [info_logger] [info] scene made
+[2024-11-06 12:27:46.109] [info_logger] [info] scene made
+[2024-11-06 12:27:46.109] [info_logger] [info] 	Game initialized
+[2024-11-06 12:27:46.109] [info_logger] [info] Sprite initialized successfully
+[2024-11-06 12:27:46.109] [info_logger] [info] Background created
+[2024-11-06 12:27:46.109] [info_logger] [info] Sprite initialized successfully
+[2024-11-06 12:27:46.109] [info_logger] [info] Music initialized successfully, volume is 80.000000
+[2024-11-06 12:27:46.109] [info_logger] [info] Sprite initialized successfully
+[2024-11-06 12:27:46.111] [info_logger] [info] Tile map initialized successfully
+[2024-11-06 12:27:46.111] [info_logger] [info] Sound initialized successfully
+[2024-11-06 12:27:46.111] [info_logger] [info] text initialized successully
+[2024-11-06 12:27:46.111] [info_logger] [info] Sprite initialized successfully
+[2024-11-06 12:27:46.111] [info_logger] [info] Background created
+[2024-11-06 12:28:00.731] [info_logger] [info] 	Game Ended
 

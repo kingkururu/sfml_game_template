@@ -15,6 +15,7 @@
 #include <functional> 
 #include "../globals/globals.hpp" 
 #include "../../test-assets/sprites/sprites.hpp" 
+#include "../../test-assets/tiles/tiles.hpp" 
 
 /* declarations for physics methods */
 namespace physics{
@@ -79,13 +80,11 @@ namespace physics{
     
     // collision helpers ( sprite vs. sprite )
     bool circleCollisionHelper(const Sprite& sprite1, const Sprite& sprite2); 
-    bool boundingBoxCollisionHelper(const Sprite& sprite1, const Sprite& sprite2); 
 
-    //for mouse position vs sprite
-    bool boundingBoxCollisionHelper(sf::Vector2i mousePos, const Sprite& sprite2); 
-    
-    //for view vs. sprite
-    bool boundingBoxCollisionHelper(sf::View view, const Sprite& sprite2); 
+    bool boundingBoxCollisionHelper(const Sprite& sprite1, const Sprite& sprite2);      // for sprite vs sprite
+    bool boundingBoxCollisionHelper(sf::Vector2i mousePos, const Sprite& sprite2);      // for mouse position vs sprite
+    bool boundingBoxCollisionHelper(sf::View view, const Sprite& sprite2);    // for view vs. sprite
+    bool boundingBoxCollisionHelper(const TileMap& tileMap, const Sprite& sprite);    // for tileMap (entire) vs. sprite
 
     bool pixelPerfectCollisionHelper(const Sprite& sprite1, const Sprite& sprite2);
     bool raycastCollisionHelper(const Sprite& sprite1, const Sprite& sprite2, float currentTime, size_t index);

@@ -55,6 +55,9 @@ public:
     void addTile(unsigned int x, unsigned int y, std::unique_ptr<Tile> tile); 
     float const getTileWidth() const { return tileWidth; }
     float const getTileHeight() const { return tileHeight; }
+    size_t const getTileMapWidth() const { return tileMapWidth; }
+    size_t const getTileMapHeight() const { return tileMapHeight; }
+    sf::Vector2f const getTileMapPosition() const { return tileMapPosition; }
 
 private:
     unsigned int tilesArraySize {};

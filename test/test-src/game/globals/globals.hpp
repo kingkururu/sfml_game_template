@@ -173,7 +173,6 @@ namespace FlagSystem {
             log_info("Flags have been successfully reset.");
         }
 
-
         // resets keyboard flags only 
         void flagKeyReleased() {
             wPressed = false;

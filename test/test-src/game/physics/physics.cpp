@@ -278,6 +278,26 @@ namespace physics{
         return boundingBoxCollision(position1, size1, position2, size2);
     }
 
+    bool boundingBoxCollisionHelper(const TileMap& tileMap, const Sprite& sprite) {
+        // Retrieve global bounds and current frame of the sprite
+        sf::FloatRect spriteBounds = sprite.returnSpritesShape().getGlobalBounds();
+        sf::IntRect spriteRect = sprite.getRects();
+
+        // Calculate the sprite's actual position and size based on its animation frame
+        sf::Vector2f spritePosition(spriteBounds.left + spriteRect.left, spriteBounds.top + spriteRect.top);
+        sf::Vector2f spriteSize(static_cast<float>(spriteRect.width), static_cast<float>(spriteRect.height));
+
+        // Calculate the TileMap's position and size based on tile size and grid dimensions
+        sf::Vector2f tileMapPosition = tileMap.getTileMapPosition();
+        sf::Vector2f tileMapSize(
+            tileMap.getTileWidth() * static_cast<float>(tileMap.getTileMapWidth()),   // Total width in pixels
+            tileMap.getTileHeight() * static_cast<float>(tileMap.getTileMapHeight())  // Total height in pixels
+        );
+
+        // Perform the bounding box collision check between the sprite and the entire TileMap
+        return boundingBoxCollision(spritePosition, spriteSize, tileMapPosition, tileMapSize);
+    }
+
     //pixel perfect collision helper to be passed in physics::collisions function 
     bool pixelPerfectCollisionHelper(const Sprite& obj1, const Sprite& obj2) {
         // Retrieve bitmasks for the current animation frame

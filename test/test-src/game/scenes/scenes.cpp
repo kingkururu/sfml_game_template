@@ -182,24 +182,22 @@ void gamePlayScene::handleMovementKeys() {
     sf::FloatRect viewBounds = MetaComponents::getViewBounds();
 
     if (FlagSystem::flagEvents.aPressed) {
-        MetaComponents::view.move(sf::Vector2f(-3, 0));
-        physics::spriteMover(player, physics::moveLeft);
+        if (physics::boundingBoxCollisionHelper(*tileMap1, *player)) physics::spriteMover(player, physics::moveLeft);
     }
     if (FlagSystem::flagEvents.dPressed) {
-        MetaComponents::view.move(sf::Vector2f(1, 0));
-        physics::spriteMover(player, physics::moveRight);
+        if (physics::boundingBoxCollisionHelper(*tileMap1, *player)) physics::spriteMover(player, physics::moveRight);
     }
     if (FlagSystem::flagEvents.sPressed) {
+        if (physics::boundingBoxCollisionHelper(*tileMap1, *player)) physics::spriteMover(player, physics::moveDown);
         if (viewBounds.top + viewBounds.height < background1Bounds.height || viewBounds.top + viewBounds.height < background2Bounds.height) {
             MetaComponents::view.move(sf::Vector2f(0, 1));
         }
-        physics::spriteMover(player, physics::moveDown);
     }
     if (FlagSystem::flagEvents.wPressed) {
+        if (physics::boundingBoxCollisionHelper(*tileMap1, *player)) physics::spriteMover(player, physics::moveUp);
         if (viewBounds.top > background1Bounds.top || viewBounds.top > background2Bounds.top) {
             MetaComponents::view.move(sf::Vector2f(0, -1));
         }
-        physics::spriteMover(player, physics::moveUp);
     } 
     if (FlagSystem::flagEvents.mouseClicked){
         player->updatePlayer(MetaComponents::mouseClickedPosition_f); 
