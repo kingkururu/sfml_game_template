@@ -23,11 +23,17 @@ void Scene::runScene() {
     if (FlagSystem::flagEvents.gameEnd) return; // Early exit if game ended
     
     setTime();
+
     handleInput();
+
     respawnAssets();
+
     handleGameEvents();
-    updateDrawablesVisibility();
     handleGameFlags();
+    handleSceneFlags();
+
+    updateDrawablesVisibility();
+    
     update();
     draw();
 }
@@ -140,45 +146,103 @@ void gamePlayScene::setTime(){
     }
 } 
 
-/* deals with inputs from device, let known by flagEvents. */
-void gamePlayScene::handleInput() {
-    sf::FloatRect background1Bounds = background->getViewBounds(background->returnSpritesShape()); 
-    sf::FloatRect background2Bounds = background->getViewBounds(background->returnSpritesShape2()); 
-    sf::FloatRect viewBounds = MetaComponents::getViewBounds();     
+// /* deals with inputs from device, let known by flagEvents. */
+// void gamePlayScene::handleInput() {
+//     sf::FloatRect background1Bounds = background->getViewBounds(background->returnSpritesShape()); 
+//     sf::FloatRect background2Bounds = background->getViewBounds(background->returnSpritesShape2()); 
+//     sf::FloatRect viewBounds = MetaComponents::getViewBounds();     
 
-    if(FlagSystem::flagEvents.mouseClicked){
-        if ( button1->getVisibleState() && 
-            physics::boundingBoxCollisionHelper(MetaComponents::mouseClickedPosition, *button1)){
-            log_info("button clicked"); 
+//     if(FlagSystem::flagEvents.mouseClicked){
+//         if ( button1->getVisibleState() && 
+//             physics::boundingBoxCollisionHelper(MetaComponents::mouseClickedPosition, *button1)){
+//             log_info("button clicked"); 
+
+//             button1->setClickedBool(true);
+
+//             FlagSystem::gameScene1Flags.sceneEnd = true;
+//             FlagSystem::gameSceneNextFlags.sceneStart = true;
+//             FlagSystem::gameSceneNextFlags.sceneEnd = false;
+
+//             window.clear();
+//             return; // put here for anything that could be added below in the future
+//         }
+//     }
+//     if(FlagSystem::flagEvents.spacePressed){
+//         if (player->getMoveState()) physics::spriteMover(player, physics::jump, MetaComponents::spacePressedElapsedTime); 
+//     }
+//     if(FlagSystem::flagEvents.aPressed){
+//         MetaComponents::view.move(sf::Vector2f(-3, 0)); 
+//         physics::spriteMover(player, physics::moveLeft); 
+//     }
+//     if(FlagSystem::flagEvents.dPressed ){
+//         MetaComponents::view.move(sf::Vector2f(1, 0)); 
+//         physics::spriteMover(player, physics::moveRight); 
+//     }
+//     if(FlagSystem::flagEvents.sPressed){
+//         if(viewBounds.top + viewBounds.height < background1Bounds.height || viewBounds.top + viewBounds.height < background2Bounds.height) MetaComponents::view.move(sf::Vector2f(0, 1)); 
+//         physics::spriteMover(player, physics::moveDown); 
+//     }
+//     if(FlagSystem::flagEvents.wPressed){
+//         if(viewBounds.top > background1Bounds.top || viewBounds.top > background2Bounds.top) MetaComponents::view.move(sf::Vector2f(0, -1)); 
+//         physics::spriteMover(player, physics::moveUp); 
+//     }
+// }
+void gamePlayScene::handleInput() {
+    handleMouseClick();
+    handleSpaceKey(); 
+    handleMovementKeys();
+}
+
+void gamePlayScene::handleMouseClick() {
+    if (FlagSystem::flagEvents.mouseClicked) {
+        if (button1->getVisibleState() && 
+            physics::boundingBoxCollisionHelper(MetaComponents::mouseClickedPosition, *button1)) {
+            log_info("button clicked");
 
             button1->setClickedBool(true);
-
             FlagSystem::gameScene1Flags.sceneEnd = true;
             FlagSystem::gameSceneNextFlags.sceneStart = true;
             FlagSystem::gameSceneNextFlags.sceneEnd = false;
 
             window.clear();
-            return; // put here for anything that could be added below in the future
         }
     }
-    if(FlagSystem::flagEvents.spacePressed){
-        if (player->getMoveState()) physics::spriteMover(player, physics::jump, MetaComponents::spacePressedElapsedTime); 
+}
+
+void gamePlayScene::handleSpaceKey() {
+    if (FlagSystem::flagEvents.spacePressed) {
+        if (player->getMoveState()) {
+            physics::spriteMover(player, physics::jump, MetaComponents::spacePressedElapsedTime);
+        }
     }
-    if(FlagSystem::flagEvents.aPressed){
-        MetaComponents::view.move(sf::Vector2f(-3, 0)); 
-        physics::spriteMover(player, physics::moveLeft); 
+}
+
+void gamePlayScene::handleMovementKeys() {
+    sf::FloatRect background1Bounds = background->getViewBounds(background->returnSpritesShape());
+    sf::FloatRect background2Bounds = background->getViewBounds(background->returnSpritesShape2());
+    sf::FloatRect viewBounds = MetaComponents::getViewBounds();
+
+    if (FlagSystem::flagEvents.aPressed) {
+        MetaComponents::view.move(sf::Vector2f(-3, 0));
+        physics::spriteMover(player, physics::moveLeft);
     }
-    if(FlagSystem::flagEvents.dPressed ){
-        MetaComponents::view.move(sf::Vector2f(1, 0)); 
-        physics::spriteMover(player, physics::moveRight); 
+    if (FlagSystem::flagEvents.dPressed) {
+        MetaComponents::view.move(sf::Vector2f(1, 0));
+        physics::spriteMover(player, physics::moveRight);
     }
-    if(FlagSystem::flagEvents.sPressed){
-        if(viewBounds.top + viewBounds.height < background1Bounds.height || viewBounds.top + viewBounds.height < background2Bounds.height) MetaComponents::view.move(sf::Vector2f(0, 1)); 
-        physics::spriteMover(player, physics::moveDown); 
+    if (FlagSystem::flagEvents.sPressed) {
+        if (viewBounds.top + viewBounds.height < background1Bounds.height || 
+            viewBounds.top + viewBounds.height < background2Bounds.height) {
+            MetaComponents::view.move(sf::Vector2f(0, 1));
+        }
+        physics::spriteMover(player, physics::moveDown);
     }
-    if(FlagSystem::flagEvents.wPressed){
-        if(viewBounds.top > background1Bounds.top || viewBounds.top > background2Bounds.top) MetaComponents::view.move(sf::Vector2f(0, -1)); 
-        physics::spriteMover(player, physics::moveUp); 
+    if (FlagSystem::flagEvents.wPressed) {
+        if (viewBounds.top > background1Bounds.top || 
+            viewBounds.top > background2Bounds.top) {
+            MetaComponents::view.move(sf::Vector2f(0, -1));
+        }
+        physics::spriteMover(player, physics::moveUp);
     }
 }
 

@@ -32,18 +32,21 @@ class Scene {
 
   // base functions inside scene
   void runScene();  
-  void restartScene();
-  void handleGameFlags(); 
+  virtual void createAssets(){}; 
+
+ protected:
+  sf::RenderWindow& window; // from game.hpp
+  FlagSystem::SceneEvents sceneEvents; // scene's own flag events
 
   // blank templates here
-  virtual void createAssets(){}; 
-  virtual void respawnAssets(){}; 
 
   virtual void deleteInvisibleSprites(){};  
 
   virtual void setTime(){}; 
 
   virtual void handleInput(){};
+
+  virtual void respawnAssets(){}; 
 
   virtual void handleGameEvents(){};
   virtual void handleSceneFlags(){}; 
@@ -53,20 +56,17 @@ class Scene {
   virtual void draw(); 
   virtual void moveViewPortWASD();
 
- protected:
-  // Other game components 
-  sf::RenderWindow& window; // from game.hpp
-
-  FlagSystem::SceneEvents sceneEvents; // scene's own flag events
+  void restartScene();
+  void handleGameFlags(); 
 };
 
 /* costumize scenes by adding something */
 class introScene : public virtual Scene{
-  public:
-    using Scene::Scene; 
-    ~introScene() override = default; 
+ public:
+  using Scene::Scene; 
+  ~introScene() override = default; 
     
-  private:
+ private:
 
 };
 
@@ -76,32 +76,27 @@ class gamePlayScene : public virtual Scene{
   using Scene::Scene; 
   ~gamePlayScene() override = default; 
  
-  using Scene::createAssets;
   void createAssets() override; 
-  using Scene::respawnAssets;
-  void respawnAssets() override; 
-
-  using Scene::deleteInvisibleSprites;
-  void deleteInvisibleSprites() override;
-
-  using Scene::setTime;
-  void setTime() override;
-
-  using Scene::handleInput;
-  void handleInput() override; 
-
-  using Scene::handleGameEvents;
-  void handleGameEvents() override; 
-  using Scene::handleSceneFlags;
-  void handleSceneFlags() override; 
-
-  using Scene::update; 
-  void update() override; 
-  
-  void updateDrawablesVisibility() override; 
-  void draw() override; 
 
  private:
+  void handleInput() override; 
+  void handleMouseClick(); 
+  void handleSpaceKey();
+  void handleMovementKeys(); 
+
+  void respawnAssets() override; 
+  void deleteInvisibleSprites() override;
+
+  void setTime() override;
+
+  void handleGameEvents() override; 
+  void handleSceneFlags() override; 
+
+  void update() override; 
+  void updateDrawablesVisibility() override; 
+
+  void draw() override; 
+
   std::unique_ptr<Background> background; 
   std::unique_ptr<Player> player; 
 
@@ -114,24 +109,20 @@ class gamePlayScene : public virtual Scene{
   std::unique_ptr<SoundClass> playerJumpSound; 
 
   std::unique_ptr<TextClass> text1; 
-
 };
 
 class gamePlayScene2 : public virtual Scene{
 public:
-  using Scene::Scene; 
   ~gamePlayScene2() override = default; 
  
-  using Scene::createAssets;
   void createAssets() override; 
 
-  using Scene::handleInput;
+ private:
   void handleInput() override; 
 
   void draw() override; 
   void update() override; 
 
- private:
   std::unique_ptr<Background> background; 
 };
 
