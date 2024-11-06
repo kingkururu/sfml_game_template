@@ -25,7 +25,8 @@ namespace SpriteComponents {
 }
 
 namespace MetaComponents{
-    inline sf::Vector2i mouseClickedPosition {}; 
+    inline sf::Vector2i mouseClickedPosition_i {}; 
+    inline sf::Vector2f mouseClickedPosition_f {}; 
 
     inline float globalTime {};
     inline float deltaTime {}; 

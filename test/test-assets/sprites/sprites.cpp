@@ -267,7 +267,10 @@ std::shared_ptr<sf::Uint8[]> const Animated::getBitmask(size_t index) const {
 
 /* specialized player position update method */
 void Player::updatePlayer(sf::Vector2f newPos) {
-    changePosition(position); 
+    
+    changePosition(newPos); 
+    updatePos();
+     
     log_info("Player position updated to (" + std::to_string(newPos.x) + ", " + std::to_string(newPos.y) + ")");
 }
 

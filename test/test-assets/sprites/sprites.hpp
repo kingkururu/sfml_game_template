@@ -137,7 +137,7 @@ public:
     void setSpeed(float newSpeed) { speed = newSpeed; } 
     void setAcceleration( sf::Vector2f newAcc) { acceleration = newAcc; } 
 
-    virtual void setDirectionVector( sf::Vector2f dir) {directionVector = dir; } 
+    virtual void setDirectionVector(sf::Vector2f dir) {directionVector = dir; } 
 
     using Sprite::getDirectionVector;
     virtual sf::Vector2f getDirectionVector() const override { return directionVector; }

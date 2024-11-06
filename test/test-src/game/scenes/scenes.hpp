@@ -39,7 +39,6 @@ class Scene {
   FlagSystem::SceneEvents sceneEvents; // scene's own flag events
 
   // blank templates here
-
   virtual void deleteInvisibleSprites(){};  
 
   virtual void setTime(){}; 
@@ -63,7 +62,7 @@ class Scene {
 /* costumize scenes by adding something */
 class introScene : public virtual Scene{
  public:
-  using Scene::Scene; 
+   using Scene::Scene; 
   ~introScene() override = default; 
     
  private:
@@ -113,6 +112,7 @@ class gamePlayScene : public virtual Scene{
 
 class gamePlayScene2 : public virtual Scene{
 public:
+  using Scene::Scene; 
   ~gamePlayScene2() override = default; 
  
   void createAssets() override; 
