@@ -44,19 +44,19 @@ void Scene::draw(){
  }
 
 void Scene::moveViewPortWASD(){
-    // move view port 
-    if(FlagSystem::flagEvents.aPressed){
-        MetaComponents::view.move(sf::Vector2f(-10, 0)); 
-    }
-    if(FlagSystem::flagEvents.dPressed){
-        MetaComponents::view.move(sf::Vector2f(10, 0)); 
-    }
-    if(FlagSystem::flagEvents.sPressed){
-        MetaComponents::view.move(sf::Vector2f(0, 10)); 
-    }
-    if(FlagSystem::flagEvents.wPressed){
-        MetaComponents::view.move(sf::Vector2f(0, -10)); 
-    }
+    // // move view port 
+    // if(FlagSystem::flagEvents.aPressed){
+    //     MetaComponents::view.move(sf::Vector2f(-10, 0)); 
+    // }
+    // if(FlagSystem::flagEvents.dPressed){
+    //     MetaComponents::view.move(sf::Vector2f(10, 0)); 
+    // }
+    // if(FlagSystem::flagEvents.sPressed){
+    //     MetaComponents::view.move(sf::Vector2f(0, 10)); 
+    // }
+    // if(FlagSystem::flagEvents.wPressed){
+    //     MetaComponents::view.move(sf::Vector2f(0, -10)); 
+    // }
 }
 
 /* Resets everything for scene to start again. The position, moveState, flagEvents, etc are all reset */
@@ -199,7 +199,7 @@ void gamePlayScene::handleMovementKeys() {
             physics::spriteMover(player, physics::moveDown);
         }
         if (viewBounds.top + viewBounds.height < background1Bounds.height || viewBounds.top + viewBounds.height < background2Bounds.height) {
-            MetaComponents::view.move(sf::Vector2f(0, 1));
+          //  MetaComponents::view.move(sf::Vector2f(0, 1));
         }
     }
     // Up movement
@@ -208,7 +208,7 @@ void gamePlayScene::handleMovementKeys() {
             physics::spriteMover(player, physics::moveUp);
         }
         if (viewBounds.top > background1Bounds.top || viewBounds.top > background2Bounds.top) {
-            MetaComponents::view.move(sf::Vector2f(0, -1));
+           // MetaComponents::view.move(sf::Vector2f(0, -1));
         }
     }
     // Mouse click event
@@ -219,6 +219,11 @@ void gamePlayScene::handleMovementKeys() {
 
 /* Keeps sprites inside screen bounds, checks for collisions, update scores, and sets flagEvents.gameEnd to true in an event of collision */
 void gamePlayScene::handleGameEvents() { 
+    // if((player->getSpritePos().x + player->getRects().width < tileMap1->getTileMapPosition().x + tileMap1->getTileMapWidth() * tileMap1->getTileWidth()
+    //    || player->getSpritePos().x > tileMap1->getTileMapPosition().x) 
+    //    && player->getSpritePos().y > tileMap1->getTileMapPosition().y ) {
+    //     physics::spriteMover(player, physics::freeFall); 
+    // }
     // increase score
 
     // sprite collisions bool collision = physics::checkCollisions(sprite1, sprites, collisiontype) 
@@ -238,18 +243,30 @@ void gamePlayScene::update() {
         // Remove invisible sprites
         deleteInvisibleSprites();
 
-        if(button1) button1->changeAnimation();
-        if(player) player->changeAnimation();
-        if(background) background->updateBackground(Constants::BACKGROUND_SPEED, Constants::BACKGROUND_MOVING_DIRECTION);
-        
-        MetaComponents::view.move(sf::Vector2f(0.7f, 0.0f)); 
+        if (button1) button1->changeAnimation();
+        if (background) background->updateBackground(Constants::BACKGROUND_SPEED, Constants::BACKGROUND_MOVING_DIRECTION);
 
+        if (player) {
+            player->changeAnimation();
+            updatePlayerAndView(); 
+        }
+
+        // Set the view for the window
         window.setView(MetaComponents::view);
         
-    }
-    catch (const std::exception& e) {
+    } catch (const std::exception& e) {
         log_error("Exception in updateSprites: " + std::string(e.what()));
     }
+}
+
+void gamePlayScene::updatePlayerAndView() {
+    if(MetaComponents::spacePressedElapsedTime) return; // don't change view when space clicked, i.e, jumped is true
+    // Calculate the center of the view based on the player's position
+    float viewCenterX = player->getSpritePos().x;
+    float viewCenterY = player->getSpritePos().y;
+
+    // Set the new view center to follow the player's position
+    MetaComponents::view.setCenter(viewCenterX, viewCenterY - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET);
 }
 
 void gamePlayScene::updateDrawablesVisibility(){

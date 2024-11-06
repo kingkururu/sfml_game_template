@@ -54,7 +54,7 @@ namespace SpriteComponents {
 namespace Constants {
     // make random position function (random from upper right corner)
     sf::Vector2f makeRandomPosition(){
-        float xPos = static_cast<float>(SCREEN_WIDTH - std::rand() % static_cast<int>(SCREEN_WIDTH / 2));
+        float xPos = static_cast<float>(WORLD_WIDTH - std::rand() % static_cast<int>(WORLD_WIDTH / 2));
         float yPos = 0.0f;
         return sf::Vector2f{ xPos, yPos }; 
     }
@@ -77,15 +77,15 @@ namespace Constants {
             YAML::Node config = YAML::LoadFile(configFile);
 
             // Load game display settings
-            SCREEN_SCALE = config["screen"]["scale"].as<float>();
-            SCREEN_WIDTH = config["screen"]["width"].as<unsigned short>();
-            SCREEN_HEIGHT = config["screen"]["height"].as<unsigned short>();
-            FRAME_LIMIT = config["screen"]["frame_limit"].as<unsigned short>();
-            GAME_TITLE = config["screen"]["title"].as<std::string>();
-            VIEW_SIZE_X = config["screen"]["view"]["size_x"].as<float>();
-            VIEW_SIZE_Y = config["screen"]["view"]["size_y"].as<float>();
-            VIEW_INITIAL_CENTER = {config["screen"]["view"]["initial_center"]["x"].as<float>(),
-                                config["screen"]["view"]["initial_center"]["y"].as<float>()};
+            WORLD_SCALE = config["world"]["scale"].as<float>();
+            WORLD_WIDTH = config["world"]["width"].as<unsigned short>();
+            WORLD_HEIGHT = config["world"]["height"].as<unsigned short>();
+            FRAME_LIMIT = config["world"]["frame_limit"].as<unsigned short>();
+            GAME_TITLE = config["world"]["title"].as<std::string>();
+            VIEW_SIZE_X = config["world"]["view"]["size_x"].as<float>();
+            VIEW_SIZE_Y = config["world"]["view"]["size_y"].as<float>();
+            VIEW_INITIAL_CENTER = {config["world"]["view"]["initial_center"]["x"].as<float>(),
+                                config["world"]["view"]["initial_center"]["y"].as<float>()};
             VIEW_RECT = { 0.0f, 0.0f, VIEW_SIZE_X, VIEW_SIZE_Y };
 
             // Load score settings

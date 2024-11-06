@@ -8,7 +8,7 @@
 
 /* GameManager constructor sets up the window, intitializes constant variables, calls the random function, and makes scenes */
 GameManager::GameManager()
-    : mainWindow(Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT, Constants::GAME_TITLE, Constants::FRAME_LIMIT) {
+    : mainWindow(Constants::VIEW_SIZE_X, Constants::VIEW_SIZE_Y, Constants::GAME_TITLE, Constants::FRAME_LIMIT) {
     introScreenScene = std::make_unique<introScene>(mainWindow.getWindow());
     gameScene = std::make_unique<gamePlayScene>(mainWindow.getWindow());
     gameSceneNext = std::make_unique<gamePlayScene2>(mainWindow.getWindow()); 

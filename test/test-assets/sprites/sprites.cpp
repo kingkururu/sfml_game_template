@@ -220,8 +220,8 @@ float Animated::getRadius() const {
 /* updates position to be assigned most recent position */
 void Sprite::updateVisibility() {
     try {
-        if (position.y > Constants::SCREEN_HEIGHT + Constants::SPRITE_OUT_OF_BOUNDS_OFFSET ||
-            position.x > Constants::SCREEN_WIDTH + Constants::SPRITE_OUT_OF_BOUNDS_OFFSET ||
+        if (position.y > Constants::WORLD_HEIGHT + Constants::SPRITE_OUT_OF_BOUNDS_OFFSET ||
+            position.x > Constants::WORLD_WIDTH + Constants::SPRITE_OUT_OF_BOUNDS_OFFSET ||
             position.y < 0 - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET ||
             position.x < 0 - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET) {
                 // do something else 
@@ -270,7 +270,7 @@ void Player::updatePlayer(sf::Vector2f newPos) {
     
     changePosition(newPos); 
     updatePos();
-     
+
     log_info("Player position updated to (" + std::to_string(newPos.x) + ", " + std::to_string(newPos.y) + ")");
 }
 

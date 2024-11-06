@@ -12,6 +12,7 @@
 #include <vector>
 #include <memory>
 #include <array>
+#include <algorithm>
 
 #include "../test-assets/sprites/sprites.hpp"  
 #include "../test-assets/sound/sound.hpp"      
@@ -93,6 +94,7 @@ class gamePlayScene : public virtual Scene{
 
   void update() override; 
   void updateDrawablesVisibility() override; 
+  void updatePlayerAndView(); 
 
   void draw() override; 
 

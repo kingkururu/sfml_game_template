@@ -54,9 +54,9 @@ namespace Constants { // not actually "constants" in terms of being fixed, but s
     extern void makeRectsAndBitmasks(); 
 
     // Game display settings
-    inline float SCREEN_SCALE;
-    inline unsigned short SCREEN_WIDTH;
-    inline unsigned short SCREEN_HEIGHT;
+    inline float WORLD_SCALE;
+    inline unsigned short WORLD_WIDTH;
+    inline unsigned short WORLD_HEIGHT;
     inline unsigned short FRAME_LIMIT;
     inline std::string GAME_TITLE;
     inline sf::Vector2f VIEW_INITIAL_CENTER;

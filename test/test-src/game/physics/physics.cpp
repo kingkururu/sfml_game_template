@@ -42,9 +42,9 @@ namespace physics{
 
     // jumping sprites 
     sf::Vector2f jump(float& elapsedTime, float speed, sf::Vector2f originalPos, sf::Vector2f acceleration){
-       if(elapsedTime <= 0.4f){
+       if(elapsedTime <= 0.2f){
             return { originalPos.x, originalPos.y -= speed * MetaComponents::deltaTime * gravity * acceleration.y };
-        } else if (elapsedTime >= 0.4f && elapsedTime <= 0.8f){
+        } else if (elapsedTime >= 0.2 && elapsedTime <= 0.4f){
             return { originalPos.x, originalPos.y += speed * MetaComponents::deltaTime * gravity * acceleration.y }; 
         } else {
             FlagSystem::flagEvents.spacePressed = false; 
