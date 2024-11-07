@@ -100,6 +100,8 @@ void gamePlayScene::createAssets() {
         player->setRects(0); 
 
         backgroundMusic = std::make_unique<MusicClass>(std::move(Constants::BACKGROUNDMUSIC_MUSIC), Constants::BACKGROUNDMUSIC_VOLUME);
+        if(backgroundMusic) backgroundMusic->returnMusic().play(); 
+       
         button1 = std::make_unique<Button>(Constants::BUTTON1_POSITION, Constants::BUTTON1_SCALE, Constants::BUTTON1_TEXTURE, 
                                    Constants::BUTTON1_ANIMATIONRECTS, Constants::BUTTON1_INDEXMAX, 
                                    utils::convertToWeakPtrVector(Constants::BUTTON1_BITMASK));
@@ -198,9 +200,6 @@ void gamePlayScene::handleMovementKeys() {
         if (!physics::boundingBoxCollisionHelper(*tileMap1, *player) || player->getSpritePos().y + player->getRects().height < tileMap1->getTileMapPosition().y + tileMap1->getTileMapHeight() * tileMap1->getTileHeight()) {
             physics::spriteMover(player, physics::moveDown);
         }
-        if (viewBounds.top + viewBounds.height < background1Bounds.height || viewBounds.top + viewBounds.height < background2Bounds.height) {
-          //  MetaComponents::view.move(sf::Vector2f(0, 1));
-        }
     }
     // Up movement
     if (FlagSystem::flagEvents.wPressed) {
@@ -211,25 +210,16 @@ void gamePlayScene::handleMovementKeys() {
            // MetaComponents::view.move(sf::Vector2f(0, -1));
         }
     }
-    // Mouse click event
-    if (FlagSystem::flagEvents.mouseClicked){
-        player->updatePlayer(MetaComponents::mouseClickedPosition_f); 
-    }
+    // // Mouse click event
+    // if (FlagSystem::flagEvents.mouseClicked){
+    //     player->updatePlayer(MetaComponents::mouseClickedPosition_f); 
+    // }
 }
 
 /* Keeps sprites inside screen bounds, checks for collisions, update scores, and sets flagEvents.gameEnd to true in an event of collision */
 void gamePlayScene::handleGameEvents() { 
-    // if((player->getSpritePos().x + player->getRects().width < tileMap1->getTileMapPosition().x + tileMap1->getTileMapWidth() * tileMap1->getTileWidth()
-    //    || player->getSpritePos().x > tileMap1->getTileMapPosition().x) 
-    //    && player->getSpritePos().y > tileMap1->getTileMapPosition().y ) {
-    //     physics::spriteMover(player, physics::freeFall); 
-    // }
-    // increase score
-
-    // sprite collisions bool collision = physics::checkCollisions(sprite1, sprites, collisiontype) 
-
-   // if collision, modify a sceneEvent
-
+    if(player) physics::spriteMover(player, physics::moveRight); 
+    
 } 
 
 void gamePlayScene::handleSceneFlags(){
