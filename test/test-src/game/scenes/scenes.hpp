@@ -40,6 +40,7 @@ class Scene {
   FlagSystem::SceneEvents sceneEvents; // scene's own flag events
 
   // blank templates here
+  virtual void insertItemsInQuadtree(){}; 
   virtual void deleteInvisibleSprites(){};  
 
   virtual void setTime(){}; 
@@ -58,6 +59,8 @@ class Scene {
 
   void restartScene();
   void handleGameFlags(); 
+
+  physics::Quadtree quadtree; 
 };
 
 /* costumize scenes by adding something */
@@ -77,6 +80,7 @@ class gamePlayScene : public virtual Scene{
   ~gamePlayScene() override = default; 
  
   void createAssets() override; 
+  void insertItemsInQuadtree() override; 
 
  private:
   void handleInput() override; 

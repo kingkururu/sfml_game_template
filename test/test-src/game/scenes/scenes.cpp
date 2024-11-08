@@ -13,10 +13,9 @@
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 /* Scene constructure sets up window and sprite respawn times */
-Scene::Scene( sf::RenderWindow& gameWindow ) : window(gameWindow) /* initialize other elements here */ { 
+Scene::Scene( sf::RenderWindow& gameWindow ) : window(gameWindow), quadtree(0.0f, 0.0f, Constants::WORLD_WIDTH, Constants::WORLD_HEIGHT){ 
     MetaComponents::view = sf::View(Constants::VIEW_RECT); 
     log_info("scene made"); 
-
 }
 
 void Scene::runScene() {
@@ -118,11 +117,18 @@ void gamePlayScene::createAssets() {
         text1 = std::make_unique<TextClass>(Constants::TEXT_POSITION, Constants::TEXT_SIZE, Constants::TEXT_COLOR, Constants::TEXT_FONT, Constants::TEXT_MESSAGE);
         
         //globalTimer.End("initializing assets in scene 1"); 
+
+        insertItemsInQuadtree(); 
     } 
 
     catch (const std::exception& e) {
          log_error("Exception in createAssets: " + std::string(e.what()));
     }
+}
+
+void gamePlayScene::insertItemsInQuadtree(){
+    quadtree.insert((player));  
+    quadtree.insert((button1)); 
 }
 
 /* Creates more sprites from exisitng textures; avoids heavy cpu work */
@@ -219,6 +225,7 @@ void gamePlayScene::handleMovementKeys() {
 /* Keeps sprites inside screen bounds, checks for collisions, update scores, and sets flagEvents.gameEnd to true in an event of collision */
 void gamePlayScene::handleGameEvents() { 
     if(player) physics::spriteMover(player, physics::moveRight); 
+
     
 } 
 

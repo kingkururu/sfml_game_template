@@ -7,7 +7,92 @@
 #include "physics.hpp"
 
 /* physics namespace to have sprites move */
-namespace physics{
+namespace physics {
+
+Quadtree::Quadtree(float x, float y, float width, float height, size_t level, size_t maxObjects, size_t maxLevels)
+    : maxObjects(maxObjects), maxLevels(maxLevels), level(level), bounds(x, y, width, height) {}
+
+void Quadtree::clear() {
+    objects.clear();
+    nodes.clear();
+}
+
+std::vector<Sprite*> Quadtree::query(const sf::FloatRect& area) const {
+std::vector<Sprite*> result;  // Vector of raw pointers
+
+    if (!bounds.intersects(area)) {
+        return result;
+    }
+
+    
+    for (const auto& obj : objects) {
+        if (area.intersects(obj->returnSpritesShape().getGlobalBounds())) {
+            result.push_back(obj);  // Get the raw pointer from unique_ptr
+        }
+    }
+    for (const auto& node : nodes) {
+        auto nodeResult = node->query(area);
+        result.insert(result.end(), nodeResult.begin(), nodeResult.end());
+    }
+
+    return result;
+}
+
+bool Quadtree::contains(const sf::FloatRect& bounds) const {
+    return this->bounds.contains(bounds.left, bounds.top) &&
+           this->bounds.contains(bounds.left + bounds.width, bounds.top + bounds.height);
+}
+
+void Quadtree::subdivide() {
+    // Calculate the new boundaries for the four child nodes
+    float halfWidth = bounds.width / 2;
+    float halfHeight = bounds.height / 2;
+    float x = bounds.left;
+    float y = bounds.top;
+
+    // Create four child nodes with smaller bounds
+    nodes.push_back(std::make_unique<Quadtree>(x, y, halfWidth, halfHeight, level + 1, maxObjects, maxLevels));
+    nodes.push_back(std::make_unique<Quadtree>(x + halfWidth, y, halfWidth, halfHeight, level + 1, maxObjects, maxLevels));
+    nodes.push_back(std::make_unique<Quadtree>(x, y + halfHeight, halfWidth, halfHeight, level + 1, maxObjects, maxLevels));
+    nodes.push_back(std::make_unique<Quadtree>(x + halfWidth, y + halfHeight, halfWidth, halfHeight, level + 1, maxObjects, maxLevels));
+
+    // Now, redistribute the objects into the appropriate child nodes
+    for (auto it = objects.begin(); it != objects.end(); ) {
+        bool inserted = false;
+        // Try inserting the object into one of the child nodes
+        for (auto& node : nodes) {
+            if (node->bounds.intersects((*it)->returnSpritesShape().getGlobalBounds())) {
+                node->objects.push_back(*it); // Add the raw pointer to the child node
+                it = objects.erase(it);  // Remove the object from the parent node
+                inserted = true;
+                break;
+            }
+        }
+        if (!inserted) {
+            ++it; // If it couldn't be inserted, continue to the next object
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     // struct to hold raycast operation results that use vector of sprites
     struct RaycastResult {
         std::vector<float> collisionTimes;

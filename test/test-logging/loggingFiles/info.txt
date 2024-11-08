@@ -1,18 +1,18 @@
-[2024-11-07 11:05:51.175] [info_logger] [info] Succesfuly read yaml file
-[2024-11-07 11:05:51.248] [info_logger] [info] 	Constants initialized 
-[2024-11-07 11:05:51.297] [info_logger] [info] scene made
-[2024-11-07 11:05:51.297] [info_logger] [info] scene made
-[2024-11-07 11:05:51.297] [info_logger] [info] scene made
-[2024-11-07 11:05:51.297] [info_logger] [info] 	Game initialized
-[2024-11-07 11:05:51.297] [info_logger] [info] Sprite initialized successfully
-[2024-11-07 11:05:51.297] [info_logger] [info] Background created
-[2024-11-07 11:05:51.297] [info_logger] [info] Sprite initialized successfully
-[2024-11-07 11:05:51.297] [info_logger] [info] Music initialized successfully, volume is 80.000000
-[2024-11-07 11:05:51.297] [info_logger] [info] Sprite initialized successfully
-[2024-11-07 11:05:51.299] [info_logger] [info] Tile map initialized successfully
-[2024-11-07 11:05:51.299] [info_logger] [info] Sound initialized successfully
-[2024-11-07 11:05:51.299] [info_logger] [info] text initialized successully
-[2024-11-07 11:05:51.299] [info_logger] [info] Sprite initialized successfully
-[2024-11-07 11:05:51.299] [info_logger] [info] Background created
-[2024-11-07 11:06:17.859] [info_logger] [info] 	Game Ended
+[2024-11-08 17:38:59.388] [info_logger] [info] Succesfuly read yaml file
+[2024-11-08 17:38:59.453] [info_logger] [info] 	Constants initialized 
+[2024-11-08 17:38:59.532] [info_logger] [info] scene made
+[2024-11-08 17:38:59.532] [info_logger] [info] scene made
+[2024-11-08 17:38:59.532] [info_logger] [info] scene made
+[2024-11-08 17:38:59.532] [info_logger] [info] 	Game initialized
+[2024-11-08 17:38:59.532] [info_logger] [info] Sprite initialized successfully
+[2024-11-08 17:38:59.532] [info_logger] [info] Background created
+[2024-11-08 17:38:59.532] [info_logger] [info] Sprite initialized successfully
+[2024-11-08 17:38:59.532] [info_logger] [info] Music initialized successfully, volume is 80.000000
+[2024-11-08 17:38:59.532] [info_logger] [info] Sprite initialized successfully
+[2024-11-08 17:38:59.535] [info_logger] [info] Tile map initialized successfully
+[2024-11-08 17:38:59.535] [info_logger] [info] Sound initialized successfully
+[2024-11-08 17:38:59.535] [info_logger] [info] text initialized successully
+[2024-11-08 17:38:59.535] [info_logger] [info] Sprite initialized successfully
+[2024-11-08 17:38:59.535] [info_logger] [info] Background created
+[2024-11-08 17:39:08.822] [info_logger] [info] 	Game Ended
 
