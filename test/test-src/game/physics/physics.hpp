@@ -21,6 +21,7 @@
 
 namespace physics{
 
+    // don't use this it's not fixed rn
     class Quadtree {
      public:
         Quadtree(float x, float y, float width, float height, size_t level = 0, size_t maxObjects = 10, size_t maxLevels = 5);
@@ -209,48 +210,6 @@ namespace physics{
         }
         return false;
     }
-
-//}
-
-// // Sprite vector vs sprite vector collision check with quadtree
-//     template<typename SpriteType1, typename SpriteType2, typename CollisionFunc>
-//     bool checkCollisionsWithQuadtree(const std::vector<std::unique_ptr<SpriteType1>>& firstGroup,
-//                                      const std::vector<std::unique_ptr<SpriteType2>>& secondGroup,
-//                                      const CollisionFunc& collisionFunc, std::vector<float> firstGroupSpawnedTimes = {}, Quadtree& quadtree) {
-        
-//         if (!firstGroup.empty() && firstGroup.size() != firstGroupSpawnedTimes.size()) {
-//             log_error("First group sprite vec size and spawned time size are not equal.");
-//             throw std::runtime_error("First group sprite vec size and spawned time size is not equal.");
-//         }
-
-//         // Check collisions for SpriteType1 and SpriteType2
-//         for (const auto& item1 : firstGroup) {
-//             if (!item1) {
-//                 log_error("One or more of the first sprite pointer is empty");
-//                 throw std::runtime_error("First sprite pointer is empty.");
-//             }
-
-//             // Get the potential colliders from the quadtree for each sprite in firstGroup
-//             auto potentialColliders = quadtree.query(item1->getBounds());
-
-//             for (const auto& item2 : potentialColliders) {
-//                 if (!item2) {
-//                     log_error("One or more of the second sprite pointer is empty");
-//                     throw std::runtime_error("Second sprite pointer is empty.");
-//                 }
-
-//                 // Check for collision between item1 and item2
-//                 if (collisionFunc(*item1, *item2)) {
-//                     item2->setVisibleState(false);
-//                     item1->setVisibleState(false);
-//                     return true; // Collision detected
-//                 }
-//             }
-//         }
-
-//         return false; // No collisions detected
-//     }
-// } 
 
 template<typename SpriteType1, typename SpriteType2, typename CollisionFunc>
 bool checkCollisionsWithQuadtree(const std::vector<std::unique_ptr<SpriteType1>>& firstGroup,
