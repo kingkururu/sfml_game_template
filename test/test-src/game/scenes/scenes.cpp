@@ -43,19 +43,19 @@ void Scene::draw(){
  }
 
 void Scene::moveViewPortWASD(){
-    // // move view port 
-    // if(FlagSystem::flagEvents.aPressed){
-    //     MetaComponents::view.move(sf::Vector2f(-10, 0)); 
-    // }
-    // if(FlagSystem::flagEvents.dPressed){
-    //     MetaComponents::view.move(sf::Vector2f(10, 0)); 
-    // }
-    // if(FlagSystem::flagEvents.sPressed){
-    //     MetaComponents::view.move(sf::Vector2f(0, 10)); 
-    // }
-    // if(FlagSystem::flagEvents.wPressed){
-    //     MetaComponents::view.move(sf::Vector2f(0, -10)); 
-    // }
+    // move view port 
+    if(FlagSystem::flagEvents.aPressed){
+        MetaComponents::view.move(sf::Vector2f(-10, 0)); 
+    }
+    if(FlagSystem::flagEvents.dPressed){
+        MetaComponents::view.move(sf::Vector2f(10, 0)); 
+    }
+    if(FlagSystem::flagEvents.sPressed){
+        MetaComponents::view.move(sf::Vector2f(0, 10)); 
+    }
+    if(FlagSystem::flagEvents.wPressed){
+        MetaComponents::view.move(sf::Vector2f(0, -10)); 
+    }
 }
 
 /* Resets everything for scene to start again. The position, moveState, flagEvents, etc are all reset */
@@ -216,10 +216,6 @@ void gamePlayScene::handleMovementKeys() {
            // MetaComponents::view.move(sf::Vector2f(0, -1));
         }
     }
-    // // Mouse click event
-    // if (FlagSystem::flagEvents.mouseClicked){
-    //     player->updatePlayer(MetaComponents::mouseClickedPosition_f); 
-    // }
 }
 
 /* Keeps sprites inside screen bounds, checks for collisions, update scores, and sets flagEvents.gameEnd to true in an event of collision */
