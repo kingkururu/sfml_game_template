@@ -30,17 +30,23 @@ namespace physics{
         void clear();
 
         template<typename SpriteType> void insert(std::unique_ptr<SpriteType>& obj) {
-            // If no child nodes exist, add the object to this node
-            if (nodes.empty()) {
-                objects.push_back(obj.get());  // Store the raw pointer (no ownership)
-            } else {
-                // Check which child node the object belongs to
-                for (auto& node : nodes) {
-                    if (node->bounds.contains(obj->returnSpritesShape().getPosition())) {
-                        node->insert(obj);  // Recursively insert into the right child node
-                        return;
+            try {
+                // If no child nodes exist, add the object to this node
+                if (nodes.empty()) {
+                    objects.push_back(obj.get());
+                    log_info("Sprite inserted into quadtree node.");
+                } else {
+                    // Check which child node the object belongs to
+                    for (auto& node : nodes) {
+                        if (node->bounds.contains(obj->returnSpritesShape().getPosition())) {
+                            node->insert(obj);
+                            log_info("Sprite inserted into child node.");
+                            return;
+                        }
                     }
                 }
+            } catch (const std::exception& e) {
+                log_error("Error during insert: " + std::string(e.what()));
             }
         }
 

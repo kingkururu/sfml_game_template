@@ -222,6 +222,15 @@ void gamePlayScene::handleMovementKeys() {
 void gamePlayScene::handleGameEvents() { 
     if(player) physics::spriteMover(player, physics::moveRight); 
 
+    // Example: Query for sprites within a certain area (e.g., 100x100 region)
+    sf::FloatRect queryArea(0.0f, 0.0f, Constants::VIEW_SIZE_X, Constants::VIEW_SIZE_Y);
+    auto nearbySprites = quadtree.query(queryArea);
+
+    // Handle the nearby sprites (e.g., for collision detection or interaction)
+    for (auto& sprite : nearbySprites) {
+        // Example: Print out that a nearby sprite was found
+        log_info("Found nearby sprite at position: " + std::to_string(sprite->returnSpritesShape().getPosition().x));
+    }
     
 } 
 
@@ -243,6 +252,8 @@ void gamePlayScene::update() {
             player->changeAnimation();
             updatePlayerAndView(); 
         }
+
+        quadtree.update(); 
 
         // Set the view for the window
         window.setView(MetaComponents::view);
