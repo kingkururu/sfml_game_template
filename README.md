@@ -37,6 +37,9 @@ Logging: Toggle logging per state with macros.
 Physics:
 - AABB and Circle collision
 - Pixel-perfect collision detection
+- Raycast precollision detection
+- Quadtree implementation 
+
 
 
 Constants & Globals: Configured via YAML files.
