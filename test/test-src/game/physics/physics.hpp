@@ -29,7 +29,6 @@ namespace physics{
 
         void clear();
 
-        // Modify insert to accept unique_ptr but store raw pointers
         template<typename SpriteType> void insert(std::unique_ptr<SpriteType>& obj) {
             // If no child nodes exist, add the object to this node
             if (nodes.empty()) {
@@ -48,6 +47,7 @@ namespace physics{
         std::vector<Sprite*> query(const sf::FloatRect& area) const;
         void subdivide();
         bool contains(const sf::FloatRect& bounds) const;
+        void update(); 
 
      private:
         size_t maxObjects;
@@ -55,7 +55,7 @@ namespace physics{
         size_t level;
         sf::FloatRect bounds;
 
-    std::vector<Sprite*> objects;
+        std::vector<Sprite*> objects;
         std::vector<std::unique_ptr<Quadtree>> nodes;
     };
 
@@ -211,43 +211,43 @@ namespace physics{
         return false;
     }
 
-    template<typename SpriteType1, typename SpriteType2, typename CollisionFunc>
-    bool checkCollisionsWithQuadtree(const std::vector<std::unique_ptr<SpriteType1>>& firstGroup,
-                                    const std::vector<std::unique_ptr<SpriteType2>>& secondGroup,
-                                    const CollisionFunc& collisionFunc, 
-                                    Quadtree& quadtree,  // Now comes before the defaulted parameter
-                                    std::vector<float> firstGroupSpawnedTimes = {}) {  // Defaulted parameter comes last
+    // template<typename SpriteType1, typename SpriteType2, typename CollisionFunc>
+    // bool checkCollisionsWithQuadtree(const std::vector<std::unique_ptr<SpriteType1>>& firstGroup,
+    //                                 const std::vector<std::unique_ptr<SpriteType2>>& secondGroup,
+    //                                 const CollisionFunc& collisionFunc, 
+    //                                 Quadtree& quadtree,  // Now comes before the defaulted parameter
+    //                                 std::vector<float> firstGroupSpawnedTimes = {}) {  // Defaulted parameter comes last
         
-        if (!firstGroup.empty() && firstGroup.size() != firstGroupSpawnedTimes.size()) {
-            log_error("First group sprite vec size and spawned time size are not equal.");
-            throw std::runtime_error("First group sprite vec size and spawned time size is not equal.");
-        }
+    //     if (!firstGroup.empty() && firstGroup.size() != firstGroupSpawnedTimes.size()) {
+    //         log_error("First group sprite vec size and spawned time size are not equal.");
+    //         throw std::runtime_error("First group sprite vec size and spawned time size is not equal.");
+    //     }
 
-        // Check collisions for SpriteType1 and SpriteType2
-        for (const auto& item1 : firstGroup) {
-            if (!item1) {
-                log_error("One or more of the first sprite pointer is empty");
-                throw std::runtime_error("First sprite pointer is empty.");
-            }
+    //     // Check collisions for SpriteType1 and SpriteType2
+    //     for (const auto& item1 : firstGroup) {
+    //         if (!item1) {
+    //             log_error("One or more of the first sprite pointer is empty");
+    //             throw std::runtime_error("First sprite pointer is empty.");
+    //         }
 
-            // Get the potential colliders from the quadtree for each sprite in firstGroup
-            auto potentialColliders = quadtree.query(item1->getBounds());
+    //         // Get the potential colliders from the quadtree for each sprite in firstGroup
+    //         auto potentialColliders = quadtree.query(item1->getBounds());
 
-            for (const auto& item2 : potentialColliders) {
-                if (!item2) {
-                    log_error("One or more of the second sprite pointer is empty");
-                    throw std::runtime_error("Second sprite pointer is empty.");
-                }
+    //         for (const auto& item2 : potentialColliders) {
+    //             if (!item2) {
+    //                 log_error("One or more of the second sprite pointer is empty");
+    //                 throw std::runtime_error("Second sprite pointer is empty.");
+    //             }
 
-                // Check for collision between item1 and item2
-                if (collisionFunc(*item1, *item2)) {
-                    item2->setVisibleState(false);
-                    item1->setVisibleState(false);
-                    return true; // Collision detected
-                }
-            }
-        }
+    //             // Check for collision between item1 and item2
+    //             if (collisionFunc(*item1, *item2)) {
+    //                 item2->setVisibleState(false);
+    //                 item1->setVisibleState(false);
+    //                 return true; // Collision detected
+    //             }
+    //         }
+    //     }
 
-        return false; // No collisions detected
-    }
+    //     return false; // No collisions detected
+    // }
 }

@@ -74,6 +74,35 @@ namespace physics {
         }
     }
     
+    void Quadtree::update() {
+        for (auto& sprite : objects) {  // Iterate over the raw pointers in objects
+            if (sprite->getMoveState()) {  // Check if the sprite has moved
+                // Check which node the sprite was in
+                for (auto& node : nodes) {
+                    if (node->contains(sprite->returnSpritesShape().getGlobalBounds())) {
+                        // Remove sprite from the old node if it was inside a node
+                        node->objects.erase(std::remove(node->objects.begin(), node->objects.end(), sprite), node->objects.end());
+                        break;
+                    }
+                }
+                
+                // Create a unique_ptr from the raw pointer and insert it
+                std::unique_ptr<Sprite> spritePtr(sprite);  // Create a unique_ptr from the raw pointer
+                
+                // Now, insert it into the appropriate new node
+                insert(spritePtr);  // Insert the unique_ptr into the quadtree
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
     // struct to hold raycast operation results that use vector of sprites
     RaycastResult cachedRaycastResult {}; 
 

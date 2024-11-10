@@ -38,6 +38,7 @@ public:
     virtual sf::Vector2f getDirectionVector() const { return sf::Vector2f(); }
     virtual float getSpeed() const { return 0.0f; }
     virtual sf::Vector2f getAcceleration() const { return sf::Vector2f(); }
+    bool getMoveState() { return false; }
 
     // draws sprite using window.draw(*sprite)
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override { if (visibleState && spriteCreated) target.draw(*spriteCreated, states); }
