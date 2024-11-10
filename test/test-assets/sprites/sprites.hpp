@@ -33,7 +33,7 @@ public:
     virtual sf::IntRect getRects() const { return sf::IntRect(); }
     virtual int getCurrIndex() const { return 0; }
     virtual std::shared_ptr<sf::Uint8[]> const getBitmask(size_t index) const { return nullptr; }
-
+    virtual bool isAnimated() const { return false; }
     // blank members for use in NonStatic class
     virtual sf::Vector2f getDirectionVector() const { return sf::Vector2f(); }
     virtual float getSpeed() const { return 0.0f; }
@@ -72,6 +72,7 @@ public:
     int getCurrIndex() const override { return currentIndex; } 
     using Sprite::getBitmask; 
     std::shared_ptr<sf::Uint8[]> const getBitmask(size_t index) const override; 
+    bool isAnimated() const override { return true; } // for checking type
 
 protected:
     std::vector<sf::IntRect> animationRects{}; 

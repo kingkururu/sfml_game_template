@@ -161,19 +161,19 @@ void gamePlayScene::handleInput() {
 }
 
 void gamePlayScene::handleMouseClick() {
-    if (FlagSystem::flagEvents.mouseClicked) {
-        if (button1->getVisibleState() && 
-            physics::boundingBoxCollisionHelper(MetaComponents::mouseClickedPosition_i, *button1)) {
-            log_info("button clicked");
+    // if (FlagSystem::flagEvents.mouseClicked) {
+    //     if (button1->getVisibleState() && 
+    //         physics::collisionHelper(MetaComponents::mouseClickedPosition_i, *button1, physics::boundingBoxCollision, quadtree)) {
+    //         log_info("button clicked");
 
-            button1->setClickedBool(true);
-            FlagSystem::gameScene1Flags.sceneEnd = true;
-            FlagSystem::gameSceneNextFlags.sceneStart = true;
-            FlagSystem::gameSceneNextFlags.sceneEnd = false;
+    //         button1->setClickedBool(true);
+    //         FlagSystem::gameScene1Flags.sceneEnd = true;
+    //         FlagSystem::gameSceneNextFlags.sceneStart = true;
+    //         FlagSystem::gameSceneNextFlags.sceneEnd = false;
 
-            window.clear();
-        }
-    }
+    //         window.clear();
+    //     }
+    // }
 }
 
 void gamePlayScene::handleSpaceKey() {
@@ -191,30 +191,30 @@ void gamePlayScene::handleMovementKeys() {
 
     // Left movement
     if (FlagSystem::flagEvents.aPressed) {
-        if (!physics::boundingBoxCollisionHelper(*tileMap1, *player) || player->getSpritePos().x > tileMap1->getTileMapPosition().x) {
-            physics::spriteMover(player, physics::moveLeft);
-        }
+        // if (!physics::boundingBoxCollisionHelper(*tileMap1, *player) || player->getSpritePos().x > tileMap1->getTileMapPosition().x) {
+        //     physics::spriteMover(player, physics::moveLeft);
+        // }
     }
     // Right movement
     if (FlagSystem::flagEvents.dPressed) {
-        if (!physics::boundingBoxCollisionHelper(*tileMap1, *player) || player->getSpritePos().x + player->getRects().width < tileMap1->getTileMapPosition().x + tileMap1->getTileMapWidth() * tileMap1->getTileWidth()) {
-            physics::spriteMover(player, physics::moveRight);
-        }
+        // if (!physics::boundingBoxCollisionHelper(*tileMap1, *player) || player->getSpritePos().x + player->getRects().width < tileMap1->getTileMapPosition().x + tileMap1->getTileMapWidth() * tileMap1->getTileWidth()) {
+        //     physics::spriteMover(player, physics::moveRight);
+        // }
     }
     // Down movement
     if (FlagSystem::flagEvents.sPressed) {
-        if (!physics::boundingBoxCollisionHelper(*tileMap1, *player) || player->getSpritePos().y + player->getRects().height < tileMap1->getTileMapPosition().y + tileMap1->getTileMapHeight() * tileMap1->getTileHeight()) {
-            physics::spriteMover(player, physics::moveDown);
-        }
+        // if (!physics::boundingBoxCollisionHelper(*tileMap1, *player) || player->getSpritePos().y + player->getRects().height < tileMap1->getTileMapPosition().y + tileMap1->getTileMapHeight() * tileMap1->getTileHeight()) {
+        //     physics::spriteMover(player, physics::moveDown);
+        // }
     }
     // Up movement
     if (FlagSystem::flagEvents.wPressed) {
-        if (!physics::boundingBoxCollisionHelper(*tileMap1, *player) || player->getSpritePos().y > tileMap1->getTileMapPosition().y) {
-            physics::spriteMover(player, physics::moveUp);
-        }
-        if (viewBounds.top > background1Bounds.top || viewBounds.top > background2Bounds.top) {
-           // MetaComponents::view.move(sf::Vector2f(0, -1));
-        }
+        // if (!physics::boundingBoxCollisionHelper(*tileMap1, *player) || player->getSpritePos().y > tileMap1->getTileMapPosition().y) {
+        //     physics::spriteMover(player, physics::moveUp);
+        // }
+        // if (viewBounds.top > background1Bounds.top || viewBounds.top > background2Bounds.top) {
+        //    // MetaComponents::view.move(sf::Vector2f(0, -1));
+        // }
     }
 }
 
@@ -224,7 +224,7 @@ void gamePlayScene::handleGameEvents() {
 
     bool collision {};
 
-    if(player && button1) collision = physics::searchQuadTree(player, button1, quadtree, physics::pixelPerfectCollisionHelper); 
+    if(player && button1) collision = physics::collisionHelper(player, button1, physics::boundingBoxCollision, quadtree); 
     else collision = false;
 
     if(collision){
@@ -275,7 +275,7 @@ void gamePlayScene::updatePlayerAndView() {
 void gamePlayScene::updateDrawablesVisibility(){
     try{
         if (button1){
-            button1->setVisibleState(physics::boundingBoxCollisionHelper(MetaComponents::view, *button1)); 
+            button1->setVisibleState(physics::collisionHelper(player, button1, physics::boundingBoxCollision, quadtree)); 
         }
     }
     catch(const std::exception & e){
