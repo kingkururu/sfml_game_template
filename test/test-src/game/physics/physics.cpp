@@ -23,14 +23,14 @@ namespace physics {
         try {
             std::vector<Sprite*> result;
             if (!bounds.intersects(area)) {
-                log_info("Area does not intersect with the quadtree bounds.");
+                log_info("Area does not intersect with the quadtree bounds at level " + std::to_string(level));
                 return result;
             }
 
             for (const auto& obj : objects) {
                 if (area.intersects(obj->returnSpritesShape().getGlobalBounds())) {
                     result.push_back(obj);
-                    log_info("Sprite added to query result.");
+                    // log_info("Sprite added to query result at level " + std::to_string(level));
                 }
             }
 
@@ -39,38 +39,46 @@ namespace physics {
                 result.insert(result.end(), nodeResult.begin(), nodeResult.end());
             }
             return result;
-            
+
         } catch (const std::exception& e) {
-            log_error("Error during query: " + std::string(e.what()));
+            log_error("Error during query at level " + std::to_string(level) + ": " + std::string(e.what()));
+            return std::vector<Sprite*>();
         }
     }
-    
-   bool Quadtree::contains(const sf::FloatRect& bounds) const {
+
+    bool Quadtree::contains(const sf::FloatRect& bounds) const {
         try {
             bool result = this->bounds.contains(bounds.left, bounds.top) &&
                 this->bounds.contains(bounds.left + bounds.width, bounds.top + bounds.height);
-            log_info(result ? "Bounds are contained in the quadtree." : "Bounds are not contained in the quadtree.");
+            log_info(result ? "Bounds are contained in the quadtree at level " + std::to_string(level) :
+                            "Bounds are not contained in the quadtree at level " + std::to_string(level));
             return result;
         } catch (const std::exception& e) {
-            log_error("Error during contains check: " + std::string(e.what()));
+            log_error("Error during contains check at level " + std::to_string(level) + ": " + std::string(e.what()));
             return false;
         }
     }
 
     void Quadtree::subdivide() {
         try {
+            // Check if we've reached the max level
+            if (level >= maxLevels) {
+                log_info("Maximum level reached, cannot subdivide further.");
+                return;
+            }
+
             float halfWidth = bounds.width / 2;
             float halfHeight = bounds.height / 2;
             float x = bounds.left;
             float y = bounds.top;
 
-            // Create four child nodes with smaller bounds
-            nodes.push_back(std::make_unique<Quadtree>(x, y, halfWidth, halfHeight, maxObjects, maxLevels));
-            nodes.push_back(std::make_unique<Quadtree>(x + halfWidth, y, halfWidth, halfHeight, maxObjects, maxLevels));
-            nodes.push_back(std::make_unique<Quadtree>(x, y + halfHeight, halfWidth, halfHeight, maxObjects, maxLevels));
-            nodes.push_back(std::make_unique<Quadtree>(x + halfWidth, y + halfHeight, halfWidth, halfHeight, maxObjects, maxLevels));
+            // Create four child nodes with smaller bounds and increment the level
+            nodes.push_back(std::make_unique<Quadtree>(x, y, halfWidth, halfHeight, level + 1, maxObjects, maxLevels));
+            nodes.push_back(std::make_unique<Quadtree>(x + halfWidth, y, halfWidth, halfHeight, level + 1, maxObjects, maxLevels));
+            nodes.push_back(std::make_unique<Quadtree>(x, y + halfHeight, halfWidth, halfHeight, level + 1, maxObjects, maxLevels));
+            nodes.push_back(std::make_unique<Quadtree>(x + halfWidth, y + halfHeight, halfWidth, halfHeight, level + 1, maxObjects, maxLevels));
 
-            log_info("Quadtree subdivided into 4 child nodes.");
+            log_info("Quadtree subdivided into 4 child nodes at level " + std::to_string(level));
 
             // Redistribute the objects into the appropriate child nodes
             for (auto it = objects.begin(); it != objects.end(); ) {
@@ -78,9 +86,9 @@ namespace physics {
                 for (auto& node : nodes) {
                     if (node->bounds.intersects((*it)->returnSpritesShape().getGlobalBounds())) {
                         node->objects.push_back(*it);
-                        it = objects.erase(it);
+                        it = objects.erase(it); // Remove object from the current node
                         inserted = true;
-                        log_info("Sprite moved to child node.");
+                        log_info("Sprite moved to child node at level " + std::to_string(node->level));
                         break;
                     }
                 }
@@ -89,14 +97,14 @@ namespace physics {
                 }
             }
         } catch (const std::exception& e) {
-            log_error("Error during subdivision: " + std::string(e.what()));
+            log_error("Error during subdivision at level " + std::to_string(level) + ": " + std::string(e.what()));
         }
     }
-    
+
     void Quadtree::update() {
         try {
             for (auto& sprite : objects) {
-                log_info("updating quadtree");
+                // log_info("Updating quadtree at level " + std::to_string(level));
 
                 if (sprite->getMoveState()) {
                     // Check which node the sprite was in
@@ -104,25 +112,21 @@ namespace physics {
                         if (node->contains(sprite->returnSpritesShape().getGlobalBounds())) {
                             // Remove sprite from the old node
                             node->objects.erase(std::remove(node->objects.begin(), node->objects.end(), sprite), node->objects.end());
-                            log_info("Sprite removed from old node.");
+                            log_info("Sprite removed from old node at level " + std::to_string(node->level));
                             break;
                         }
                     }
 
-                    // Create a unique_ptr from the raw pointer and insert it
+                    // Insert the sprite back into the quadtree
                     std::unique_ptr<Sprite> spritePtr(sprite);
                     insert(spritePtr);
-                    log_info("Sprite updated and inserted into a new node.");
+                    log_info("Sprite updated and inserted into quadtree at level " + std::to_string(level));
                 }
             }
         } catch (const std::exception& e) {
-            log_error("Error during update: " + std::string(e.what()));
+            log_error("Error during update at level " + std::to_string(level) + ": " + std::string(e.what()));
         }
     }
-
-
-
-
 
     // struct to hold raycast operation results that use vector of sprites
     RaycastResult cachedRaycastResult {}; 

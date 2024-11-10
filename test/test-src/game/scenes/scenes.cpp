@@ -228,8 +228,7 @@ void gamePlayScene::handleGameEvents() {
 
     // Handle the nearby sprites (e.g., for collision detection or interaction)
     for (auto& sprite : nearbySprites) {
-        // Example: Print out that a nearby sprite was found
-        log_info("Found nearby sprite at position: " + std::to_string(sprite->returnSpritesShape().getPosition().x));
+        // log_info("Found nearby sprite at position: " + std::to_string(sprite->returnSpritesShape().getPosition().x));
     }
     
 } 

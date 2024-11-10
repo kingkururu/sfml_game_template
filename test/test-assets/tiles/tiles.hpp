@@ -58,9 +58,10 @@ public:
     size_t const getTileMapWidth() const { return tileMapWidth; }
     size_t const getTileMapHeight() const { return tileMapHeight; }
     sf::Vector2f const getTileMapPosition() const { return tileMapPosition; }
+    unsigned int const getTileTypesNumber() const { return tileTypesNumber; }
 
 private:
-    unsigned int tilesArraySize {};
+    unsigned int tileTypesNumber {};
     size_t tileMapWidth{};
     size_t tileMapHeight{}; 
 
