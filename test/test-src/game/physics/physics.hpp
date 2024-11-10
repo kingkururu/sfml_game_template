@@ -138,6 +138,36 @@ namespace physics{
 
     bool pixelPerfectCollisionHelper(const Sprite& sprite1, const Sprite& sprite2);
     bool raycastCollisionHelper(const Sprite& sprite1, const Sprite& sprite2, float currentTime, size_t index);
+    // bool searchQuadTree(Quadtree& quadtree, const Sprite& sprite1, const Sprite& sprite2);
+
+    // Function to search the quadtree for two sprites before calculating the collision
+    template<typename SpriteType1, typename SpriteType2>
+    bool searchQuadTree(const SpriteType1& sprite1, const SpriteType2& sprite2, Quadtree& quadtree) {
+        // Retrieve global bounds of sprite1 and sprite2
+        sf::FloatRect bounds1 = sprite1->returnSpritesShape().getGlobalBounds();
+        sf::FloatRect bounds2 = sprite2->returnSpritesShape().getGlobalBounds();
+
+        // Query the quadtree for sprites that intersect with sprite1's bounding box
+        auto potentialColliders1 = quadtree.query(bounds1);
+        // Query the quadtree for sprites that intersect with sprite2's bounding box
+        auto potentialColliders2 = quadtree.query(bounds2);
+
+        // Iterate through the potential colliders from both queries and check for overlap
+        for (const auto& collider1 : potentialColliders1) {
+            for (const auto& collider2 : potentialColliders2) {
+                // If the sprites are the same, skip checking for collision
+                if (collider1 == collider2) {
+                    continue;
+                }
+                // If collider1 and collider2 are the same, the sprites may be within the same region
+                if (boundingBoxCollisionHelper(*collider1, *collider2)) {
+                    return true; // Potential collision detected
+                }
+            }
+        }
+
+        return false; // No potential collision detected
+    }
 
     //sprite vs spritesvector collision check; call physics::checkCollisions(sprite, sprite, collisionHelper)
     template<typename SpriteType1, typename SpriteType2, typename CollisionFunc>
@@ -217,43 +247,4 @@ namespace physics{
         return false;
     }
 
-    // template<typename SpriteType1, typename SpriteType2, typename CollisionFunc>
-    // bool checkCollisionsWithQuadtree(const std::vector<std::unique_ptr<SpriteType1>>& firstGroup,
-    //                                 const std::vector<std::unique_ptr<SpriteType2>>& secondGroup,
-    //                                 const CollisionFunc& collisionFunc, 
-    //                                 Quadtree& quadtree,  // Now comes before the defaulted parameter
-    //                                 std::vector<float> firstGroupSpawnedTimes = {}) {  // Defaulted parameter comes last
-        
-    //     if (!firstGroup.empty() && firstGroup.size() != firstGroupSpawnedTimes.size()) {
-    //         log_error("First group sprite vec size and spawned time size are not equal.");
-    //         throw std::runtime_error("First group sprite vec size and spawned time size is not equal.");
-    //     }
-
-    //     // Check collisions for SpriteType1 and SpriteType2
-    //     for (const auto& item1 : firstGroup) {
-    //         if (!item1) {
-    //             log_error("One or more of the first sprite pointer is empty");
-    //             throw std::runtime_error("First sprite pointer is empty.");
-    //         }
-
-    //         // Get the potential colliders from the quadtree for each sprite in firstGroup
-    //         auto potentialColliders = quadtree.query(item1->getBounds());
-
-    //         for (const auto& item2 : potentialColliders) {
-    //             if (!item2) {
-    //                 log_error("One or more of the second sprite pointer is empty");
-    //                 throw std::runtime_error("Second sprite pointer is empty.");
-    //             }
-
-    //             // Check for collision between item1 and item2
-    //             if (collisionFunc(*item1, *item2)) {
-    //                 item2->setVisibleState(false);
-    //                 item1->setVisibleState(false);
-    //                 return true; // Collision detected
-    //             }
-    //         }
-    //     }
-
-    //     return false; // No collisions detected
-    // }
 }

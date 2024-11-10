@@ -61,8 +61,8 @@ sprites:
     index_max: 6 # number of animation frame
     path: "test/test-assets/sprites/png/Static.png"
     position:
-      x: 0.0 # pixels 
-      y: 0.0 # pixels 
+      x: 400.0 # pixels 
+      y: 380.0 # pixels 
     scale:
       x: 1.0
       y: 1.0

@@ -352,6 +352,7 @@ namespace physics {
         // Call the existing boundingBoxCollision function with adjusted values
         return boundingBoxCollision(position1, size1, position2, size2);
     }
+    
     bool boundingBoxCollisionHelper(sf::Vector2i mousePos, const Sprite& sprite2) {
         // Convert mouse position to world coordinates (already confirmed correct)
         sf::Vector2f mouseWorldPos(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
