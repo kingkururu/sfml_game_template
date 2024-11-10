@@ -256,7 +256,7 @@ std::shared_ptr<sf::Uint8[]> const Animated::getBitmask(size_t index) const {
         if (index >= bitMask.size()) {
             throw std::out_of_range("Index out of range.");
         }
-        log_info("Returning bitmask for index " + std::to_string(index));
+        // log_info("Returning bitmask for index " + std::to_string(index));
         return bitMask[index].lock();
     } 
     catch (const std::exception& e) {

@@ -224,7 +224,7 @@ void gamePlayScene::handleGameEvents() {
 
     bool collision {};
 
-    if(player && button1) collision = physics::searchQuadTree(player, button1, quadtree); 
+    if(player && button1) collision = physics::searchQuadTree(player, button1, quadtree, physics::pixelPerfectCollisionHelper); 
     else collision = false;
 
     if(collision){

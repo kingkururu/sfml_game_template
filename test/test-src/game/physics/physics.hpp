@@ -141,8 +141,8 @@ namespace physics{
     // bool searchQuadTree(Quadtree& quadtree, const Sprite& sprite1, const Sprite& sprite2);
 
     // Function to search the quadtree for two sprites before calculating the collision
-    template<typename SpriteType1, typename SpriteType2>
-    bool searchQuadTree(const SpriteType1& sprite1, const SpriteType2& sprite2, Quadtree& quadtree) {
+    template<typename SpriteType1, typename SpriteType2, typename CollisionFunc>
+    bool searchQuadTree(const SpriteType1& sprite1, const SpriteType2& sprite2, Quadtree& quadtree, const CollisionFunc& collisionFunc) {
         // Retrieve global bounds of sprite1 and sprite2
         sf::FloatRect bounds1 = sprite1->returnSpritesShape().getGlobalBounds();
         sf::FloatRect bounds2 = sprite2->returnSpritesShape().getGlobalBounds();
@@ -160,7 +160,7 @@ namespace physics{
                     continue;
                 }
                 // If collider1 and collider2 are the same, the sprites may be within the same region
-                if (boundingBoxCollisionHelper(*collider1, *collider2)) {
+                if (collisionFunc(*collider1, *collider2)) {
                     return true; // Potential collision detected
                 }
             }
