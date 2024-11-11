@@ -219,10 +219,9 @@ void gamePlayScene::handleMovementKeys() {
 
 /* Keeps sprites inside screen bounds, checks for collisions, update scores, and sets flagEvents.gameEnd to true in an event of collision */
 void gamePlayScene::handleGameEvents() { 
-   //if(player) physics::spriteMover(player, physics::moveRight); 
-       player->setJumpingState(MetaComponents::spacePressedElapsedTime > 0);
-
-
+   if (player) physics::spriteMover(player, physics::moveRight); 
+    
+    player->setJumpingState(MetaComponents::spacePressedElapsedTime > 0);
 } 
 
 void gamePlayScene::handleSceneFlags(){

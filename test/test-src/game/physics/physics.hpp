@@ -147,12 +147,9 @@ namespace physics{
             sf::IntRect rect1 = sprite1->getRects();
             size1 = {static_cast<float>(rect1.width), static_cast<float>(rect1.height)};
             position1 = {bounds1.left, bounds1.top};
-            std::cout << "is animated\n"; 
         } else {
             size1 = {bounds1.width, bounds1.height};
             position1 = sprite1->getSpritePos();
-                        std::cout << "not animated\n"; 
-
         }
 
         // log_info("Sprite 1 - Position: (" + std::to_string(position1.x) + ", " + std::to_string(position1.y) +
