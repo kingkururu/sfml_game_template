@@ -180,7 +180,7 @@ void gamePlayScene::handleSpaceKey() {
     if (FlagSystem::flagEvents.spacePressed) {
         if (player->getMoveState()) {
             std::cout << " before time: "<< MetaComponents::spacePressedElapsedTime; 
-            physics::spriteMover(player, physics::jump, MetaComponents::spacePressedElapsedTime, sf::Vector2f{1.0f, 1.0f});
+            physics::spriteMover(player, physics::jump, MetaComponents::spacePressedElapsedTime, Constants::SPRITE1_JUMP_ACCELERATION);
 
         }
     }
@@ -211,10 +211,6 @@ void gamePlayScene::handleMovementKeys() {
     }
     // Up movement
     if (FlagSystem::flagEvents.wPressed) {
-
-
-if (physics::collisionHelper(player, tileMap1)) std::cout << " tilemap and player colliding"; 
-
         if (!physics::collisionHelper(player, tileMap1) || player->getSpritePos().y > tileMap1->getTileMapPosition().y) {
             physics::spriteMover(player, physics::moveUp);
         }
@@ -228,8 +224,6 @@ if (physics::collisionHelper(player, tileMap1)) std::cout << " tilemap and playe
 void gamePlayScene::handleGameEvents() { 
     if(player) physics::spriteMover(player, physics::moveRight); 
 
-    
-    
 } 
 
 void gamePlayScene::handleSceneFlags(){
@@ -264,7 +258,7 @@ void gamePlayScene::update() {
 }
 
 void gamePlayScene::updatePlayerAndView() {
- //   if(MetaComponents::spacePressedElapsedTime) return; // don't change view when space clicked, i.e, jumped is true
+    if(MetaComponents::spacePressedElapsedTime) return; // don't change view when space clicked, i.e, jumped is true
     // Calculate the center of the view based on the player's position
     float viewCenterX = player->getSpritePos().x;
     float viewCenterY = player->getSpritePos().y;

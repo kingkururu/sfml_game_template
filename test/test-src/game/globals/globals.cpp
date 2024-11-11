@@ -114,7 +114,9 @@ namespace Constants {
             SPRITE1_PATH = config["sprites"]["sprite1"]["path"].as<std::string>();
             SPRITE1_SPEED = config["sprites"]["sprite1"]["speed"].as<float>();
             SPRITE1_ACCELERATION = {config["sprites"]["sprite1"]["acceleration"]["x"].as<float>(),
-                                config["sprites"]["sprite1"]["acceleration"]["y"].as<float>()};            
+                                config["sprites"]["sprite1"]["acceleration"]["y"].as<float>()};   
+            SPRITE1_JUMP_ACCELERATION = {config["sprites"]["sprite1"]["jump_acceleration"]["x"].as<float>(),
+                                config["sprites"]["sprite1"]["jump_acceleration"]["y"].as<float>()};           
             SPRITE1_INDEXMAX = config["sprites"]["sprite1"]["index_max"].as<short>();
             SPRITE1_ANIMATIONROWS = config["sprites"]["sprite1"]["animation_rows"].as<short>();
             SPRITE1_POSITION = {config["sprites"]["sprite1"]["position"]["x"].as<float>(),

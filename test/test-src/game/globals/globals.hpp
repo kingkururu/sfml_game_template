@@ -92,6 +92,7 @@ namespace Constants { // not actually "constants" in terms of being fixed, but s
     inline std::filesystem::path SPRITE1_PATH;
     inline sf::Vector2f SPRITE1_POSITION;
     inline sf::Vector2f SPRITE1_SCALE;
+    inline sf::Vector2f SPRITE1_JUMP_ACCELERATION;
     inline float SPRITE1_SPEED;
     inline sf::Vector2f SPRITE1_ACCELERATION;
     inline std::shared_ptr<sf::Texture> SPRITE1_TEXTURE = std::make_shared<sf::Texture>();
