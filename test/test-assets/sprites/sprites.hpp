@@ -170,10 +170,13 @@ class Player : public NonStatic, public Animated {
    ~Player() override = default;
     void updatePlayer(sf::Vector2f newPos); 
     void changeAnimation() override; 
-
+    bool const getJumpingState() { return isJumping; }
+    void setJumpingState(bool jumpState) { isJumping = jumpState; }  
+    
  private:
     bool firstTurnInstance = true; 
     bool prevTurnBool{}; 
+    bool isJumping = false;  
 };
 
 /* obstacle class deriving from NonStatic; refers to movable obstacles */

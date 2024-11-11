@@ -270,7 +270,7 @@ void Player::updatePlayer(sf::Vector2f newPos) {
     
     changePosition(newPos); 
     updatePos();
-
+    
     log_info("Player position updated to (" + std::to_string(newPos.x) + ", " + std::to_string(newPos.y) + ")");
 }
 

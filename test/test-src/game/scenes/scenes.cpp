@@ -179,9 +179,8 @@ void gamePlayScene::handleMouseClick() {
 void gamePlayScene::handleSpaceKey() {
     if (FlagSystem::flagEvents.spacePressed) {
         if (player->getMoveState()) {
-            std::cout << " before time: "<< MetaComponents::spacePressedElapsedTime; 
             physics::spriteMover(player, physics::jump, MetaComponents::spacePressedElapsedTime, Constants::SPRITE1_JUMP_ACCELERATION);
-
+            MetaComponents::view.move(3, 0);
         }
     }
 }
@@ -245,9 +244,9 @@ void gamePlayScene::update() {
             updatePlayerAndView(); 
         }
 
-        quadtree.update(); 
+        player->setJumpingState(MetaComponents::spacePressedElapsedTime > 0);
 
-       // MetaComponents::view.move(1, 0);
+        quadtree.update(); 
 
         // Set the view for the window
         window.setView(MetaComponents::view);
@@ -258,7 +257,7 @@ void gamePlayScene::update() {
 }
 
 void gamePlayScene::updatePlayerAndView() {
-    if(MetaComponents::spacePressedElapsedTime) return; // don't change view when space clicked, i.e, jumped is true
+    if(player->getJumpingState()) return; 
     // Calculate the center of the view based on the player's position
     float viewCenterX = player->getSpritePos().x;
     float viewCenterY = player->getSpritePos().y;
