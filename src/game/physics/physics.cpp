@@ -7,12 +7,128 @@
 #include "physics.hpp"
 
 /* physics namespace to have sprites move */
-namespace physics{
+namespace physics {
+
+    Quadtree::Quadtree(float x, float y, float width, float height, size_t level, size_t maxObjects, size_t maxLevels)
+        : maxObjects(maxObjects), maxLevels(maxLevels), level(level), bounds(x, y, width, height) {}
+
+    void Quadtree::clear() {
+        objects.clear();
+        log_info("objects cleared.");
+        nodes.clear();
+        log_info("Quadtree cleared.");
+    }
+
+    std::vector<Sprite*> Quadtree::query(const sf::FloatRect& area) const {
+        try {
+            std::vector<Sprite*> result;
+            if (!bounds.intersects(area)) {
+                log_info("Area does not intersect with the quadtree bounds at level " + std::to_string(level));
+                return result;
+            }
+
+            for (const auto& obj : objects) {
+                if (area.intersects(obj->returnSpritesShape().getGlobalBounds())) {
+                    result.push_back(obj);
+                    // log_info("Sprite added to query result at level " + std::to_string(level));
+                }
+            }
+
+            for (const auto& node : nodes) {
+                auto nodeResult = node->query(area);
+                result.insert(result.end(), nodeResult.begin(), nodeResult.end());
+            }
+            return result;
+
+        } catch (const std::exception& e) {
+            log_error("Error during query at level " + std::to_string(level) + ": " + std::string(e.what()));
+            return std::vector<Sprite*>();
+        }
+    }
+
+    bool Quadtree::contains(const sf::FloatRect& bounds) const {
+        try {
+            bool result = this->bounds.contains(bounds.left, bounds.top) &&
+                this->bounds.contains(bounds.left + bounds.width, bounds.top + bounds.height);
+            log_info(result ? "Bounds are contained in the quadtree at level " + std::to_string(level) :
+                            "Bounds are not contained in the quadtree at level " + std::to_string(level));
+            return result;
+        } catch (const std::exception& e) {
+            log_error("Error during contains check at level " + std::to_string(level) + ": " + std::string(e.what()));
+            return false;
+        }
+    }
+
+    void Quadtree::subdivide() {
+        try {
+            // Check if we've reached the max level
+            if (level >= maxLevels) {
+                log_info("Maximum level reached, cannot subdivide further.");
+                return;
+            }
+
+            float halfWidth = bounds.width / 2;
+            float halfHeight = bounds.height / 2;
+            float x = bounds.left;
+            float y = bounds.top;
+
+            // Create four child nodes with smaller bounds and increment the level
+            nodes.push_back(std::make_unique<Quadtree>(x, y, halfWidth, halfHeight, level + 1, maxObjects, maxLevels));
+            nodes.push_back(std::make_unique<Quadtree>(x + halfWidth, y, halfWidth, halfHeight, level + 1, maxObjects, maxLevels));
+            nodes.push_back(std::make_unique<Quadtree>(x, y + halfHeight, halfWidth, halfHeight, level + 1, maxObjects, maxLevels));
+            nodes.push_back(std::make_unique<Quadtree>(x + halfWidth, y + halfHeight, halfWidth, halfHeight, level + 1, maxObjects, maxLevels));
+
+            log_info("Quadtree subdivided into 4 child nodes at level " + std::to_string(level));
+
+            // Redistribute the objects into the appropriate child nodes
+            for (auto it = objects.begin(); it != objects.end(); ) {
+                bool inserted = false;
+                for (auto& node : nodes) {
+                    if (node->bounds.intersects((*it)->returnSpritesShape().getGlobalBounds())) {
+                        node->objects.push_back(*it);
+                        it = objects.erase(it); // Remove object from the current node
+                        inserted = true;
+                        log_info("Sprite moved to child node at level " + std::to_string(node->level));
+                        break;
+                    }
+                }
+                if (!inserted) {
+                    ++it;
+                }
+            }
+        } catch (const std::exception& e) {
+            log_error("Error during subdivision at level " + std::to_string(level) + ": " + std::string(e.what()));
+        }
+    }
+
+    void Quadtree::update() {
+        try {
+            for (auto& sprite : objects) {
+                // log_info("Updating quadtree at level " + std::to_string(level));
+
+                if (sprite->getMoveState()) {
+                    // Check which node the sprite was in
+                    for (auto& node : nodes) {
+                        if (node->contains(sprite->returnSpritesShape().getGlobalBounds())) {
+                            // Remove sprite from the old node
+                            node->objects.erase(std::remove(node->objects.begin(), node->objects.end(), sprite), node->objects.end());
+                            log_info("Sprite removed from old node at level " + std::to_string(node->level));
+                            break;
+                        }
+                    }
+
+                    // Insert the sprite back into the quadtree
+                    std::unique_ptr<Sprite> spritePtr(sprite);
+                    insert(spritePtr);
+                    log_info("Sprite updated and inserted into quadtree at level " + std::to_string(level));
+                }
+            }
+        } catch (const std::exception& e) {
+            log_error("Error during update at level " + std::to_string(level) + ": " + std::string(e.what()));
+        }
+    }
+
     // struct to hold raycast operation results that use vector of sprites
-    struct RaycastResult {
-        std::vector<float> collisionTimes;
-        int counter; 
-    };
     RaycastResult cachedRaycastResult {}; 
 
     // falling objects 
@@ -41,11 +157,11 @@ namespace physics{
     }
 
     // jumping sprites 
-    sf::Vector2f jump(float& elapsedTime, float speed, sf::Vector2f originalPos){
-       if(elapsedTime < 0.4f){
-            return { originalPos.x, originalPos.y -= speed * MetaComponents::deltaTime * gravity };
-        } else if (elapsedTime > 0.4f && elapsedTime < 0.8f){
-            return { originalPos.x, originalPos.y += speed * MetaComponents::deltaTime * gravity }; 
+    sf::Vector2f jump(float& elapsedTime, float speed, sf::Vector2f originalPos, sf::Vector2f acceleration){
+       if(elapsedTime <= 0.2f){
+            return { originalPos.x, originalPos.y -= speed * MetaComponents::deltaTime * gravity * acceleration.y };
+        } else if (elapsedTime >= 0.2 && elapsedTime <= 0.4f){
+            return { originalPos.x, originalPos.y += speed * MetaComponents::deltaTime * gravity * acceleration.y }; 
         } else {
             FlagSystem::flagEvents.spacePressed = false; 
             elapsedTime = 0.0f; 
@@ -137,197 +253,63 @@ namespace physics{
             }
         }
 
-            // Store the calculated time of closest approach
-            cachedRaycastResult.collisionTimes.emplace_back(timeToClosestApproach);
+        // Store the calculated time of closest approach
+        cachedRaycastResult.collisionTimes.emplace_back(timeToClosestApproach);
 
-            // Log the calculated time for debugging
-            std::cout << "Calculated Time to Closest Approach: " << timeToClosestApproach << std::endl;
+        // Log the calculated time for debugging
+        std::cout << "Calculated Time to Closest Approach: " << timeToClosestApproach << std::endl;
 
-            return true;
-        }
+        return true;
+    }
 
-        // bounding box collision
-        bool boundingBoxCollision(const sf::Vector2f &position1, 
-                                const sf::Vector2f &size1,
-                                const sf::Vector2f &position2, 
-                                const sf::Vector2f &size2) {
+    bool boundingBoxCollision(const sf::Vector2f &position1, const sf::Vector2f &size1,
+                                const sf::Vector2f &position2, const sf::Vector2f &size2) {
 
-            float xOverlapStart = std::max(position1.x, position2.x);
-            float yOverlapStart = std::max(position1.y, position2.y);
-            float xOverlapEnd = std::min(position1.x + size1.x, position2.x + size2.x);
-            float yOverlapEnd = std::min(position1.y + size1.y, position2.y + size2.y);
+        float xOverlapStart = std::max(position1.x, position2.x);
+        float yOverlapStart = std::max(position1.y, position2.y);
+        float xOverlapEnd = std::min(position1.x + size1.x, position2.x + size2.x);
+        float yOverlapEnd = std::min(position1.y + size1.y, position2.y + size2.y);
 
-            if (xOverlapStart >= xOverlapEnd || yOverlapStart >= yOverlapEnd) {
-                return false;
-            }
-            return true; 
-        }
+        return !(xOverlapStart >= xOverlapEnd || yOverlapStart >= yOverlapEnd); 
+    }
 
-        // pixel perfect collition
-        bool pixelPerfectCollision(
-            const std::shared_ptr<sf::Uint8[]>& bitmask1, const sf::Vector2f& position1, const sf::Vector2f& size1,
-            const std::shared_ptr<sf::Uint8[]>& bitmask2, const sf::Vector2f& position2, const sf::Vector2f& size2) {
+    bool pixelPerfectCollision( const std::shared_ptr<sf::Uint8[]>& bitmask1, const sf::Vector2f& position1, const sf::Vector2f& size1,
+                                const std::shared_ptr<sf::Uint8[]>& bitmask2, const sf::Vector2f& position2, const sf::Vector2f& size2) {
 
-            // Helper function to get the pixel index in the bitmask
-            auto getPixelIndex = [](const sf::Vector2f& size, int x, int y) -> int {
-                return (y * static_cast<int>(size.x) + x) * 4; // Each pixel has 4 bytes (RGBA)
-            };
+        // Helper function to get the pixel index in the bitmask
+        auto getPixelIndex = [](const sf::Vector2f& size, int x, int y) -> int {
+            return (y * static_cast<int>(size.x) + x) * 4; // Each pixel has 4 bytes (RGBA)
+        };
 
-            // Calculate the overlapping area between the two objects
-            float left = std::max(position1.x, position2.x);
-            float top = std::max(position1.y, position2.y);
-            float right = std::min(position1.x + size1.x, position2.x + size2.x);
-            float bottom = std::min(position1.y + size1.y, position2.y + size2.y);
+        // Calculate the overlapping area between the two objects
+        float left = std::max(position1.x, position2.x);
+        float top = std::max(position1.y, position2.y);
+        float right = std::min(position1.x + size1.x, position2.x + size2.x);
+        float bottom = std::min(position1.y + size1.y, position2.y + size2.y);
 
-            // If there is no overlap, return false
-            if (left >= right || top >= bottom) {
-                return false;
-            } 
+        // Check AABB collision first
+        if (left >= right || top >= bottom) return false; 
 
-            // Check each pixel in the overlapping area
-            for (int y = static_cast<int>(top); y < static_cast<int>(bottom); ++y) {
-                for (int x = static_cast<int>(left); x < static_cast<int>(right); ++x) {
-                    // Calculate the position in each bitmask
-                    int x1 = x - static_cast<int>(position1.x);
-                    int y1 = y - static_cast<int>(position1.y);
-                    int x2 = x - static_cast<int>(position2.x);
-                    int y2 = y - static_cast<int>(position2.y);
+        // Check each pixel in the overlapping area
+        for (int y = static_cast<int>(top); y < static_cast<int>(bottom); ++y) {
+            for (int x = static_cast<int>(left); x < static_cast<int>(right); ++x) {
+                // Calculate the position in each bitmask
+                int x1 = x - static_cast<int>(position1.x);
+                int y1 = y - static_cast<int>(position1.y);
+                int x2 = x - static_cast<int>(position2.x);
+                int y2 = y - static_cast<int>(position2.y);
 
-                    // Get the index of the pixel in each bitmask
-                    int index1 = getPixelIndex(size1, x1, y1);
-                    int index2 = getPixelIndex(size2, x2, y2);
+                // Get the index of the pixel in each bitmask
+                int index1 = getPixelIndex(size1, x1, y1);
+                int index2 = getPixelIndex(size2, x2, y2);
 
-                    // Check if the pixels' values are non-zero (i.e., not transparent)
-                    if (bitmask1[index1] == 1 && bitmask2[index2] == 1) {
-                    // std::cout << "Collision detected at pixel (" << x << ", " << y << ")" << std::endl;
-                        return true; // Collision detected
-                    }
+                // Check if the pixels' values are non-zero (i.e., not transparent)
+                if (bitmask1[index1] == 1 && bitmask2[index2] == 1) {
+                // std::cout << "Collision detected at pixel (" << x << ", " << y << ")" << std::endl;
+                    return true; // Collision detected
                 }
             }
-        return false; 
-    }
-
-    bool circleCollisionHelper(const Sprite& sprite1, const Sprite& sprite2) {
-        sf::Vector2f position1 = sprite1.getSpritePos();
-        sf::Vector2f position2 = sprite2.getSpritePos();
-
-        float radius1 = sprite1.getRadius(); 
-        float radius2 = sprite2.getRadius(); 
-        
-        return circleCollision(position1, radius1, position2, radius2); 
-    }
-
-    // bounding box collision helper to be passed in physics::collisions function 
-    bool boundingBoxCollisionHelper(const Sprite& sprite1, const Sprite& sprite2) {    
-        // Retrieve global bounds of the entire sprite
-        sf::FloatRect bounds1 = sprite1.returnSpritesShape().getGlobalBounds();
-        sf::FloatRect bounds2 = sprite2.returnSpritesShape().getGlobalBounds(); 
-
-        // Retrieve the current animation frame (IntRect) for each sprite
-        sf::IntRect rect1 = sprite1.getRects();
-        sf::IntRect rect2 = sprite2.getRects();
-
-        // Adjust the position using the left and top of the current frame
-        sf::Vector2f position1(bounds1.left + rect1.left, bounds1.top + rect1.top);
-        sf::Vector2f position2(bounds2.left + rect2.left, bounds2.top + rect2.top);
-
-        // Adjust the size using the width and height of the current frame
-        sf::Vector2f size1(static_cast<float>(rect1.width), static_cast<float>(rect1.height));
-        sf::Vector2f size2(static_cast<float>(rect2.width), static_cast<float>(rect2.height));
-
-        // Call the existing boundingBoxCollision function with adjusted values
-        return boundingBoxCollision(position1, size1, position2, size2);
-    }
-    bool boundingBoxCollisionHelper(sf::Vector2i mousePos, const Sprite& sprite2) {
-        // Convert mouse position to world coordinates (already confirmed correct)
-        sf::Vector2f mouseWorldPos(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
-
-        // Mouse is treated as a single point with zero size
-        sf::Vector2f position1(mouseWorldPos);
-        sf::Vector2f size1(1.f, 1.f);  // Treat the mouse as a point
-
-        // Retrieve global bounds of the sprite acting as a button (ensuring transformations are considered)
-        sf::FloatRect bounds2 = sprite2.returnSpritesShape().getGlobalBounds();
-
-        // Retrieve the current animation frame (IntRect) for sprite2
-        sf::IntRect rect2 = sprite2.getRects();
-
-        // Calculate position considering the sprite's global bounds and the animation rect
-        sf::Vector2f position2(bounds2.left, bounds2.top);  // Use sprite's actual global position
-        sf::Vector2f size2(static_cast<float>(rect2.width), static_cast<float>(rect2.height));
-
-        // Perform the collision check using the bounding box
-        return boundingBoxCollision(position1, size1, position2, size2);
-    }
-
-    bool boundingBoxCollisionHelper(sf::View view, const Sprite& sprite2) {
-        // Retrieve the current view's center and size
-        sf::Vector2f viewCenter = view.getCenter();
-        sf::Vector2f viewSize = view.getSize();
-        // Calculate the view's position (top-left corner of the view rectangle)
-        sf::Vector2f position1(viewCenter.x - viewSize.x / 2, viewCenter.y - viewSize.y / 2);
-        sf::Vector2f size1(viewSize.x, viewSize.y);
-
-        // Retrieve global bounds of the sprite acting as a button (ensuring transformations are considered)
-        sf::FloatRect bounds2 = sprite2.returnSpritesShape().getGlobalBounds();
-        // Retrieve the current animation frame (IntRect) for sprite2
-        sf::IntRect rect2 = sprite2.getRects();
-        // Calculate position considering the sprite's global bounds and the animation rect
-        sf::Vector2f position2(bounds2.left, bounds2.top);  // Use sprite's actual global position
-        sf::Vector2f size2(static_cast<float>(rect2.width), static_cast<float>(rect2.height));
-
-        // Perform the collision check using the bounding box
-        return boundingBoxCollision(position1, size1, position2, size2);
-    }
-
-    //pixel perfect collision helper to be passed in physics::collisions function 
-    bool pixelPerfectCollisionHelper(const Sprite& obj1, const Sprite& obj2) {
-        // Retrieve bitmasks for the current animation frame
-        auto bitmask1 = obj1.getBitmask(obj1.getCurrIndex());
-        auto bitmask2 = obj2.getBitmask(obj2.getCurrIndex());
-
-        // Check if bitmasks are available
-        if (!bitmask1 || !bitmask2) {
-            std::cerr << "Error: Missing bitmask for one or both sprites in pixel-perfect collision check." << std::endl;
-            return false;
-        }
-
-        // Retrieve positions and sizes of both objects
-        sf::Vector2f position1 = obj1.getSpritePos();
-        sf::Vector2f size1 = { static_cast<float>(obj1.getRects().width), static_cast<float>(obj1.getRects().height) }; 
-        sf::Vector2f position2 = obj2.getSpritePos();
-        sf::Vector2f size2 = { static_cast<float>(obj2.getRects().width), static_cast<float>(obj2.getRects().height) }; 
-
-        // Perform pixel-perfect collision detection
-        return pixelPerfectCollision(bitmask1, position1, size1, bitmask2, position2, size2);
-    }
-
-    //raycast collision helper to be passed in physics::collisions function 
-    bool raycastCollisionHelper(const Sprite& obj1, const Sprite& obj2, float currentTime, size_t index) {
-
-        if(!cachedRaycastResult.counter){
-        sf::Vector2f obj1position = obj1.getSpritePos();
-        sf::Vector2f obj2position = obj2.getSpritePos();
-
-        sf::Vector2f obj1direction = obj1.getDirectionVector();
-        sf::Vector2f obj2direction = obj2.getDirectionVector();
-
-        float obj1Speed = obj1.getSpeed(); 
-        float obj2Speed = obj2.getSpeed(); 
-
-        sf::FloatRect obj1Bounds = obj1.returnSpritesShape().getGlobalBounds();
-        sf::FloatRect obj2Bounds = obj2.returnSpritesShape().getGlobalBounds();
-
-        sf::Vector2f obj1acceleration = obj1.getAcceleration(); 
-        sf::Vector2f obj2acceleration = obj2.getAcceleration(); 
-
-        return raycastPreCollision(obj1position, obj1direction, obj1Speed, obj1Bounds, obj1acceleration, obj2position, obj2direction, obj2Speed, obj2Bounds, obj2acceleration); 
-
-        } else if (currentTime > cachedRaycastResult.collisionTimes[index]){
-            cachedRaycastResult.counter = 0; 
-            return true;
         }
         return false; 
     }
-
 }
