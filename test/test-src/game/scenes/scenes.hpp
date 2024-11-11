@@ -79,9 +79,10 @@ class gamePlayScene : public virtual Scene{
   ~gamePlayScene() override = default; 
  
   void createAssets() override; 
-  void insertItemsInQuadtree() override; 
 
  private:
+  void insertItemsInQuadtree() override; 
+
   void handleInput() override; 
   void handleMouseClick(); 
   void handleSpaceKey();
@@ -98,6 +99,7 @@ class gamePlayScene : public virtual Scene{
   void update() override; 
   void updateDrawablesVisibility() override; 
   void updatePlayerAndView(); 
+  void updateEntityStates(); 
   void changeAnimation();
   
   void draw() override; 

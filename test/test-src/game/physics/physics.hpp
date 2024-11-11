@@ -171,9 +171,9 @@ namespace physics{
             sf::Vector2f size2(viewSize.x, viewSize.y);
 
             bool collision = boundingBoxCollision(position1, size1, position2, size2);
-            log_info("button - position: (" + std::to_string(position1.x) + ", " + std::to_string(position1.y) +
-                    "), Size: (" + std::to_string(size1.x) + ", " + std::to_string(size2.y) +
-                    "), Collision: " + (collision ? "true" : "false"));
+            // log_info("button - position: (" + std::to_string(position1.x) + ", " + std::to_string(position1.y) +
+            //         "), Size: (" + std::to_string(size1.x) + ", " + std::to_string(size2.y) +
+            //         "), Collision: " + (collision ? "true" : "false"));
             return collision;
         } 
         else {

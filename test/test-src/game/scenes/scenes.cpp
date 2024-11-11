@@ -219,13 +219,25 @@ void gamePlayScene::handleMovementKeys() {
 
 /* Keeps sprites inside screen bounds, checks for collisions, update scores, and sets flagEvents.gameEnd to true in an event of collision */
 void gamePlayScene::handleGameEvents() { 
-   if (player) physics::spriteMover(player, physics::moveRight); 
+    if (player) physics::spriteMover(player, physics::moveRight); 
     
-    player->setJumpingState(MetaComponents::spacePressedElapsedTime > 0);
+    FlagSystem::gameScene1Flags.playerFalling = !physics::collisionHelper(player, tileMap1); 
+    FlagSystem::gameScene1Flags.playerJumping = MetaComponents::spacePressedElapsedTime > 0; 
+    std::cout << FlagSystem::gameScene1Flags.playerFalling; 
+    
+    updateEntityStates();
 } 
+
+void gamePlayScene::updateEntityStates(){
+    player->setJumpingState(FlagSystem::gameScene1Flags.playerJumping);
+    player->setFallingState(FlagSystem::gameScene1Flags.playerFalling); 
+}
 
 void gamePlayScene::handleSceneFlags(){
     // do something from its private flag
+    if(FlagSystem::gameScene1Flags.playerFalling){
+        physics::spriteMover(player, physics::freeFall); 
+    }
 }
 
 /* Updates sprite and text positions when their moveState is true and their pointers are not null. 
@@ -255,8 +267,9 @@ void gamePlayScene::changeAnimation(){
 }
 
 void gamePlayScene::updatePlayerAndView() {
-    if(player->getJumpingState()) return; 
-    // Calculate the center of the view based on the player's position
+   // if(player->getJumpingState() || player->getFallingState()) return; 
+
+   if(player->getFallingState()) return; 
     float viewCenterX = player->getSpritePos().x;
     float viewCenterY = player->getSpritePos().y;
 

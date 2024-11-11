@@ -56,7 +56,7 @@ sprites:
     path: "test/test-assets/sprites/png/player.png"
     position:
       x: 200.0 # pixels 
-      y: 380.0 # pixels 
+      y: 450.0 # pixels 
     scale:
       x: 1.0
       y: 1.0
@@ -87,8 +87,8 @@ tilemap:
   position: 
     x: 0.0 # pixels
     y: 400.0 # pixels
-  width: 320 # number of grids in a row 
-  height: 192 # number of grids in a column 
+  width: 150 # number of grids in a row 
+  height: 150 # number of grids in a column 
   filepath: "test/test-assets/tiles/tilemap.txt"
   walkable: 
     - false
