@@ -163,7 +163,7 @@ void gamePlayScene::handleInput() {
 void gamePlayScene::handleMouseClick() {
     if (FlagSystem::flagEvents.mouseClicked) {
         if (button1->getVisibleState() && 
-            physics::collisionHelper(button1, MetaComponents::mouseClickedPosition_i)) {
+            physics::collisionHelper(button1, MetaComponents::mouseClickedPosition_f)) {
             log_info("button clicked");
 
             button1->setClickedBool(true);
@@ -179,7 +179,9 @@ void gamePlayScene::handleMouseClick() {
 void gamePlayScene::handleSpaceKey() {
     if (FlagSystem::flagEvents.spacePressed) {
         if (player->getMoveState()) {
-            physics::spriteMover(player, physics::jump, MetaComponents::spacePressedElapsedTime);
+            std::cout << " before time: "<< MetaComponents::spacePressedElapsedTime; 
+            physics::spriteMover(player, physics::jump, MetaComponents::spacePressedElapsedTime, sf::Vector2f{1.0f, 1.0f});
+
         }
     }
 }
@@ -209,6 +211,10 @@ void gamePlayScene::handleMovementKeys() {
     }
     // Up movement
     if (FlagSystem::flagEvents.wPressed) {
+
+
+if (physics::collisionHelper(player, tileMap1)) std::cout << " tilemap and player colliding"; 
+
         if (!physics::collisionHelper(player, tileMap1) || player->getSpritePos().y > tileMap1->getTileMapPosition().y) {
             physics::spriteMover(player, physics::moveUp);
         }
@@ -222,14 +228,7 @@ void gamePlayScene::handleMovementKeys() {
 void gamePlayScene::handleGameEvents() { 
     if(player) physics::spriteMover(player, physics::moveRight); 
 
-    bool collision {};
-
-    if(player && button1) collision = physics::collisionHelper(player, button1, physics::boundingBoxCollision, quadtree); 
-    else collision = false;
-
-    if(collision){
-        std::cout << "collision"; 
-    }
+    
     
 } 
 
@@ -254,6 +253,8 @@ void gamePlayScene::update() {
 
         quadtree.update(); 
 
+       // MetaComponents::view.move(1, 0);
+
         // Set the view for the window
         window.setView(MetaComponents::view);
         
@@ -263,7 +264,7 @@ void gamePlayScene::update() {
 }
 
 void gamePlayScene::updatePlayerAndView() {
-    if(MetaComponents::spacePressedElapsedTime) return; // don't change view when space clicked, i.e, jumped is true
+ //   if(MetaComponents::spacePressedElapsedTime) return; // don't change view when space clicked, i.e, jumped is true
     // Calculate the center of the view based on the player's position
     float viewCenterX = player->getSpritePos().x;
     float viewCenterY = player->getSpritePos().y;
