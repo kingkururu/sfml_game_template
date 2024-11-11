@@ -98,7 +98,8 @@ class gamePlayScene : public virtual Scene{
   void update() override; 
   void updateDrawablesVisibility() override; 
   void updatePlayerAndView(); 
-
+  void changeAnimation();
+  
   void draw() override; 
 
   std::unique_ptr<Background> background; 

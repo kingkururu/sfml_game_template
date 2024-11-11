@@ -1,26 +1,238 @@
-[2024-11-11 09:33:28.127] [info_logger] [info] Succesfuly read yaml file
-[2024-11-11 09:33:28.181] [info_logger] [info] 	Constants initialized 
-[2024-11-11 09:33:28.220] [info_logger] [info] scene made
-[2024-11-11 09:33:28.220] [info_logger] [info] scene made
-[2024-11-11 09:33:28.220] [info_logger] [info] scene made
-[2024-11-11 09:33:28.220] [info_logger] [info] 	Game initialized
-[2024-11-11 09:33:28.220] [info_logger] [info] Sprite initialized successfully
-[2024-11-11 09:33:28.220] [info_logger] [info] Background created
-[2024-11-11 09:33:28.220] [info_logger] [info] Sprite initialized successfully
-[2024-11-11 09:33:28.220] [info_logger] [info] Music initialized successfully, volume is 80.000000
-[2024-11-11 09:33:28.220] [info_logger] [info] Sprite initialized successfully
-[2024-11-11 09:33:28.222] [info_logger] [info] Tile map initialized successfully
-[2024-11-11 09:33:28.222] [info_logger] [info] Sound initialized successfully
-[2024-11-11 09:33:28.222] [info_logger] [info] text initialized successully
-[2024-11-11 09:33:28.222] [info_logger] [info] Sprite inserted into quadtree node.
-[2024-11-11 09:33:28.222] [info_logger] [info] Sprite inserted into quadtree node.
-[2024-11-11 09:33:28.222] [info_logger] [info] Sprite initialized successfully
-[2024-11-11 09:33:28.222] [info_logger] [info] Background created
-[2024-11-11 09:33:31.324] [info_logger] [info] 	Game Ended
+[2024-11-11 11:05:19.245] [info_logger] [info] Succesfuly read yaml file
+[2024-11-11 11:05:19.322] [info_logger] [info] 	Constants initialized 
+[2024-11-11 11:05:19.393] [info_logger] [info] scene made
+[2024-11-11 11:05:19.393] [info_logger] [info] scene made
+[2024-11-11 11:05:19.393] [info_logger] [info] scene made
+[2024-11-11 11:05:19.393] [info_logger] [info] 	Game initialized
+[2024-11-11 11:05:19.393] [info_logger] [info] Sprite initialized successfully
+[2024-11-11 11:05:19.393] [info_logger] [info] Background created
+[2024-11-11 11:05:19.393] [info_logger] [info] Sprite initialized successfully
+[2024-11-11 11:05:19.393] [info_logger] [info] Music initialized successfully, volume is 80.000000
+[2024-11-11 11:05:19.393] [info_logger] [info] Sprite initialized successfully
+[2024-11-11 11:05:19.396] [info_logger] [info] Tile map initialized successfully
+[2024-11-11 11:05:19.396] [info_logger] [info] Sound initialized successfully
+[2024-11-11 11:05:19.396] [info_logger] [info] text initialized successully
+[2024-11-11 11:05:19.396] [info_logger] [info] Sprite inserted into quadtree node.
+[2024-11-11 11:05:19.396] [info_logger] [info] Sprite inserted into quadtree node.
+[2024-11-11 11:05:19.396] [info_logger] [info] Sprite initialized successfully
+[2024-11-11 11:05:19.396] [info_logger] [info] Background created
+[2024-11-11 11:05:19.433] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.474] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.492] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.510] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.527] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.545] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.562] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.580] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.598] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.615] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.633] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.650] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.668] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.686] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.703] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.761] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.765] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.781] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.798] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.815] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.833] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.850] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.868] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.886] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.903] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.921] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.939] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.956] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.974] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:19.992] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.009] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.027] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.045] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.062] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.080] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.098] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.115] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.133] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.150] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.168] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.185] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.203] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.221] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.239] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.257] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.277] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.292] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.309] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.327] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.345] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.362] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.380] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.398] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.415] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.433] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.451] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.469] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.486] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.504] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.522] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.539] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.557] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.577] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.594] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.610] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.627] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.645] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.663] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.681] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.698] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.716] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.734] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.751] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.769] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.787] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.805] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.822] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.841] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.857] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.877] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.893] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.909] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.927] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.945] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.962] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.980] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:20.998] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.015] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.034] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.051] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.068] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.086] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.104] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.122] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.139] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.157] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.174] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.192] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.210] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.227] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.245] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.263] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.280] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.298] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.315] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.333] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.350] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.368] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.386] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.403] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.435] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.438] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.455] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.473] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.491] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.509] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.526] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.544] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.562] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.580] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.597] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.615] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.632] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.650] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.668] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.685] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.703] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.721] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.738] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.756] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.774] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.791] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.809] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.827] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.844] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.862] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.880] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.898] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.915] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.933] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.951] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.968] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:21.986] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.003] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.021] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.039] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.057] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.074] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.092] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.109] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.127] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.145] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.162] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.180] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.198] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.215] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.233] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.250] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.268] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.286] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.303] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.321] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.339] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.356] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.374] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.392] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.409] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.427] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.545] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.547] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.565] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.582] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.600] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.618] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.636] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.653] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.671] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.689] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.707] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.724] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.741] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.759] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.777] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.794] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.812] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.830] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.847] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.865] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.883] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.900] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.918] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.936] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.954] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.971] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:22.989] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:23.007] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:23.024] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:23.042] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:23.060] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:23.078] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:23.095] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:23.112] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:23.130] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:23.148] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:23.166] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:23.183] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:23.201] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:23.218] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:23.236] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:23.254] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:23.272] [info_logger] [info] button clicked
+[2024-11-11 11:05:23.272] [info_logger] [info] button - position: (0.000000, 0.000000), Size: (170.000000, 540.000000), Collision: true
+[2024-11-11 11:05:24.661] [info_logger] [info] 	Game Ended
 
-[2024-11-11 09:33:31.324] [info_logger] [info] objects cleared.
-[2024-11-11 09:33:31.324] [info_logger] [info] Quadtree cleared.
-[2024-11-11 09:33:31.331] [info_logger] [info] objects cleared.
-[2024-11-11 09:33:31.331] [info_logger] [info] Quadtree cleared.
-[2024-11-11 09:33:31.331] [info_logger] [info] objects cleared.
-[2024-11-11 09:33:31.331] [info_logger] [info] Quadtree cleared.
+[2024-11-11 11:05:24.661] [info_logger] [info] objects cleared.
+[2024-11-11 11:05:24.661] [info_logger] [info] Quadtree cleared.
+[2024-11-11 11:05:24.664] [info_logger] [info] objects cleared.
+[2024-11-11 11:05:24.664] [info_logger] [info] Quadtree cleared.
+[2024-11-11 11:05:24.664] [info_logger] [info] objects cleared.
+[2024-11-11 11:05:24.664] [info_logger] [info] Quadtree cleared.

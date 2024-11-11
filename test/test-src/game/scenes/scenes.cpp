@@ -31,8 +31,6 @@ void Scene::runScene() {
     handleGameFlags();
     handleSceneFlags();
 
-    updateDrawablesVisibility();
-
     update();
     draw();
 }
@@ -127,8 +125,8 @@ void gamePlayScene::createAssets() {
 }
 
 void gamePlayScene::insertItemsInQuadtree(){
-    quadtree.insert((player));  
-    quadtree.insert((button1)); 
+    quadtree.insert(player);  
+    quadtree.insert(button1); 
 }
 
 /* Creates more sprites from exisitng textures; avoids heavy cpu work */
@@ -221,7 +219,9 @@ void gamePlayScene::handleMovementKeys() {
 
 /* Keeps sprites inside screen bounds, checks for collisions, update scores, and sets flagEvents.gameEnd to true in an event of collision */
 void gamePlayScene::handleGameEvents() { 
-    if(player) physics::spriteMover(player, physics::moveRight); 
+   //if(player) physics::spriteMover(player, physics::moveRight); 
+       player->setJumpingState(MetaComponents::spacePressedElapsedTime > 0);
+
 
 } 
 
@@ -234,18 +234,11 @@ deleteInvisibleSprites is called to destroy invisible sprites for memory managem
 void gamePlayScene::update() {
     try {
         // Remove invisible sprites
+        updateDrawablesVisibility(); 
         deleteInvisibleSprites();
+        changeAnimation();
 
-        if (button1) button1->changeAnimation();
-        if (background) background->updateBackground(Constants::BACKGROUND_SPEED, Constants::BACKGROUND_MOVING_DIRECTION);
-
-        if (player) {
-            player->changeAnimation();
-            updatePlayerAndView(); 
-        }
-
-        player->setJumpingState(MetaComponents::spacePressedElapsedTime > 0);
-
+        updatePlayerAndView(); 
         quadtree.update(); 
 
         // Set the view for the window
@@ -254,6 +247,12 @@ void gamePlayScene::update() {
     } catch (const std::exception& e) {
         log_error("Exception in updateSprites: " + std::string(e.what()));
     }
+}
+
+void gamePlayScene::changeAnimation(){
+    if (button1) button1->changeAnimation();
+    if (background) background->updateBackground(Constants::BACKGROUND_SPEED, Constants::BACKGROUND_MOVING_DIRECTION);
+    if (player) player->changeAnimation();
 }
 
 void gamePlayScene::updatePlayerAndView() {

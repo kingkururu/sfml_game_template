@@ -127,82 +127,85 @@ namespace physics{
                                 const std::shared_ptr<sf::Uint8[]> &bitmask2, const sf::Vector2f &position2, const sf::Vector2f &size2);  
     
     template<typename ObjType1, typename ObjType2>
-bool collisionHelper(ObjType1&& obj1, ObjType2&& obj2) {
-    auto getSprite = [](auto&& obj1) -> auto& {
-        if constexpr (std::is_pointer_v<std::decay_t<decltype(obj1)>>) {
-            return *obj1; // Dereference unique_ptr or raw pointer
-        } else {
-            return obj1; // Direct reference if it's an object
-        }
-    };
-
-    // Retrieve references to obj1 and obj2
-    auto& sprite1 = getSprite(std::forward<ObjType1>(obj1));
-
-    // Get sprite1 components
-    sf::Vector2f position1 = sprite1->getSpritePos();
-    sf::Vector2f size1; 
-    sf::FloatRect bounds1 = sprite1->returnSpritesShape().getGlobalBounds();
-    if (sprite1->isAnimated()) {
-        sf::IntRect rect1 = sprite1->getRects();
-        position1 = {bounds1.left + rect1.left, bounds1.top + rect1.top};
-        size1 = {static_cast<float>(rect1.width), static_cast<float>(rect1.height)};
-    } else {
-        size1 = {bounds1.width, bounds1.height};
-    }
-
-    // log_info("Sprite 1 - Position: (" + std::to_string(position1.x) + ", " + std::to_string(position1.y) +
-    //          "), Size: (" + std::to_string(size1.x) + ", " + std::to_string(size1.y) + ")");
-
-    if constexpr (std::is_same_v<std::decay_t<ObjType2>, sf::Vector2f>) { // mouse 
-        sf::Vector2f position2(static_cast<float>(obj2.x), static_cast<float>(obj2.y));
-        sf::Vector2f size2(1.0f, 1.0f);
-
-        bool collision = boundingBoxCollision(position1, size1, position2, size2);
-        // log_info("Mouse - Position: (" + std::to_string(position2.x) + ", " + std::to_string(position2.y) +
-        //          "), Collision: " + (collision ? "true" : "false"));
-        return collision;
-    } 
-    else if constexpr (std::is_same_v<std::decay_t<ObjType2>, sf::View>) { // view
-        sf::Vector2f viewCenter = obj2.getCenter();
-        sf::Vector2f viewSize = obj2.getSize();
-        sf::Vector2f position2(viewCenter.x - viewSize.x / 2, viewCenter.y - viewSize.y / 2);
-        sf::Vector2f size2(viewSize.x, viewSize.y);
-
-        bool collision = boundingBoxCollision(position1, size1, position2, size2);
-        // log_info("View - Center: (" + std::to_string(viewCenter.x) + ", " + std::to_string(viewCenter.y) +
-        //          "), Size: (" + std::to_string(viewSize.x) + ", " + std::to_string(viewSize.y) +
-        //          "), Collision: " + (collision ? "true" : "false"));
-        return collision;
-    } 
-    else {
-        auto getTileMap = [](auto&& obj2) -> auto& {
-            if constexpr (std::is_pointer_v<std::decay_t<decltype(obj2)>> || std::is_same_v<std::decay_t<decltype(obj2)>, std::unique_ptr<TileMap>>) {
-                return *obj2; // Dereference unique_ptr, raw pointer, or shared pointer
+    bool collisionHelper(ObjType1&& obj1, ObjType2&& obj2) {
+        auto getSprite = [](auto&& obj1) -> auto& {
+            if constexpr (std::is_pointer_v<std::decay_t<decltype(obj1)>>) {
+                return *obj1; // Dereference unique_ptr or raw pointer
             } else {
-                return obj2; // Direct reference if it's an object
+                return obj1; // Direct reference if it's an object
             }
         };
-        // Now check if obj2 is of type TileMap or pointer to TileMap
-        auto& tileMap = getTileMap(obj2);
 
-        if constexpr (std::is_same_v<std::decay_t<decltype(tileMap)>, TileMap>) {
-            sf::Vector2f position2 = tileMap.getTileMapPosition();
-            sf::Vector2f size2(
-                tileMap.getTileWidth() * static_cast<float>(tileMap.getTileMapWidth()),   // Total width in pixels
-                tileMap.getTileHeight() * static_cast<float>(tileMap.getTileMapHeight())  // Total height in pixels
-            );
+        // Retrieve references to obj1 and obj2
+        auto& sprite1 = getSprite(std::forward<ObjType1>(obj1));
+
+        // Get sprite1 components
+        sf::Vector2f position1;
+        sf::FloatRect bounds1 = sprite1->returnSpritesShape().getGlobalBounds();
+        sf::Vector2f size1; 
+        if (sprite1->isAnimated()) {
+            sf::IntRect rect1 = sprite1->getRects();
+            size1 = {static_cast<float>(rect1.width), static_cast<float>(rect1.height)};
+            position1 = {bounds1.left, bounds1.top};
+            std::cout << "is animated\n"; 
+        } else {
+            size1 = {bounds1.width, bounds1.height};
+            position1 = sprite1->getSpritePos();
+                        std::cout << "not animated\n"; 
+
+        }
+
+        // log_info("Sprite 1 - Position: (" + std::to_string(position1.x) + ", " + std::to_string(position1.y) +
+        //          "), Size: (" + std::to_string(size1.x) + ", " + std::to_string(size1.y) + ")");
+
+        if constexpr (std::is_same_v<std::decay_t<ObjType2>, sf::Vector2f>) { // mouse 
+            sf::Vector2f position2(static_cast<float>(obj2.x), static_cast<float>(obj2.y));
+            sf::Vector2f size2(1.0f, 1.0f);
 
             bool collision = boundingBoxCollision(position1, size1, position2, size2);
-            // log_warning("TileMap - Position: (" + std::to_string(position2.x) + ", " + std::to_string(position2.y) +
-            //             "), Size: (" + std::to_string(size2.x) + ", " + std::to_string(size2.y) +
-            //             "), Collision: " + (collision ? "true" : "false"));
+            // log_info("Mouse - Position: (" + std::to_string(position2.x) + ", " + std::to_string(position2.y) +
+            //          "), Collision: " + (collision ? "true" : "false"));
             return collision;
-        }
-    }
+        } 
+        else if constexpr (std::is_same_v<std::decay_t<ObjType2>, sf::View>) { // view
+            sf::Vector2f viewCenter = obj2.getCenter();
+            sf::Vector2f viewSize = obj2.getSize();
+            sf::Vector2f position2(viewCenter.x - viewSize.x / 2, viewCenter.y - viewSize.y / 2);
+            sf::Vector2f size2(viewSize.x, viewSize.y);
 
-    return false; // Default case
-}
+            bool collision = boundingBoxCollision(position1, size1, position2, size2);
+            log_info("button - position: (" + std::to_string(position1.x) + ", " + std::to_string(position1.y) +
+                    "), Size: (" + std::to_string(size1.x) + ", " + std::to_string(size2.y) +
+                    "), Collision: " + (collision ? "true" : "false"));
+            return collision;
+        } 
+        else {
+            auto getTileMap = [](auto&& obj2) -> auto& {
+                if constexpr (std::is_pointer_v<std::decay_t<decltype(obj2)>> || std::is_same_v<std::decay_t<decltype(obj2)>, std::unique_ptr<TileMap>>) {
+                    return *obj2; // Dereference unique_ptr, raw pointer, or shared pointer
+                } else {
+                    return obj2; // Direct reference if it's an object
+                }
+            };
+            // Now check if obj2 is of type TileMap or pointer to TileMap
+            auto& tileMap = getTileMap(obj2);
+
+            if constexpr (std::is_same_v<std::decay_t<decltype(tileMap)>, TileMap>) {
+                sf::Vector2f position2 = tileMap.getTileMapPosition();
+                sf::Vector2f size2(
+                    tileMap.getTileWidth() * static_cast<float>(tileMap.getTileMapWidth()),   // Total width in pixels
+                    tileMap.getTileHeight() * static_cast<float>(tileMap.getTileMapHeight())  // Total height in pixels
+                );
+
+                bool collision = boundingBoxCollision(position1, size1, position2, size2);
+                // log_warning("TileMap - Position: (" + std::to_string(position2.x) + ", " + std::to_string(position2.y) +
+                //             "), Size: (" + std::to_string(size2.x) + ", " + std::to_string(size2.y) +
+                //             "), Collision: " + (collision ? "true" : "false"));
+                return collision;
+            }
+        }
+        return false; // Default case
+    }
 
     template<typename ObjType1, typename ObjType2, typename CollisionType>
     bool collisionHelper(ObjType1&& obj1, ObjType2&& obj2, const CollisionType& collisionFunc, Quadtree& quadtree, float timeElapsed = 0.0f, size_t counterIndex = 0) {
@@ -251,7 +254,7 @@ bool collisionHelper(ObjType1&& obj1, ObjType2&& obj2) {
                     sf::Vector2f size1; 
                     if (sprite1->isAnimated()) {
                         sf::IntRect rect1 = sprite1->getRects();
-                        position1 = {bounds1.left + rect1.left, bounds1.top + rect1.top};
+                        position1 = {bounds1.left, bounds1.top};
                         size1 = {static_cast<float>(rect1.width), static_cast<float>(rect1.height)};
                     } else {
                         size1 = {bounds1.width, bounds1.height};
