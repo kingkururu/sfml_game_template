@@ -113,6 +113,7 @@ Remove compiled files with:
 ├── assets                     # Game assets
 │   ├── fonts                  # Font files and sources
 │   ├── sound                  # Sound effects
+│   ├── tiles                  # Tiles and tilemaps 
 │   └── sprites                # Sprite images
 │
 ├── libs                       # External libraries
