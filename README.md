@@ -117,8 +117,9 @@ Remove compiled files with:
 │   └── sprites                # Sprite images
 │
 ├── libs                       # External libraries
-│   └── logging                # Logging 
-│
+│   └── logging                # Logging
+|
+├── test                       # Test game (example project)
 ├── Makefile                   # Build instructions
 └── README.md                  # Project documentation
 
