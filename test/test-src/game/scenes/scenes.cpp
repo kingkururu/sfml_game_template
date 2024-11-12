@@ -170,10 +170,10 @@ void gamePlayScene::handleMouseClick() {
 
 void gamePlayScene::handleSpaceKey() {
     if (FlagSystem::flagEvents.spacePressed) {
-        if (player->getMoveState()) {
+        if (player->getMoveState() && !FlagSystem::gameScene1Flags.playerFalling) {
             physics::spriteMover(player, physics::jump, MetaComponents::spacePressedElapsedTime, Constants::SPRITE1_JUMP_ACCELERATION);
             MetaComponents::view.move(3, 0);
-        }
+        } 
     }
 }
 
@@ -214,9 +214,8 @@ void gamePlayScene::handleMovementKeys() {
 /* Keeps sprites inside screen bounds, checks for collisions, update scores, and sets flagEvents.gameEnd to true in an event of collision */
 void gamePlayScene::handleGameEvents() { 
     if (player) physics::spriteMover(player, physics::moveRight); 
-  //  FlagSystem::gameScene1Flags.playerFalling = !physics::collisionHelper(player, tileMap1); 
-      FlagSystem::gameScene1Flags.playerFalling = true; 
 
+    FlagSystem::gameScene1Flags.playerFalling = !physics::collisionHelper(player, tileMap1) && !FlagSystem::gameScene1Flags.playerJumping; // player must be not colliding with the tilemap, and it must not be jumping
     FlagSystem::gameScene1Flags.playerJumping = (MetaComponents::spacePressedElapsedTime > 0); 
 } 
 
