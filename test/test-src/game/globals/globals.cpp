@@ -63,7 +63,7 @@ namespace Constants {
         std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
         init_logging();
-        setup_signal_handlers();
+        // setup_signal_handlers();
 
         readFromYaml(std::filesystem::path("test/test-src/game/globals/config.yaml"));
         loadAssets();
