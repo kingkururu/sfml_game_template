@@ -1,9 +1,3 @@
-//
-//  scenes.cpp
-//  sfml game template
-//
-//
-
 #include "scenes.hpp"
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -220,24 +214,15 @@ void gamePlayScene::handleMovementKeys() {
 /* Keeps sprites inside screen bounds, checks for collisions, update scores, and sets flagEvents.gameEnd to true in an event of collision */
 void gamePlayScene::handleGameEvents() { 
     if (player) physics::spriteMover(player, physics::moveRight); 
-    
-    FlagSystem::gameScene1Flags.playerFalling = !physics::collisionHelper(player, tileMap1); 
-    FlagSystem::gameScene1Flags.playerJumping = MetaComponents::spacePressedElapsedTime > 0; 
-    std::cout << FlagSystem::gameScene1Flags.playerFalling; 
-    
-    updateEntityStates();
-} 
+  //  FlagSystem::gameScene1Flags.playerFalling = !physics::collisionHelper(player, tileMap1); 
+      FlagSystem::gameScene1Flags.playerFalling = true; 
 
-void gamePlayScene::updateEntityStates(){
-    player->setJumpingState(FlagSystem::gameScene1Flags.playerJumping);
-    player->setFallingState(FlagSystem::gameScene1Flags.playerFalling); 
-}
+    FlagSystem::gameScene1Flags.playerJumping = (MetaComponents::spacePressedElapsedTime > 0); 
+} 
 
 void gamePlayScene::handleSceneFlags(){
     // do something from its private flag
-    if(FlagSystem::gameScene1Flags.playerFalling){
-        physics::spriteMover(player, physics::freeFall); 
-    }
+    if(FlagSystem::gameScene1Flags.playerFalling) physics::spriteMover(player, physics::freeFall); 
 }
 
 /* Updates sprite and text positions when their moveState is true and their pointers are not null. 
@@ -246,6 +231,7 @@ void gamePlayScene::update() {
     try {
         // Remove invisible sprites
         updateDrawablesVisibility(); 
+        updateEntityStates();
         deleteInvisibleSprites();
         changeAnimation();
 
@@ -260,6 +246,11 @@ void gamePlayScene::update() {
     }
 }
 
+void gamePlayScene::updateEntityStates(){
+    player->setJumpingState(FlagSystem::gameScene1Flags.playerJumping);
+    player->setFallingState(FlagSystem::gameScene1Flags.playerFalling); 
+}
+
 void gamePlayScene::changeAnimation(){
     if (button1) button1->changeAnimation();
     if (background) background->updateBackground(Constants::BACKGROUND_SPEED, Constants::BACKGROUND_MOVING_DIRECTION);
@@ -267,9 +258,9 @@ void gamePlayScene::changeAnimation(){
 }
 
 void gamePlayScene::updatePlayerAndView() {
-   // if(player->getJumpingState() || player->getFallingState()) return; 
+    if(player->getJumpingState() || player->getFallingState()) return; 
 
-   if(player->getFallingState()) return; 
+    // Calculate the center of the view based on the player's position
     float viewCenterX = player->getSpritePos().x;
     float viewCenterY = player->getSpritePos().y;
 

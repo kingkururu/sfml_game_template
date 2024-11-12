@@ -158,6 +158,7 @@ namespace Constants {
                                 config["tilemap"]["position"]["y"].as<float>()};
             TILEMAP_WIDTH = config["tilemap"]["width"].as<size_t>();
             TILEMAP_HEIGHT = config["tilemap"]["height"].as<size_t>();
+            TILEMAP_BOUNDARYOFFSET = config["tilemap"]["boundary_offset"].as<float>();
             TILEMAP_FILEPATH = config["tilemap"]["filepath"].as<std::string>();
 
             // Load text settings

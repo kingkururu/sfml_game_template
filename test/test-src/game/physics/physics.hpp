@@ -190,15 +190,24 @@ namespace physics{
             if constexpr (std::is_same_v<std::decay_t<decltype(tileMap)>, TileMap>) {
                 sf::Vector2f position2 = tileMap.getTileMapPosition();
                 sf::Vector2f size2(
-                    tileMap.getTileWidth() * static_cast<float>(tileMap.getTileMapWidth()),   // Total width in pixels
-                    tileMap.getTileHeight() * static_cast<float>(tileMap.getTileMapHeight())  // Total height in pixels
-                );
+                    tileMap.getTileWidth() * static_cast<float>(tileMap.getTileMapWidth()) + Constants::TILEMAP_BOUNDARYOFFSET,    // Total width in pixels
+                    tileMap.getTileHeight() * static_cast<float>(tileMap.getTileMapHeight()) + Constants::TILEMAP_BOUNDARYOFFSET  // Total height in pixels
+                ); 
 
+                // Adjust collision detection to account for small gaps at the tilemap edges
                 bool collision = boundingBoxCollision(position1, size1, position2, size2);
-                // log_warning("TileMap - Position: (" + std::to_string(position2.x) + ", " + std::to_string(position2.y) +
-                //             "), Size: (" + std::to_string(size2.x) + ", " + std::to_string(size2.y) +
-                //             "), Collision: " + (collision ? "true" : "false"));
-                return collision;
+                
+                // If player is near the tile map edge but still within bounds, collision is still considered true
+                const float edgeTolerance = 50.0f; // Adjust this based on tile size and gameplay feel
+                bool nearEdge = position1.x + size1.x >= position2.x - edgeTolerance &&
+                                position1.x <= position2.x + size2.x + edgeTolerance;
+                
+                log_info("TileMap - Position: (" + std::to_string(position2.x) + ", " + std::to_string(position2.y) +
+                            "), Size: (" + std::to_string(size2.x) + ", " + std::to_string(size2.y) +
+                            "), Collision: " + (collision ? "true" : "false"));
+
+                return collision && nearEdge;
+        
             }
         }
         return false; // Default case

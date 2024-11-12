@@ -129,6 +129,7 @@ namespace Constants { // not actually "constants" in terms of being fixed, but s
     // Tilemap settings
     inline size_t TILEMAP_WIDTH;
     inline size_t TILEMAP_HEIGHT;
+    inline float TILEMAP_BOUNDARYOFFSET; 
     inline std::filesystem::path TILEMAP_FILEPATH;
 
     // Text settings

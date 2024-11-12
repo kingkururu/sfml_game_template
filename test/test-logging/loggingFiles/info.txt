@@ -1,26 +1,68 @@
-[2024-11-11 12:01:13.506] [info_logger] [info] Succesfuly read yaml file
-[2024-11-11 12:01:13.578] [info_logger] [info] 	Constants initialized 
-[2024-11-11 12:01:13.657] [info_logger] [info] scene made
-[2024-11-11 12:01:13.657] [info_logger] [info] scene made
-[2024-11-11 12:01:13.657] [info_logger] [info] scene made
-[2024-11-11 12:01:13.658] [info_logger] [info] 	Game initialized
-[2024-11-11 12:01:13.658] [info_logger] [info] Sprite initialized successfully
-[2024-11-11 12:01:13.658] [info_logger] [info] Background created
-[2024-11-11 12:01:13.658] [info_logger] [info] Sprite initialized successfully
-[2024-11-11 12:01:13.658] [info_logger] [info] Music initialized successfully, volume is 80.000000
-[2024-11-11 12:01:13.658] [info_logger] [info] Sprite initialized successfully
-[2024-11-11 12:01:13.660] [info_logger] [info] Tile map initialized successfully
-[2024-11-11 12:01:13.661] [info_logger] [info] Sound initialized successfully
-[2024-11-11 12:01:13.661] [info_logger] [info] text initialized successully
-[2024-11-11 12:01:13.661] [info_logger] [info] Sprite inserted into quadtree node.
-[2024-11-11 12:01:13.661] [info_logger] [info] Sprite inserted into quadtree node.
-[2024-11-11 12:01:13.661] [info_logger] [info] Sprite initialized successfully
-[2024-11-11 12:01:13.661] [info_logger] [info] Background created
-[2024-11-11 12:01:32.823] [info_logger] [info] 	Game Ended
+[2024-11-12 10:05:38.123] [info_logger] [info] Succesfuly read yaml file
+[2024-11-12 10:05:38.176] [info_logger] [info] 	Constants initialized 
+[2024-11-12 10:05:38.209] [info_logger] [info] scene made
+[2024-11-12 10:05:38.209] [info_logger] [info] scene made
+[2024-11-12 10:05:38.209] [info_logger] [info] scene made
+[2024-11-12 10:05:38.209] [info_logger] [info] 	Game initialized
+[2024-11-12 10:05:38.210] [info_logger] [info] Sprite initialized successfully
+[2024-11-12 10:05:38.210] [info_logger] [info] Background created
+[2024-11-12 10:05:38.210] [info_logger] [info] Sprite initialized successfully
+[2024-11-12 10:05:38.210] [info_logger] [info] Music initialized successfully, volume is 80.000000
+[2024-11-12 10:05:38.210] [info_logger] [info] Sprite initialized successfully
+[2024-11-12 10:05:38.212] [info_logger] [info] Tile map initialized successfully
+[2024-11-12 10:05:38.212] [info_logger] [info] Sound initialized successfully
+[2024-11-12 10:05:38.212] [info_logger] [info] text initialized successully
+[2024-11-12 10:05:38.212] [info_logger] [info] Sprite inserted into quadtree node.
+[2024-11-12 10:05:38.212] [info_logger] [info] Sprite inserted into quadtree node.
+[2024-11-12 10:05:38.212] [info_logger] [info] Sprite initialized successfully
+[2024-11-12 10:05:38.212] [info_logger] [info] Background created
+[2024-11-12 10:05:39.890] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:39.893] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:39.911] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:39.928] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:39.946] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:39.964] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:39.981] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.000] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.017] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.034] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.052] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.070] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.087] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.106] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.122] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.141] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.158] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.176] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.193] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.213] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.406] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.423] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.441] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.458] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.476] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.494] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.511] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.530] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.530] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.547] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.547] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.564] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.564] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.582] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.582] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.600] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.600] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.617] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.617] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.635] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.635] [info_logger] [info] TileMap - Position: (0.000000, 400.000000), Size: (4580.000000, 4900.000000), Collision: true
+[2024-11-12 10:05:40.972] [info_logger] [info] button clicked
+[2024-11-12 10:05:42.157] [info_logger] [info] 	Game Ended
 
-[2024-11-11 12:01:32.823] [info_logger] [info] objects cleared.
-[2024-11-11 12:01:32.823] [info_logger] [info] Quadtree cleared.
-[2024-11-11 12:01:32.834] [info_logger] [info] objects cleared.
-[2024-11-11 12:01:32.834] [info_logger] [info] Quadtree cleared.
-[2024-11-11 12:01:32.834] [info_logger] [info] objects cleared.
-[2024-11-11 12:01:32.834] [info_logger] [info] Quadtree cleared.
+[2024-11-12 10:05:42.157] [info_logger] [info] objects cleared.
+[2024-11-12 10:05:42.157] [info_logger] [info] Quadtree cleared.
+[2024-11-12 10:05:42.164] [info_logger] [info] objects cleared.
+[2024-11-12 10:05:42.164] [info_logger] [info] Quadtree cleared.
+[2024-11-12 10:05:42.164] [info_logger] [info] objects cleared.
+[2024-11-12 10:05:42.164] [info_logger] [info] Quadtree cleared.

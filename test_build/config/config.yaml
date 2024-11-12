@@ -44,7 +44,7 @@ background:
 # Sprite paths
 sprites:
   sprite1:
-    speed: 100.0
+    speed: 200.0
     acceleration:
       x: 2.0 
       y: 2.0
@@ -56,7 +56,7 @@ sprites:
     path: "test/test-assets/sprites/png/player.png"
     position:
       x: 200.0 # pixels 
-      y: 450.0 # pixels 
+      y: 400.0 # pixels 
     scale:
       x: 1.0
       y: 1.0
@@ -87,8 +87,9 @@ tilemap:
   position: 
     x: 0.0 # pixels
     y: 400.0 # pixels
-  width: 150 # number of grids in a row 
+  width: 140 # number of grids in a row 
   height: 150 # number of grids in a column 
+  boundary_offset: 100 
   filepath: "test/test-assets/tiles/tilemap.txt"
   walkable: 
     - false
