@@ -91,7 +91,7 @@ void gamePlayScene::createAssets() {
         player->setRects(0); 
 
         backgroundMusic = std::make_unique<MusicClass>(std::move(Constants::BACKGROUNDMUSIC_MUSIC), Constants::BACKGROUNDMUSIC_VOLUME);
-        if(backgroundMusic) backgroundMusic->returnMusic().play(); 
+        //if(backgroundMusic) backgroundMusic->returnMusic().play(); 
        
         button1 = std::make_unique<Button>(Constants::BUTTON1_POSITION, Constants::BUTTON1_SCALE, Constants::BUTTON1_TEXTURE, 
                                    Constants::BUTTON1_ANIMATIONRECTS, Constants::BUTTON1_INDEXMAX, 
@@ -164,6 +164,9 @@ void gamePlayScene::handleMouseClick() {
             FlagSystem::gameSceneNextFlags.sceneEnd = false;
 
             window.clear();
+        }
+        if (FlagSystem::gameScene1Flags.playerFalling){
+            player->changePosition(Constants::SPRITE1_POSITION); 
         }
     }
 }

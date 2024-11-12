@@ -202,9 +202,9 @@ namespace physics{
                 bool nearEdge = position1.x + size1.x >= position2.x - edgeTolerance &&
                                 position1.x <= position2.x + size2.x + edgeTolerance;
                 
-                log_info("TileMap - Position: (" + std::to_string(position2.x) + ", " + std::to_string(position2.y) +
-                            "), Size: (" + std::to_string(size2.x) + ", " + std::to_string(size2.y) +
-                            "), Collision: " + (collision ? "true" : "false"));
+                // log_info("TileMap - Position: (" + std::to_string(position2.x) + ", " + std::to_string(position2.y) +
+                //             "), Size: (" + std::to_string(size2.x) + ", " + std::to_string(size2.y) +
+                //             "), Collision: " + (collision ? "true" : "false"));
 
                 return collision && nearEdge;
         
