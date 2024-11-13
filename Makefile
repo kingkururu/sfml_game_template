@@ -12,13 +12,14 @@ HOMEBREW_PREFIX ?= /opt/homebrew
 SPDLOG_INCLUDE ?= $(HOMEBREW_PREFIX)/opt/spdlog/include
 FMT_INCLUDE ?= $(HOMEBREW_PREFIX)/opt/fmt/include
 SFML_INCLUDE ?= $(HOMEBREW_PREFIX)/opt/sfml/include
+CATCH2_INCLUDE ?= $(HOMEBREW_PREFIX)/opt/catch2/include
 SPDLOG_LIB ?= $(HOMEBREW_PREFIX)/opt/spdlog/lib
 FMT_LIB ?= $(HOMEBREW_PREFIX)/opt/fmt/lib
 SFML_LIB ?= $(HOMEBREW_PREFIX)/opt/sfml/lib
 YAML_INCLUDE ?= $(HOMEBREW_PREFIX)/Cellar/yaml-cpp/0.8.0/include
 
 # Include paths for Homebrew libraries
-BREW_INCLUDE_FLAGS := -I$(SPDLOG_INCLUDE) -I$(FMT_INCLUDE) -I$(SFML_INCLUDE) -I$(YAML_INCLUDE)
+BREW_INCLUDE_FLAGS := -I$(SPDLOG_INCLUDE) -I$(FMT_INCLUDE) -I$(SFML_INCLUDE) -I$(CATCH2_INCLUDE) -I$(YAML_INCLUDE)
 CXXFLAGS += $(BREW_INCLUDE_FLAGS)
 
 TEST_CXXFLAGS := -std=c++17 -Wall \
@@ -28,8 +29,10 @@ TEST_CXXFLAGS := -std=c++17 -Wall \
                  -I./test/test-src/game/scenes -I./test/test-src/game/utils \
                  -I./test/test-assets -I./test/test-assets/fonts \
                  -I./test/test-assets/sound -I./test/test-assets/tiles \
-                 -I./test/test-assets/sprites -I./test/test-logging \
-                 -I$(SPDLOG_INCLUDE) -I$(FMT_INCLUDE) -I$(SFML_INCLUDE) -I$(YAML_INCLUDE) \
+                 -I./test/test-assets/sprites \
+                 -I./test/test-logging \
+                 -I./test/test-testing \
+                 -I$(SPDLOG_INCLUDE) -I$(FMT_INCLUDE) -I$(SFML_INCLUDE) -I$(CATCH2_INCLUDE) -I$(YAML_INCLUDE) \
                  -DTESTING
 
 # Library paths and linking
@@ -67,7 +70,8 @@ TEST_SRC := test/test-src/testMain.cpp \
             test/test-assets/fonts/fonts.cpp \
             test/test-assets/sound/sound.cpp \
             test/test-assets/tiles/tiles.cpp \
-            test/test-logging/log.cpp
+            test/test-logging/log.cpp \
+            test/test-testing/testing.cpp
 
 TEST_OBJ := $(TEST_SRC:%.cpp=$(TEST_BUILD_DIR)/%.o)
 
@@ -91,6 +95,7 @@ install_deps:
 	@brew list fmt >/dev/null 2>&1 || (echo "Installing fmt..."; brew install fmt)
 	@brew list sfml >/dev/null 2>&1 || (echo "Installing sfml..."; brew install sfml)
 	@brew list yaml-cpp >/dev/null 2>&1 || (echo "Installing yaml-cpp..."; brew install yaml-cpp) 
+	@brew list catch2 >/dev/null 2>&1 || (echo "Installing catch2..."; brew install catch2)
 
 # Main application build target
 $(TARGET): $(OBJ)
