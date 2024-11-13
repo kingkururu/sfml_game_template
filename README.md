@@ -129,7 +129,8 @@ Remove compiled files with:
 ## Dependencies
 -   SFML: For graphics, windowing, and audio handling.
 -   spdlog: Logging support for debug and error tracking.
--   fmt: Text formatting library for easier output management.
+-   fmt: Text formatting library for logging
+-   catch2: For testing purpooses
 
 ## License
 

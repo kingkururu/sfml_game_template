@@ -1,20 +1,19 @@
-[2024-11-13 16:33:39.764] [info_logger] [info] Succesfuly read yaml file
-[2024-11-13 16:33:39.816] [info_logger] [warning] Failed to load player jump sound
-[2024-11-13 16:33:39.824] [info_logger] [info] 	Constants initialized 
-[2024-11-13 16:33:39.858] [info_logger] [info] scene made
-[2024-11-13 16:33:39.858] [info_logger] [info] scene made
-[2024-11-13 16:33:39.858] [info_logger] [info] scene made
-[2024-11-13 16:33:39.858] [info_logger] [info] 	Game initialized
-[2024-11-13 16:33:39.858] [info_logger] [info] Sprite initialized successfully
-[2024-11-13 16:33:39.858] [info_logger] [info] Background created
-[2024-11-13 16:33:39.858] [info_logger] [info] Sprite initialized successfully
-[2024-11-13 16:33:39.858] [info_logger] [info] Music initialized successfully, volume is 80.000000
-[2024-11-13 16:33:39.858] [info_logger] [info] Sprite initialized successfully
-[2024-11-13 16:33:39.860] [info_logger] [info] Tile map initialized successfully
-[2024-11-13 16:33:39.861] [info_logger] [info] Sound initialized successfully
-[2024-11-13 16:33:39.861] [info_logger] [info] text initialized successully
-[2024-11-13 16:33:39.861] [info_logger] [info] Sprite inserted into quadtree node.
-[2024-11-13 16:33:39.861] [info_logger] [info] Sprite inserted into quadtree node.
-[2024-11-13 16:33:39.861] [info_logger] [info] Sprite initialized successfully
-[2024-11-13 16:33:39.861] [info_logger] [info] Background created
-[2024-11-13 16:33:51.749] [info_logger] [info] button clicked
+[2024-11-14 08:14:25.732] [info_logger] [info] Succesfuly read yaml file
+[2024-11-14 08:14:25.787] [info_logger] [warning] Failed to load player jump sound
+[2024-11-14 08:14:25.796] [info_logger] [info] 	Constants initialized 
+[2024-11-14 08:14:25.827] [info_logger] [info] scene made
+[2024-11-14 08:14:25.827] [info_logger] [info] scene made
+[2024-11-14 08:14:25.827] [info_logger] [info] scene made
+[2024-11-14 08:14:25.827] [info_logger] [info] 	Game initialized
+[2024-11-14 08:14:25.827] [info_logger] [info] Sprite initialized successfully
+[2024-11-14 08:14:25.827] [info_logger] [info] Background created
+[2024-11-14 08:14:25.827] [info_logger] [info] Sprite initialized successfully
+[2024-11-14 08:14:25.827] [info_logger] [info] Music initialized successfully, volume is 80.000000
+[2024-11-14 08:14:25.827] [info_logger] [info] Sprite initialized successfully
+[2024-11-14 08:14:25.830] [info_logger] [info] Tile map initialized successfully
+[2024-11-14 08:14:25.830] [info_logger] [info] Sound initialized successfully
+[2024-11-14 08:14:25.830] [info_logger] [info] text initialized successully
+[2024-11-14 08:14:25.830] [info_logger] [info] Sprite inserted into quadtree node.
+[2024-11-14 08:14:25.830] [info_logger] [info] Sprite inserted into quadtree node.
+[2024-11-14 08:14:25.830] [info_logger] [info] Sprite initialized successfully
+[2024-11-14 08:14:25.830] [info_logger] [info] Background created
