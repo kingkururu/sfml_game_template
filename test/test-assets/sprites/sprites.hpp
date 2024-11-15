@@ -64,13 +64,9 @@ public:
     virtual void changeAnimation(); 
     void setRects(int animNum); 
 
-    using Sprite::getRadius;
     float getRadius() const override; 
-    using Sprite::getRects;
     sf::IntRect getRects() const override;
-    using Sprite::getCurrIndex; 
     int getCurrIndex() const override { return currentIndex; } 
-    using Sprite::getBitmask; 
     std::shared_ptr<sf::Uint8[]> const getBitmask(size_t index) const override; 
     bool isAnimated() const override { return true; } // for checking type
 
@@ -141,11 +137,8 @@ public:
 
     virtual void setDirectionVector(sf::Vector2f dir) {directionVector = dir; } 
 
-    using Sprite::getDirectionVector;
     virtual sf::Vector2f getDirectionVector() const override { return directionVector; }
-    using Sprite::getSpeed;
     virtual float getSpeed() const override { return speed; }
-    using Sprite::getAcceleration;
     virtual sf::Vector2f getAcceleration() const override{ return acceleration; }
     virtual void updatePos() { spriteCreated->setPosition(position); }
 
@@ -195,9 +188,7 @@ public:
     {}
     ~Obstacle() override = default;
     
-    using Sprite::getDirectionVector;
     sf::Vector2f getDirectionVector() const override { return directionVector; }
-    using NonStatic::setDirectionVector;
     void setDirectionVector(float angle);
 
 private:
@@ -211,12 +202,11 @@ public:
                     const std::vector<sf::IntRect> animationRects, unsigned int indexMax, 
                     const std::vector<std::weak_ptr<sf::Uint8[]>>& bitMask)
         : Sprite(position, scale, texture), 
-          NonStatic(position, scale, texture, speed, acceleration), // Call NonStatic constructor
-          Animated(position, scale, texture, animationRects, indexMax, bitMask) // Call Animated constructor
+          NonStatic(position, scale, texture, speed, acceleration), 
+          Animated(position, scale, texture, animationRects, indexMax, bitMask) 
     {}
     ~Bullet() override = default;
     
-    using NonStatic::setDirectionVector;
     void setDirectionVector(sf::Vector2i projectionPos);
 
 private:
@@ -228,7 +218,7 @@ public:
                       const std::vector<sf::IntRect> animationRects, unsigned int indexMax, 
                       const std::vector<std::weak_ptr<sf::Uint8[]>>& bitMask)
         : Sprite(position, scale, texture),
-          Animated(position, scale, texture, animationRects, indexMax, bitMask) // Call Animated constructor
+          Animated(position, scale, texture, animationRects, indexMax, bitMask) 
     {}
     ~Button() override = default;
 
@@ -238,8 +228,8 @@ public:
 private:
     bool clicked {}; 
 }; 
-
-class Sprite3D : public Sprite {
+ 
+class Sprite3D : public Sprite { // don't use this 
 public:
     explicit Sprite3D(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, float zdepth)
         : Sprite(position, scale, texture), zdepth(zdepth) {}
@@ -247,7 +237,6 @@ public:
     void setZ(float newZ) { zdepth = newZ; }
     float getZ() const { return zdepth; }
 
-    using Sprite::draw;
     void draw(sf::RenderTarget& target, sf::RenderStates states); 
 
 private:
