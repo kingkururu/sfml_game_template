@@ -141,14 +141,25 @@ namespace Constants {
                         config["tiles"]["scale"]["y"].as<float>()};
             TILE_WIDTH = config["tiles"]["tile_width"].as<unsigned short>();
             TILE_HEIGHT = config["tiles"]["tile_height"].as<unsigned short>();
+            // if (config["tiles"]["walkable"]) {
+            //    // TILES_BOOLS.resize(TILES_NUM, false); 
+            //     for (unsigned short i = 0; i < TILES_NUM; ++i) {
+            //         // Check if the index exists to avoid bad conversion
+            //         if (config["tiles"]["walkable"].size() > i) {
+            //             TILES_BOOLS[i] = config["tiles"]["walkable"][i].as<bool>();
+            //         } else {
+            //             TILES_BOOLS[i] = false; // Or set a default value
+            //         }
+            //     }
+            // }
             if (config["tiles"]["walkable"]) {
-               // TILES_BOOLS.resize(TILES_NUM, false); 
+                const YAML::Node& walkableNode = config["tiles"]["walkable"];                
+                // Loop through and read the boolean values
                 for (unsigned short i = 0; i < TILES_NUM; ++i) {
-                    // Check if the index exists to avoid bad conversion
-                    if (config["tiles"]["walkable"].size() > i) {
-                        TILES_BOOLS[i] = config["tiles"]["walkable"][i].as<bool>();
+                    if (walkableNode[i].IsScalar()) {
+                        TILES_BOOLS[i] = walkableNode[i].as<bool>();
                     } else {
-                        TILES_BOOLS[i] = false; // Or set a default value
+                        TILES_BOOLS[i] = false;  // Default to false if something goes wrong
                     }
                 }
             }
