@@ -122,6 +122,9 @@ void init_logging() {
 }
 
 void cleanup_logging() {
+    spdlog::apply_all([](std::shared_ptr<spdlog::logger> logger) {
+        logger->flush(); // Flush each registered logger.
+    });
     spdlog::shutdown();
 }
 

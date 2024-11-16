@@ -29,18 +29,20 @@ void GameManager::runGame() {
         log_info("\tGame Ended\n"); 
             
     } catch (const std::exception& e) {
-        log_error("Exception in runGame: {}" + std::string(e.what())); 
+        log_error("Exception in runGame: " + std::string(e.what())); 
         mainWindow.getWindow().close(); 
     }
 }
 
 void GameManager::runScenesFlags(){
-    if(FlagSystem::gameScene1Flags.sceneStart && !FlagSystem::gameScene1Flags.sceneEnd){ 
-        gameScene->runScene();
-    }
+    if(!FlagSystem::flagEvents.gameEnd){
+        if(FlagSystem::gameScene1Flags.sceneStart && !FlagSystem::gameScene1Flags.sceneEnd){ 
+            gameScene->runScene();
+        }
 
-    if(FlagSystem::gameSceneNextFlags.sceneStart  && !FlagSystem::gameSceneNextFlags.sceneEnd){
-        gameSceneNext->runScene();
+        if(FlagSystem::gameSceneNextFlags.sceneStart  && !FlagSystem::gameSceneNextFlags.sceneEnd){
+            gameSceneNext->runScene();
+        }
     }
 }
 
@@ -63,6 +65,8 @@ void GameManager::handleEventInput() {
     sf::Event event;
     while (mainWindow.getWindow().pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
+            log_info("Window close event detected.");
+            FlagSystem::flagEvents.gameEnd = true;
             mainWindow.getWindow().close();
             return; 
         }

@@ -62,8 +62,6 @@ namespace Constants {
     void initialize(){
         std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
-        init_logging();
-
         readFromYaml(std::filesystem::path("test/test-src/game/globals/config.yaml"));
         loadAssets();
         makeRectsAndBitmasks(); 

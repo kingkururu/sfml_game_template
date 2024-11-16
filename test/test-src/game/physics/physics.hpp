@@ -21,7 +21,6 @@
 
 namespace physics{
 
-    // don't use this it's not fixed rn
     class Quadtree {
      public:
         Quadtree(float x, float y, float width, float height, size_t level = 0, size_t maxObjects = 10, size_t maxLevels = 5);

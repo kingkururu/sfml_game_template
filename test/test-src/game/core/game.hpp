@@ -24,7 +24,7 @@ public:
     void loadScenes(); 
     void runGame();
     void runScenesFlags();
-
+    
 private:
     /* countTime counts time regardless of the scene 
        handleEventInput taks input from device, such as keyboard, mouse, etc */
