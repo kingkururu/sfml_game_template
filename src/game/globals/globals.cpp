@@ -52,8 +52,6 @@ namespace Constants {
     }
     
     void initialize(){
-        init_logging();
-
         std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
         readFromYaml(std::filesystem::path("src/game/globals/config.yaml"));

@@ -77,8 +77,10 @@ private:
     std::atomic<bool> stop_thread_;
 };
 
+// Singleton instance for AsyncLogger
 inline AsyncLogger asyncLogger;
 
+// Logging helper functions
 void log_info(const std::string& message) {
     asyncLogger.log(message, spdlog::level::info);
 }
@@ -91,6 +93,7 @@ void log_error(const std::string& message) {
     asyncLogger.log(message, spdlog::level::err);
 }
 
+// Logging initialization and cleanup
 void init_logging() {
     std::string info_log_file = "test/test-logging/loggingFiles/info.txt";
     std::string error_log_file = "test/test-logging/loggingFiles/errors.txt";
@@ -122,10 +125,17 @@ void init_logging() {
 }
 
 void cleanup_logging() {
-    spdlog::apply_all([](std::shared_ptr<spdlog::logger> logger) {
-        logger->flush(); // Flush each registered logger.
-    });
     spdlog::shutdown();
 }
+
+// RAII wrapper for managing logging lifecycle
+class LoggerManager {
+public:
+    LoggerManager() { init_logging(); } // Initialize logging on creation
+    ~LoggerManager() { cleanup_logging(); } // Cleanup logging on destruction
+};
+
+// Global instance to manage logging lifecycle
+inline LoggerManager loggerManager;
 
 #endif // ENABLE_LOGGING
