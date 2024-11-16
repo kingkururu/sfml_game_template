@@ -1,7 +1,6 @@
-[2024-11-05 14:24:36.716] [info_logger] [info] Succesfuly read yaml file
-[2024-11-05 14:24:36.716] [info_logger] [info] 	Successfully loaded assets
-[2024-11-05 14:24:36.716] [info_logger] [info] 	Successfully created rects and bitmasks
-[2024-11-05 14:24:36.789] [info_logger] [info] scene made
-[2024-11-05 14:24:36.789] [info_logger] [info] 	Game initialized
-[2024-11-05 14:24:38.358] [info_logger] [info] 	Game Ended
+[2024-11-16 12:54:53.408] [info_logger] [info] 	Successfully loaded assets
+[2024-11-16 12:54:53.408] [info_logger] [info] 	Successfully created rects and bitmasks
+[2024-11-16 12:54:53.477] [info_logger] [info] scene made
+[2024-11-16 12:54:53.477] [info_logger] [info] 	Game initialized
+[2024-11-16 12:54:58.254] [info_logger] [info] 	Game Ended
 

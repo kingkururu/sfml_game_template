@@ -53,11 +53,10 @@ namespace Constants {
     
     void initialize(){
         init_logging();
-        setup_signal_handlers();
 
         std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
-        readFromYaml(std::filesystem::path("test/test-src/game/globals/config.yaml"));
+        readFromYaml(std::filesystem::path("src/game/globals/config.yaml"));
         loadAssets();
         makeRectsAndBitmasks(); 
     }
@@ -77,9 +76,6 @@ namespace Constants {
             VIEW_INITIAL_CENTER = {config["screen"]["view"]["initial_center"]["x"].as<float>(),
                                 config["screen"]["view"]["initial_center"]["y"].as<float>()};
             VIEW_RECT = { 0.0f, 0.0f, VIEW_SIZE_X, VIEW_SIZE_Y };
-
-            // Load score settings
-            INITIAL_SCORE = config["score"]["initial"].as<unsigned short>(); 
 
             // Load animation settings
             ANIMATION_CHANGE_TIME = config["animation"]["change_time"].as<float>();

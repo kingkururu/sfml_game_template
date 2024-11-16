@@ -12,7 +12,7 @@
 #include <fstream>
 #include <sstream>
 
-#include "../../test-logging/log.hpp"
+#include "log.hpp"
 
 
 class Tile {
