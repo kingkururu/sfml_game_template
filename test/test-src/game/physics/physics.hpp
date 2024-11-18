@@ -28,7 +28,7 @@ namespace physics{
 
         void clear();
 
-        template<typename SpriteType> void insert(std::unique_ptr<SpriteType>& obj) {
+        template<typename SpriteType> void insert(std::unique_ptr<SpriteType>& obj) { 
             try {
                 // If no child nodes exist, add the object to this node
                 if (nodes.empty()) {
@@ -126,7 +126,7 @@ namespace physics{
                                 const std::shared_ptr<sf::Uint8[]> &bitmask2, const sf::Vector2f &position2, const sf::Vector2f &size2);  
     
     template<typename ObjType1, typename ObjType2>
-    bool collisionHelper(ObjType1&& obj1, ObjType2&& obj2) {
+    bool collisionHelper(ObjType1&& obj1, ObjType2&& obj2) { // for sprive vs. non-sprite
         auto getSprite = [](auto&& obj1) -> auto& {
             if constexpr (std::is_pointer_v<std::decay_t<decltype(obj1)>>) {
                 return *obj1; // Dereference unique_ptr or raw pointer
@@ -178,12 +178,11 @@ namespace physics{
         else {
             auto getTileMap = [](auto&& obj2) -> auto& {
                 if constexpr (std::is_pointer_v<std::decay_t<decltype(obj2)>> || std::is_same_v<std::decay_t<decltype(obj2)>, std::unique_ptr<TileMap>>) {
-                    return *obj2; // Dereference unique_ptr, raw pointer, or shared pointer
+                    return *obj2; 
                 } else {
-                    return obj2; // Direct reference if it's an object
+                    return obj2; 
                 }
             };
-            // Now check if obj2 is of type TileMap or pointer to TileMap
             auto& tileMap = getTileMap(obj2);
 
             if constexpr (std::is_same_v<std::decay_t<decltype(tileMap)>, TileMap>) {
@@ -203,7 +202,7 @@ namespace physics{
     }
 
     template<typename ObjType1, typename ObjType2, typename CollisionType>
-    bool collisionHelper(ObjType1&& obj1, ObjType2&& obj2, const CollisionType& collisionFunc, Quadtree& quadtree, float timeElapsed = 0.0f, size_t counterIndex = 0) {
+    bool collisionHelper(ObjType1&& obj1, ObjType2&& obj2, const CollisionType& collisionFunc, Quadtree& quadtree, float timeElapsed = 0.0f, size_t counterIndex = 0) { // for sprive vs. sprite
         // Check if obj1 and obj2 are valid pointers
         if (!obj1) {
             log_warning("First object is missing in collision detection");
