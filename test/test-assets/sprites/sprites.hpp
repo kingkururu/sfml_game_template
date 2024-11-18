@@ -21,9 +21,9 @@ public:
     explicit Sprite(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture);
 
     virtual ~Sprite() = default;
-    sf::Vector2f const getSpritePos() const { return position; };
+    sf::Vector2f getSpritePos() const { return position; };
     sf::Sprite& returnSpritesShape() const { return *spriteCreated; } 
-    bool const getVisibleState() const { return visibleState; }
+    bool getVisibleState() const { return visibleState; }
     void setVisibleState(bool VisibleState){ visibleState = VisibleState; }
 
     // base template for retreaving radius (based on sprite size) 
@@ -38,7 +38,7 @@ public:
     virtual sf::Vector2f getDirectionVector() const { return sf::Vector2f(); }
     virtual float getSpeed() const { return 0.0f; }
     virtual sf::Vector2f getAcceleration() const { return sf::Vector2f(); }
-    bool getMoveState() { return false; }
+    bool getMoveState() const { return false; }
 
     // draws sprite using window.draw(*sprite)
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override { if (visibleState && spriteCreated) target.draw(*spriteCreated, states); }
@@ -91,16 +91,15 @@ public:
     ~Background() override{};
 
     // make background (can put any direction if only using primaryDirection, but need to put up/down in primary and right/left in secondary if using both)
-    void updateBackground(float speed, SpriteComponents::Direction primaryDirection, 
-                          SpriteComponents::Direction secondaryDirection = SpriteComponents::Direction::NONE);  
+    void updateBackground(float speed, SpriteComponents::Direction primaryDirection, SpriteComponents::Direction secondaryDirection = SpriteComponents::Direction::NONE);  
 
     sf::Sprite& returnSpritesShape2() { return *spriteCreated2; }
     sf::Sprite& returnSpritesShape3() { return *spriteCreated3; }
     sf::Sprite& returnSpritesShape4() { return *spriteCreated4; }
 
-    sf::FloatRect const getViewBounds(sf::Sprite& spriteNum) const;
+    sf::FloatRect getViewBounds(sf::Sprite& spriteNum) const;
 
-    bool getBackgroundMoveState() { return backgroundMoveState; } 
+    bool getBackgroundMoveState() const { return backgroundMoveState; } 
     void setBackgroundMoveState(bool newState) { backgroundMoveState = newState; }
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override; 
 
@@ -129,7 +128,7 @@ public:
         : Sprite(position, scale, texture), speed(speed), acceleration(acceleration) {}
     ~NonStatic() override{}; 
 
-    bool const getMoveState() const { return moveState; }
+    bool getMoveState() const { return moveState; }
     void setMoveState(bool newState) { moveState = newState; }
     void changePosition(sf::Vector2f newPos) { position = newPos; }  
     void setSpeed(float newSpeed) { speed = newSpeed; } 
@@ -164,8 +163,8 @@ class Player : public NonStatic, public Animated {
    ~Player() override = default;
     void updatePlayer(sf::Vector2f newPos); 
     void changeAnimation() override; 
-    bool const getJumpingState() const { return isJumping; }
-    bool const getFallingState() const { return isFalling; }
+    bool getJumpingState() const { return isJumping; }
+    bool getFallingState() const { return isFalling; }
     void setJumpingState(bool jumpState) { isJumping = jumpState; }  
     void setFallingState(bool fallState) { isFalling = fallState; }  
  

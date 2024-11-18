@@ -23,7 +23,7 @@ public:
     virtual ~Sprite() = default;
     sf::Vector2f const getSpritePos() const { return position; };
     sf::Sprite& returnSpritesShape() const { return *spriteCreated; } 
-    bool const getVisibleState() const { return visibleState; }
+    bool getVisibleState() const { return visibleState; }
     void setVisibleState(bool VisibleState){ visibleState = VisibleState; }
 
     // base template for retreaving radius (based on sprite size) 
@@ -98,7 +98,7 @@ public:
     sf::Sprite& returnSpritesShape3() { return *spriteCreated3; }
     sf::Sprite& returnSpritesShape4() { return *spriteCreated4; }
 
-    sf::FloatRect const getViewBounds(sf::Sprite& spriteNum) const;
+    sf::FloatRect getViewBounds(sf::Sprite& spriteNum) const;
 
     bool getBackgroundMoveState() { return backgroundMoveState; } 
     void setBackgroundMoveState(bool newState) { backgroundMoveState = newState; }
@@ -129,7 +129,7 @@ public:
         : Sprite(position, scale, texture), speed(speed), acceleration(acceleration) {}
     ~NonStatic() override{}; 
 
-    bool const getMoveState() const { return moveState; }
+    bool getMoveState() const { return moveState; }
     void setMoveState(bool newState) { moveState = newState; }
     void changePosition(sf::Vector2f newPos) { position = newPos; }  
     void setSpeed(float newSpeed) { speed = newSpeed; } 

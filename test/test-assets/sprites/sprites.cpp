@@ -138,7 +138,7 @@ void Background::updateBackground(float speed, SpriteComponents::Direction prima
 
 }
 
-sf::FloatRect const Background::getViewBounds(sf::Sprite& spriteNum) const {
+sf::FloatRect Background::getViewBounds(sf::Sprite& spriteNum) const {
     return {
         spriteNum.getGlobalBounds().left, 
         spriteNum.getGlobalBounds().width, 
@@ -326,14 +326,3 @@ void Bullet::setDirectionVector(sf::Vector2i projectionPos) {
     }
     log_info("Bullet direction vector calculated.");
 }
-
-void Sprite3D::draw(sf::RenderTarget& target, sf::RenderStates states) {
-    // Apply simple perspective scaling based on z-depth
-    float perspectiveScale = 1.0f / (1.0f + zdepth / 500.0f);  // Example of perspective scaling
-
-    sf::Transform transform;
-    transform.scale(perspectiveScale, perspectiveScale);
-    states.transform *= transform;
-
-    Sprite::draw(target, states);  // Draw the sprite with perspective
-} 

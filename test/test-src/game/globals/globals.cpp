@@ -69,8 +69,6 @@ namespace Constants {
 
     void readFromYaml(const std::filesystem::path configFile) {
         try{ 
-            //globalTimer.Reset();
-
             YAML::Node config = YAML::LoadFile(configFile);
 
             // Load game display settings
@@ -140,7 +138,6 @@ namespace Constants {
             TILE_HEIGHT = config["tiles"]["tile_height"].as<unsigned short>();
             if (config["tiles"]["walkable"]) {
                 const YAML::Node& walkableNode = config["tiles"]["walkable"];                
-                // Loop through and read the boolean values
                 for (unsigned short i = 0; i < TILES_NUM; ++i) {
                     if (walkableNode[i].IsScalar()) {
                         TILES_BOOLS[i] = walkableNode[i].as<bool>();
@@ -175,9 +172,6 @@ namespace Constants {
             PLAYERJUMPSOUND_VOLUME = config["sound"]["player_jump"]["volume"].as<float>();
             
             log_info("Succesfuly read yaml file");
-            
-            // globalTimer.End("read from yaml file"); 
-
         } 
         catch (const YAML::BadFile& e) {
             log_error("Failed to load config file: " + std::string(e.what()));
@@ -270,7 +264,6 @@ namespace Constants {
                 }
                 fileStream << std::endl; // New line after each row
             }
-            
             fileStream.close();
 
             log_info("successfuly made a random tile map"); 

@@ -188,7 +188,7 @@ namespace physics{
             if constexpr (std::is_same_v<std::decay_t<decltype(tileMap)>, TileMap>) {
                 sf::Vector2f position2 = tileMap.getTileMapPosition();
                 sf::Vector2f size2(
-                    tileMap.getTileWidth() * static_cast<float>(tileMap.getTileMapWidth())
+                    tileMap.getTileWidth() * static_cast<float>(tileMap.getTileMapWidth()),
                     tileMap.getTileHeight() * static_cast<float>(tileMap.getTileMapHeight())
                 ); 
                 // log_info("TileMap - Position: (" + std::to_string(position2.x) + ", " + std::to_string(position2.y) +
