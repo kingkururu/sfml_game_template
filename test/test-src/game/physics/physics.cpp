@@ -156,17 +156,57 @@ namespace physics {
         return { originalPos.x, originalPos.y += speed * MetaComponents::deltaTime * acceleration.y};
     }
 
-    // jumping sprites 
     sf::Vector2f jump(float& elapsedTime, float speed, sf::Vector2f originalPos, sf::Vector2f acceleration){
-       if(elapsedTime <= 0.2f){
-            return { originalPos.x, originalPos.y -= speed * MetaComponents::deltaTime * gravity * acceleration.y };
-        } else if (elapsedTime >= 0.2 && elapsedTime <= 0.4f){
-            return { originalPos.x, originalPos.y += speed * MetaComponents::deltaTime * gravity * acceleration.y }; 
+        float jumpDuration = 0.8f; 
+
+        if (elapsedTime <= jumpDuration) {   // If elapsedTime is within jump duration
+            if (elapsedTime <= 0.4f) {
+                originalPos.y -= speed * MetaComponents::deltaTime * (1.0f - elapsedTime / (jumpDuration / 2.0)) * acceleration.y * gravity;
+            }
+            else {
+                originalPos.y += speed * MetaComponents::deltaTime * (elapsedTime - jumpDuration / 2.0) / ( jumpDuration / 2.0)* acceleration.y * gravity;
+            }
+            // Log jump progress
+            log_info("Jump in progress. Elapsed time: {}, Position: ({}, {})" +
+                        std::to_string(elapsedTime) + ", "+ std::to_string(originalPos.x) + ", " + std::to_string(originalPos.y));
         } else {
-            FlagSystem::flagEvents.spacePressed = false; 
-            elapsedTime = 0.0f; 
-            return { originalPos.x, originalPos.y };
+            // Reset jump state
+            FlagSystem::flagEvents.spacePressed = false;
+            elapsedTime = 0.0f;
+            originalPos.y = std::round(originalPos.y); // Correct minor float inaccuracies
+
+            // Log jump completion
+            log_info("Jump done, "+ std::to_string(originalPos.x) + ", " + std::to_string(originalPos.y));
         }
+        return originalPos;
+    }
+
+    sf::Vector2f jumpToSurface(float& elapsedTime, float speed, sf::Vector2f originalPos, sf::Vector2f acceleration){
+        static sf::Vector2f startPos = originalPos; // Save the start position
+        float jumpDuration = 0.4f; 
+
+        // If elapsedTime is within jump duration
+        if (elapsedTime <= jumpDuration) {
+            // Calculate jump height
+            float jumpHeight = speed * acceleration.y * gravity;
+
+            if (elapsedTime <= (jumpDuration / 2.0)) {
+                originalPos.y = startPos.y - (jumpHeight * (elapsedTime / (jumpDuration / 2.0)));
+            }
+            else {
+                originalPos.y = startPos.y - jumpHeight + (jumpHeight * ((elapsedTime - (jumpDuration / 2.0)) / (jumpDuration / 2.0)));
+            }
+                log_info("Jump in progress. Elapsed time: {}, Position: ({}, {})" +
+                        std::to_string(elapsedTime) + ", "+ std::to_string(originalPos.x) + ", " + std::to_string(originalPos.y));
+        } else {
+            // Reset jump state
+            FlagSystem::flagEvents.spacePressed = false;
+            elapsedTime = 0.0f;
+            originalPos.y = startPos.y; // Reset to the initial position
+                        log_info("Jump done, "+ std::to_string(originalPos.x) + ", " + std::to_string(originalPos.y));
+
+        }
+        return originalPos;
     }
 
 // collisions 

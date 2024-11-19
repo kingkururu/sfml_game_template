@@ -50,7 +50,7 @@ sprites:
       y: 2.0
     jump_acceleration: 
       x: 1.0
-      y: 1.0
+      y: 0.2
     index_max: 12
     animation_rows: 2 
     path: "test/test-assets/sprites/png/player.png"

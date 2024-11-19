@@ -1,7 +1,247 @@
-[2024-11-18 21:43:19.600] [info_logger] [info] Succesfuly read yaml file
-[2024-11-18 21:43:19.600] [info_logger] [info] 	Successfully loaded assets
-[2024-11-18 21:43:19.600] [info_logger] [info] 	Successfully created rects and bitmasks
-[2024-11-18 21:43:19.680] [info_logger] [info] scene made
-[2024-11-18 21:43:19.680] [info_logger] [info] 	Game initialized
-[2024-11-18 21:43:21.423] [info_logger] [info] 	Game Ended
+[2024-11-19 22:45:14.973] [info_logger] [info] Succesfuly read yaml file
+[2024-11-19 22:45:15.032] [info_logger] [warning] Failed to load player jump sound
+[2024-11-19 22:45:15.040] [info_logger] [info] 	Constants initialized 
+[2024-11-19 22:45:15.080] [info_logger] [info] scene made
+[2024-11-19 22:45:15.080] [info_logger] [info] scene made
+[2024-11-19 22:45:15.080] [info_logger] [info] scene made
+[2024-11-19 22:45:15.080] [info_logger] [info] 	Game initialized
+[2024-11-19 22:45:15.080] [info_logger] [info] Sprite initialized successfully
+[2024-11-19 22:45:15.080] [info_logger] [info] Background created
+[2024-11-19 22:45:15.080] [info_logger] [info] Sprite initialized successfully
+[2024-11-19 22:45:15.080] [info_logger] [info] Music initialized successfully, volume is 80.000000
+[2024-11-19 22:45:15.080] [info_logger] [info] Sprite initialized successfully
+[2024-11-19 22:45:15.087] [info_logger] [info] Tile map initialized successfully
+[2024-11-19 22:45:15.087] [info_logger] [info] Sound initialized successfully
+[2024-11-19 22:45:15.087] [info_logger] [info] text initialized successully
+[2024-11-19 22:45:15.087] [info_logger] [info] Sprite inserted into quadtree node.
+[2024-11-19 22:45:15.087] [info_logger] [info] Sprite inserted into quadtree node.
+[2024-11-19 22:45:15.087] [info_logger] [info] Sprite initialized successfully
+[2024-11-19 22:45:15.087] [info_logger] [info] Background created
+[2024-11-19 22:45:15.834] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.017681, 200.000000, 365.345245
+[2024-11-19 22:45:15.860] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.081733, 200.000000, 239.803314
+[2024-11-19 22:45:15.878] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.099413, 200.000000, 205.150513
+[2024-11-19 22:45:15.896] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.117091, 200.000000, 170.501633
+[2024-11-19 22:45:15.913] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.134769, 200.000000, 135.852753
+[2024-11-19 22:45:15.931] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.152205, 200.000000, 101.678192
+[2024-11-19 22:45:15.948] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.169687, 200.000000, 67.413483
+[2024-11-19 22:45:15.966] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.187357, 200.000000, 32.780270
+[2024-11-19 22:45:15.984] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.205037, 200.000000, 17.872540
+[2024-11-19 22:45:16.001] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.222716, 200.000000, 52.523392
+[2024-11-19 22:45:16.019] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.240396, 200.000000, 87.176201
+[2024-11-19 22:45:16.037] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.258047, 200.000000, 121.772141
+[2024-11-19 22:45:16.054] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.275727, 200.000000, 156.424927
+[2024-11-19 22:45:16.072] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.293406, 200.000000, 191.075775
+[2024-11-19 22:45:16.090] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.310904, 200.000000, 225.371826
+[2024-11-19 22:45:16.107] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.328409, 200.000000, 259.681610
+[2024-11-19 22:45:16.125] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.346014, 200.000000, 294.187408
+[2024-11-19 22:45:16.142] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.363694, 200.000000, 328.840210
+[2024-11-19 22:45:16.160] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.381375, 200.000000, 363.494965
+[2024-11-19 22:45:16.178] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.398960, 200.000000, 397.961578
+[2024-11-19 22:45:16.195] [info_logger] [info] Jump done, 200.000000, 400.000000
+[2024-11-19 22:45:16.764] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.017679, 200.000000, 365.349152
+[2024-11-19 22:45:16.795] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.052491, 200.000000, 297.117645
+[2024-11-19 22:45:16.813] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.070169, 200.000000, 262.468750
+[2024-11-19 22:45:16.830] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.087849, 200.000000, 227.815948
+[2024-11-19 22:45:16.848] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.105528, 200.000000, 193.165115
+[2024-11-19 22:45:16.866] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.123206, 200.000000, 158.516235
+[2024-11-19 22:45:16.884] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.140884, 200.000000, 123.867340
+[2024-11-19 22:45:16.901] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.158557, 200.000000, 89.228256
+[2024-11-19 22:45:16.919] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.176238, 200.000000, 54.573494
+[2024-11-19 22:45:16.937] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.193919, 200.000000, 19.918730
+[2024-11-19 22:45:16.954] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.211601, 200.000000, 30.737991
+[2024-11-19 22:45:16.972] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.229174, 200.000000, 65.181068
+[2024-11-19 22:45:16.989] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.246853, 200.000000, 99.831917
+[2024-11-19 22:45:17.007] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.264509, 200.000000, 134.437683
+[2024-11-19 22:45:17.025] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.282166, 200.000000, 169.045425
+[2024-11-19 22:45:17.042] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.299853, 200.000000, 203.711929
+[2024-11-19 22:45:17.060] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.317531, 200.000000, 238.360794
+[2024-11-19 22:45:17.078] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.335209, 200.000000, 273.009644
+[2024-11-19 22:45:17.095] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.352890, 200.000000, 307.664429
+[2024-11-19 22:45:17.113] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.370569, 200.000000, 342.315277
+[2024-11-19 22:45:17.131] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.388174, 200.000000, 376.821075
+[2024-11-19 22:45:17.148] [info_logger] [info] Jump done, 200.000000, 400.000000
+[2024-11-19 22:45:17.396] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.017680, 200.000000, 365.347198
+[2024-11-19 22:45:17.431] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.053037, 200.000000, 296.047485
+[2024-11-19 22:45:17.449] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.070661, 200.000000, 261.504425
+[2024-11-19 22:45:17.466] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.088335, 200.000000, 226.863403
+[2024-11-19 22:45:17.484] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.106010, 200.000000, 192.220413
+[2024-11-19 22:45:17.502] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.123687, 200.000000, 157.573486
+[2024-11-19 22:45:17.519] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.141366, 200.000000, 122.922638
+[2024-11-19 22:45:17.537] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.159046, 200.000000, 88.269829
+[2024-11-19 22:45:17.555] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.176725, 200.000000, 53.618977
+[2024-11-19 22:45:17.572] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.194405, 200.000000, 18.966167
+[2024-11-19 22:45:17.590] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.212069, 200.000000, 31.655272
+[2024-11-19 22:45:17.608] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.229720, 200.000000, 66.251244
+[2024-11-19 22:45:17.625] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.247400, 200.000000, 100.904053
+[2024-11-19 22:45:17.643] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.265056, 200.000000, 135.509842
+[2024-11-19 22:45:17.661] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.282720, 200.000000, 170.131256
+[2024-11-19 22:45:17.678] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.300400, 200.000000, 204.784027
+[2024-11-19 22:45:17.696] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.318080, 200.000000, 239.436813
+[2024-11-19 22:45:17.714] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.335760, 200.000000, 274.089600
+[2024-11-19 22:45:17.731] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.353438, 200.000000, 308.738464
+[2024-11-19 22:45:17.748] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.370156, 200.000000, 341.505737
+[2024-11-19 22:45:17.766] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.387809, 200.000000, 376.105591
+[2024-11-19 22:45:17.783] [info_logger] [info] Jump done, 200.000000, 400.000000
+[2024-11-19 22:45:20.150] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.017535, 185.946396, 365.631409
+[2024-11-19 22:45:20.184] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.052824, 185.946396, 296.464966
+[2024-11-19 22:45:20.202] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.070501, 185.946396, 261.818054
+[2024-11-19 22:45:20.220] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.088163, 185.946396, 227.200516
+[2024-11-19 22:45:20.237] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.105820, 185.946396, 192.592804
+[2024-11-19 22:45:20.255] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.123499, 185.946396, 157.941971
+[2024-11-19 22:45:20.273] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.141092, 185.946396, 123.459679
+[2024-11-19 22:45:20.290] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.158636, 185.946396, 89.073441
+[2024-11-19 22:45:20.308] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.176306, 185.946396, 54.440228
+[2024-11-19 22:45:20.326] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.193971, 185.946396, 19.816830
+[2024-11-19 22:45:20.343] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.211653, 185.946396, 30.839891
+[2024-11-19 22:45:20.361] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.229328, 185.946396, 65.482887
+[2024-11-19 22:45:20.379] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.247008, 185.946396, 100.135696
+[2024-11-19 22:45:20.396] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.264686, 185.946396, 134.784592
+[2024-11-19 22:45:20.414] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.282366, 185.946396, 169.437363
+[2024-11-19 22:45:20.432] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.300045, 185.946396, 204.088211
+[2024-11-19 22:45:20.449] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.317723, 185.946396, 238.737076
+[2024-11-19 22:45:20.467] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.335401, 185.946396, 273.385956
+[2024-11-19 22:45:20.485] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.353067, 185.946396, 308.011322
+[2024-11-19 22:45:20.502] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.370746, 185.946396, 342.662170
+[2024-11-19 22:45:20.520] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.388422, 185.946396, 377.307129
+[2024-11-19 22:45:20.538] [info_logger] [info] Jump done, 185.946396, 400.000000
+[2024-11-19 22:45:21.898] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.017677, 369.562317, 365.353088
+[2024-11-19 22:45:21.933] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.053014, 369.562317, 296.092560
+[2024-11-19 22:45:21.951] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.070694, 369.562317, 261.439758
+[2024-11-19 22:45:21.969] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.088373, 369.562317, 226.788925
+[2024-11-19 22:45:21.986] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.106051, 369.562317, 192.140045
+[2024-11-19 22:45:22.004] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.123729, 369.562317, 157.491165
+[2024-11-19 22:45:22.022] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.141407, 369.562317, 122.842285
+[2024-11-19 22:45:22.039] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.159005, 369.562317, 88.350204
+[2024-11-19 22:45:22.057] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.176686, 369.562317, 53.695438
+[2024-11-19 22:45:22.074] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.194366, 369.562317, 19.042629
+[2024-11-19 22:45:22.092] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.212043, 369.562317, 31.604279
+[2024-11-19 22:45:22.110] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.229724, 369.562317, 66.259041
+[2024-11-19 22:45:22.128] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.247402, 369.562317, 100.907936
+[2024-11-19 22:45:22.145] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.265080, 369.562317, 135.556808
+[2024-11-19 22:45:22.163] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.282760, 369.562317, 170.209579
+[2024-11-19 22:45:22.181] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.300438, 369.562317, 204.858444
+[2024-11-19 22:45:22.198] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.317977, 369.562317, 239.234879
+[2024-11-19 22:45:22.215] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.335322, 369.562317, 273.231110
+[2024-11-19 22:45:22.233] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.353001, 369.562317, 307.881958
+[2024-11-19 22:45:22.251] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.370679, 369.562317, 342.530823
+[2024-11-19 22:45:22.268] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.388356, 369.562317, 377.177734
+[2024-11-19 22:45:22.286] [info_logger] [info] Jump done, 369.562317, 400.000000
+[2024-11-19 22:45:22.958] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.017680, 553.015869, 365.347198
+[2024-11-19 22:45:22.992] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.052928, 567.115479, 296.261108
+[2024-11-19 22:45:23.010] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.070607, 574.187073, 261.610291
+[2024-11-19 22:45:23.028] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.088283, 581.258667, 226.965317
+[2024-11-19 22:45:23.045] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.105962, 588.329041, 192.314484
+[2024-11-19 22:45:23.063] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.123640, 595.400635, 157.665604
+[2024-11-19 22:45:23.081] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.141320, 595.400635, 123.012794
+[2024-11-19 22:45:23.098] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.158853, 595.400635, 88.648109
+[2024-11-19 22:45:23.116] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.176532, 595.400635, 53.997257
+[2024-11-19 22:45:23.133] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.194210, 595.400635, 19.348362
+[2024-11-19 22:45:23.151] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.211872, 595.400635, 31.269165
+[2024-11-19 22:45:23.169] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.229552, 595.400635, 65.921974
+[2024-11-19 22:45:23.186] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.246899, 595.400635, 99.922112
+[2024-11-19 22:45:23.204] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.264577, 595.400635, 134.570969
+[2024-11-19 22:45:23.222] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.282255, 595.400635, 169.219833
+[2024-11-19 22:45:23.239] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.299935, 595.400635, 203.872620
+[2024-11-19 22:45:23.257] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.317615, 595.400635, 238.525391
+[2024-11-19 22:45:23.275] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.335294, 595.400635, 273.176239
+[2024-11-19 22:45:23.292] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.352896, 595.400635, 307.676147
+[2024-11-19 22:45:23.310] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.370496, 595.400635, 342.172150
+[2024-11-19 22:45:23.327] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.388176, 595.400635, 376.824951
+[2024-11-19 22:45:23.345] [info_logger] [info] Jump done, 595.400635, 400.000000
+[2024-11-19 22:45:24.424] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.017679, 277.854340, 365.349152
+[2024-11-19 22:45:24.457] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.052844, 263.788757, 296.425751
+[2024-11-19 22:45:24.475] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.070521, 256.716766, 261.778839
+[2024-11-19 22:45:24.492] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.088200, 249.645966, 227.128006
+[2024-11-19 22:45:24.510] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.105880, 242.574371, 192.475220
+[2024-11-19 22:45:24.528] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.123560, 242.574371, 157.822403
+[2024-11-19 22:45:24.545] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.141240, 242.574371, 123.169601
+[2024-11-19 22:45:24.563] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.158920, 242.574371, 88.516792
+[2024-11-19 22:45:24.581] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.176536, 242.574371, 53.989429
+[2024-11-19 22:45:24.598] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.194216, 242.574371, 19.336620
+[2024-11-19 22:45:24.616] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.211893, 242.574371, 31.310287
+[2024-11-19 22:45:24.634] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.229572, 242.574371, 65.961136
+[2024-11-19 22:45:24.651] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.247252, 242.574371, 100.613945
+[2024-11-19 22:45:24.669] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.264930, 242.574371, 135.262817
+[2024-11-19 22:45:24.686] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.282408, 242.574371, 169.519669
+[2024-11-19 22:45:24.704] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.300087, 242.574371, 204.170517
+[2024-11-19 22:45:24.722] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.317767, 242.574371, 238.823303
+[2024-11-19 22:45:24.739] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.335352, 242.574371, 273.289917
+[2024-11-19 22:45:24.757] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.352847, 242.574371, 307.580139
+[2024-11-19 22:45:24.774] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.370429, 242.574371, 342.040833
+[2024-11-19 22:45:24.792] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.388030, 242.574371, 376.538818
+[2024-11-19 22:45:24.810] [info_logger] [info] Jump done, 242.574371, 400.000000
+[2024-11-19 22:45:25.517] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.017636, 157.793549, 365.433441
+[2024-11-19 22:45:25.552] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.052864, 157.793549, 296.386566
+[2024-11-19 22:45:25.569] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.070543, 157.793549, 261.735718
+[2024-11-19 22:45:25.587] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.088222, 157.793549, 227.084885
+[2024-11-19 22:45:25.605] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.105811, 157.793549, 192.610443
+[2024-11-19 22:45:25.622] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.123299, 157.793549, 158.333954
+[2024-11-19 22:45:25.640] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.140791, 157.793549, 124.049644
+[2024-11-19 22:45:25.657] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.158471, 157.793549, 89.396835
+[2024-11-19 22:45:25.675] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.176150, 157.793549, 54.745987
+[2024-11-19 22:45:25.692] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.193739, 157.793549, 20.271542
+[2024-11-19 22:45:25.710] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.211420, 157.793549, 30.383223
+[2024-11-19 22:45:25.728] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.229027, 157.793549, 64.892952
+[2024-11-19 22:45:25.745] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.246704, 157.793549, 99.539856
+[2024-11-19 22:45:25.763] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.264383, 157.793549, 134.190704
+[2024-11-19 22:45:25.781] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.282062, 157.793549, 168.841553
+[2024-11-19 22:45:25.798] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.299741, 157.793549, 203.492416
+[2024-11-19 22:45:25.816] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.317419, 157.793549, 238.141281
+[2024-11-19 22:45:25.835] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.335098, 157.793549, 272.792114
+[2024-11-19 22:45:25.852] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.352778, 164.865143, 307.444916
+[2024-11-19 22:45:25.869] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.370452, 171.937149, 342.085938
+[2024-11-19 22:45:25.887] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.388132, 179.006744, 376.738708
+[2024-11-19 22:45:25.905] [info_logger] [info] Jump done, 186.078751, 400.000000
+[2024-11-19 22:45:26.910] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.017678, 517.727783, 365.351135
+[2024-11-19 22:45:26.945] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.053033, 517.727783, 296.055328
+[2024-11-19 22:45:26.963] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.070713, 517.727783, 261.402527
+[2024-11-19 22:45:26.981] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.088393, 517.727783, 226.749710
+[2024-11-19 22:45:26.998] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.105964, 517.727783, 192.310547
+[2024-11-19 22:45:27.016] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.123643, 517.727783, 157.659714
+[2024-11-19 22:45:27.033] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.141321, 517.727783, 123.010834
+[2024-11-19 22:45:27.051] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.158998, 517.727783, 88.363930
+[2024-11-19 22:45:27.069] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.176678, 517.727783, 53.711121
+[2024-11-19 22:45:27.087] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.194355, 517.727783, 19.064213
+[2024-11-19 22:45:27.104] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.211989, 517.727783, 31.498434
+[2024-11-19 22:45:27.122] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.229448, 517.727783, 65.718086
+[2024-11-19 22:45:27.139] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.247127, 517.727783, 100.368935
+[2024-11-19 22:45:27.157] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.264608, 517.727783, 134.631729
+[2024-11-19 22:45:27.175] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.282287, 517.727783, 169.282578
+[2024-11-19 22:45:27.192] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.299966, 517.727783, 203.933426
+[2024-11-19 22:45:27.210] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.317638, 517.727783, 238.570541
+[2024-11-19 22:45:27.227] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.335316, 517.727783, 273.219421
+[2024-11-19 22:45:27.245] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.352993, 517.727783, 307.866364
+[2024-11-19 22:45:27.263] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.370672, 517.727783, 342.517212
+[2024-11-19 22:45:27.281] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.388353, 517.727783, 377.171967
+[2024-11-19 22:45:27.298] [info_logger] [info] Jump done, 517.727783, 400.000000
+[2024-11-19 22:45:28.269] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.017679, 623.743042, 365.349152
+[2024-11-19 22:45:28.304] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.053007, 623.743042, 296.106293
+[2024-11-19 22:45:28.322] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.070678, 623.743042, 261.471130
+[2024-11-19 22:45:28.340] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.088356, 623.743042, 226.822250
+[2024-11-19 22:45:28.357] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.106036, 623.743042, 192.169464
+[2024-11-19 22:45:28.375] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.123715, 623.743042, 157.518616
+[2024-11-19 22:45:28.393] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.141391, 623.743042, 122.873657
+[2024-11-19 22:45:28.410] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.159070, 623.743042, 88.222801
+[2024-11-19 22:45:28.428] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.176750, 623.743042, 53.569996
+[2024-11-19 22:45:28.446] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.194428, 623.743042, 18.921131
+[2024-11-19 22:45:28.463] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.212106, 623.743042, 31.727734
+[2024-11-19 22:45:28.481] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.229788, 623.743042, 66.384453
+[2024-11-19 22:45:28.499] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.247467, 623.743042, 101.035309
+[2024-11-19 22:45:28.516] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.265150, 623.743042, 135.694016
+[2024-11-19 22:45:28.534] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.282831, 623.743042, 170.348770
+[2024-11-19 22:45:28.552] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.300508, 623.743042, 204.995712
+[2024-11-19 22:45:28.570] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.318187, 623.743042, 239.646561
+[2024-11-19 22:45:28.587] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.335866, 623.743042, 274.297424
+[2024-11-19 22:45:28.605] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.353492, 623.743042, 308.844360
+[2024-11-19 22:45:28.623] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.371171, 623.743042, 343.495209
+[2024-11-19 22:45:28.640] [info_logger] [info] Jump in progress. Elapsed time: {}, Position: ({}, {})0.388709, 623.743042, 377.869690
+[2024-11-19 22:45:28.658] [info_logger] [info] Jump done, 623.743042, 400.000000
+[2024-11-19 22:45:29.911] [info_logger] [info] Window close event detected.
+[2024-11-19 22:45:29.914] [info_logger] [info] 	Game Ended
 
+[2024-11-19 22:45:29.914] [info_logger] [info] objects cleared.
+[2024-11-19 22:45:29.914] [info_logger] [info] Quadtree cleared.
+[2024-11-19 22:45:29.915] [info_logger] [info] objects cleared.
+[2024-11-19 22:45:29.916] [info_logger] [info] Quadtree cleared.
+[2024-11-19 22:45:29.916] [info_logger] [info] objects cleared.
+[2024-11-19 22:45:29.916] [info_logger] [info] Quadtree cleared.
