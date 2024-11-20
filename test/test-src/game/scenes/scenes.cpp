@@ -130,9 +130,7 @@ void gamePlayScene::respawnAssets(){
 
 /* delet some sprites if their visibleState is false for memory management */
 void gamePlayScene::deleteInvisibleSprites() {
-    // Remove invisible sprites
-   
-   // Remove large-scale unenecessary texts 
+    // maybe di a sprite pooling 
 }
 
 /* Updating time from GameManager's deltatime; it updates sprite respawn times and also counts 
