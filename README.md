@@ -19,7 +19,7 @@ Extends sf::Sprite
 - Animated vs. Non-Animated
 
 
-Fonts: Customizes sf::Text for versatile typography.
+Fonts: Customizes sf::Text for typography.
 
 
 Sounds: Extends sf::Sound and sf::Music for audio control.

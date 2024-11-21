@@ -166,17 +166,14 @@ namespace physics {
             else {
                 originalPos.y += speed * MetaComponents::deltaTime * (elapsedTime - jumpDuration / 2.0) / ( jumpDuration / 2.0)* acceleration.y * gravity;
             }
-            // Log jump progress
-            log_info("Jump in progress. Elapsed time: {}, Position: ({}, {})" +
-                        std::to_string(elapsedTime) + ", "+ std::to_string(originalPos.x) + ", " + std::to_string(originalPos.y));
+            //log_info("Jump in progress. Elapsed time: {}, Position: ({}, {})" + std::to_string(elapsedTime) + ", "+ std::to_string(originalPos.x) + ", " + std::to_string(originalPos.y));
         } else {
             // Reset jump state
             FlagSystem::flagEvents.spacePressed = false;
             elapsedTime = 0.0f;
             originalPos.y = std::round(originalPos.y); // Correct minor float inaccuracies
 
-            // Log jump completion
-            log_info("Jump done, "+ std::to_string(originalPos.x) + ", " + std::to_string(originalPos.y));
+            //log_info("Jump done, "+ std::to_string(originalPos.x) + ", " + std::to_string(originalPos.y));
         }
         return originalPos;
     }
@@ -196,14 +193,13 @@ namespace physics {
             else {
                 originalPos.y = startPos.y - jumpHeight + (jumpHeight * ((elapsedTime - (jumpDuration / 2.0)) / (jumpDuration / 2.0)));
             }
-                log_info("Jump in progress. Elapsed time: {}, Position: ({}, {})" +
-                        std::to_string(elapsedTime) + ", "+ std::to_string(originalPos.x) + ", " + std::to_string(originalPos.y));
+            // log_info("Jump in progress. Elapsed time: {}, Position: ({}, {})" + std::to_string(elapsedTime) + ", "+ std::to_string(originalPos.x) + ", " + std::to_string(originalPos.y));
         } else {
             // Reset jump state
             FlagSystem::flagEvents.spacePressed = false;
             elapsedTime = 0.0f;
             originalPos.y = startPos.y; // Reset to the initial position
-                        log_info("Jump done, "+ std::to_string(originalPos.x) + ", " + std::to_string(originalPos.y));
+            // log_info("Jump done, "+ std::to_string(originalPos.x) + ", " + std::to_string(originalPos.y));
 
         }
         return originalPos;

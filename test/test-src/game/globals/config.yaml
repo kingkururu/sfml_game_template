@@ -51,8 +51,8 @@ sprites:
     jump_acceleration: 
       x: 1.0
       y: 0.2
-    index_max: 12
-    animation_rows: 2 
+    index_max: 12 # number of total images for animation 
+    animation_rows: 2 # number of rows for animation 
     path: "test/test-assets/sprites/png/player.png"
     position:
       x: 200.0 # pixels 
