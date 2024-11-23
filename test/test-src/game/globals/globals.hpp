@@ -172,7 +172,7 @@ namespace FlagSystem {
         // resets every flag
         void resetFlags() {
             gameEnd = wPressed = aPressed = sPressed = dPressed = bPressed = spacePressed = mouseClicked = false;
-            log_info("Flags have been successfully reset.");
+            log_info("General game flags reset complete");
         }
 
         // resets keyboard flags only 
@@ -196,7 +196,7 @@ namespace FlagSystem {
         void resetFlags() {
             log_error("failed resetting scene Flags");
             std::memset(this, 0, sizeof(*this));
-            log_info("Flags have been successfully reset.");
+            log_info("Reset sceneEvents flags");
         }
     };
 
@@ -211,7 +211,7 @@ namespace FlagSystem {
         void resetFlags() {
             log_error("failed resetting scene Flags");
             std::memset(this, 0, sizeof(*this));
-            log_info("Flags have been successfully reset.");
+            log_info("Reset GameSceneEvents1 flags");
         }
     };
 

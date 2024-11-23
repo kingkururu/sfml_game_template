@@ -52,7 +52,7 @@ namespace SpriteComponents {
 
 /* constant variables defined here */
 namespace Constants {
-    // make random position function (random from upper right corner)
+    // make random position from upper right corner
     sf::Vector2f makeRandomPosition(){
         float xPos = static_cast<float>(WORLD_WIDTH - std::rand() % static_cast<int>(WORLD_WIDTH / 2));
         float yPos = 0.0f;

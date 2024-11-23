@@ -27,7 +27,7 @@ Sounds: Extends sf::Sound and sf::Music for audio control.
 
 Tiles & Tilemap:
 - Loads tilemaps from text files
-- Includes random map generator
+- Includes very basic random map generator
 
 
 Logging: Toggle logging per state with macros.
