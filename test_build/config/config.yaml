@@ -101,7 +101,7 @@ text:
   position:
     x: 0.0 # pixels 
     y: 200.0 # pixels 
-  color: "Green" # sf::Color 
+  color: "GREEN" # sf::Color 
 
 # Music settings
 music:
