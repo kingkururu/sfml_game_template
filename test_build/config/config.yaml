@@ -112,5 +112,5 @@ music:
 # Sound settings
 sound:
   player_jump:
-    path: "test/test-assets/sound/mp3,flac,wav/jump.wav"
+    path: "test/test-assets/sound/wav/jump.wav"
     volume: 90.0 # percent

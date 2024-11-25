@@ -114,10 +114,8 @@ namespace Constants { // not actually "constants" in terms of being fixed, but s
     inline unsigned short TILES_ROWS;
     inline unsigned short TILES_COLUMNS;
     inline unsigned short TILES_NUM;
-    //////////////////////////////////////////////
-    inline unsigned short const TILES_NUMBER = 60; // const in tile making (need to fix later)
+    inline unsigned short const TILES_NUMBER = 60; // should be the same as tiles_num but need to be const 
     inline std::array<bool, TILES_NUMBER> TILES_BOOLS; 
-    //////////////////////////////////////////////
 
     inline sf::Vector2f TILES_SCALE;
     inline unsigned short TILE_WIDTH;
