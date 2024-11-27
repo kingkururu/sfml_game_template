@@ -1,8 +1,3 @@
-//
-//  physics.hpp
-//  sfml game template
-//
-//
 #pragma once
 
 #include <SFML/Graphics.hpp>

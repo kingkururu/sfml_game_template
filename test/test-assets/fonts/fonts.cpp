@@ -6,7 +6,7 @@
 
 #include "fonts.hpp"
 
-/* text class constructor, sets up color, size, font, position, text message */
+// text class constructor, sets up color, size, font, position, text message 
 TextClass::TextClass(sf::Vector2f position, unsigned int size, sf::Color color, std::weak_ptr<sf::Font> font, const std::string& testMessage)
     : position(position), size(size), color(color), font(font), text(std::make_unique<sf::Text>()) {
 
@@ -29,7 +29,7 @@ TextClass::TextClass(sf::Vector2f position, unsigned int size, sf::Color color, 
     }
 }
 
-/* change message inside text */
+// change message inside text 
 void TextClass::updateText(const std::string& newText) {
     if (text) {
         text->setString(newText); 

@@ -3,6 +3,7 @@
 //  sfml game template
 //
 //
+
 #pragma once
 
 #include <stdio.h>
@@ -15,7 +16,8 @@
 #include "../../test-logging/log.hpp"
 #include "../globals/globals.hpp"
 
-/* base class for all sprites; contains position, scale, and texture */
+
+// base class for all sprites; contains position, scale, and texture 
 class Sprite : public sf::Drawable {
 public:
     explicit Sprite(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture);
@@ -84,7 +86,7 @@ class NonAnimated : public virtual Sprite {
     ~NonAnimated() override{};
 };
 
-/* background class deriving from sprites; the background doesn't "actually move with physics", but moves constantly to the left */
+// background class deriving from sprites; the background doesn't "actually move with physics", but moves constantly to the left 
 class Background : public Sprite{
 public:
    explicit Background(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture);
@@ -114,14 +116,14 @@ private:
     bool backgroundMoveState = true; 
 };
 
-/* static class deriving from sprites; refers to non-moving sprites */
+// static class deriving from sprites; refers to non-moving sprites 
 class Static : public virtual Sprite{
 public:
     using Sprite::Sprite;
     ~Static() override{};
 };
 
-/* NonStatic class deriving from sprites; refers to moving sprites */
+// NonStatic class deriving from sprites; refers to moving sprites 
 class NonStatic : public virtual Sprite{
 public:
    explicit NonStatic(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, float speed, sf::Vector2f acceleration)
@@ -149,7 +151,7 @@ protected:
     sf::Vector2f acceleration{}; 
 };
 
-/* player class deriving from NonStatic; refers to movable player */
+// player class deriving from NonStatic; refers to movable player 
 class Player : public NonStatic, public Animated {
  public:
    explicit Player(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture,
@@ -175,7 +177,7 @@ class Player : public NonStatic, public Animated {
     bool isFalling = false; 
 };
 
-/* obstacle class deriving from NonStatic; refers to movable obstacles */
+// obstacle class deriving from NonStatic; refers to movable obstacles 
 class Obstacle : public NonStatic, public Animated {
 public:
     explicit Obstacle(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, 
@@ -196,7 +198,6 @@ public:
 private:
 };
 
-/* example use of animated, nonstatic class: bullet deriving from NonStatic; refers to moving bullets */
 class Bullet : public NonStatic, public Animated {
 public:
    explicit Bullet(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, 

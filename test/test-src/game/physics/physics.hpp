@@ -1,8 +1,3 @@
-//
-//  physics.hpp
-//  sfml game template
-//
-//
 #pragma once
 
 #include <type_traits>
@@ -18,6 +13,7 @@
 #include "../globals/globals.hpp" 
 #include "../../test-assets/sprites/sprites.hpp" 
 #include "../../test-assets/tiles/tiles.hpp" 
+
 
 namespace physics{
 

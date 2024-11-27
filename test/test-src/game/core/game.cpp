@@ -6,7 +6,7 @@
 
 #include "game.hpp" 
 
-/* GameManager constructor sets up the window, intitializes constant variables, calls the random function, and makes scenes */
+// GameManager constructor sets up the window, intitializes constant variables, calls the random function, and makes scenes 
 GameManager::GameManager()
     : mainWindow(Constants::VIEW_SIZE_X, Constants::VIEW_SIZE_Y, Constants::GAME_TITLE, Constants::FRAME_LIMIT) {
     introScreenScene = std::make_unique<introScene>(mainWindow.getWindow());
@@ -16,7 +16,7 @@ GameManager::GameManager()
     log_info("\tGame initialized");
 }
 
-/* runGame calls to createAssets from scenes and loops until window is closed to run scene events */
+// runGame calls to createAssets from scenes and loops until window is closed to run scene events 
 void GameManager::runGame() {
     try {     
         loadScenes(); 
@@ -52,7 +52,7 @@ void GameManager::loadScenes(){
     gameSceneNext->createAssets(); 
 }
 
-/* countTime counts global time and delta time for scenes to later use in runScene */
+// countTime counts global time and delta time for scenes to later use in runScene 
 void GameManager::countTime() {
     sf::Time frameTime = MetaComponents::clock.restart();
     MetaComponents::deltaTime = frameTime.asSeconds(); 

@@ -24,7 +24,7 @@
 
 #include "../test-logging/log.hpp"              
 
-/* Base scene class */
+// Base scene class 
 class Scene {
  public:
   Scene( sf::RenderWindow& gameWindow );
@@ -62,7 +62,6 @@ class Scene {
   physics::Quadtree quadtree; 
 };
 
-/* costumize scenes by adding something */
 class introScene : public virtual Scene{
  public:
    using Scene::Scene; 
@@ -72,7 +71,6 @@ class introScene : public virtual Scene{
 
 };
 
-/* Main game play class, scene instance for creating scenes to run inside GameManager class */
 class gamePlayScene : public virtual Scene{
  public:
   using Scene::Scene; 

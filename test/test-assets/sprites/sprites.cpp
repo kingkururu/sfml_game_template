@@ -6,7 +6,7 @@
 
 #include "sprites.hpp"
 
-/* sprite class constructor; takes in position, scale, texture */
+// sprite class constructor; takes in position, scale, texture 
 Sprite::Sprite(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture)
     : position(position), scale(scale), texture(texture), spriteCreated(std::make_unique<sf::Sprite>()), visibleState(true) {
     try {
@@ -52,7 +52,7 @@ float Sprite::getRadius() const {
     return diagonal / 2.0f;
 }
 
-/* background class constructor; takes in position, scale, texture */
+// background class constructor; takes in position, scale, texture 
 Background::Background(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture) : Sprite(position, scale, texture) {
     if (auto tex = texture.lock()) {
         spriteCreated = std::make_unique<sf::Sprite>(*tex);
@@ -78,7 +78,7 @@ Background::Background(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<
     }
 }
  
- // Updates the background to move in a specified direction; need to fix it later cus the forth sprite doesn't wrap properly 
+// Updates the background to move in a specified direction; need to fix it later cus the forth sprite doesn't wrap properly 
 void Background::updateBackground(float speed, SpriteComponents::Direction primaryDirection, SpriteComponents::Direction secondaryDirection) {
     // Get the global bounds of the view
     sf::FloatRect viewBounds(
@@ -164,7 +164,7 @@ void Background::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     }
 }
 
-/* sets cut-out rect for sprite animation */
+// sets cut-out rect for sprite animation 
 void Animated::setRects(int animNum){
     try {
         if (animNum < 0 || animNum > indexMax) {
@@ -178,7 +178,6 @@ void Animated::setRects(int animNum){
     }
 }
 
-/* changes animation based on time */
 void Animated::changeAnimation() {
     try {
         if (animChangeState) {
@@ -217,7 +216,6 @@ float Animated::getRadius() const {
     return diagonal / 2.0f;
 }
 
-/* updates position to be assigned most recent position */
 void Sprite::updateVisibility() {
     try {
         if (position.y > Constants::WORLD_HEIGHT + Constants::SPRITE_OUT_OF_BOUNDS_OFFSET ||
@@ -235,7 +233,6 @@ void Sprite::updateVisibility() {
     }
 }
 
-/* returns animation rects vector */
 sf::IntRect Animated::getRects() const {
     try {
         if (animationRects.empty()) {
@@ -250,7 +247,7 @@ sf::IntRect Animated::getRects() const {
     }
 }
 
-/* returns bitmask for a sprite */
+// returns bitmask for a sprite 
 std::shared_ptr<sf::Uint8[]> const Animated::getBitmask(size_t index) const {
     try {
         if (index >= bitMask.size()) {
@@ -261,11 +258,11 @@ std::shared_ptr<sf::Uint8[]> const Animated::getBitmask(size_t index) const {
     } 
     catch (const std::exception& e) {
         log_error("Error in getBitmask: " + std::string(e.what()) + " | Requested index: " + std::to_string(index));
-        throw;  // Rethrow the exception for further handling if necessary
+        throw; // Rethrow the exception for further handling if necessary
     }
 }
 
-/* specialized player position update method */
+// specialized player position update method 
 void Player::updatePlayer(sf::Vector2f newPos) {
     
     changePosition(newPos); 
@@ -305,7 +302,7 @@ void Player::changeAnimation() {
     }
 }
 
-/* calculates obstacle's direction vector when bullet is made */
+// calculates obstacle's direction vector when bullet is made 
 void Obstacle::setDirectionVector(float angle) {
     float angleRad = angle * (3.14f / 180.f);
     directionVector.x = std::cos(angleRad);
@@ -313,7 +310,7 @@ void Obstacle::setDirectionVector(float angle) {
     log_info("Obstacle direction vector set based on angle " + std::to_string(angle));
 }
 
-/* sets bullet's direction vector */
+// sets bullet's direction vector 
 void Bullet::setDirectionVector(sf::Vector2i projectionPos) {
     directionVector = static_cast<sf::Vector2f>(projectionPos) - position;
     

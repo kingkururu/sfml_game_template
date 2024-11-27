@@ -14,7 +14,6 @@
 #include "../../test-logging/log.hpp"
 
 
-/* text class declaration */
 class TextClass : public sf::Drawable {
 public:
     explicit TextClass(sf::Vector2f position, unsigned int size, sf::Color color, std::weak_ptr<sf::Font> font, const std::string& testMessage);

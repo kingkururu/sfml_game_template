@@ -14,7 +14,6 @@
 #include "../../test-logging/log.hpp"
 
 
-/* sound class containing elements to make up a sound */
 class SoundClass{
 public:
     explicit SoundClass(std::weak_ptr<sf::SoundBuffer> soundBuffer, float volume);
@@ -30,7 +29,6 @@ protected:
     float volume = 100.0f; 
 };
 
-/* music class containing elements to make up music */
 class MusicClass {
 public:
     MusicClass(std::unique_ptr<sf::Music> musicLoad, float volume);

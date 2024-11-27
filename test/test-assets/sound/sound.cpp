@@ -5,7 +5,8 @@
 //
 
 #include "sound.hpp"
-/* Sound class constructor, sets the buffer and volume */
+
+// Sound class constructor, sets the buffer and volume 
 SoundClass::SoundClass(std::weak_ptr<sf::SoundBuffer> soundBuffer, float volume)
     : soundBuffer(soundBuffer), sound(std::make_unique<sf::Sound>()), volume(volume) {
     try {
@@ -25,7 +26,7 @@ SoundClass::SoundClass(std::weak_ptr<sf::SoundBuffer> soundBuffer, float volume)
     }
 }
 
-/* Music class constructor, takes in and sets music pointer and volume */
+// Music class constructor, takes in and sets music pointer and volume 
 MusicClass::MusicClass(std::unique_ptr<sf::Music> musicLoad, float volume)
     : music(std::move(musicLoad)), volume(volume) {
     try {
@@ -44,7 +45,7 @@ MusicClass::MusicClass(std::unique_ptr<sf::Music> musicLoad, float volume)
     }
 }
 
-/* Sets new volume for sound */
+// Sets new volume for sound 
 void SoundClass::setVolume(float newVolume) {
     volume = newVolume;
 
@@ -54,7 +55,7 @@ void SoundClass::setVolume(float newVolume) {
     }
 }
 
-/* Sets new volume for music */
+// Sets new volume for music 
 void MusicClass::setVolume(float newVolume) {
     volume = newVolume;
 

@@ -26,10 +26,8 @@ public:
     void runScenesFlags();
     
 private:
-    /* countTime counts time regardless of the scene 
-       handleEventInput taks input from device, such as keyboard, mouse, etc */
-    void countTime();
-    void handleEventInput();
+    void countTime(); // countTime counts time regardless of the scene 
+    void handleEventInput(); // handleEventInput taks input from device, such as keyboard, mouse, etc */
 
     /* Game components (private in GameManager) */
     GameWindow mainWindow;

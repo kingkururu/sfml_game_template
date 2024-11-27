@@ -6,7 +6,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-/* Scene constructure sets up window and sprite respawn times */
+// Scene constructure sets up window and sprite respawn times 
 Scene::Scene( sf::RenderWindow& gameWindow ) : window(gameWindow), quadtree(0.0f, 0.0f, Constants::WORLD_WIDTH, Constants::WORLD_HEIGHT){ 
     MetaComponents::view = sf::View(Constants::VIEW_RECT); 
     log_info("scene made"); 
@@ -50,7 +50,7 @@ void Scene::moveViewPortWASD(){
     }
 }
 
-/* Resets everything for scene to start again. The position, moveState, flagEvents, etc are all reset */
+// Resets everything for scene to start again. The position, moveState, flagEvents, etc are all reset 
 void Scene::restartScene() {
     // re-play background music
 
@@ -64,7 +64,7 @@ void Scene::restartScene() {
     sceneEvents.resetFlags(); 
 }
 
-/* Handles events from flagEvents; deals with gameEnd state */
+// Handles events from flagEvents
 void Scene::handleGameFlags(){
     // if flagEvents.gameEnd is true or some event ... do somthing 
     if(FlagSystem::flagEvents.gameEnd){
@@ -78,7 +78,7 @@ void Scene::handleGameFlags(){
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-/* Gets called once before the main game loop to handle cpu-heavy work only once at the beggining */
+// Gets called once before the main game loop 
 void gamePlayScene::createAssets() {
     try {
         globalTimer.Reset();  
@@ -123,14 +123,12 @@ void gamePlayScene::insertItemsInQuadtree(){
     quadtree.insert(button1); 
 }
 
-/* Creates more sprites from exisitng textures; avoids heavy cpu work */
 void gamePlayScene::respawnAssets(){
-    // if certain respawn time variable is less than a certain value, respawn objects
+    // use existing sprites or make new ones with pre-made textures
 } 
 
-/* delet some sprites if their visibleState is false for memory management */
 void gamePlayScene::deleteInvisibleSprites() {
-    // maybe di a sprite pooling 
+    // maybe do a sprite pooling 
 }
 
 /* Updating time from GameManager's deltatime; it updates sprite respawn times and also counts 
@@ -212,7 +210,7 @@ void gamePlayScene::handleMovementKeys() {
     }
 }
 
-/* Keeps sprites inside screen bounds, checks for collisions, update scores, and sets flagEvents.gameEnd to true in an event of collision */
+// Keeps sprites inside screen bounds, checks for collisions, update scores, and sets flagEvents.gameEnd to true in an event of collision 
 void gamePlayScene::handleGameEvents() { 
     if (player) physics::spriteMover(player, physics::moveRight); 
 
@@ -225,8 +223,6 @@ void gamePlayScene::handleSceneFlags(){
     if(FlagSystem::gameScene1Flags.playerFalling) physics::spriteMover(player, physics::freeFall); 
 }
 
-/* Updates sprite and text positions when their moveState is true and their pointers are not null. 
-deleteInvisibleSprites is called to destroy invisible sprites for memory management */
 void gamePlayScene::update() {
     try {
         updateEntityStates();
@@ -278,7 +274,7 @@ void gamePlayScene::updateDrawablesVisibility(){
     }
 }
 
-/* Draws only the visible sprite and texts */
+// Draws only the visible sprite and texts
 void gamePlayScene::draw() {
     try {
         window.clear(sf::Color::Blue);
