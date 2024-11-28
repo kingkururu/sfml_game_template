@@ -6,7 +6,6 @@
 
 #include "physics.hpp"
 
-/* physics namespace to have sprites move */
 namespace physics {
 
     Quadtree::Quadtree(float x, float y, float width, float height, size_t level, size_t maxObjects, size_t maxLevels)

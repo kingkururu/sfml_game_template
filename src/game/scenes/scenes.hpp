@@ -3,6 +3,7 @@
 //  sfml game template
 //
 //
+
 #pragma once
 
 #include <iostream>
@@ -22,7 +23,8 @@
 #include "tiles.hpp"
 #include "log.hpp"
 
-/* Base scene class */
+
+// Base scene class 
 class Scene {
  public:
   Scene( sf::RenderWindow& gameWindow );

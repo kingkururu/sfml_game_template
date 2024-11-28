@@ -6,7 +6,7 @@
 
 #include "sprites.hpp"
 
-/* sprite class constructor; takes in position, scale, texture */
+// sprite class constructor; takes in position, scale, texture 
 Sprite::Sprite(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture)
     : position(position), scale(scale), texture(texture), spriteCreated(std::make_unique<sf::Sprite>()), visibleState(true) {
     try {
@@ -52,7 +52,7 @@ float Sprite::getRadius() const {
     return diagonal / 2.0f;
 }
 
-/* background class constructor; takes in position, scale, texture */
+// background class constructor; takes in position, scale, texture 
 Background::Background(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture) : Sprite(position, scale, texture) {
     if (auto tex = texture.lock()) {
         spriteCreated = std::make_unique<sf::Sprite>(*tex);
@@ -155,7 +155,7 @@ void Background::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     }
 }
 
-/* sets cut-out rect for sprite animation */
+// sets cut-out rect for sprite animation 
 void Animated::setRects(int animNum){
     try {
         if (animNum < 0 || animNum > indexMax) {
@@ -169,7 +169,7 @@ void Animated::setRects(int animNum){
     }
 }
 
-/* changes animation based on time */
+// changes animation based on time 
 void Animated::changeAnimation() {
     try {
         if (animChangeState) {
@@ -208,7 +208,7 @@ float Animated::getRadius() const {
     return diagonal / 2.0f;
 }
 
-/* updates position to be assigned most recent position */
+// updates position to be assigned most recent position 
 void Sprite::updateVisibility() {
     try {
             // under some condition 
@@ -220,7 +220,7 @@ void Sprite::updateVisibility() {
     }
 }
 
-/* returns animation rects vector */
+// returns animation rects vector 
 sf::IntRect Animated::getRects() const {
     try {
         if (animationRects.empty()) {
@@ -235,7 +235,7 @@ sf::IntRect Animated::getRects() const {
     }
 }
 
-/* returns bitmask for a sprite */
+// returns bitmask for a sprite 
 std::shared_ptr<sf::Uint8[]> const Animated::getBitmask(size_t index) const {
     try {
         if (index >= bitMask.size()) {

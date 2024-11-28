@@ -3,10 +3,12 @@
 //  sfml game template
 //
 //
+
 #pragma once
 
 #include <SFML/Graphics.hpp>
 #include "log.hpp" 
+
 
 class GameWindow{
 public: 

@@ -3,6 +3,7 @@
 //  sfml game template
 //
 //
+
 #pragma once
 
 #include <type_traits>
@@ -18,6 +19,7 @@
 #include "globals.hpp" 
 #include "sprites.hpp" 
 #include "tiles.hpp" 
+
 
 namespace physics{
 

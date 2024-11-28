@@ -12,8 +12,8 @@
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-/* Scene constructure sets up window and sprite respawn times */
-Scene::Scene( sf::RenderWindow& gameWindow ) : window(gameWindow) /* initialize other elements here */ { 
+// Scene constructure sets up window and sprite respawn times 
+Scene::Scene( sf::RenderWindow& gameWindow ) : window(gameWindow) { 
     MetaComponents::view = sf::View(Constants::VIEW_RECT); 
     log_info("scene made"); 
 }
@@ -52,7 +52,6 @@ void Scene::moveViewPortWASD(){
     }
 }
 
-/* Resets everything for scene to start again. The position, moveState, flagEvents, etc are all reset */
 void Scene::restartScene() {
     // re-play background music
 
@@ -66,7 +65,6 @@ void Scene::restartScene() {
     sceneEvents.resetFlags(); 
 }
 
-/* Handles events from flagEvents; deals with gameEnd state */
 void Scene::handleGameFlags(){
     // if flagEvents.gameEnd is true or some event ... do somthing 
     if(FlagSystem::flagEvents.gameEnd){

@@ -15,7 +15,8 @@
 #include "log.hpp"
 #include "globals.hpp"
 
-/* base class for all sprites; contains position, scale, and texture */
+
+// base class for all sprites; contains position, scale, and texture 
 class Sprite : public sf::Drawable {
 public:
     explicit Sprite(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture);
@@ -84,7 +85,7 @@ class NonAnimated : public virtual Sprite {
     ~NonAnimated() override{};
 };
 
-/* background class deriving from sprites; the background doesn't "actually move with physics", but moves constantly to the left */
+// background class deriving from sprites; the background doesn't "actually move with physics", but moves constantly to the left 
 class Background : public Sprite{
 public:
    explicit Background(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture);
@@ -115,14 +116,12 @@ private:
     bool backgroundMoveState = true; 
 };
 
-/* static class deriving from sprites; refers to non-moving sprites */
 class Static : public virtual Sprite{
 public:
     using Sprite::Sprite;
     ~Static() override{};
 };
 
-/* NonStatic class deriving from sprites; refers to moving sprites */
 class NonStatic : public virtual Sprite{
 public:
    explicit NonStatic(sf::Vector2f position, sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, float speed, sf::Vector2f acceleration)

@@ -3,8 +3,6 @@
 //  sfml game template 
 //
 
-/* This is the game.hpp file containing all the declarations for game.cpp's GameManager class. */
-
 #pragma once
 
 #include <iostream>
@@ -17,6 +15,7 @@
 #include "window.hpp"
 #include "log.hpp" 
 
+
 // can be manipulated for extra functionality in game
 class GameManager {
 public:
@@ -26,15 +25,11 @@ public:
     void runScenesFlags();
 
 private:
-    /* countTime counts time regardless of the scene 
-       handleEventInput taks input from device, such as keyboard, mouse, etc */
-    void countTime();
+    void countTime(); // countTime counts time regardless of the scene 
     void handleEventInput();
 
-    /* Game components (private in GameManager) */
     GameWindow mainWindow;
 
-    /* Make more scene here. ex) name it openingScene, scene1, etc */
     std::unique_ptr<Scene> scene1; 
 
 };

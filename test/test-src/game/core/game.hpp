@@ -29,10 +29,8 @@ private:
     void countTime(); // countTime counts time regardless of the scene 
     void handleEventInput(); // handleEventInput taks input from device, such as keyboard, mouse, etc */
 
-    /* Game components (private in GameManager) */
     GameWindow mainWindow;
 
-    /* Make more scene here. ex) name it openingScene, scene1, etc */
     std::unique_ptr<introScene> introScreenScene; 
     std::unique_ptr<gamePlayScene> gameScene;
     std::unique_ptr<gamePlayScene2> gameSceneNext; 

@@ -16,6 +16,7 @@
 
 #include "log.hpp" 
 
+
 namespace SpriteComponents {
     enum Direction { NONE, LEFT, RIGHT, UP, DOWN };
 
@@ -33,7 +34,6 @@ namespace MetaComponents{
     extern sf::View view;
 }
 
-/* constant variables declared here */
 namespace Constants {
     extern void initialize();
 
