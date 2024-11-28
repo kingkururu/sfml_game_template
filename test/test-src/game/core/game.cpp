@@ -1,8 +1,3 @@
-//
-//  game.cpp
-//  sfml game template
-//
-//
 
 #include "game.hpp" 
 

@@ -17,7 +17,6 @@
 #include "../globals/globals.hpp"
 #include "../test-logging/log.hpp"
 
-// can be manipulated for extra functionality in game
 class GameManager {
 public:
     GameManager();

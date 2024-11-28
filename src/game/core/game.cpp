@@ -9,9 +9,7 @@
 // GameManager constructor sets up the window, intitializes constant variables, calls the random function, and makes scenes 
 GameManager::GameManager()
     : mainWindow(Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT, Constants::GAME_TITLE, Constants::FRAME_LIMIT),
-    
-    scene1(std::make_unique<Scene>(mainWindow.getWindow()))  
-    {
+    scene1(std::make_unique<Scene>(mainWindow.getWindow())) {
 
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
@@ -45,7 +43,6 @@ void GameManager::runScenesFlags(){
 
 void GameManager::loadScenes(){
     scene1->createAssets(); 
-
 }
 
 // countTime counts global time and delta time for scenes to later use in runScene 
