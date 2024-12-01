@@ -7,6 +7,7 @@
 #include "globals.hpp"
 
 namespace MetaComponents {
+    // single instance throughout the game, global
     sf::Clock clock;
     sf::View view; 
 }   
@@ -35,6 +36,7 @@ namespace SpriteComponents {
             {"WHITE", sf::Color::White},
             {"BLACK", sf::Color::Black},
             {"TRANSPARENT", sf::Color::Transparent}
+            // add custom colors here with rgb
         };
 
         auto it = colorMap.find(color);
@@ -89,10 +91,12 @@ namespace Constants {
     }
 
     void loadAssets(){ 
+        // load textures and sound buffers here
         log_info("\tSuccessfully loaded assets");
     }
 
     void makeRectsAndBitmasks(){
+        //call createBitmask(texture, rect) for sprites
         log_info("\tSuccessfully created rects and bitmasks");
     }
 
