@@ -114,7 +114,7 @@ void gamePlayScene::createAssets() {
     } 
 
     catch (const std::exception& e) {
-         log_error("Exception in createAssets: " + std::string(e.what()));
+        log_error("Exception in createAssets: " + std::string(e.what()));
     }
 }
 
@@ -265,9 +265,7 @@ void gamePlayScene::updatePlayerAndView() {
 
 void gamePlayScene::updateDrawablesVisibility(){
     try{
-        if (button1){
-            button1->setVisibleState(physics::collisionHelper(button1, MetaComponents::view)); 
-        }
+        if (button1) button1->setVisibleState(physics::collisionHelper(button1, MetaComponents::view)); 
     }
     catch(const std::exception & e){
          log_error("Exception in updateDrawablesVisibility: " + std::string(e.what()));
@@ -313,7 +311,7 @@ void gamePlayScene2::createAssets() {
     } 
 
     catch (const std::exception& e) {
-         log_error("Exception in createAssets: " + std::string(e.what()));
+        log_error("Exception in createAssets: " + std::string(e.what()));
     }
 }
 
@@ -325,9 +323,7 @@ void gamePlayScene2::draw() {
     try {
         window.clear();
 
-        if (background && background->getVisibleState()) {
-            window.draw(*background); 
-        }
+        if (background && background->getVisibleState()) window.draw(*background); 
     
         window.display(); 
     } 
