@@ -42,7 +42,8 @@ namespace SpriteComponents {
             {"CYAN", sf::Color::Cyan},
             {"WHITE", sf::Color::White},
             {"BLACK", sf::Color::Black},
-            {"TRANSPARENT", sf::Color::Transparent}
+            {"TRANSPARENT", sf::Color::Transparent},
+            {"CUSTOMCOLOR_LIGHTCORAL", sf::Color(240, 128, 128)} // add colors like this 
         };
 
         auto it = colorMap.find(color);
