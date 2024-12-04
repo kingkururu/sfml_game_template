@@ -38,7 +38,6 @@ namespace MetaComponents{
     extern sf::FloatRect getViewBounds();
 }
 
-/* constant variables declared here */
 namespace Constants { // not actually "constants" in terms of being fixed, but should never be altered after being read from the config.yaml file
     extern void initialize();
 
@@ -213,6 +212,6 @@ namespace FlagSystem {
         }
     };
 
-    inline GameSceneEvents1 gameScene1Flags; 
-    inline SceneEvents gameSceneNextFlags;
+    inline GameSceneEvents1 gameScene1Flags; // accesible from everywhere 
+    inline SceneEvents gameSceneNextFlags; // accecible from everywhere 
 }
