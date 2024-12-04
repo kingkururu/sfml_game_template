@@ -219,7 +219,6 @@ void gamePlayScene::handleGameEvents() {
 } 
 
 void gamePlayScene::handleSceneFlags(){
-    // do something from its private flag
     if(FlagSystem::gameScene1Flags.playerFalling) physics::spriteMover(player, physics::freeFall); 
 }
 
