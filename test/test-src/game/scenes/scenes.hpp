@@ -62,6 +62,7 @@ class Scene {
   physics::Quadtree quadtree; 
 };
 
+// not in use
 class introScene : public virtual Scene{
  public:
    using Scene::Scene; 
@@ -71,6 +72,7 @@ class introScene : public virtual Scene{
 
 };
 
+// in use (the main scene in test game)
 class gamePlayScene : public virtual Scene{
  public:
   using Scene::Scene; 
@@ -116,6 +118,7 @@ class gamePlayScene : public virtual Scene{
   std::unique_ptr<TextClass> text1; 
 };
 
+// not using right now in test game
 class gamePlayScene2 : public virtual Scene{
 public:
   using Scene::Scene; 

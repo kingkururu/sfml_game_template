@@ -6,8 +6,7 @@
 
 #include "globals.hpp"
 
-namespace MetaComponents {
-    // single instance throughout the game, global
+namespace MetaComponents {     // single instance throughout the game
     sf::Clock clock;
     sf::View view; 
 }   
