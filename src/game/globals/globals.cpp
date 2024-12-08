@@ -12,6 +12,7 @@ namespace MetaComponents {     // single instance throughout the game
 }   
 
 namespace SpriteComponents {
+    // direction for moving background sprite
     Direction toDirection(const std::string& direction) {
         static const std::unordered_map<std::string, Direction> directionMap = {
             {"LEFT", Direction::LEFT},
@@ -24,6 +25,7 @@ namespace SpriteComponents {
         return (it != directionMap.end()) ? it->second : Direction::NONE;
     }
 
+    // color for text colors
     sf::Color toSfColor(const std::string& color) {
         static const std::unordered_map<std::string, sf::Color> colorMap = {
             {"RED", sf::Color::Red},
@@ -53,8 +55,9 @@ namespace Constants {
     }
     
     void initialize(){
+        // for random function
         std::srand(static_cast<unsigned int>(std::time(nullptr)));
-
+        
         readFromYaml(std::filesystem::path("src/game/globals/config.yaml"));
         loadAssets();
         makeRectsAndBitmasks(); 
