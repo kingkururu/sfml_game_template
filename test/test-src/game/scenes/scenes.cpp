@@ -240,19 +240,19 @@ void gamePlayScene::update() {
     }
 }
 
-void gamePlayScene::updateEntityStates(){
+void gamePlayScene::updateEntityStates(){ // manually change the sprite's state
     player->setJumpingState(FlagSystem::gameScene1Flags.playerJumping);
     player->setFallingState(FlagSystem::gameScene1Flags.playerFalling); 
 }
 
 void gamePlayScene::changeAnimation(){
-    if (button1) button1->changeAnimation();
+    if (button1) button1->changeAnimation(); 
     if (background) background->updateBackground(Constants::BACKGROUND_SPEED, Constants::BACKGROUND_MOVING_DIRECTION);
     if (player) player->changeAnimation();
 }
 
 void gamePlayScene::updatePlayerAndView() {
-    if(player->getJumpingState() || player->getFallingState()) return; 
+    if(player->getJumpingState() || player->getFallingState()) return; // don't make the view focus on player if player is jumping or falling
 
     // Calculate the center of the view based on the player's position
     float viewCenterX = player->getSpritePos().x;
@@ -264,7 +264,7 @@ void gamePlayScene::updatePlayerAndView() {
 
 void gamePlayScene::updateDrawablesVisibility(){
     try{
-        if (button1) button1->setVisibleState(physics::collisionHelper(button1, MetaComponents::view)); 
+        if (button1) button1->setVisibleState(physics::collisionHelper(button1, MetaComponents::view)); // set button's visibility if it is on or off screen 
     }
     catch(const std::exception & e){
          log_error("Exception in updateDrawablesVisibility: " + std::string(e.what()));
@@ -274,7 +274,7 @@ void gamePlayScene::updateDrawablesVisibility(){
 // Draws only the visible sprite and texts
 void gamePlayScene::draw() {
     try {
-        window.clear(sf::Color::Blue);
+        window.clear(sf::Color::Blue); // set the base baskground color blue
 
         if (background && background->getVisibleState()) {
             window.draw(*background); 
@@ -315,12 +315,12 @@ void gamePlayScene2::createAssets() {
 }
 
 void gamePlayScene2::handleInput() {
-    moveViewPortWASD();
+    moveViewPortWASD(); // change position of the view port based on keyboard input flags
 }
 
 void gamePlayScene2::draw() {
     try {
-        window.clear();
+        window.clear(); // clear elements from previous screen 
 
         if (background && background->getVisibleState()) window.draw(*background); 
     
@@ -334,7 +334,7 @@ void gamePlayScene2::draw() {
 
 void gamePlayScene2::update() {
     try {
-        deleteInvisibleSprites();
+        deleteInvisibleSprites(); // do a sprite pooling or actually delete all
 
         window.setView(MetaComponents::view); 
         
