@@ -245,7 +245,7 @@ void gamePlayScene::updateEntityStates(){ // manually change the sprite's state
     player->setFallingState(FlagSystem::gameScene1Flags.playerFalling); 
 }
 
-void gamePlayScene::changeAnimation(){
+void gamePlayScene::changeAnimation(){ // change animation for sprites. change animation for texts if necessary 
     if (button1) button1->changeAnimation(); 
     if (background) background->updateBackground(Constants::BACKGROUND_SPEED, Constants::BACKGROUND_MOVING_DIRECTION);
     if (player) player->changeAnimation();
@@ -288,6 +288,8 @@ void gamePlayScene::draw() {
         if (player && player->getVisibleState()) {
             window.draw(*player); 
         }
+
+        if(text1) window.draw(*text1); 
 
         window.display(); 
     } 
