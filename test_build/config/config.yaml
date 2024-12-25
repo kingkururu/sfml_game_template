@@ -44,7 +44,7 @@ background:
 # Sprite paths
 sprites:
   sprite1:
-    speed: 200.0
+    speed: 100.0
     acceleration:
       x: 2.0 
       y: 2.0

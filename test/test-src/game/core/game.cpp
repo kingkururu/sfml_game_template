@@ -20,6 +20,8 @@ void GameManager::runGame() {
             countTime();
             handleEventInput();
             runScenesFlags(); 
+            resetFlags();
+   
         }
         log_info("\tGame Ended\n"); 
             
@@ -90,19 +92,23 @@ void GameManager::handleEventInput() {
                     break;
             }
         }
-        if (event.type == sf::Event::KeyReleased) {
-            FlagSystem::flagEvents.flagKeyReleased(); 
-        }
         if (event.type == sf::Event::MouseButtonPressed) {
+            
             FlagSystem::flagEvents.mouseClicked = true;
             sf::Vector2f worldPos = mainWindow.getWindow().mapPixelToCoords(sf::Mouse::getPosition(mainWindow.getWindow()), MetaComponents::view);
             MetaComponents::mouseClickedPosition_i = static_cast<sf::Vector2i>(worldPos);
             MetaComponents::mouseClickedPosition_f = worldPos; 
-        }
-        if (event.type == sf::Event::MouseButtonReleased) {
-            FlagSystem::flagEvents.mouseClicked = false;
+            std::cout << "press!!!!!!"; 
+
+                std::cout << "mouse clicked at position " << MetaComponents::mouseClickedPosition_i.x << " and y: " << MetaComponents::mouseClickedPosition_i.y << "\n"; 
+                std::cout << FlagSystem::flagEvents.mouseClicked << "\n";
         }
 
     }
+}
+
+void GameManager::resetFlags(){
+    FlagSystem::flagEvents.flagKeyReleased(); 
+    FlagSystem::flagEvents.mouseClicked = false;
 }
 

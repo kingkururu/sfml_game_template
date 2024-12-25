@@ -23,6 +23,7 @@ public:
     void loadScenes(); 
     void runGame();
     void runScenesFlags();
+    void resetFlags(); 
     
 private:
     void countTime(); // countTime counts time regardless of the scene 

@@ -148,7 +148,7 @@ void gamePlayScene::handleInput() {
     handleMovementKeys();
 }
 
-void gamePlayScene::handleMouseClick() {
+void gamePlayScene::handleMouseClick() {    
     if (FlagSystem::flagEvents.mouseClicked) {
         if (button1->getVisibleState() && 
             physics::collisionHelper(button1, MetaComponents::mouseClickedPosition_f)) {
@@ -212,7 +212,7 @@ void gamePlayScene::handleMovementKeys() {
 
 // Keeps sprites inside screen bounds, checks for collisions, update scores, and sets flagEvents.gameEnd to true in an event of collision 
 void gamePlayScene::handleGameEvents() { 
-    if (player) physics::spriteMover(player, physics::moveRight); 
+    //if (player) physics::spriteMover(player, physics::moveRight); 
 
     FlagSystem::gameScene1Flags.playerFalling = !physics::collisionHelper(player, tileMap1) && !FlagSystem::gameScene1Flags.playerJumping; // player must be not colliding with the tilemap, and it must not be jumping
     FlagSystem::gameScene1Flags.playerJumping = (MetaComponents::spacePressedElapsedTime > 0); 
