@@ -170,7 +170,7 @@ void gamePlayScene::handleMouseClick() {
 void gamePlayScene::handleSpaceKey() {
     if (FlagSystem::flagEvents.spacePressed) {
         if (player->getMoveState() && !FlagSystem::gameScene1Flags.playerFalling) {
-            physics::spriteMover(player, physics::jumpToSurface, MetaComponents::spacePressedElapsedTime, Constants::SPRITE1_JUMP_ACCELERATION);
+            physics::spriteMover(player, physics::jump, MetaComponents::spacePressedElapsedTime, Constants::SPRITE1_JUMP_ACCELERATION);
             MetaComponents::view.move(3, 0);
         } 
     }
@@ -267,7 +267,7 @@ void gamePlayScene::updateDrawablesVisibility(){
         if (button1) button1->setVisibleState(physics::collisionHelper(button1, MetaComponents::view)); // set button's visibility if it is on or off screen 
     }
     catch(const std::exception & e){
-         log_error("Exception in updateDrawablesVisibility: " + std::string(e.what()));
+        log_error("Exception in updateDrawablesVisibility: " + std::string(e.what()));
     }
 }
 
