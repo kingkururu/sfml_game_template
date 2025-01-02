@@ -25,6 +25,7 @@ void GameManager::runGame() {
             countTime();
             handleEventInput();
             runScenesFlags(); 
+            resetFlags();
         }
         log_info("\tGame Ended\n"); 
             
@@ -104,3 +105,7 @@ void GameManager::handleEventInput() {
     }
 }
 
+void GameManager::resetFlags(){
+    // reset any flags that needs to be fixed before the next game loop
+    FlagSystem::flagEvents.mouseClicked = false;
+}
