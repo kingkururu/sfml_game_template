@@ -100,7 +100,6 @@ void GameManager::handleEventInput() {
             MetaComponents::mouseClickedPosition_i = static_cast<sf::Vector2i>(worldPos);
             MetaComponents::mouseClickedPosition_f = worldPos; 
         }
-
     }
 }
 

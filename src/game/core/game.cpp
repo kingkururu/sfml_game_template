@@ -39,7 +39,6 @@ void GameManager::runScenesFlags(){
     if(!FlagSystem::flagEvents.gameEnd){ 
         scene1->runScene();
     }
-
 }
 
 void GameManager::loadScenes(){
@@ -98,9 +97,6 @@ void GameManager::handleEventInput() {
             FlagSystem::flagEvents.mouseClicked = true;
             sf::Vector2f worldPos = mainWindow.getWindow().mapPixelToCoords(sf::Mouse::getPosition(mainWindow.getWindow()), MetaComponents::view);
             MetaComponents::mouseClickedPosition = static_cast<sf::Vector2i>(worldPos);
-        }
-        if (event.type == sf::Event::MouseButtonReleased) {
-            FlagSystem::flagEvents.mouseClicked = false;
         }
     }
 }

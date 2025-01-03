@@ -1,29 +1,29 @@
-[2025-01-02 20:37:34.317] [info_logger] [info] Succesfuly read yaml file
-[2025-01-02 20:37:34.385] [info_logger] [info] 	Constants initialized 
-[2025-01-02 20:37:34.527] [info_logger] [info] scene made
-[2025-01-02 20:37:34.527] [info_logger] [info] scene made
-[2025-01-02 20:37:34.527] [info_logger] [info] scene made
-[2025-01-02 20:37:34.527] [info_logger] [info] 	Game initialized
-[2025-01-02 20:37:34.527] [info_logger] [info] Sprite initialized successfully
-[2025-01-02 20:37:34.527] [info_logger] [info] Background created
-[2025-01-02 20:37:34.527] [info_logger] [info] Sprite initialized successfully
-[2025-01-02 20:37:34.527] [info_logger] [info] Music initialized successfully, volume is 80.000000
-[2025-01-02 20:37:34.527] [info_logger] [info] Sprite initialized successfully
-[2025-01-02 20:37:34.535] [info_logger] [info] Tile map initialized successfully
-[2025-01-02 20:37:34.535] [info_logger] [info] Sound initialized successfully
-[2025-01-02 20:37:34.535] [info_logger] [info] text initialized successully
-[2025-01-02 20:37:34.535] [info_logger] [info] initializing assets in scene 1: 7.480000ms
-[2025-01-02 20:37:34.535] [info_logger] [info] Sprite inserted into quadtree node.
-[2025-01-02 20:37:34.535] [info_logger] [info] Sprite inserted into quadtree node.
-[2025-01-02 20:37:34.535] [info_logger] [info] Sprite initialized successfully
-[2025-01-02 20:37:34.535] [info_logger] [info] Background created
-[2025-01-02 20:37:59.918] [info_logger] [info] button clicked
-[2025-01-02 20:38:02.114] [info_logger] [info] Window close event detected.
-[2025-01-02 20:38:02.168] [info_logger] [info] 	Game Ended
+[2025-01-03 20:48:08.527] [info_logger] [info] Succesfuly read yaml file
+[2025-01-03 20:48:08.591] [info_logger] [info] 	Constants initialized 
+[2025-01-03 20:48:08.622] [info_logger] [info] scene made
+[2025-01-03 20:48:08.622] [info_logger] [info] scene made
+[2025-01-03 20:48:08.622] [info_logger] [info] scene made
+[2025-01-03 20:48:08.622] [info_logger] [info] 	Game initialized
+[2025-01-03 20:48:08.622] [info_logger] [info] Sprite initialized successfully
+[2025-01-03 20:48:08.622] [info_logger] [info] Background created
+[2025-01-03 20:48:08.622] [info_logger] [info] Sprite initialized successfully
+[2025-01-03 20:48:08.622] [info_logger] [info] Music initialized successfully, volume is 80.000000
+[2025-01-03 20:48:08.622] [info_logger] [info] Sprite initialized successfully
+[2025-01-03 20:48:08.629] [info_logger] [info] Tile map initialized successfully
+[2025-01-03 20:48:08.629] [info_logger] [info] Sound initialized successfully
+[2025-01-03 20:48:08.629] [info_logger] [info] text initialized successully
+[2025-01-03 20:48:08.629] [info_logger] [info] initializing assets in scene 1: 7.315001ms
+[2025-01-03 20:48:08.629] [info_logger] [info] Sprite inserted into quadtree node.
+[2025-01-03 20:48:08.629] [info_logger] [info] Sprite inserted into quadtree node.
+[2025-01-03 20:48:08.629] [info_logger] [info] Sprite initialized successfully
+[2025-01-03 20:48:08.629] [info_logger] [info] Background created
+[2025-01-03 20:48:09.710] [info_logger] [info] button clicked
+[2025-01-03 20:48:10.794] [info_logger] [info] Window close event detected.
+[2025-01-03 20:48:10.834] [info_logger] [info] 	Game Ended
 
-[2025-01-02 20:38:02.168] [info_logger] [info] objects cleared.
-[2025-01-02 20:38:02.168] [info_logger] [info] Quadtree cleared.
-[2025-01-02 20:38:02.177] [info_logger] [info] objects cleared.
-[2025-01-02 20:38:02.177] [info_logger] [info] Quadtree cleared.
-[2025-01-02 20:38:02.177] [info_logger] [info] objects cleared.
-[2025-01-02 20:38:02.177] [info_logger] [info] Quadtree cleared.
+[2025-01-03 20:48:10.834] [info_logger] [info] objects cleared.
+[2025-01-03 20:48:10.834] [info_logger] [info] Quadtree cleared.
+[2025-01-03 20:48:10.837] [info_logger] [info] objects cleared.
+[2025-01-03 20:48:10.837] [info_logger] [info] Quadtree cleared.
+[2025-01-03 20:48:10.837] [info_logger] [info] objects cleared.
+[2025-01-03 20:48:10.837] [info_logger] [info] Quadtree cleared.
