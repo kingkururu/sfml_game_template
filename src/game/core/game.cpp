@@ -6,6 +6,7 @@
 
 #include "game.hpp" 
 
+
 // GameManager constructor sets up the window, intitializes constant variables, calls the random function, and makes scenes 
 GameManager::GameManager()
     : mainWindow(Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT, Constants::GAME_TITLE, Constants::FRAME_LIMIT),

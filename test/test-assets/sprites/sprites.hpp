@@ -81,7 +81,7 @@ protected:
     std::vector<std::weak_ptr<sf::Uint8[]>> bitMask{}; 
 };
 
-class NonAnimated : public virtual Sprite {
+class NonAnimated : public virtual Sprite { // add something inside later if necessary
     using Sprite::Sprite;
     ~NonAnimated() override{};
 };

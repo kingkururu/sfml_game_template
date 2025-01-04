@@ -24,7 +24,7 @@ TextClass::TextClass(sf::Vector2f position, unsigned int size, sf::Color color, 
         log_info("text initialized successully");
     } 
     catch(const std::exception& e) {
-        log_error(e.what());  // Log error using spdlog
+        log_error(e.what());  
         visibleState = false;
     }
 }
@@ -34,6 +34,6 @@ void TextClass::updateText(const std::string& newText) {
     if (text) {
         text->setString(newText); 
     } else {
-        log_warning("Text not initialized");  // Log warning using spdlog
+        log_warning("Text not initialized"); 
     }
 }

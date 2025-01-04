@@ -2,7 +2,6 @@
 
 // physics namespace to have sprites move 
 namespace physics {
-
     Quadtree::Quadtree(float x, float y, float width, float height, size_t level, size_t maxObjects, size_t maxLevels)
         : maxObjects(maxObjects), maxLevels(maxLevels), level(level), bounds(x, y, width, height) {}
 

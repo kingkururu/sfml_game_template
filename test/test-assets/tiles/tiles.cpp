@@ -84,8 +84,7 @@ TileMap::TileMap(std::shared_ptr<Tile>* tileTypesArray, unsigned int tileTypesNu
         fileStream.close();
 
         log_info("Tile map initialized successfully");
-    }
-    catch (const std::exception& e) {
+    } catch (const std::exception& e) {
         log_warning("Error in making tilemap: " + std::string(e.what()));
     }
 }
@@ -100,21 +99,25 @@ void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
 // Add a tile to the map at the specified grid position (x, y)
 void TileMap::addTile(unsigned int x, unsigned int y, std::unique_ptr<Tile> tile) {
-    if (x >= tileMapWidth || y >= tileMapHeight) {
-        throw std::out_of_range("Tile position out of bounds: (" + std::to_string(x) + ", " + std::to_string(y) + ")");
+    try{
+        if (x >= tileMapWidth || y >= tileMapHeight) {
+            throw std::out_of_range("Tile position out of bounds: (" + std::to_string(x) + ", " + std::to_string(y) + ")");
+        }
+
+        // Calculate the index in the tiles vector
+        unsigned int index = y * tileMapWidth + x;
+
+        // Ensure the tile is valid (not nullptr)
+        if (!tile) {
+            throw std::runtime_error("Attempted to add a null tile.");
+        }
+
+        // Move the tile into the tiles vector at the calculated index
+        tiles[index] = std::move(tile);
+
+        // Optionally set the position of the tile if the Tile class has a method for that
+        tiles[index]->getTileSprite().setPosition(tileMapPosition.x + x * tileWidth, tileMapPosition.y + y * tileHeight);
+    } catch (const std::exception& e) {
+        log_error(e.what()); // Log any exceptions that occur
     }
-
-    // Calculate the index in the tiles vector
-    unsigned int index = y * tileMapWidth + x;
-
-    // Ensure the tile is valid (not nullptr)
-    if (!tile) {
-        throw std::runtime_error("Attempted to add a null tile.");
-    }
-
-    // Move the tile into the tiles vector at the calculated index
-    tiles[index] = std::move(tile);
-
-    // Optionally set the position of the tile if the Tile class has a method for that
-    tiles[index]->getTileSprite().setPosition(tileMapPosition.x + x * tileWidth, tileMapPosition.y + y * tileHeight);
 }

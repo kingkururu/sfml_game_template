@@ -32,6 +32,5 @@ private:
     GameWindow mainWindow;
 
     std::unique_ptr<Scene> scene1; 
-
 };
 

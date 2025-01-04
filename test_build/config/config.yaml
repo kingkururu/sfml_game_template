@@ -4,7 +4,7 @@ world:
   width: 2880    # 5760 * scale
   height: 1620   # 3240 * scale
   frame_limit: 60 # fps
-  title: "SFML game 1"
+  title: "SFML game template tester"
   view:
     size_x: 960.0 # pixels. also the screen size 
     size_y: 540.0 # pixels. also the screen size  
@@ -16,12 +16,12 @@ world:
 score:
   initial: 0
 
-# Animation settings
+# General animation settings
 animation:
   change_time: 0.1 # seconds
   passthrough_offset: 65 # pixels
 
-# Sprite and text settings
+# General sprite and text settings
 sprite:
   out_of_bounds_offset: 110 # pixels 
   out_of_bounds_adjustment: 100 # pixels 

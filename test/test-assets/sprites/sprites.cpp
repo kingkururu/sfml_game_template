@@ -135,7 +135,6 @@ void Background::updateBackground(float speed, SpriteComponents::Direction prima
     if (position3.y + height < viewBounds.top) spriteCreated3->setPosition(position3.x, position1.y + height);
     if (position1.y > viewBounds.top + viewBounds.height) spriteCreated->setPosition(position1.x, position3.y - height);
     if (position3.y > viewBounds.top + viewBounds.height) spriteCreated3->setPosition(position3.x, position1.y - height);
-
 }
 
 sf::FloatRect Background::getViewBounds(sf::Sprite& spriteNum) const {
@@ -171,7 +170,6 @@ void Animated::setRects(int animNum){
             throw std::out_of_range("Animation index out of range.");
         }
         spriteCreated->setTextureRect(animationRects[animNum]);    
-        
     }
     catch (const std::exception& e) {
         log_error("Error in setting texture: " + std::string(e.what()) + " | Index Max: " + std::to_string(indexMax) + " | Current Index: " + std::to_string(animNum));
@@ -189,7 +187,6 @@ void Animated::changeAnimation() {
                 }
                 setRects(currentIndex);
                 elapsedTime = 0.0f;
-                
             }
         }
     }
@@ -222,7 +219,6 @@ void Sprite::updateVisibility() {
             position.x > Constants::WORLD_WIDTH + Constants::SPRITE_OUT_OF_BOUNDS_OFFSET ||
             position.y < 0 - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET ||
             position.x < 0 - Constants::SPRITE_OUT_OF_BOUNDS_OFFSET) {
-                // do something else 
             setVisibleState(false);
             log_info("Sprite moved out of bounds and is no longer visible.");
         }
@@ -238,12 +234,12 @@ sf::IntRect Animated::getRects() const {
         if (animationRects.empty()) {
             throw std::runtime_error("Animation rects are empty.");
         }
-       // log_info("Returning animation rect for index " + std::to_string(currentIndex % animationRects.size()));
+        // log_info("Returning animation rect for index " + std::to_string(currentIndex % animationRects.size()));
         return animationRects[currentIndex % animationRects.size()];
     } 
     catch (const std::exception& e) {
         log_error("Error in getRects: " + std::string(e.what()));
-        throw;  // Rethrow the exception for further handling if necessary
+        throw;
     }
 }
 
@@ -258,16 +254,14 @@ std::shared_ptr<sf::Uint8[]> const Animated::getBitmask(size_t index) const {
     } 
     catch (const std::exception& e) {
         log_error("Error in getBitmask: " + std::string(e.what()) + " | Requested index: " + std::to_string(index));
-        throw; // Rethrow the exception for further handling if necessary
+        throw;
     }
 }
 
 // specialized player position update method 
 void Player::updatePlayer(sf::Vector2f newPos) {
-    
     changePosition(newPos); 
     updatePos();
-    
     log_info("Player position updated to (" + std::to_string(newPos.x) + ", " + std::to_string(newPos.y) + ")");
 }
 
