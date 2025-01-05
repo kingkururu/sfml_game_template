@@ -46,7 +46,7 @@ namespace Constants { // not actually "constants" in terms of being fixed, but s
     extern void writeRandomTileMap(const std::filesystem::path filePath); 
 
     // load textures, fonts, music, and sound
-    extern std::shared_ptr<sf::Uint8[]> createBitmask( const std::shared_ptr<sf::Texture>& texture, const sf::IntRect& rect );
+    extern std::shared_ptr<sf::Uint8[]> createBitmask( const std::shared_ptr<sf::Texture>& texture, const sf::IntRect& rect, const float transparency = 0.0f);
     extern void printBitmaskDebug(const std::shared_ptr<sf::Uint8[]>& bitmask, unsigned int width, unsigned int height);
     extern void loadAssets(); 
     extern void readFromYaml(const std::filesystem::path configFile); 

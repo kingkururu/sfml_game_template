@@ -274,7 +274,7 @@ namespace Constants {
         }
     }
 
-    std::shared_ptr<sf::Uint8[]> createBitmask( const std::shared_ptr<sf::Texture>& texture, const sf::IntRect& rect) {
+    std::shared_ptr<sf::Uint8[]> createBitmask( const std::shared_ptr<sf::Texture>& texture, const sf::IntRect& rect, const float transparency) {
         if (!texture) {
             log_warning("\tfailed to create bitmask ( texture is empty )");
             return nullptr;
@@ -296,20 +296,22 @@ namespace Constants {
         unsigned int bitmaskSize = (width * height) / 8 + ((width * height) % 8 != 0); // rounding up
         std::shared_ptr<sf::Uint8[]> bitmask(new sf::Uint8[bitmaskSize](), std::default_delete<sf::Uint8[]>());
 
-         for (unsigned int y = 0; y < height; ++y) {
+        for (unsigned int y = 0; y < height; ++y) {
             for (unsigned int x = 0; x < width; ++x) {
-                sf::Color pixelColor = image.getPixel(x, y);
+                sf::Color pixelColor = image.getPixel(rect.left + x, rect.top + y);
                 unsigned int bitIndex = y * width + x;
                 unsigned int byteIndex = bitIndex / 8;
                 unsigned int bitPosition = bitIndex % 8;
 
-                if (pixelColor.a > 128) {
+                // Use transparency threshold if provided, otherwise default to alpha > 128
+                if ((transparency > 0.0f && pixelColor.a >= static_cast<sf::Uint8>(transparency * 255)) || 
+                    (transparency <= 0.0f && pixelColor.a > 128)) {
                     bitmask[byteIndex] |= (1 << bitPosition);
                 }
             }
         }
 
-        return bitmask; 
+        return bitmask;
     }
 
     void printBitmaskDebug(const std::shared_ptr<sf::Uint8[]>& bitmask, unsigned int width, unsigned int height) {
