@@ -41,7 +41,7 @@ namespace Constants {
     extern sf::Vector2f makeRandomPosition(); 
 
     // load textures, fonts, music, and sound
-    extern std::shared_ptr<sf::Uint8[]> createBitmask( const std::shared_ptr<sf::Texture>& texture, const sf::IntRect& rect );
+    extern std::shared_ptr<sf::Uint8[]> createBitmask( const std::shared_ptr<sf::Texture>& texture, const sf::IntRect& rect, const float transparencey = 0.0f);
     extern void printBitmaskDebug(const std::shared_ptr<sf::Uint8[]>& bitmask, unsigned int width, unsigned int height);
     extern void loadAssets(); 
     extern void readFromYaml(std::filesystem::path configFile);  
