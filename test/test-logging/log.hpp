@@ -18,6 +18,7 @@
 #include <string_view>
 #include <csignal>
 
+
 void init_logging();
 void log_info(const std::string& message);
 void log_warning(const std::string& message);

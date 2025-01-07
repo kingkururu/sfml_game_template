@@ -4,6 +4,7 @@
 
 #if RUN_TESTING 
 #include <iostream>
+#include <catch2/catch_all.hpp>
 
 #else 
 

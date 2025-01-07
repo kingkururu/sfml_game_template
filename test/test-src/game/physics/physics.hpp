@@ -198,7 +198,7 @@ namespace physics{
         return false; // Default case
     }
 
-    template<typename ObjType1, typename ObjType2, typename CollisionType>
+    template<typename ObjType1, typename ObjType2, typename CollisionType> // for sprite vs. sprite
     bool collisionHelper(ObjType1&& obj1, ObjType2&& obj2, const CollisionType& collisionFunc, Quadtree& quadtree, float timeElapsed = 0.0f, size_t counterIndex = 0) { // for sprive vs. sprite
         // Check if obj1 and obj2 are valid pointers
         if (!obj1) {
