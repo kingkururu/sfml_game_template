@@ -1,6 +1,6 @@
 //
 //  globals.cpp
-//  sfmlgame3
+//  sfml game template
 //
 //
 

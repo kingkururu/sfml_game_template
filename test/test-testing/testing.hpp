@@ -4,7 +4,12 @@
 
 #if RUN_TESTING 
 #include <iostream>
-#include <catch2/catch_all.hpp>
+// #include <catch2/catch_all.hpp>
+
+
+// TEST_CASE("Sample Test") {
+//     REQUIRE(1 == 2);
+// }
 
 #else 
 

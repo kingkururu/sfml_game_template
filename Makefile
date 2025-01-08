@@ -21,6 +21,7 @@ YAML_INCLUDE ?= $(HOMEBREW_PREFIX)/Cellar/yaml-cpp/0.8.0/include
 # Include paths for Homebrew libraries
 BREW_INCLUDE_FLAGS := -I$(SPDLOG_INCLUDE) -I$(FMT_INCLUDE) -I$(SFML_INCLUDE) -I$(CATCH2_INCLUDE) -I$(YAML_INCLUDE)
 CXXFLAGS += $(BREW_INCLUDE_FLAGS)
+# CXXFLAGS += -I$(HOMEBREW_PREFIX)/opt/catch2/include
 
 TEST_CXXFLAGS := -std=c++17 -Wall \
                  -I./test/test-src \
@@ -36,7 +37,8 @@ TEST_CXXFLAGS := -std=c++17 -Wall \
                  -DTESTING
 
 # Library paths and linking
-LDFLAGS = -L$(SPDLOG_LIB) -L$(FMT_LIB) -L$(SFML_LIB) -L$(HOMEBREW_PREFIX)/lib -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lspdlog -lfmt -lyaml-cpp
+# LDFLAGS = -L$(SPDLOG_LIB) -L$(FMT_LIB) -L$(SFML_LIB) -L$(HOMEBREW_PREFIX)/lib -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lspdlog -lfmt -lyaml-cpp
+LDFLAGS = -L$(SPDLOG_LIB) -L$(FMT_LIB) -L$(SFML_LIB) -L$(HOMEBREW_PREFIX)/lib -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lspdlog -lfmt -lyaml-cpp -lCatch2
 
 # Build directories
 BUILD_DIR := build

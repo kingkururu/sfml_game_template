@@ -1,5 +1,5 @@
 //
-//  physics.hpp
+//  window.hpp
 //  sfml game template
 //
 //

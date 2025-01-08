@@ -1,5 +1,6 @@
 //
-//  tilemap.hpp
+//  tiles.hpp
+//  sfml game template
 //
 //
 

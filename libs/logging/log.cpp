@@ -1,3 +1,9 @@
+//
+//  log.cpp
+//  sfml game template
+//
+//
+
 #include "log.hpp"
 
 #if ENABLE_LOGGING

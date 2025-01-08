@@ -1,3 +1,9 @@
+//
+//  log.hpp
+//  sfml game template
+//
+//
+
 #pragma once
 
 #include <string>

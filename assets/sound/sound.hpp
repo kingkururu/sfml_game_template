@@ -1,6 +1,6 @@
 //
 //  sound.hpp
-//  sfmlgame3
+//  sfml game template
 //
 //
 

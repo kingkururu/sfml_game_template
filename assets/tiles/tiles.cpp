@@ -1,3 +1,9 @@
+//
+//  tiles.cpp
+//  sfml game template
+//
+//
+
 #include "tiles.hpp"
 
 Tile::Tile(sf::Vector2f scale, std::weak_ptr<sf::Texture> texture, sf::IntRect textureRect, 

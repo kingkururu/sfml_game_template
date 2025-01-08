@@ -35,12 +35,10 @@ MusicClass::MusicClass(std::unique_ptr<sf::Music> musicLoad, float volume)
         }
         music->setVolume(volume);
         music->setLoop(true);  
-        //music->play();
 
-        log_info("Music initialized successfully, volume is " + std::to_string(volume));  // Log music volume using spdlog
-
+        log_info("Music initialized successfully, volume is " + std::to_string(volume)); 
     } catch (const std::exception& e) {
-        log_error(e.what());  // Use spdlog to log the error
+        log_error(e.what()); 
         music.reset();  
     }
 }
