@@ -104,7 +104,6 @@ void GameManager::handleEventInput() {
 }
 
 void GameManager::resetFlags(){
-   // FlagSystem::flagEvents.flagKeyReleased(); 
     FlagSystem::flagEvents.mouseClicked = false;
 }
 

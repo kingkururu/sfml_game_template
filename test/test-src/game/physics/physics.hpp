@@ -248,14 +248,17 @@ namespace physics{
             return false; // No collision detected
         };
 
-        if(quadtree){
+         if(quadtree){
             auto potentialColliders1 = quadtree->query(sprite1->returnSpritesShape().getGlobalBounds());
             auto potentialColliders2 = quadtree->query(sprite2->returnSpritesShape().getGlobalBounds());
+
+            if (potentialColliders1.empty() || potentialColliders2.empty()) return false;
 
             for (const auto& collider1 : potentialColliders1) {
                 for (const auto& collider2 : potentialColliders2) {
                     if (collider1 == collider2) continue;  // Skip self-collision checks
-                        return collisionLambda(data1, data2, collisionFunc);
+                    
+                    return collisionLambda(data1, data2, collisionFunc);
                 }
             }
         } else {
