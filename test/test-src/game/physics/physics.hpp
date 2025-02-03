@@ -226,6 +226,8 @@ namespace physics{
         // Retrieve references to obj1 and obj2
         auto& sprite1 = getSprite(std::forward<ObjType1>(obj1));
         auto& sprite2 = getSprite(std::forward<ObjType2>(obj2));
+        CollisionData data1 = extractCollisionData(sprite1);
+        CollisionData data2 = extractCollisionData(sprite2);
 
         auto collisionLambda = [&timeElapsed, counterIndex](const CollisionData& data1, const CollisionData& data2, 
                                                                                   CollisionType collisionFunc) {
@@ -253,14 +255,10 @@ namespace physics{
             for (const auto& collider1 : potentialColliders1) {
                 for (const auto& collider2 : potentialColliders2) {
                     if (collider1 == collider2) continue;  // Skip self-collision checks
-                        CollisionData data1 = extractCollisionData(sprite1);
-                        CollisionData data2 = extractCollisionData(sprite2);
                         return collisionLambda(data1, data2, collisionFunc);
                 }
             }
         } else {
-            CollisionData data1 = extractCollisionData(sprite1);
-            CollisionData data2 = extractCollisionData(sprite2);
             return collisionLambda(data1, data2, collisionFunc);
         }
         return false; // default 
