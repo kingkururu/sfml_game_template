@@ -33,6 +33,11 @@ void Scene::runScene() {
 
 void Scene::draw(){
     window.clear(sf::Color::Black);
+
+     auto drawAnythingVisible = [&](auto& drawable) {
+            if (drawable && drawable->getVisibleState()) window.draw(*drawable);
+        };
+
     window.display(); 
  }
 

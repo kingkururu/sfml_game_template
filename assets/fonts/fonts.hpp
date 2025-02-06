@@ -27,7 +27,7 @@ public:
     void updateText(const std::string& newText); 
     unsigned int getSize() const { return size; }
     void setSize(int newSize){ text->setCharacterSize(newSize); }
-
+    
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override { if (visibleState && text) target.draw(*text, states); }
 
 private:

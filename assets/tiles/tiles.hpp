@@ -60,6 +60,8 @@ public:
     size_t const getTileMapHeight() const { return tileMapHeight; }
     sf::Vector2f const getTileMapPosition() const { return tileMapPosition; }
     unsigned int const getTileTypesNumber() const { return tileTypesNumber; }
+    bool getVisibleState() const { return visibleState; }
+    void setVisibleState(bool visibleState) { this->visibleState = visibleState; }
 
 private:
     unsigned int tileTypesNumber {};
@@ -71,6 +73,8 @@ private:
 
     std::vector<std::unique_ptr<Tile>> tiles; 
     sf::Vector2f tileMapPosition; 
+
+    bool visibleState = true;
 
     // Override the draw function of sf::Drawable to draw all tiles
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
