@@ -197,6 +197,16 @@ namespace physics {
         }
         return originalPos;
     }
+    
+    // object moving in a direction vector
+    sf::Vector2f followDirVec( float speed, sf::Vector2f originalPos, sf::Vector2f acceleration, const sf::Vector2f& direction){
+         sf::Vector2f movement(direction.x * speed * MetaComponents::deltaTime * acceleration.x, direction.y * speed * MetaComponents::deltaTime * acceleration.y);
+        return originalPos + movement;
+    }
+    sf::Vector2f followDirVecOpposite( float speed, sf::Vector2f originalPos, sf::Vector2f acceleration, const sf::Vector2f& direction){
+        sf::Vector2f movement(direction.x * speed * MetaComponents::deltaTime * acceleration.x * -1, direction.y * speed * MetaComponents::deltaTime * acceleration.y * -1);
+       return originalPos + movement;
+   }
 
 // collisions 
     // circle collision 
