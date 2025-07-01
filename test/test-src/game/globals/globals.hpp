@@ -15,7 +15,6 @@
 #include <filesystem>
 
 #include "../test-logging/log.hpp"
-#include "../utils/utils.hpp"
 
 namespace SpriteComponents {
     enum Direction { NONE, LEFT, RIGHT, UP, DOWN };

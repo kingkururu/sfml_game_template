@@ -11,7 +11,6 @@
 #include <functional> 
 #include <utility>
 
-#include "../globals/globals.hpp" 
 #include "../../test-assets/sprites/sprites.hpp" 
 #include "../../test-assets/tiles/tiles.hpp" 
 

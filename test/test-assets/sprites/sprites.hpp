@@ -13,7 +13,6 @@
 #include <map>
 #include <SFML/Graphics.hpp>
 
-#include "../../test-logging/log.hpp"
 #include "../globals/globals.hpp"
 
 

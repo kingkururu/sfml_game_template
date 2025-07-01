@@ -12,10 +12,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "../camera/window.hpp"
 #include "../scenes/scenes.hpp"
-#include "../globals/globals.hpp"
-#include "../test-logging/log.hpp"
 
 class GameManager {
 public:
