@@ -92,28 +92,27 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
 ```
 /sfml_game_template
 │
-├── .vscode/                   # VSCode settings and configurations
+├── .vscode/                  # VSCode settings and configurations
 │
-├── src/                       # Source files
+├── src/                      # Source files
 │   ├── main.cpp              # Main entry point of the game
 │   └── game/                 # Core engine functionalities
 │       ├── globals/          # Constants and flags
 │       ├── core/             # Game loop and state management
 │       ├── physics/          # Physics and collision detection
-│       ├── camera/           # SFML window and view management
+│       ├── camera/           # Window and view management
 │       ├── utils/            # Utility functions
 │       └── scenes/           # Scene management
 │
-├── assets/                    # Game assets
-│   ├── fonts/                # Font files and sources
+├── assets/                   # Game assets
+│   ├── fonts/                # Text files and sources
 │   ├── sound/                # Sound effects
 │   ├── tiles/                # Tiles and tilemaps
 │   └── sprites/              # Sprite images
 │
 ├── libs/                      # External libraries
-│   └── logging/              # Logging system
+│   └── logging/               # Logging system
 │
-├── test/                      # Test game (example project)
 ├── Makefile                   # Build instructions
 └── README.md                  # Project documentation
 ```
