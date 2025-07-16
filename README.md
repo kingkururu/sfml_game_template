@@ -16,9 +16,6 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
 
 ## 🛠️ Technical Architecture
 
-### Systems hierarchy
-<img width="871" alt="Screenshot 2024-11-05 at 11 40 42 AM" src="https://github.com/user-attachments/assets/211ec582-6439-444b-9450-c1ea3210776f">
- 
 ### Code Structure
 - **Tiles and Tilemap Class**: Refactored for better tile management
 - **Window Management**: Moved out of Game class, added logging system
