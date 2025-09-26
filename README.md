@@ -1,8 +1,8 @@
-# Custom SFML Game Framework 🎮
+# Custom SFML Game Framework 
 
 A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designed for flexible 2D game development. This framework allows for code-driven development without relying on external engines or graphical editors.
 
-## 🎯 Features
+## Features
 
 - **Game Manager**: Manages game loop, scenes, and input handling
 - **Scenes**: Handles specialized events for different game states
@@ -14,7 +14,7 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
 - **Physics**: AABB and Circle collision, pixel-perfect collision detection, raycast precollision detection, and quadtree implementation
 - **Constants & Globals**: Configured via YAML files for easy management
 
-## 🛠️ Technical Architecture
+## Technical Architecture
 
 ### Code Structure
 - **Tiles and Tilemap Class**: Refactored for better tile management
@@ -30,7 +30,7 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
 - **Performance Optimization**: Separate thread execution for reduced overhead
 - **Input Handling**: Extended helper methods for various input types including mouse positions and window bounds
 
-## 🚀 Building & Running
+## Building & Running
 
 ### Prerequisites
 - **Compiler**: Requires clang++ (or g++) with support for C++17
@@ -87,7 +87,7 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
    export PATH="path to other libraries if any of them is missing)
    ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 /sfml_game_template
@@ -117,7 +117,7 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
 └── README.md                  # Project documentation
 ```
 
-## 🎮 How to Use the Template
+## How to Use the Template
 
 ### 1. Game Manager and Scene Management
 - **Add Scenes**: Use GameManager to manage all your game scenes (IntroScene, GameplayScene, etc.)
@@ -144,14 +144,13 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
 - **Debug Logging**: spdlog functions accessible throughout the project
 - **Performance Monitoring**: Logging initialized in GameManager to monitor state changes and performance metrics
 
-## 🔧 Dependencies
+## Dependencies
 
 - **SFML**: For graphics, windowing, and audio handling
 - **spdlog**: Logging support for debug and error tracking
 - **fmt**: Text formatting library for logging
-- **catch2**: For testing purposes
 
-## 🎯 Key Learning Outcomes
+## Key Learning Outcomes
 
 - Custom game framework development
 - Advanced C++ programming with modern features
@@ -162,7 +161,7 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
 - Performance optimization techniques
 - Modular architecture design
 
-## 🏆 Advanced Features
+## Advanced Features
 
 - **New Window Class**: Multiple view support with YAML configuration
 - **New Globals Class**: Merged constants and flags with YAML reading
@@ -170,11 +169,11 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
 - **New Logging Class**: Console and file logging with FMT, SPDLOG, and multi-threading
 - **Physics Updates**: Quadtree implementation and enhanced helper methods
 
-## 📋 Usage Notes
+## Usage Notes
 
 This template does not include a UI layer for customization. Changes must be made directly in the code to implement specific game functionality. The framework is designed entirely for code-driven development, allowing maximum flexibility for 2D game creation.
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License.
 
