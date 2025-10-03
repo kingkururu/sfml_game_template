@@ -1,6 +1,0 @@
-[2024-11-16 12:54:53.408] [info_logger] [info] 	Successfully loaded assets
-[2024-11-16 12:54:53.408] [info_logger] [info] 	Successfully created rects and bitmasks
-[2024-11-16 12:54:53.477] [info_logger] [info] scene made
-[2024-11-16 12:54:53.477] [info_logger] [info] 	Game initialized
-[2024-11-16 12:54:58.254] [info_logger] [info] 	Game Ended
-
