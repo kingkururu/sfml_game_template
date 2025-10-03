@@ -23,13 +23,6 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
 - **Utils Integration**: Connected to logging system with togglable macros
 - **Scenes System**: Access to major components excluding Game and main files
 
-### Advanced Features
-- **Custom Window Class**: Support for multiple views with YAML-based configuration
-- **Logging System**: Color-coded console output (red, green, yellow) with file logging
-- **Quadtree Algorithm**: Implemented for recursive search in spatial partitioning
-- **Performance Optimization**: Separate thread execution for reduced overhead
-- **Input Handling**: Extended helper methods for various input types including mouse positions and window bounds
-
 ## Building & Running
 
 ### Prerequisites
@@ -42,28 +35,15 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/kingkururu/sfml_game_template
-   cd sfml_game_template
+   cd sfml_game_template (loaction will be different)
    ```
 
-2. **Build the Project**:
+2. **Build the and Run the Test**:
    ```bash
-   make
-   ```
-   This will:
-   - Install Homebrew if missing
-   - Install SFML, spdlog, and fmt via Homebrew
-   - Compile and build the project executable
-
-3. **Run the Game**:
-   ```bash
-   # Run the tester
    make test
-   
-   # Run the actual game
-   make run
    ```
 
-4. **Clean the Build**:
+3. **Clean the Build**:
    ```bash
    make clean
    ```
@@ -91,8 +71,6 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
 
 ```
 /sfml_game_template
-│
-├── .vscode/                  # VSCode settings and configurations
 │
 ├── src/                      # Source files
 │   ├── main.cpp              # Main entry point of the game
@@ -133,7 +111,6 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
 
 ### 4. Sprites and 2D Components
 - **Adding Sprites**: Use the Sprite class to manage game visuals
-- **Visibility Checks**: Template includes functions to set sprites visible if within bounds
 - **Collision Handling**: Use Physics::checkCollision(sprite1, sprite2, helperFunctionType) for collision detection
 
 ### 5. Physics and Movement
@@ -161,22 +138,6 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
 - Performance optimization techniques
 - Modular architecture design
 
-## Advanced Features
-
-- **New Window Class**: Multiple view support with YAML configuration
-- **New Globals Class**: Merged constants and flags with YAML reading
-- **New Tiles Class**: Enhanced tile and tilemap management
-- **New Logging Class**: Console and file logging with FMT, SPDLOG, and multi-threading
-- **Physics Updates**: Quadtree implementation and enhanced helper methods
-
 ## Usage Notes
 
 This template does not include a UI layer for customization. Changes must be made directly in the code to implement specific game functionality. The framework is designed entirely for code-driven development, allowing maximum flexibility for 2D game creation.
-
-## License
-
-This project is licensed under the MIT License.
-
----
-
-*Note: Adjust file paths, include dependencies, and modify sections based on your environment, as some systems may require manual setup for Homebrew or custom paths.*
