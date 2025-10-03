@@ -121,11 +121,11 @@ A lightweight custom game framework (~2000 LOC) built with C++ and SFML, designe
 - **Debug Logging**: spdlog functions accessible throughout the project
 - **Performance Monitoring**: Logging initialized in GameManager to monitor state changes and performance metrics
 
-## Dependencies
-
-- **SFML**: For graphics, windowing, and audio handling
-- **spdlog**: Logging support for debug and error tracking
-- **fmt**: Text formatting library for logging
+## Tools Used
+- **SFML**: https://github.com/SFML/SFML 
+- **Yaml-cpp**: https://github.com/jbeder/yaml-cpp
+- **Spdlog**: https://github.com/gabime/spdlog 
+- **FMT**: https://github.com/fmtlib/fmt 
 
 ## Key Learning Outcomes
 
